@@ -1,0 +1,6 @@
+cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
+cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
+cyber/boost		CYBRBOST // Taken from Unreal Tournament 3
+
+plasma/shot		PLASSHOT // Taken from Unreal Tournament 3
+plasma/hit		PLASHIT // Taken from Quake III

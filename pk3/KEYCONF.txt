@@ -1,0 +1,13 @@
+clearplayerclasses
+addplayerclass CyberRunner
+
+addkeysection "CyberRunner" cyberkeys
+addmenukey "Cyber Dash" cyberdash
+addmenukey "Cyber Jump" cyberjump
+addmenukey "Cyber Boost" cyberboost
+alias cyberdash "puke 402"
+alias cyberjump "puke 403"
+alias cyberboost "puke 404"
+defaultbind z cyberdash
+defaultbind x cyberjump
+defaultbind v cyberboost
