@@ -63,6 +63,7 @@ actor PlasmaBolt: FastProjectile
     RenderStyle Add
     Alpha 0.85
     Decal PlasmaScorch
+    +NODAMAGETHRUST
     States
     {
       Spawn:
@@ -97,7 +98,7 @@ actor PlasmaClimbPush
         goto Death
 
       Death:
-        TNT1 A 1 A_Explode(48, 48)
+        TNT1 A 1 A_Explode(24, 48)
         stop
     }
 }
