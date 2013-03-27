@@ -8,10 +8,12 @@ actor CyberRunner : PlayerPawn
     Health 200
     Player.MaxHealth 200
     Gravity 0.8
+	DamageFactor "NoDamage", 0
     Player.DisplayName "CyberRunner"
     Player.CrouchSprite "PLYC"
     Player.StartItem "Plasma Gun", 1
     Player.StartItem "PlasmaGunAmmo", 100
+    Player.StartItem "ForceVentAmmo", 3
     Player.StartItem "FancyTrails", 1
     Player.ForwardMove 1.8 1.8
     Player.SideMove 1.55 1.55
@@ -175,3 +177,9 @@ actor CyberRunner : PlayerPawn
     }
 }
 
+actor ForceVentAmmo : Ammo
+{
+    Inventory.MaxAmount 3
+    Ammo.BackpackMaxAmount 3
+    +INVENTORY.IGNORESKILL
+}

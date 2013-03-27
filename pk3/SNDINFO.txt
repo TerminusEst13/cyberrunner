@@ -4,3 +4,6 @@ cyber/boost		CYBRBOST // Taken from Unreal Tournament 3
 
 plasma/shot		PLASSHOT // Taken from Unreal Tournament 3
 plasma/hit		PLASHIT // Taken from Quake III
+
+force/shot		FRCESHOT
+force/hit		FRCEHIT

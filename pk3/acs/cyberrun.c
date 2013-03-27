@@ -26,6 +26,15 @@ script 400 ENTER
     }
 }
 
+script 405 ENTER
+{
+	While (TRUE)
+	{
+        GiveInventory("ForceVentAmmo",1);
+        delay(105);
+	}
+}
+
 script 401 DEATH
 {
     ACS_Terminate(402, 0);
