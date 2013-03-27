@@ -1,0 +1,122 @@
+actor "Plasma Gun" : Weapon
+{
+    Weapon.AmmoType1 "PlasmaGunAmmo"
+    Weapon.AmmoUse1 1
+    +NOAUTOAIM
+    +AMMO_OPTIONAL
+    Weapon.Kickback 100
+    States
+    {
+      Ready:
+        TNT1 A 1 A_WeaponReady
+        Loop
+
+      Deselect:
+        TNT1 A 1 A_Lower
+        Loop
+
+      Select:
+        TNT1 A 1 A_Raise
+        Loop
+
+      Fire:
+        TNT1 A 0 A_JumpIfNoAmmo("DryFire")
+        TNT1 A 0 A_PlayWeaponSound("plasma/shot")
+        TNT1 A 0 A_FireCustomMissile("PlasmaBolt",0,1,0,-1)
+        TNT1 A 5
+        goto Ready
+
+      DryFire:
+        TNT1 A 4
+        Goto Ready
+    }
+}
+
+actor PlasmaGunAmmo : Ammo
+{
+    Inventory.MaxAmount 100
+    Ammo.BackpackMaxAmount 100
+    +INVENTORY.IGNORESKILL
+}
+
+actor PlasmaBolt
+{
+    Radius 5
+    Height 6
+    Speed 150
+    Scale 0.75
+    PROJECTILE
+    Damage 5
+    DeathSound "plasma/hit"
+    RenderStyle Add
+    Alpha 0.85
+    Decal PlasmaScorch
+    States
+    {
+      Spawn:
+        XLSS AABBCCDDEEFF 1 BRIGHT A_CustomMissile("PlasmaTrail",0,0,0)
+        Loop
+
+      Death:
+        XLSE A 2 BRIGHT A_Scream
+        //XLSE AAAAAAAAAAAA 0 A_CustomMissile("PlasmaSpark2",0,0,Random(-180,180),50,Random(-180,180))
+        XLSE BCDEF 2 BRIGHT 
+        Stop
+    }
+}
+
+actor PlasmaTrail : PlasmaBall
+{ 
+    Alpha 0.4
+    Scale 0.6
+    Damage 0
+    Speed 0
+    +NOCLIP
+    -SOLID
+    +CLIENTSIDEONLY
+    SeeSound ""
+    DeathSound ""
+    RenderStyle Add
+    States
+    {
+      Spawn:
+        XLSS ABC 1 BRIGHT A_CustomMissile("PlasmaSpark",0,0,Random(-180,180),2,Random(-100,100))
+        XLSS DEF 1 BRIGHT
+        Stop
+    }
+}
+
+actor PlasmaSpark
+{
+    Scale 0.065
+    Gravity 0.01
+    Speed 1
+    Renderstyle Add
+    PROJECTILE
+    +NOTELEPORT
+    +EXPLODEONWATER
+    -CANBOUNCEWATER
+    +DONTSPLASH
+    -SOLID
+    -NOGRAVITY
+    +DOOMBOUNCE
+    +CLIENTSIDEONLY
+    States
+    {
+      Spawn:
+        XLSS ABCDEF 1 BRIGHT A_FadeOut(0.03)
+        loop
+    }
+}
+
+actor PlasmaSpark2 : PlasmaSpark
+{
+    Scale 0.4
+    States
+    {
+      Spawn:
+        XLSS ABCDEF 1 BRIGHT A_FadeOut(0.1)
+        loop
+    }
+}
+

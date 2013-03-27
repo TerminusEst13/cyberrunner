@@ -1,0 +1,35 @@
+actor DashCooldown : Inventory
+{
+    -INVBAR
+    Inventory.MaxAmount 30
+}
+
+actor JumpCooldown : Inventory
+{
+    -INVBAR
+    Inventory.MaxAmount 30
+}
+
+actor BoostCooldown : Inventory
+{
+    -INVBAR
+    Inventory.MaxAmount 300
+}
+
+actor FancyWalk : PowerHighJump
+{
+    Powerup.Duration -15
+}
+
+actor CyberBoostSpeed : PowerSpeed
+{
+    Powerup.Duration -15
+    Speed 1.6
+}
+
+actor FancyTrails : PowerSpeed
+{
+    Powerup.Duration 0x7FFFFFFF
+    Speed 1
+}
+

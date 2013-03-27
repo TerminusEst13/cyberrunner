@@ -2,7 +2,7 @@
 
 #library "cyberrun"
 
-script 400 ENTER NET
+script 400 ENTER
 {
     While (TRUE)
     {
@@ -26,7 +26,7 @@ script 400 ENTER NET
     }
 }
 
-script 401 DEATH NET
+script 401 DEATH
 {
     ACS_Terminate(402, 0);
     ACS_Terminate(403, 0);
@@ -42,9 +42,6 @@ script 402 (void) NET
         ThrustThing(GetActorAngle(0)/256,42,1,0);
         ThrustThingZ(0,16,0,1);
         GiveInventory("DashCooldown",30);
-    }
-    else
-    {
     }
 }
 
@@ -65,7 +62,7 @@ script 404 (void) NET
     {
         ActivatorSound("cyber/boost",255);
         GiveInventory("FancyWalk",1);
-        GiveInventory("SuperFancyWalk",1);
+        GiveInventory("CyberBoostSpeed",1);
         GiveInventory("BoostCooldown",300);
     }
 }

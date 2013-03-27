@@ -130,7 +130,8 @@ script PARKMORE_SETPITCH (int pitch, int factor) net
 
 function int hasHighJump(void)
 {
-    return CheckInventory("RuneHighJump") || CheckInventory("PowerHighJump");
+    return CheckInventory("RuneHighJump") || CheckInventory("PowerHighJump")
+            || CheckInventory("FancyWalk");
 }
 
 function int getJumpZ(void)
@@ -991,7 +992,7 @@ script PARKMORE_ENTER2 enter clientside
 
     SetHudSize(480, 360, 1);
     HudMessage(s:"Type 'phelp' for Parkmore help.";
-            HUDMSG_FADEOUT, 1337, CR_WHITE, 240.4, 90.0, 3.0, 2.0);
+            HUDMSG_FADEOUT, 1337, CR_WHITE, 240.4, 70.0, 3.0, 2.0);
 
     while (ClientEnterLocks[pln] == myLock)
     {
