@@ -4,7 +4,7 @@ statusbar Normal, forcescaled
 	drawimage "DASHBAR0", 214, 167; 
 	drawimage "JUMPBAR0", 250, 175;
 	drawimage "BUFFBAR0", 210, 190;
-	drawbar "HLTHBAR1", "HLTHBAR2", Health, horizontal, 6, 184, 1;
+	drawbar "HLTHBAR1", "HLTHBAR2", Health, horizontal, 5, 183, 1;
 	drawbar "DASHBAR2", "DASHBAR1", DashCooldown, horizontal, 216, 177; 
 	drawbar "JUMPBAR2", "JUMPBAR1", JumpCooldown, horizontal, 252, 184;
 	drawbar "BUFFBAR2", "BUFFBAR1", BoostCooldown, horizontal, 212, 191;
