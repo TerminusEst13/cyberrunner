@@ -1,4 +1,5 @@
 #include "zcommon.acs"
+#include "commonFuncs.h"
 
 #library "cyberrun"
 
@@ -13,39 +14,6 @@ int RechargingItems[RECHARGECOUNT][3] =
     {"ForceVentAmmo",   105,     1},
     {"ShotgunAmmo",     70,      1},
 };
-
-function int min(int x, int y)
-{
-    if (x < y) { return x; }
-    return y;
-}
-
-function int max (int x, int y)
-{
-    if (x > y) { return x; }
-    return y;
-}
-
-function int middle(int x, int y, int z)
-{
-    if ((x < z) && (y < z)) { return max(x, y); }
-    return max(min(x, y), z);
-}
-
-function int magnitudeThree_f(int x, int y, int z)
-{
-    int len, ang;
-
-    ang = VectorAngle(x, y);
-    if (((ang + 0.125) % 0.5) > 0.25) { len = FixedDiv(y, sin(ang)); }
-    else { len = FixedDiv(x, cos(ang)); }
-
-    ang = VectorAngle(len, z);
-    if (((ang + 0.125) % 0.5) > 0.25) { len = FixedDiv(z, sin(ang)); }
-    else { len = FixedDiv(len, cos(ang)); }
-
-    return len;
-}
 
 script 405 OPEN
 {
@@ -159,5 +127,44 @@ script 404 (void) NET
         GiveInventory("CyberBoostJump",1);
         GiveInventory("CyberBoostSpeed",1);
         GiveInventory("BoostCooldown",300);
+    }
+}
+
+
+script 412 (int which)
+{
+    int t, i;
+    int x, y, z, tx, ty, tz;
+    int vx, vy, vz, mag, magI;
+
+    switch (which)
+    {
+      case 0:
+        Thing_ChangeTID(0, unusedTID(15000, 25000));
+        break;
+
+      case 1:
+        SetResultValue(ActivatorTID());
+        break;
+
+      case 2:
+        t = CheckInventory("ShotgunTracerTID");
+        TakeInventory("ShotgunTracerTID", 0x7FFFFFFF);
+
+        x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + random(22.0, 26.0);
+        x += random(-2.0, 2.0); y += random(-2.0, 2.0);
+
+        tx = GetActorX(t); ty = GetActorY(t); tz = GetActorZ(t);
+
+        vx = tx-x; vy = ty-y; vz = tz-z; mag = magnitudeThree_f(vx, vy, vz);
+        vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
+        magI = ftoi(mag);
+
+        for (i = 8; i < magI; i += 8)
+        {
+            Spawn("ShotgunTracer", x+(vx*i), y+(vy*i), z+(vz*i));
+            if (i % 128 == 0) { Delay(1); }
+        }
+        break;
     }
 }

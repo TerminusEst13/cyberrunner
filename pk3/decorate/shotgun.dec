@@ -115,6 +115,8 @@ actor ShotgunPuff
     +CLIENTSIDEONLY
     +ALWAYSPUFF
     +PUFFONACTORS
+    +PUFFGETSOWNER
+    +NOTIMEFREEZE
 
     Decal BulletChip
 
@@ -122,7 +124,30 @@ actor ShotgunPuff
     {
       Spawn:
         TNT1 A 0
+        TNT1 A 0 ACS_ExecuteWithResult(412)
+        TNT1 A 0 A_GiveToTarget("ShotgunTracerTID", ACS_ExecuteWithResult(412, 1))
+        TNT1 A 0 A_GiveToTarget("DrawShotgunTracer")
         TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ShotgunSpark", 0,0,0, random(0,60)/10.0, 0, random(0,60)/10.0, random(0,360))
+        TNT1 A 1
+        stop
+    }
+}
+
+actor ShotgunTracerTID: Inventory
+{
+    Inventory.MaxAmount 0x7FFFFFFF
+    +UNDROPPABLE
+}
+
+actor DrawShotgunTracer: CustomInventory
+{
+    +AUTOACTIVATE
+    Inventory.MaxAmount 0
+
+    States
+    {
+      Pickup:
+        TNT1 A 0 ACS_ExecuteWithResult(412, 2)
         stop
     }
 }
@@ -156,6 +181,27 @@ actor ShotgunSpark
 
       Death:
         PUFF A 1 A_FadeOut(0.05)
+        wait
+    }
+}
+
+actor ShotgunTracer
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +NOTIMEFREEZE
+
+    Radius 1
+    Height 1
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.35
+
+    States
+    {
+      Spawn:
+        PUFF A 1 A_FadeOut(0.1)
         wait
     }
 }
