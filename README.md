@@ -8,9 +8,10 @@ The HUD, though done in MSPaint, has a distinctly tech lean, as do all of the so
 
 ## FEATURE SET
 In order of priority:
-1. Emphasis on the base and most primal forms of pleasure. Going fast is fun. Blowing things up is fun. Players who strive for these are rewarded, and the gameplay needs to do this.
-2. Simple to approach, difficult to master. For people who want to go do stuff right away, there's already the Cyber Dash, Cyber Lunge, and Cyber Boost. Those who want to be a true master and blaze through the air must experiment with the intricacies of Parkmore and Rocket Jumping, going from wall to wall and never touch the floor.
-3. Keep it simple, stupid. The winning formula lies primarily with Parkmore and Superfast combined. Let's not worry about extra classes, capture the flag, or etc until we get the basics hammered out first.
+
+ 1. Emphasis on the base and most primal forms of pleasure. Going fast is fun. Blowing things up is fun. Players who strive for these are rewarded, and the gameplay needs to do this.
+ 2. Simple to approach, difficult to master. For people who want to go do stuff right away, there's already the Cyber Dash, Cyber Lunge, and Cyber Boost. Those who want to be a true master and blaze through the air must experiment with the intricacies of Parkmore and Rocket Jumping, going from wall to wall and never touch the floor.
+ 3. Keep it simple, stupid. The winning formula lies primarily with Parkmore and Superfast combined. Let's not worry about extra classes, capture the flag, or etc until we get the basics hammered out first.
 
 ## TARGET AUDIENCE
 ???
