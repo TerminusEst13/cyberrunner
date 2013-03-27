@@ -120,8 +120,14 @@ actor ParkmoreFloorChecker
 {
     +SOLID
     +SERVERSIDEONLY
+    +NOTIMEFREEZE
+    +NODAMAGETHRUST
+    +CANNOTPUSH
+
     Radius 16
     Height 1
+
+    Mass 0x7FFFFFFF
 
     States
     {

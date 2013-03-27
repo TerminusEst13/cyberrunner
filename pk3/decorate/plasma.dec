@@ -4,8 +4,11 @@ actor "Plasma Gun" : Weapon
     Weapon.AmmoUse1 1
     Weapon.AmmoType2 "ForceVentAmmo"
     Weapon.AmmoUse2 1
+    Weapon.SlotNumber 1
+
     +NOAUTOAIM
     +AMMO_OPTIONAL
+    +UNDROPPABLE
     Weapon.Kickback 100
     States
     {
@@ -48,7 +51,7 @@ actor PlasmaGunAmmo : Ammo
     +INVENTORY.IGNORESKILL
 }
 
-actor PlasmaBolt
+actor PlasmaBolt: FastProjectile
 {
     Radius 5
     Height 6
@@ -67,10 +70,35 @@ actor PlasmaBolt
         Loop
 
       Death:
+        XLSE A 0 A_CustomMissile("PlasmaClimbPush", 0,0,0, CMF_TRACKOWNER, 0)
         XLSE A 2 BRIGHT A_Scream
         //XLSE AAAAAAAAAAAA 0 A_CustomMissile("PlasmaSpark2",0,0,Random(-180,180),50,Random(-180,180))
         XLSE BCDEF 2 BRIGHT 
         Stop
+    }
+}
+
+actor PlasmaClimbPush
+{
+    Radius 1
+    Height 1
+    Speed 0
+    Projectile
+    Damage 0
+    DeathSound "force/hit"
+	DamageType "NoDamage"
+    RenderStyle Add
+    Alpha 0.85
+    Decal Scorch
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        goto Death
+
+      Death:
+        TNT1 A 1 A_Explode(48, 48)
+        stop
     }
 }
 
@@ -129,18 +157,21 @@ actor PlasmaSpark2 : PlasmaSpark
     }
 }
 
-actor ForceVent
+actor ForceVent: FastProjectile
 {
-    Radius 1
-    Height 1
-    Speed 300
-    PROJECTILE
+    Radius 16
+    Height 16
+
+    Speed 150
     Damage 0
+
     DeathSound "force/hit"
 	DamageType "NoDamage"
+
     RenderStyle Add
     Alpha 0.85
     Decal Scorch
+
     States
     {
       Spawn:
@@ -148,7 +179,7 @@ actor ForceVent
         Loop
 
       Death:
-        FXPL A 1 BRIGHT A_Explode(196,196)
+        FXPL A 1 BRIGHT A_Explode(160,160)
         FXPL A 1 BRIGHT A_Scream
         FXPL BCDEF 2 BRIGHT 
         Stop

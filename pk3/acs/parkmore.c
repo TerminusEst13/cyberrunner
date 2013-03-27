@@ -1054,7 +1054,6 @@ script PARKMORE_ENTER2 enter clientside
                 if (CPlayerGrounds[pln][1])
                 {
                     playerJumps[pln]--;
-                    HighJump(0);
                     DidSpecials[pln] = 2;
                 }
                 
