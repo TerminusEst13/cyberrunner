@@ -2,6 +2,18 @@
 
 #library "cyberrun"
 
+#define RECHARGECOUNT 6
+
+int RechargingItems[RECHARGECOUNT][3] =
+{
+    {"DashCooldown",    5,      -1},
+    {"JumpCooldown",    5,      -1},
+    {"BoostCooldown",   5,      -1},
+    {"PlasmaGunAmmo",   20,      1},
+    {"ForceVentAmmo",   105,     1},
+    {"ShotgunAmmo",     70,      1},
+};
+
 function int min(int x, int y)
 {
     if (x < y) { return x; }
@@ -55,21 +67,23 @@ script 405 OPEN
 
 script 400 ENTER
 {
-    int time = 0;
+    int i, j, time = 0;
 
     while (1)
     {
-        if (time % 5 == 0)
+        for (i = 0; i < RECHARGECOUNT; i++)
         {
-            TakeInventory("DashCooldown",1);
-            TakeInventory("JumpCooldown",1);
-            TakeInventory("BoostCooldown",1);
+            if (time % RechargingItems[i][1] == 0)
+            {
+                j = RechargingItems[i][2];
+                
+                if (j >= 0) { GiveInventory(RechargingItems[i][0], j); }
+                else { TakeInventory(RechargingItems[i][0], -j); }
+            }
         }
-        if (time % 20 == 0) { GiveInventory("PlasmaGunAmmo",1); }
-        if (time % 105 == 0) { GiveInventory("ForceVentAmmo", 1); }
 
         time++;
-        delay(1);
+        Delay(1);
     }
 }
 

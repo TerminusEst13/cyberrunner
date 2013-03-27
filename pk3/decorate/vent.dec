@@ -1,0 +1,31 @@
+actor ForceVent: FastProjectile
+{
+    Radius 16
+    Height 16
+
+    Speed 150
+    Damage 0
+
+    DeathSound "force/hit"
+	DamageType "NoDamage"
+
+    RenderStyle Add
+    Alpha 0.85
+    Decal Scorch
+
+    Obituary "$CYBERRUNNER_OB_VENT"
+
+    States
+    {
+      Spawn:
+        TNT1 A 1
+        Loop
+
+      Death:
+        FXPL A 1 BRIGHT A_Explode(160,160)
+        FXPL A 1 BRIGHT A_Scream
+        FXPL BCDEF 2 BRIGHT 
+        Stop
+    }
+}
+

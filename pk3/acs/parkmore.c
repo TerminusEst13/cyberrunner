@@ -1062,6 +1062,10 @@ script PARKMORE_ENTER2 enter clientside
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 1");
                     ConsoleCommand(pukeStr);
                 }
+                else
+                {
+                    HighJump(0);
+                }
             }
         }
 

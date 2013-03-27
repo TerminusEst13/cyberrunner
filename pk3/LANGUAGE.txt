@@ -1,0 +1,10 @@
+[enu default]
+
+CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
+CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
+CYBERRUNNER_PK_RAILGUN  = "\clRailgun!";
+
+CYBERRUNNER_OB_PLASMA   = "%k \cnoverheated \c-%o.";
+CYBERRUNNER_OB_SHOTGUN  = "%k \cifatally lowered \c-%o\ci's drag.";
+CYBERRUNNER_OB_RAILGUN  = "%k \clsplit \c-%o \clinto two.";
+CYBERRUNNER_OB_VENT     = "%k \cucollapsed \c-%o\cu's lungs.";

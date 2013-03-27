@@ -8,8 +8,16 @@ statusbar Normal, forcescaled
 	drawbar "DASHBAR2", "DASHBAR1", DashCooldown, horizontal, 216, 177; 
 	drawbar "JUMPBAR2", "JUMPBAR1", JumpCooldown, horizontal, 252, 184;
 	drawbar "BUFFBAR2", "BUFFBAR1", BoostCooldown, horizontal, 212, 191;
-	drawnumber 1, BIGFONT, White,     ammo2, fillzeros, 172, 163, 0;
-	drawnumber 3, BIGFONT, LightBlue, ammo1, fillzeros, 180, 183, 0;
+	drawnumber 1, BIGFONT, White,     ammo2, fillzeros, 152, 173, 0;
+
+    IsSelected "Plasma Gun"
+    {
+        drawnumber 3, BIGFONT, LightBlue, ammo1, fillzeros, 190, 173, 0;
+    }
+    
+    IsSelected "Cyber Shotgun"
+    {
+        drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 188, 173, 0;
     }
 }
 

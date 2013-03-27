@@ -2,6 +2,9 @@
 
 #include "decorate/player.dec"
 #include "decorate/powers.dec"
+
+#include "decorate/vent.dec"
 #include "decorate/plasma.dec"
+#include "decorate/shotgun.dec"
 
 #include "decorate/effects.dec"

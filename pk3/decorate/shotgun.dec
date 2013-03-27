@@ -1,0 +1,161 @@
+actor ShotgunAmmo: Ammo
+{
+    Inventory.MaxAmount 20
+    Ammo.BackpackMaxAmount 20
+    +IGNORESKILL
+}
+
+actor "Cyber Shotgun" : Weapon 15501
+{
+    Weapon.Kickback 100
+
+    Weapon.AmmoType1 "ShotgunAmmo"
+    Weapon.AmmoGive1 20
+    Weapon.AmmoUse1 1
+    Weapon.AmmoType2 "ForceVentAmmo"
+    Weapon.AmmoUse2 1
+
+    Weapon.SlotNumber 2
+
+    +NOAUTOAIM
+    +AMMO_OPTIONAL
+    +UNDROPPABLE
+    +FLOATBOB
+
+    RenderStyle Add
+    Alpha 0.95
+
+    Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUN"
+    Obituary "$CYBERRUNNER_OB_SHOTGUN"
+
+    States
+    {
+      Spawn:
+        CYSG Z 2 bright A_SpawnItemEx("CyberShotgunSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        loop
+
+      Ready:
+        TNT1 A 1 A_WeaponReady
+        Loop
+
+      Deselect:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        TNT1 A 1 A_Lower
+        Loop
+
+      Select:
+        TNT1 A 0 A_PlaySound("shotgun/up", 6)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        TNT1 A 1 A_Raise
+        Loop
+
+      Fire:
+        TNT1 A 0 A_JumpIfNoAmmo("DryFire")
+        TNT1 A 0 A_PlaySound("shotgun/fire", CHAN_WEAPON)
+        TNT1 A 0 A_FireBullets(8, 5, 20, 3, "ShotgunPuff")
+        TNT1 A 20
+        TNT1 A 20 A_PlaySound("shotgun/load", 5)
+        goto Ready
+
+      DryFire:
+        TNT1 A 4
+        Goto Ready
+		
+	  AltFire:
+        TNT1 A 0 A_JumpIfNoAmmo("DryFire")
+        TNT1 A 0 A_PlayWeaponSound("force/shot")
+        TNT1 A 0 A_FireCustomMissile("ForceVent",0,1,0,0)
+        TNT1 A 30 A_WeaponReady(8)
+        goto Ready
+    }
+}
+
+actor CyberShotgunSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("CyberShotgunSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor CyberShotgunSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.5
+
+    States
+    {
+      Spawn:
+        CYSG Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
+    
+
+actor ShotgunPuff
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +ALWAYSPUFF
+    +PUFFONACTORS
+
+    Decal BulletChip
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("ShotgunSpark", 0,0,0, random(0,60)/10.0, 0, random(0,60)/10.0, random(0,360))
+        stop
+    }
+}
+
+actor ShotgunSpark
+{
+    +NOCLIP
+    +NOTELEPORT
+    +CLIENTSIDEONLY
+
+    Projectile
+    -NOGRAVITY
+    +DOOMBOUNCE
+
+    Radius 2
+    Height 2
+
+    BounceFactor 0.25
+    WallBounceFactor 0.25
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.35
+
+    States
+    {
+      Spawn:
+        PUFF A 4 bright
+        PUFF A 66 bright A_ChangeFlag("NOCLIP", 0)
+        goto Death
+
+      Death:
+        PUFF A 1 A_FadeOut(0.05)
+        wait
+    }
+}

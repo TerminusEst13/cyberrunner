@@ -2,8 +2,13 @@ cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
 cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
 cyber/boost		CYBRBOST // Taken from Unreal Tournament 3
 
+plasma/up       sounds/plasma_up.wav    // Unreal Tournament Pulse Rifle raise
 plasma/shot		PLASSHOT // Taken from Unreal Tournament 3
 plasma/hit		PLASHIT // Taken from Quake III
 
 force/shot		FRCESHOT
 force/hit		FRCEHIT
+
+shotgun/up      sounds/shotgun_load.wav  // Unreal Flak Cannon reload
+shotgun/fire    sounds/shotgun_fire.wav  // Unreal Flak Cannon fire
+shotgun/load    sounds/shotgun_load.wav
