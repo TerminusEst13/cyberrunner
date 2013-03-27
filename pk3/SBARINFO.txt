@@ -1,10 +1,13 @@
 statusbar Normal, forcescaled
 {
-	// 2 is the empty version
-	drawbar "HLTHBAR1", "HLTHBAR2", Health, horizontal, 2, 165, 1;
-	drawbar "DASHBAR2", "DASHBAR1", DashCooldown, horizontal, 214, 167; 
-	drawbar "JUMPBAR2", "JUMPBAR1", JumpCooldown, horizontal, 250, 175;
-	drawbar "BUFFBAR2", "BUFFBAR1", BoostCooldown, horizontal, 210, 190;
+	drawimage "HLTHBAR0", 2, 165;
+	drawimage "DASHBAR0", 214, 167; 
+	drawimage "JUMPBAR0", 250, 175;
+	drawimage "BUFFBAR0", 210, 190;
+	drawbar "HLTHBAR1", "HLTHBAR2", Health, horizontal, 6, 184, 1;
+	drawbar "DASHBAR2", "DASHBAR1", DashCooldown, horizontal, 216, 177; 
+	drawbar "JUMPBAR2", "JUMPBAR1", JumpCooldown, horizontal, 252, 184;
+	drawbar "BUFFBAR2", "BUFFBAR1", BoostCooldown, horizontal, 212, 191;
 	drawnumber 3, BIGFONT, White, ammo1, fillzeros, 181, 183, 0;
     }
 }
