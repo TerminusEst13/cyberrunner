@@ -16,3 +16,7 @@ $random shotgun/hit {shit1 shit2 shit3} // Taken from Painkiller
 shit1			sounds/shotgun_hit1.ogg
 shit2			sounds/shotgun_hit2.ogg
 shit3			sounds/shotgun_hit3.ogg
+
+$limit shotgun/hit 0
+$volume shotgun/hit 0.15
+$rolloff shotgun/hit 64 320
