@@ -26,7 +26,7 @@
 #define PITCH_UP    0
 #define PITCH_DOWN  1
 
-#define WB_XYBASE   20.0
+#define WB_XYBASE   35.0
 #define WB_ZBASE    1.25
 
 #define LW_LEDGE    0

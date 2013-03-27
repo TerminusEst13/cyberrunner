@@ -157,17 +157,23 @@ function void wallBounce (int type, int direction)
 
     switch (type)
     {
-        case WB_DODGE:  xyMult =  1.0;  zMult = 0.707; break;
+        case WB_DODGE:  xyMult =  1.0;  zMult = 0.5; break;
         case WB_KICK:   xyMult =  0.8;  zMult = 1.0; break;
         case WB_KICKUP: xyMult =  0.02; zMult = 1.3; break;
         default: return;
     }
 
+    xyMult = FixedMul(xyMult, GetActorProperty(0, APROP_Speed));
+    zMult  = FixedMul(zMult,  GetActorProperty(0, APROP_JumpZ));
+
     if (hasHighJump())
     {
-        xyMult = FixedMul(xyMult, 1.25);
-        zMult  = FixedMul(zMult, 1.25);
+        xyMult = FixedMul(xyMult, 1.4142);
+        zMult  = FixedMul(zMult, 1.4142);
     }
+
+    if (CheckInventory("CyberBoostSpeed")) { xyMult = FixedMul(1.4142, xyMult); }
+    if (CheckInventory("CyberBoostJump"))  { zMult  = FixedMul(1.4142, zMult); }
 
     switch (direction)
     {
@@ -186,8 +192,7 @@ function void wallBounce (int type, int direction)
     forward = FixedMul(WB_XYBASE, forwardMult); 
     side    = FixedMul(WB_XYBASE, sideMult); 
 
-    up      = FixedMul(GetActorProperty(0, APROP_JumpZ), WB_ZBASE);
-    up      = FixedMul(up, zMult);
+    up      = FixedMul(WB_ZBASE, zMult);
 
     forwardx = FixedMul(cos(angle), forward);
     forwardy = FixedMul(sin(angle), forward);
