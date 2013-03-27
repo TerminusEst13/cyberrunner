@@ -119,7 +119,7 @@ actor ShotgunPuff
     +NOTIMEFREEZE
 
     Decal BulletChip
-
+	AttackSound "shotgun/hit"
     States
     {
       Spawn:
