@@ -1,3 +1,5 @@
+#include "decorate/parkmore.dec"
+
 ACTOR CyberRunner : PlayerPawn
 {
 	Speed 1
