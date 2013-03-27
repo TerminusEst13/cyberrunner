@@ -131,7 +131,7 @@ script PARKMORE_SETPITCH (int pitch, int factor) net
 function int hasHighJump(void)
 {
     return CheckInventory("RuneHighJump") || CheckInventory("PowerHighJump")
-            || CheckInventory("FancyWalk");
+            || CheckInventory("CyberBoostJump");
 }
 
 function int getJumpZ(void)

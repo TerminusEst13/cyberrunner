@@ -16,7 +16,7 @@ actor BoostCooldown : Inventory
     Inventory.MaxAmount 300
 }
 
-actor FancyWalk : PowerHighJump
+actor CyberBoostJump : PowerHighJump
 {
     Powerup.Duration -15
 }

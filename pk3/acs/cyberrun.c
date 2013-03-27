@@ -61,7 +61,7 @@ script 404 (void) NET
     if (CheckInventory("BoostCooldown") == 0)
     {
         ActivatorSound("cyber/boost",255);
-        GiveInventory("FancyWalk",1);
+        GiveInventory("CyberBoostJump",1);
         GiveInventory("CyberBoostSpeed",1);
         GiveInventory("BoostCooldown",300);
     }
