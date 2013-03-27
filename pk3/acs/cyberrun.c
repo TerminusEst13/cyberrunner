@@ -5,14 +5,15 @@
 
 #define RECHARGECOUNT 6
 
-int RechargingItems[RECHARGECOUNT][3] =
+int RechargingItems[RECHARGECOUNT] = 
 {
-    {"DashCooldown",    5,      -1},
-    {"JumpCooldown",    5,      -1},
-    {"BoostCooldown",   5,      -1},
-    {"PlasmaGunAmmo",   20,      1},
-    {"ForceVentAmmo",   105,     1},
-    {"ShotgunAmmo",     70,      1},
+    "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
+    "ForceVentAmmo", "ShotgunAmmo",
+};
+
+int RechargingTimes[RECHARGECOUNT][2] = 
+{
+    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {105, 1}, {70, 1},
 };
 
 script 405 OPEN
@@ -41,12 +42,12 @@ script 400 ENTER
     {
         for (i = 0; i < RECHARGECOUNT; i++)
         {
-            if (time % RechargingItems[i][1] == 0)
+            if (time % RechargingTimes[i][0] == 0)
             {
-                j = RechargingItems[i][2];
-                
-                if (j >= 0) { GiveInventory(RechargingItems[i][0], j); }
-                else { TakeInventory(RechargingItems[i][0], -j); }
+                j = RechargingTimes[i][1];
+
+                if (j > 0) { GiveInventory(RechargingItems[i], j); }
+                else { TakeInventory(RechargingItems[i], -j); }
             }
         }
 
