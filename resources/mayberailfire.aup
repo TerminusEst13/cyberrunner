@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="mayberailfire_data" version="1.3.0" audacityversion="2.0.3" sel0="0.0760090703" sel1="1.6228571429" vpos="0" h="0.6494207434" zoom="1184.1321790541" rate="22050.0">
+	<tags/>
+	<wavetrack name="huntsmarine_fire" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="22050" gain="0.794328" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="524288" sampleformat="131073" numsamples="23481">
+				<waveblock start="0">
+					<simpleblockfile filename="e00000b0.au" len="23481" min="-1.0" max="0.999969" rms="0.185162"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="3">
+				<controlpoint t="0.845344816826" val="1.000000000000"/>
+				<controlpoint t="0.907837840248" val="0.125000000000"/>
+				<controlpoint t="1.059003396903" val="0.000000100000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="TazerFire" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.07600907">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="68216">
+				<waveblock start="0">
+					<simpleblockfile filename="e00004c5.au" len="68216" min="-2.262356" max="1.986101" rms="0.340497"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="5">
+				<controlpoint t="0.790448254444" val="1.000000000000"/>
+				<controlpoint t="0.850407776916" val="0.902777791023"/>
+				<controlpoint t="0.916278801604" val="0.625000000000"/>
+				<controlpoint t="0.988056328507" val="0.541666626930"/>
+				<controlpoint t="1.202564408900" val="0.291666686535"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+</project>
