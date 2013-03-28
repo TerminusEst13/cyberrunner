@@ -451,7 +451,6 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     int i;
     
     curAngle = GetActorAngle(0);
-    ActivatorSound("parkmore/grabledge", 127);
 
     grabbing[pln] = 1;
     TakeInventory("KickTrail", 1);
@@ -464,6 +463,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
     Delay(1);
     SetActorVelocity(0, 0,0,0, 0, 1);
+    ActivatorSound("parkmore/grabledge", 127);
 
     curX = GetActorX(0);
     curY = GetActorY(0);
@@ -758,7 +758,7 @@ function void MultiJump(int countJump, int force)
     if (playerJumps[pln] == 0) { return; }
 
     playerJumps[pln] += countJump; 
-
+    ActivatorSound("parkmore/doubjump", 127);
     SetActorVelocity(0, GetActorVelX(0), GetActorVelY(0), jumpHeight, 0, 1);
 }
 

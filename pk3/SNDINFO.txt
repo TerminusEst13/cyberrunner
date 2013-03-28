@@ -23,7 +23,7 @@ $volume shotgun/hit 0.2
 $rolloff shotgun/hit 64 512
 
 parkmore/walljump   CYBRWJMP
-parkmore/ledgegrab  CYBRGRAP
+parkmore/grabledge  CYBRGRAP
 parkmore/dodge      CYBRDODG
 parkmore/doubjump   CYBRDJMP
 

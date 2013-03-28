@@ -1,4 +1,4 @@
-Actor "Aerial Drone"
+actor AerialDrone 15601
 {
 	Obituary "%o was droned."
 	Health 125
