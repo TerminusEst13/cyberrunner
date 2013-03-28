@@ -26,6 +26,7 @@ actor "Cyber Shotgun" : Weapon 15501
     Alpha 0.95
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUN"
+    Inventory.PickupSound "shotgun/pickup"
     Obituary "$CYBERRUNNER_OB_SHOTGUN"
 
     States
