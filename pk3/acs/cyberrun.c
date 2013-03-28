@@ -26,10 +26,8 @@ script 405 OPEN
 
     while (1)
     {
-        if (GetCVar("sv_aircontrol") != 0.2 && !GetCVar("cyberrunner_noaircontrol"))
-        {
-            ConsoleCommand("sv_aircontrol 0.2");
-        }
+        if (!GetCVar("cyberrunner_noaircontrol")) { SetAirControl(0.2); }
+        else { SetAirControl(0.00390625); }
         Delay(1);
     }
 }
