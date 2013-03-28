@@ -1,0 +1,62 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="13-djump_data" version="1.3.0" audacityversion="2.0.3" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.1516290727" zoom="2143.3884297521" rate="22050.0">
+	<tags>
+		<tag name="Software" value="PSound"/>
+	</tags>
+	<wavetrack name="GDATA_0244 - Woosh" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="22050" gain="0.316228" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="10164">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000d2a.au" len="10164" min="-0.775812" max="0.823322" rms="0.078153"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.460907029478" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+		<waveclip offset="0.46095238">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="644">
+				<waveblock start="0">
+					<simpleblockfile filename="e00005ef.au" len="644" min="0.0" max="0.0" rms="0.0"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="1">
+				<controlpoint t="0.000000000000" val="1.000000000000"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="GDATA_0247 - Woosh" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="22050" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="9264">
+				<waveblock start="0">
+					<simpleblockfile filename="e000031c.au" len="9264" min="-1.100989" max="0.885722" rms="0.055963"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="GDATA_0231 - Whisk" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="22050" gain="0.316228" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="7672">
+				<waveblock start="0">
+					<simpleblockfile filename="e000046b.au" len="7672" min="-0.875" max="0.875" rms="0.096649"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="GDATA_0246 - Woosh" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="22050" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="11048">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000086.au" len="8703" min="-0.968994" max="0.951508" rms="0.058741"/>
+				</waveblock>
+				<waveblock start="8703">
+					<simpleblockfile filename="e0000f33.au" len="2345" min="-0.125305" max="0.081543" rms="0.004622"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
