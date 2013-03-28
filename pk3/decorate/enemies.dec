@@ -1,7 +1,7 @@
 actor AerialDrone 15601
 {
 	Obituary "%o was droned."
-	Health 125
+	Health 100
 	Radius 32
 	Height 32
 	Mass 400
@@ -95,7 +95,7 @@ actor AerialDrone 15601
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_CustomMissile("DroneShot",0,-9)
 		FTRT C 2 Bright A_PlaySound("Drone/Shot")
-		FTRT A 4
+		FTRT A 4 A_CPosRefire
 		TNT1 A 0 A_Jump(25, "DodgeThenAttack")
 		Goto Missile+2
 	Pain:
@@ -180,4 +180,73 @@ Actor DroneShot : ArachnotronPlasma
 	Scale 0.5
 	SeeSound ""
 	+STRIFEDAMAGE
+}
+
+actor TurretDrone 15602
+{
+	Obituary "%o was droned."
+	Health 150
+	Radius 16
+	Height 64
+	Mass 0x7FFFFFFF
+	Speed 0
+	PainChance 10
+	SeeSound "drone/sight"
+	PainSound "drone/pain"
+	ActiveSound "drone/sight"
+	Damagefactor "NoDamage", 0.0
+	Painchance "NoDamage", 0
+	Monster
+	MinMissileChance 10
+	+FLOORCLIP
+	+DONTFALL
+	+NOINFIGHTING
+	+QUICKTORETALIATE
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOBLOOD
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		GTRT A 1 A_Look
+		goto See
+	See:
+		GTRT A 2 A_Chase
+		Loop
+	Missile:
+		GTRT A 6 A_FaceTarget
+		TNT1 A 0
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("DroneShot",56,9)
+		GTRT B 2 Bright A_PlaySound("Drone/Shot")
+		GTRT A 4
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("DroneShot",56,-9)
+		GTRT C 2 Bright A_PlaySound("Drone/Shot")
+		GTRT A 4 A_CPosRefire
+		Goto Missile+2
+	Pain:
+		GTRT A 2 A_Pain
+		Goto See
+	Death:
+		TNT1 A 0 A_StopSound
+		TNT1 A 0 A_Pain
+		GTRT E 3 A_NoBlocking
+		GTRT FGHIJK 3
+		GTRT D 3 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-10, 10), Random(-10, 10), Random(10, 50), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		GTRT EF 3
+		GTRT G 3 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-10, 10), Random(-10, 10), Random(10, 50), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		GTRT HI 3
+		GTRT J 3 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-10, 10), Random(-10, 10), Random(10, 50), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		GTRT KD 3
+		GTRT E 3 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-10, 10), Random(-10, 10), Random(10, 50), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		GTRT AAAAAAAAAAA 0 A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(10, 50), 0, 0, 0, 0, 128)
+		GTRT L -1
+		Stop
+	}
 }
