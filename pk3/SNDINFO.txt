@@ -20,3 +20,9 @@ shit3			sounds/shotgun_hit3.ogg
 $limit shotgun/hit 0
 $volume shotgun/hit 0.15
 $rolloff shotgun/hit 64 320
+
+parkmore/walljump   CYBRWJMP
+parkmore/ledgegrab  CYBRGRAP
+parkmore/dodge      CYBRDODG
+
+$volume parkmore/walljump 0.5

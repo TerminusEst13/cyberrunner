@@ -240,6 +240,12 @@ function void wallBounce (int type, int direction)
     grabbing[pln] = 0;
     dontGrab[pln] = 0;
 
+    switch (type)
+    {
+        case WB_KICK: ActivatorSound("parkmore/walljump", 127); break;
+        case WB_DODGE: ActivatorSound("parkmore/dodge", 127); break;
+    }
+
     GiveInventory("KickTrail", 1);
 }
 
@@ -445,6 +451,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     int i;
     
     curAngle = GetActorAngle(0);
+    ActivatorSound("parkmore/grabledge", 127);
 
     grabbing[pln] = 1;
     TakeInventory("KickTrail", 1);
