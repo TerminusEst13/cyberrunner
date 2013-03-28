@@ -7,4 +7,6 @@
 #include "decorate/plasma.dec"
 #include "decorate/shotgun.dec"
 
+#include "decorate/enemies.dec"
+
 #include "decorate/effects.dec"

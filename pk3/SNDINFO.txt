@@ -27,3 +27,12 @@ parkmore/ledgegrab  CYBRGRAP
 parkmore/dodge      CYBRDODG
 
 $volume parkmore/walljump 0.5
+
+
+drone/sight		DRONEBP2	// Taken from Strife
+$random drone/pain	{drpain1 drpain2 drpain3}
+drpain1			DRONPAN1
+drpain2			DRONPAN2
+drpain3			DRONPAN3
+drone/fly		DRONEFLY	// Taken from Doom 3
+drone/shot		DRONESHT	// Taken from Serious Sam: The First Encounter
