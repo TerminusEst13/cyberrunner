@@ -28,7 +28,7 @@ script 405 OPEN
     {
         if (!GetCVar("cyberrunner_noaircontrol")) { SetAirControl(0.2); }
         else { SetAirControl(0.00390625); }
-        Delay(1);
+        Delay(35);
     }
 }
 
@@ -130,40 +130,32 @@ script 404 (void) NET
 }
 
 
-script 412 (int which)
+script 412 (void)
+{
+    int x, y, z;
+
+    x = GetActorX(0); y = GetActorY(0); z = GetActorZ(0);
+    SetActivatorToTarget(0);
+
+    ACS_ExecuteAlways(413, 0, x, y, z);
+}
+
+script 413 (int tx, int ty, int tz) clientside
 {
     int t, i;
-    int x, y, z, tx, ty, tz;
+    int x, y, z;
     int vx, vy, vz, mag, magI;
 
-    switch (which)
+    x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + random(22.0, 26.0);
+    x += random(-2.0, 2.0); y += random(-2.0, 2.0);
+
+    vx = tx-x; vy = ty-y; vz = tz-z; mag = magnitudeThree_f(vx, vy, vz);
+    vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
+    magI = ftoi(mag);
+
+    for (i = 8; i < magI; i += 8)
     {
-      case 0:
-        Thing_ChangeTID(0, unusedTID(15000, 25000));
-        break;
-
-      case 1:
-        SetResultValue(ActivatorTID());
-        break;
-
-      case 2:
-        t = CheckInventory("ShotgunTracerTID");
-        TakeInventory("ShotgunTracerTID", 0x7FFFFFFF);
-
-        x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + random(22.0, 26.0);
-        x += random(-2.0, 2.0); y += random(-2.0, 2.0);
-
-        tx = GetActorX(t); ty = GetActorY(t); tz = GetActorZ(t);
-
-        vx = tx-x; vy = ty-y; vz = tz-z; mag = magnitudeThree_f(vx, vy, vz);
-        vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
-        magI = ftoi(mag);
-
-        for (i = 8; i < magI; i += 8)
-        {
-            Spawn("ShotgunTracer", x+(vx*i), y+(vy*i), z+(vz*i));
-            if (i % 128 == 0) { Delay(1); }
-        }
-        break;
+        Spawn("ShotgunTracer", x+(vx*i), y+(vy*i), z+(vz*i));
+        if (i % 128 == 0) { Delay(1); }
     }
 }
