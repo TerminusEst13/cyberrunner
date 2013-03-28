@@ -3,17 +3,17 @@
 
 #library "cyberrun"
 
-#define RECHARGECOUNT 6
+#define RECHARGECOUNT 7
 
 int RechargingItems[RECHARGECOUNT] = 
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
-    "ForceVentAmmo", "ShotgunAmmo",
+    "ForceVentAmmo", "ShotgunAmmo", "CarbineAmmo",
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {105, 1}, {70, 1},
+    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {350, 1}, {70, 1}, {70, 1},
 };
 
 script 405 OPEN
@@ -26,8 +26,10 @@ script 405 OPEN
 
     while (1)
     {
-        if (!GetCVar("cyberrunner_noaircontrol")) { SetAirControl(0.2); }
-        else { SetAirControl(0.00390625); }
+        if (GetCVar("sv_aircontrol") != 0.2 && !GetCVar("cyberrunner_noaircontrol"))
+        {
+            ConsoleCommand("sv_aircontrol 0.2");
+        }
         Delay(1);
     }
 }
