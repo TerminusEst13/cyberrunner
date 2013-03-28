@@ -26,9 +26,9 @@ script 405 OPEN
 
     while (1)
     {
-        if (GetCVar("sv_aircontrol") != 0.15 && !GetCVar("cyberrunner_noaircontrol"))
+        if (GetCVar("sv_aircontrol") != 0.2 && !GetCVar("cyberrunner_noaircontrol"))
         {
-            ConsoleCommand("sv_aircontrol 0.15");
+            ConsoleCommand("sv_aircontrol 0.2");
         }
         Delay(1);
     }
@@ -78,7 +78,7 @@ script 402 (void) NET
         vy = GetActorVelY(0);
         vz = GetActorVelZ(0);
         angle = GetActorAngle(0);
-        pitch = middle(-0.027, GetActorPitch(0), 0.05);
+        pitch = middle(-0.027, GetActorPitch(0), 0.25);
         mag = magnitudeThree_f(vx, vy, vz);
 
         nx = FixedMul(DASH_VEL * cos(angle), cos(pitch));
