@@ -16,6 +16,7 @@ actor "Cyber Carbine" : Weapon 15502
     Weapon.AmmoUse2 1
     
     Weapon.SlotNumber 3
+	Weapon.UpSound "carbine/up"
     
     +NOAUTOAIM
     +AMMO_OPTIONAL
@@ -45,7 +46,6 @@ actor "Cyber Carbine" : Weapon 15502
         Loop
         
       Select:
-        TNT1 A 0 A_PlaySound("carbine/up", 6)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
         TNT1 A 1 A_Raise
         Loop
