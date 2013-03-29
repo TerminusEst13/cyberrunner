@@ -11,6 +11,7 @@ actor "Plasma Gun" : Weapon
 
     +NOAUTOAIM
     +AMMO_OPTIONAL
+    +ALT_AMMO_OPTIONAL
     +UNDROPPABLE
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_PLASMA"

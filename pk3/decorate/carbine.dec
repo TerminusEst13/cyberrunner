@@ -20,6 +20,7 @@ actor "Cyber Carbine" : Weapon 15502
     
     +NOAUTOAIM
     +AMMO_OPTIONAL
+    +ALT_AMMO_OPTIONAL
     +UNDROPPABLE
     +FLOATBOB
     
