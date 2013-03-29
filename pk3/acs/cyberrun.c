@@ -3,17 +3,17 @@
 
 #library "cyberrun"
 
-#define RECHARGECOUNT 7
+#define RECHARGECOUNT 5
 
 int RechargingItems[RECHARGECOUNT] = 
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
-    "ForceVentAmmo", "ShotgunAmmo", "CarbineAmmo",
+    "ForceVentAmmo"
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {210, 1}, {140, 1}, {140, 1},
+    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1},
 };
 
 script 405 OPEN

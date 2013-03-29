@@ -119,6 +119,7 @@ actor ShotgunPuff
     +PUFFONACTORS
     +PUFFGETSOWNER
     +NOTIMEFREEZE
+    +SERVERSIDEONLY
 
     Decal BulletChip
 	AttackSound "shotgun/hit"

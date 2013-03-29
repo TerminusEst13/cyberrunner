@@ -19,12 +19,12 @@ statusbar Normal, forcescaled
     
     IsSelected "Cyber Shotgun"
     {
-        drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 177, 180, 0;
+        drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0;
     }
     
     IsSelected "Cyber Carbine"
     {
-        drawnumber 2, BIGFONT, Green, ammo1, fillzeros, 177, 180, 0;
+        drawnumber 2, BIGFONT, Green, ammo1, fillzeros, 175, 180, 0;
     }
 }
 
