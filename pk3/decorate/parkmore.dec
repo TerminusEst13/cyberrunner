@@ -119,7 +119,7 @@ actor ParkmoreCheckWallGrab2: ParkmoreCheckItem
 actor ParkmoreFloorChecker
 {
     +SOLID
-    +SERVERSIDEONLY
+    //+SERVERSIDEONLY
     +NOTIMEFREEZE
     +NODAMAGETHRUST
     +CANNOTPUSH
@@ -146,7 +146,7 @@ actor ParkmoreChecker: FastProjectile
     Damage 0
     +CANNOTPUSH
     +NODAMAGETHRUST
-    +SERVERSIDEONLY
+    //+SERVERSIDEONLY
     +PUFFGETSOWNER
     +NOTIMEFREEZE
     +MOVEWITHSECTOR
@@ -225,7 +225,7 @@ actor ParkmoreHeightFinder
     +MOVEWITHSECTOR
     +CANPASS
     +ACTLIKEBRIDGE
-    +SERVERSIDEONLY
+    //+SERVERSIDEONLY
     +NOBLOCKMAP
     +NOTIMEFREEZE
 
