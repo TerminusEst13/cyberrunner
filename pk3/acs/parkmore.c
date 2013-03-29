@@ -805,12 +805,6 @@ function void HighJump(int force)
 
 script PARKMORE_OPEN open
 {
-    if (GetCVar("parkmore_jumpcount") == 0)
-    {
-        ConsoleCommand("set parkmore_jumpcount 2");
-        ConsoleCommand("archivecvar parkmore_jumpcount");
-    }
-
     IsServer = 1;
 
     int cjumps, oldcjumps;
@@ -819,10 +813,10 @@ script PARKMORE_OPEN open
     {
         oldcjumps = cjumps;
         cjumps = GetCVar("parkmore_jumpcount");
+        if (!cjumps) { cjumps = 2; }
 
         if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
 
-        if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
         Delay(1);
     }
 }
@@ -839,8 +833,11 @@ function void addTimer(int pln, int which, int add)
 
 function void addCTimers(int pln)
 {
-    int i = max(0, defaultCVar("parkmore_dodgewindow",  8));
-    int j = max(0, defaultCVar("parkmore_hijumpwindow", 4));
+    int d = GetCVar("parkmore_dodgewindow"); if (!d) { d = 6; }
+    int h = GetCVar("parkmore_hijumpwindow"); if (!h) { h = 4; }
+
+    int i = max(0, d);
+    int j = max(0, h);
 
     addTimer(pln, TIMER_CFORWARD,  keyPressed(BT_FORWARD)   * i);
     addTimer(pln, TIMER_CRIGHT,    keyPressed(BT_MOVERIGHT) * i);
@@ -1045,12 +1042,6 @@ script PARKMORE_ENTER2 enter clientside
                 }*/
                 ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, dodgeDir, 0);
                 //else
-                
-                if (!IsServer)
-                {
-                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:dodgeDir);
-                    ConsoleCommand(pukeStr);
-                }
             }
         }
 
@@ -1064,15 +1055,7 @@ script PARKMORE_ENTER2 enter clientside
                     DidSpecials[pln] = 2;
                 }
                 
-                if (!IsServer)
-                {
-                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 1");
-                    ConsoleCommand(pukeStr);
-                }
-                else
-                {
-                    HighJump(0);
-                }
+                HighJump(0);
             }
         }
 
