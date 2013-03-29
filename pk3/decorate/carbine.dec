@@ -59,7 +59,10 @@ actor "Cyber Carbine" : Weapon 15502
         TNT1 A 0 A_SetBlend("AD FF 2F", 0.2, 6)
         TNT1 A 0 A_RailAttack(150, 0, 0, "none", "none", 3, 0, "BulletPuff")
         TNT1 A 0 A_FireBullets(0, 0, 1, 0, "CarbinePuff")
-        TNT1 A 65
+		TNT1 A 15
+		TNT1 A 0 A_PlaySoundEx("carbine/wind","soundslot6")
+        TNT1 A 20
+        TNT1 A 30 A_WeaponReady(12)
         goto Ready
         
       DryFire:

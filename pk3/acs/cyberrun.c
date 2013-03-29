@@ -13,7 +13,7 @@ int RechargingItems[RECHARGECOUNT] =
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {210, 1}, {70, 1}, {70, 1},
+    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {210, 1}, {140, 1}, {140, 1},
 };
 
 script 405 OPEN

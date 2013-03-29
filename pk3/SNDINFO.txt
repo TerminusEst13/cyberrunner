@@ -1,6 +1,20 @@
+// Systems
+// =============
+
 cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
 cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
 cyber/boost		CYBRBOST // Taken from Unreal Tournament 3
+
+parkmore/walljump   CYBRWJMP
+parkmore/grabledge  CYBRGRAP
+parkmore/dodge      CYBRDODG
+parkmore/doubjump   CYBRDJMP
+
+$volume parkmore/walljump 0.5
+$volume parkmore/doubjump 0.5
+
+// Weapons
+// =============
 
 plasma/up       sounds/plasma_up.wav    // Unreal Tournament Pulse Rifle raise
 plasma/shot		PLASSHOT // Taken from Unreal Tournament 3
@@ -22,14 +36,13 @@ $limit shotgun/hit 0
 $volume shotgun/hit 0.2
 $rolloff shotgun/hit 64 512
 
-parkmore/walljump   CYBRWJMP
-parkmore/grabledge  CYBRGRAP
-parkmore/dodge      CYBRDODG
-parkmore/doubjump   CYBRDJMP
+carbine/pickup  sounds/carbine_pickup.ogg	// From Unreal Tournament 2004
+carbine/up      sounds/carbine_up.wav		// From Devil May Cry 3
+carbine/fire    sounds/carbine_fire.ogg
+carbine/wind	sounds/carbine_wind.ogg		// From Unreal Tournament 3
 
-$volume parkmore/walljump 0.5
-$volume parkmore/doubjump 0.5
-
+// Enemies
+// =============
 
 drone/sight		DRONEBP2	// Taken from Strife
 $random drone/pain	{drpain1 drpain2 drpain3}
@@ -38,7 +51,3 @@ drpain2			DRONPAN2
 drpain3			DRONPAN3
 drone/fly		DRONEFLY	// Taken from Doom 3
 drone/shot		DRONESHT	// Taken from Serious Sam: The First Encounter
-
-carbine/pickup  sounds/carbine_pickup.ogg
-carbine/up      sounds/carbine_up.wav
-carbine/fire    sounds/carbine_fire.ogg
