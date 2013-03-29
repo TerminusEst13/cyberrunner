@@ -20,6 +20,7 @@ actor "Cyber Shotgun" : Weapon 15501
 
     +NOAUTOAIM
     +AMMO_OPTIONAL
+    +ALT_AMMO_OPTIONAL
     +UNDROPPABLE
     +FLOATBOB
 
