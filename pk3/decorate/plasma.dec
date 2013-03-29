@@ -65,7 +65,7 @@ actor PlasmaBolt: FastProjectile
 
     Projectile
     Speed 150
-    Damage (10)
+    Damage (30)
 
     Scale 0.75
     RenderStyle Add

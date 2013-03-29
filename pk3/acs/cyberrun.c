@@ -3,17 +3,17 @@
 
 #library "cyberrun"
 
-#define RECHARGECOUNT 6
+#define RECHARGECOUNT 7
 
 int RechargingItems[RECHARGECOUNT] = 
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
-    "ForceVentAmmo", "ShotgunAmmo",
+    "ForceVentAmmo", "ShotgunAmmo", "CarbineAmmo",
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {105, 1}, {70, 1},
+    {5, -1}, {5, -1}, {5, -1}, {20, 1}, {210, 1}, {70, 1}, {70, 1},
 };
 
 script 405 OPEN
@@ -130,14 +130,23 @@ script 404 (void) NET
 }
 
 
-script 412 (void)
+script 412 (int which)
 {
     int x, y, z;
 
     x = GetActorX(0); y = GetActorY(0); z = GetActorZ(0);
     SetActivatorToTarget(0);
 
-    ACS_ExecuteAlways(413, 0, x, y, z);
+    switch (which)
+    {
+      case 0:
+        ACS_ExecuteAlways(413, 0, x, y, z);
+        break;
+
+      case 1:
+        ACS_ExecuteAlways(414, 0, x, y, z);
+        break;
+    }
 }
 
 script 413 (int tx, int ty, int tz) clientside
@@ -156,6 +165,26 @@ script 413 (int tx, int ty, int tz) clientside
     for (i = 8; i < magI; i += 8)
     {
         Spawn("ShotgunTracer", x+(vx*i), y+(vy*i), z+(vz*i));
+        if (i % 128 == 0) { Delay(1); }
+    }
+}
+
+// Hoorah for only three script arguments!
+script 414 (int tx, int ty, int tz) clientside
+{
+    int t, i;
+    int x, y, z;
+    int vx, vy, vz, mag, magI;
+
+    x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + 24.0;
+
+    vx = tx-x; vy = ty-y; vz = tz-z; mag = magnitudeThree_f(vx, vy, vz);
+    vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
+    magI = ftoi(mag);
+
+    for (i = 8; i < magI; i += 8)
+    {
+        Spawn("RailBeam2", x+(vx*i), y+(vy*i), z+(vz*i));
         if (i % 128 == 0) { Delay(1); }
     }
 }

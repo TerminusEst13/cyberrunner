@@ -6,6 +6,7 @@
 #include "decorate/vent.dec"
 #include "decorate/plasma.dec"
 #include "decorate/shotgun.dec"
+#include "decorate/carbine.dec"
 
 #include "decorate/enemies.dec"
 

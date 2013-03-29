@@ -38,3 +38,7 @@ drpain2			DRONPAN2
 drpain3			DRONPAN3
 drone/fly		DRONEFLY	// Taken from Doom 3
 drone/shot		DRONESHT	// Taken from Serious Sam: The First Encounter
+
+carbine/pickup  sounds/carbine_pickup.ogg
+carbine/up      sounds/carbine_up.wav
+carbine/fire    sounds/carbine_fire.ogg
