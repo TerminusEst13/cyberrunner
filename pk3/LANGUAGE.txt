@@ -2,9 +2,9 @@
 
 CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
 CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
-CYBERRUNNER_PK_CARBINE  = "\clCarbine!";
+CYBERRUNNER_PK_CARBINE  = "\cdCarbine!";
 
 CYBERRUNNER_OB_PLASMA   = "%k \cnoverheated \c-%o.";
 CYBERRUNNER_OB_SHOTGUN  = "%k \cifatally lowered \c-%o\ci's drag.";
-CYBERRUNNER_OB_CARBINE  = "%k \clsplit \c-%o \clinto two.";
+CYBERRUNNER_OB_CARBINE  = "%k \cdsplit \c-%o \cdinto two.";
 CYBERRUNNER_OB_VENT     = "%k \cucollapsed \c-%o\cu's lungs.";
