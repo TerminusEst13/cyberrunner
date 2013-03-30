@@ -9,6 +9,7 @@ actor ForceVentAmmo : Ammo 15401
     +NOGRAVITY
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_VENT"
+    Inventory.PickupSound "sounds/vent_pickup.ogg"
 
     RenderStyle Add
     Alpha 0.75

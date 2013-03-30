@@ -28,6 +28,7 @@ menu/invalid 		MENUFAIL // Menu not available. - Taken from Devil May Cry 3
 // =============
 
 pickups/turbo   sounds/LargeHealthPickup.wav  // UT2004 100 Health pickup
+pickups/vent	sounds/vent_pickup.ogg	// Taken from Tribes: Ascend
 
 // Weapons
 // =============
