@@ -36,17 +36,17 @@
 #define WB_KICK     1
 #define WB_KICKUP   2
 
-#define WD_FORWARD  0
-#define WD_FORWRITE 1
-#define WD_RIGHT    2
-#define WD_BACKRITE 3
-#define WD_BACK     4
-#define WD_BACKLEFT 5
-#define WD_LEFT     6
-#define WD_FORWLEFT 7
-#define WD_KICK     8
+#define WD_FORWARD  1
+#define WD_FORWRITE 2
+#define WD_RIGHT    3
+#define WD_BACKRITE 4
+#define WD_BACK     5
+#define WD_BACKLEFT 6
+#define WD_LEFT     7
+#define WD_FORWLEFT 8
+#define WD_KICK     9
 
-int wallCheckers[9] =
+/*int wallCheckers[9] =
 {
     "ParkmoreCheckS",
     "ParkmoreCheckSE",
@@ -57,7 +57,10 @@ int wallCheckers[9] =
     "ParkmoreCheckW",
     "ParkmoreCheckSW",
     "ParkmoreCheckKick",
-};
+};*/
+
+int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 };
+
 
 #define JUMP_FORWARD 15.0
 #define JUMP_BACK    5.0

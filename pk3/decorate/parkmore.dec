@@ -124,7 +124,7 @@ actor ParkmoreFloorChecker
     +NODAMAGETHRUST
     +CANNOTPUSH
 
-    Radius 16
+    Radius 12
     Height 1
 
     Mass 0x7FFFFFFF
@@ -133,6 +133,22 @@ actor ParkmoreFloorChecker
     {
       Spawn:
         TNT1 A 0
+        stop
+    }
+}
+
+actor ParkmoreChecker2
+{
+    Radius 48
+    Height 1
+
+    +SOLID
+    +SERVERSIDEONLY
+
+    States
+    {
+      Spawn:
+        BAL1 A 105
         stop
     }
 }
@@ -360,4 +376,9 @@ actor FingerCruncher
         TNT1 A 1 A_Explode(40, 8)
         stop
     }
+}
+
+actor PowerStayTheFuckStill: PowerSpeed
+{
+    Speed 0
 }

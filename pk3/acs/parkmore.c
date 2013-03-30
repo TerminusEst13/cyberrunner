@@ -28,8 +28,12 @@ int IsServer;
 
 function int parkmoreOnGround(int tid)
 {
+    int ctid = unusedTID(13000, 18000);
+    int spawned = Spawn("ParkmoreFloorChecker", GetActorX(tid), GetActorY(tid), GetActorZ(tid)-4.0, ctid);
+    if (spawned) { Thing_Remove(ctid); }
+
     return (onGround(tid) ||
-        (GetActorVelZ(tid) == 0 && !Spawn("ParkmoreFloorChecker", GetActorX(tid), GetActorY(tid), GetActorZ(tid)-4.0)));
+        (GetActorVelZ(tid) == 0 && !spawned));
 }
 
 
@@ -57,6 +61,8 @@ script PARKMORE_TURN (int degrees, int factor, int direction) net clientside
         prevDegrees = curDegrees;
         addDegrees = (floatDegrees - curDegrees) / factor;
         curDegrees += addDegrees;
+
+        //Log(f:floatDegrees, s:", ", f:curDegrees, s:", +", f:addDegrees);
 
         SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
         Delay(1);
@@ -253,6 +259,12 @@ function void wallBounce (int type, int direction)
 script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 {
     int newDir = -1;
+    int justCheck;
+    int angle, x,y, i;
+
+    if (isDead(0)) { terminate; }
+
+    if (direction < 0) { direction = -direction; justCheck = 1; }
 
     if (type == WB_DODGE)
     {
@@ -309,16 +321,37 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 
     if (mask == 0) { mask = 1; }
 
-    GiveInventory(wallCheckers[direction], 1);
-    Delay(1);
+    angle = GetActorAngle(0) + AngleOffsets[direction];
+    angle = mod(angle, 1.0);
 
-    if (CheckInventory("CanWallBounce") & mask)
+    x = 64 * cos(angle); y = 64 * sin(angle);
+
+    if (abs(x) > abs(y))
+    {
+        y = FixedMul(y, FixedDiv(64.0, abs(x)));
+        x = 64.0 * sign(x);
+    }
+    else
+    {
+        x = FixedMul(x, FixedDiv(64.0, abs(y)));
+        y = 64.0 * sign(y);
+    }
+
+
+    int tid = unusedTID(25000, 30000);
+    int canBounce = !Spawn("ParkmoreChecker2",
+                        GetActorX(0) + x,
+                        GetActorY(0) + y,
+                        GetActorZ(0) + 16.0, tid);
+    Thing_Remove(tid);
+    
+    if (canBounce && !justCheck)
     {
         wallBounce(type, direction);
     }
 
-    Delay(1);
-    TakeInventory("CanWallBounce", 0x7FFFFFFF);
+    //Print(s:"wallbounce (func): ", d:canBounce, s:" - angle is ", f:angle, s:", direction is ", d:direction, s:" (", f:x, s:", ", f:y, s:")");
+    SetResultValue(canBounce);
 }
 
 
@@ -335,7 +368,7 @@ script PARKMORE_LEDGEWALL (int mode)
     curY = GetActorY(0);
     curZ = GetActorZ(0);
 
-    if (parkmoreOnGround(0) || grabbing[pln]) { terminate; }
+    if (parkmoreOnGround(0) || grabbing[pln] || isDead(0)) { terminate; }
 
     switch (mode)
     {
@@ -686,14 +719,12 @@ script PARKMORE_WALLHOLD (void)
         if ((keyPressed(BT_FORWARD) && !facingWall) || keyPressed(BT_JUMP))
         {
             ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, WD_FORWARD, 0);
-            addTimer(pln, TIMER_BOUNCED, 2);
             break;
         }
 
         if (keyPressed(BT_BACK) && facingWall)
         {
             ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, WD_BACK, 0);
-            addTimer(pln, TIMER_BOUNCED, 2);
             break;
         }
 
@@ -928,33 +959,6 @@ script PARKMORE_ENTER enter
             continue;
         }
 
-        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP))
-        {
-            dDirection = -1;
-
-            switch (direction)
-            {
-              case DIR_NW: dDirection = WD_FORWLEFT;    break;
-              case DIR_N:  dDirection = WD_FORWARD;     break;
-              case DIR_NE: dDirection = WD_FORWRITE;    break;
-              case DIR_SW: dDirection = WD_BACKLEFT;    break;
-              case DIR_S:  dDirection = WD_BACK;        break;
-              case DIR_SE: dDirection = WD_BACKRITE;    break;
-              case DIR_W:  dDirection = WD_LEFT;        break;
-              case DIR_E:  dDirection = WD_RIGHT;       break;
-            }
-
-            if (dDirection != -1)
-            {
-                ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, dDirection, 0);
-                if (dDirection == WD_FORWARD)
-                {
-                    ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICKUP, WD_KICK, 2);
-                }
-                addTimer(pln, TIMER_BOUNCED, 2);
-            }
-        }
-
         didSpecial = 0;
 
         if (ground || inWater)
@@ -966,20 +970,11 @@ script PARKMORE_ENTER enter
         }
         else
         {
-            if (keyPressed(BT_JUMP) && !DidSpecials[pln] && !grabbing[pln])
-            {
-                MultiJump(1, 0);
-            }
-
             playerJumps[pln] = max(1, playerJumps[pln]);
 
             if (!(ground || wasGround))
             {
-                if (keyDown(BT_CROUCH) && !grabbing[pln] && !dontGrab[pln])
-                {
-                    ACS_ExecuteAlways(PARKMORE_LEDGEWALL, 0, LW_WALL,0,0);
-                }
-                else if ((GetActorVelZ(0) < 0) && !grabbing[pln] && !dontGrab[pln])
+                if ((GetActorVelZ(0) < 0) && !grabbing[pln] && !dontGrab[pln])
                 {
                     ACS_ExecuteAlways(PARKMORE_LEDGEWALL, 0, LW_LEDGE,0,0);
                 }
@@ -997,8 +992,10 @@ script PARKMORE_ENTER2 enter clientside
 {
     int pln = PlayerNumber();
     int dodgeDir, pukeStr;
-    int ground, wasGround;
+    int ground, wasGround, direction, dDirection;
+    int inWater, wasInWater;
     int myLock = ClientEnterLocks[pln] + 1;
+    int i;
 
     ClientEnterLocks[pln] = myLock;
 
@@ -1009,9 +1006,16 @@ script PARKMORE_ENTER2 enter clientside
     while (ClientEnterLocks[pln] == myLock)
     {
         dodgeDir = -1;
+        dDirection = -1;
 
-        wasGround = ground;
         ground = parkmoreOnGround(0);
+        direction = getDirection();
+
+        if (ground) { wasGround = 8; }
+        else { wasGround = max(0, wasGround-1); }
+
+        wasInWater = inWater;
+        inWater = CheckInventory("WaterIndicator");
 
         CPlayerGrounds[pln][0] = ground;
         CPlayerGrounds[pln][1] = wasGround;
@@ -1039,23 +1043,49 @@ script PARKMORE_ENTER2 enter clientside
             {
                 addTimer(pln, TIMER_DIDDODGE, 2);
 
-                /*if (IsServer)  // is serverside anyway, let's not go through hoops
-                {
-                    ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, dodgeDir, 0);
-                }*/
-                ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, dodgeDir, 0);
-                //else
-                
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:dodgeDir);
                     ConsoleCommand(pukeStr);
                 }
+                else
+                {
+                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_DODGE, dodgeDir, 0);
+                }
             }
+        }
+
+        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP))
+        {
+            switch (direction)
+            {
+              case DIR_NW: dDirection = WD_FORWLEFT;    break;
+              case DIR_N:  dDirection = WD_FORWARD;     break;
+              case DIR_NE: dDirection = WD_FORWRITE;    break;
+              case DIR_SW: dDirection = WD_BACKLEFT;    break;
+              case DIR_S:  dDirection = WD_BACK;        break;
+              case DIR_SE: dDirection = WD_BACKRITE;    break;
+              case DIR_W:  dDirection = WD_LEFT;        break;
+              case DIR_E:  dDirection = WD_RIGHT;       break;
+            }
+
+            if (dDirection != -1)
+            {
+                pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
+                ConsoleCommand(pukeStr);
+                addTimer(pln, TIMER_BOUNCED, 2);
+            }
+            
+            i = ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, -dDirection);
+            if (dDirection == WD_FORWARD) { i |= ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_FORWARD); }
+
+            if (!i) { dDirection = -1; }
+            //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
         }
 
         if (keyPressed(BT_JUMP))
         {
+            /*
             if (getTimer(pln, TIMER_HBACK) > 0) 
             {
                 if (CPlayerGrounds[pln][1])
@@ -1069,9 +1099,19 @@ script PARKMORE_ENTER2 enter clientside
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 1");
                     ConsoleCommand(pukeStr);
                 }
-                else
+                else if (ground)
                 {
+                    playerJumps[pln]--;
                     HighJump(0);
+                    DidSpecials[pln] = 2;
+                }
+            }
+            else*/
+            {
+                if (!(wasGround || inWater || dDirection != -1))
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
+                    ConsoleCommand(pukeStr);
                 }
             }
         }
@@ -1084,28 +1124,32 @@ script PARKMORE_ENTER2 enter clientside
         addCTimers(pln);
 
         tickTimer(pln, TIMER_DIDDODGE);
+        tickTimer(pln, TIMER_BOUNCED);
 
         Delay(1);
     }
 
 }
 
-script PARKMORE_REQUESTDODGE (int direction, int hijump) net
+script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
     int pln;
 
-    if (hijump)
+    if (isDead(0)) { terminate; }
+
+    if (mjump && !DidSpecials[pln] && !grabbing[pln])
     {
-        if (PlayerGrounds[pln][1])
-        {
-            playerJumps[pln]--;
-            HighJump(0);
-            DidSpecials[pln] = 2;
-        }
+        if (!DidSpecials[pln] && !grabbing[pln]) { /*Print(d:playerJumps[pln]);*/ MultiJump(1, 0); }
+    }
+    else if (direction < 0)
+    {
+        direction = -direction;
+        ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, direction, 0);
+        if (direction == WD_FORWARD) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK, 2); }
     }
     else
     {
-        ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, direction, 0);
+        ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_DODGE, direction, 0);
     }
 }
 
