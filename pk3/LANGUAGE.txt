@@ -1,5 +1,6 @@
 [enu default]
 
+CYBERRUNNER_PK_VENT     = "\cuFull vent!";
 CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
 CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
 CYBERRUNNER_PK_CARBINE  = "\cdCarbine!";
