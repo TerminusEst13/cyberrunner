@@ -185,6 +185,7 @@ actor ForceVentAmmo : Ammo 15401
 
     +INVENTORY.IGNORESKILL
     +FLOATBOB
+    +NOGRAVITY
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_VENT"
 

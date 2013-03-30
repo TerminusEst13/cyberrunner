@@ -23,6 +23,7 @@ actor "Cyber Carbine" : Weapon 15502
     +ALT_AMMO_OPTIONAL
     +UNDROPPABLE
     +FLOATBOB
+    +NOGRAVITY
     
     RenderStyle Add
     Alpha 0.95

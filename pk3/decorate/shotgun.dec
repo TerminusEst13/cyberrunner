@@ -23,6 +23,7 @@ actor "Cyber Shotgun" : Weapon 15501
     +ALT_AMMO_OPTIONAL
     +UNDROPPABLE
     +FLOATBOB
+    +NOGRAVITY
 
     RenderStyle Add
     Alpha 0.95

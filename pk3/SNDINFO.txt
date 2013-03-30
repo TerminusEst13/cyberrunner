@@ -23,6 +23,12 @@ menu/prompt 		MENUQUIT // Are you sure you want to quit? - Taken from Devil May 
 menu/dismiss 		MENUDSMS // Dismiss a prompt. - Taken from Silent Bomber
 menu/invalid 		MENUFAIL // Menu not available. - Taken from Devil May Cry 3
 
+
+// Pickups
+// =============
+
+pickups/turbo   sounds/LargeHealthPickup.wav  // UT2004 100 Health pickup
+
 // Weapons
 // =============
 
