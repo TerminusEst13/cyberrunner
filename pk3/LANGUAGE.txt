@@ -5,6 +5,9 @@ CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
 CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
 CYBERRUNNER_PK_CARBINE  = "\cdCarbine!";
 
+CYBERRUNNER_PK_TURBO    = "\cfFull turbo!";
+CYBERRUNNER_PK_ALLAMMO  = "\cfFull ammo!";
+
 CYBERRUNNER_OB_PLASMA   = "%k \cnoverheated \c-%o.";
 CYBERRUNNER_OB_SHOTGUN  = "%k \cifatally lowered \c-%o\ci's drag.";
 CYBERRUNNER_OB_CARBINE  = "%k \cdsplit \c-%o \cdinto two.";

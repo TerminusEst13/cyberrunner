@@ -42,8 +42,11 @@ actor FullTurboRecharge: CustomInventory 15451
     +FLOATBOB
     +NOGRAVITY
 
-    Inventory.PickupMessage "\cfFull turbo!"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_TURBO"
     Inventory.PickupSound "pickups/turbo"
+
+    RenderStyle Add
+    Alpha 0.9
 
     States
     {

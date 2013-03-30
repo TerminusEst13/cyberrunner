@@ -171,3 +171,41 @@ actor PlasmaSpark2 : PlasmaSpark
         loop
     }
 }
+
+actor CyberPlasmaSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    ReactionTime 18
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("CyberPlasmaSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+        
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor CyberPlasmaSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.5
+    
+    States
+    {
+      Spawn:
+        CYPL Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
