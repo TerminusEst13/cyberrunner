@@ -9,6 +9,7 @@ actor ForceVentAmmo : Ammo 15401
     +NOGRAVITY
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_VENT"
+    Inventory.PickupSound "pickups/vent"
 
     RenderStyle Add
     Alpha 0.75
@@ -67,6 +68,7 @@ actor CyberAllAmmo: CustomInventory 15452
 
     Inventory.MaxAmount 0
     Inventory.PickupMessage "$CYBERRUNNER_PK_ALLAMMO"
+    Inventory.PickupSound "pickups/ammo"
 
     RenderStyle Add
     Alpha 0.9
