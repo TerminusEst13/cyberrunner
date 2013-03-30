@@ -1,0 +1,48 @@
+STARTING AREA is giant building locking everyone inside. GO is the door suddenly opening them up and launching them out.
+^- Zdwars2 has a nice building to start in, not much else for layout.
+^- WOULD NOT BE GOOD IF THE ARENA LOOPS AROUND
+^- If it doesn't, finish line is a destructable item.
+^-- Power crystal?
+^-- Flashing light?
+
+Bonuses collectable or achievable mid-race that gives trophies at the end.
+
+zdwars3 (The Void) has some great platforms in the middle, but need spaced out a bit more.
+^- Also a large pit with a large wall to jump up.
+
+zdwars4 (Caverns) and zdwars27 (Facing Worlds) shows that wide-open straight-ahead areas ARE NOT A GOOD IDEA--too easy for people to cross without any effort, takes up way too much space on the map.
+^- Maybe for a starting area, to build up speed?
+
+Drones are going to going to need to be put in far away areas, so people can see them, react to them, and fight them in time. When put on the same platform/level as players, it takes off so much health.
+
+zdwars5 is a good "playground" map, not so much for a race map. What defines a "playground" map?
+^- maps with lots of buildings to hop off, areas to climb, walls to bound off, not a main direction to go in?
+
+zdwars6 is an excellent race map, when done counterclockwise.
+^- 1: Massive drop off a cliff. Hell yes.
+^- 2: Weaving back and forth through trees/pillars/obstacles. Very yes.
+^- 3: jumping through a tiny hole. No.
+^- 4: Hard left turn over a river. Eh. Needs something more.
+^- 5: Weaving through the interior of a building. Yes.
+^- 6: Leaping over a few pits, dodging obstacles in mid-air. Then a jump through a tiny hole. Yes, then no.
+^- 7: More weaving through trees, then going on a marked path to another long pit. Very yes.
+^- 8: Jumping over rooftops over to the top of the hill. Yes.
+^- 9: Running up a hill to the start. Eh.
+^- The south side of the map has some great building tops for a playground map.
+
+zdwars7 is a simple and staple race course. It's pretty much only twists and turns, no obstacles. Lots of wide open dashing and running areas.
+
+zdwars8 despite its size, is very unnotable architecture wise. Just a whole bunch of islands in the middle of flat floor.
+
+zdwars9 is too tiny. No.
+
+zdwars10 has no clear circuit, water slows you down. Some interesting building designs to act as start gates, though.
+
+zdwars11, zdwars12, zdwars19, and zdwars21 have the same thing as zdwars7. Simple running circuit, a few jumps, vanilla bland otherwise.
+
+zdwars24 is practically perfect as a more difficult race course. Lots of incredibly long jumps with emphasis on tricky walljumps, and teleporters that punish you by sending you back.
+^- DO NOT ASSUME DOUBLE-JUMP WILL ALWAYS BE COOPERATIVE! Areas should NEVER REQUIRE double-jump to progress or else die.
+^- An area of a shortcut BEHIND the wall of the path! Pros would need to wall-jump around the wall and reach the ledge behind in order to continue down the shortcut path.
+^-- Ijon probably has no sense of difficulty.
+
+zdwars16 has an interesting set of bases to bob and weave through, but at the ends of the map and not interconnected.
