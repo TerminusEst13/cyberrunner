@@ -39,8 +39,8 @@ plasma/hit		PLASHIT // Taken from Quake III
 force/shot		FRCESHOT
 force/hit		FRCEHIT
 
-shotgun/pickup  sounds/shotgun_pickup.wav
-shotgun/up      sounds/shotgun_up.ogg  // Based off the Unreal Flak Cannon reload
+shotgun/pickup  sounds/shotgun_pickup.wav // UT2004 Flak Cannon pickup sound
+shotgun/up      sounds/shotgun_up.ogg  // Sped up Unreal Flak Cannon reload
 shotgun/fire    sounds/shotgun_fire.ogg  // Based off the Unreal Flak Cannon fire
 shotgun/load    sounds/shotgun_load.ogg // Based off the Unreal Flak Cannon reload
 $random shotgun/hit {shit1 shit2 shit3} // Taken from Painkiller

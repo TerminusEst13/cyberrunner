@@ -139,7 +139,7 @@ actor ParkmoreFloorChecker
 
 actor ParkmoreChecker2
 {
-    Radius 48
+    Radius 56
     Height 1
 
     +SOLID

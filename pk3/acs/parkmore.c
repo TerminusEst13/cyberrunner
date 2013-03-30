@@ -324,17 +324,17 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
     angle = GetActorAngle(0) + AngleOffsets[direction];
     angle = mod(angle, 1.0);
 
-    x = 64 * cos(angle); y = 64 * sin(angle);
+    x = 72 * cos(angle); y = 72 * sin(angle);
 
     if (abs(x) > abs(y))
     {
-        y = FixedMul(y, FixedDiv(64.0, abs(x)));
-        x = 64.0 * sign(x);
+        y = FixedMul(y, FixedDiv(72.0, abs(x)));
+        x = 72.0 * sign(x);
     }
     else
     {
-        x = FixedMul(x, FixedDiv(64.0, abs(y)));
-        y = 64.0 * sign(y);
+        x = FixedMul(x, FixedDiv(72.0, abs(y)));
+        y = 72.0 * sign(y);
     }
 
 
