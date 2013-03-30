@@ -1,0 +1,6 @@
+Some parts of the map are blocked off--need keys picked up in order to open the doors.
+^- NOT ACTUAL KEYS, DM STARTS WITH ALL OF THEM.
+
+Very simplistic landscape--black void, grey towers, dark asphalt. Almost guarantees no lag.
+
+map10 is surprisingly fun with low gravity, just all the invisible fucking walls.
