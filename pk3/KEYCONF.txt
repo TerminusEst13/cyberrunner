@@ -4,7 +4,7 @@ addplayerclass CyberRunner
 addkeysection "CyberRunner" cyberkeys
 addmenukey "Cyber Dash" cyberdash
 addmenukey "Cyber Jump" cyberjump
-addmenukey "Cyber Boost" cyberboost
+addmenukey "Cyber Turbo" cyberboost
 alias cyberdash "puke 402"
 alias cyberjump "puke 403"
 alias cyberboost "puke 404"
