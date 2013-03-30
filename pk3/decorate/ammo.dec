@@ -78,7 +78,7 @@ actor CyberAllAmmo: CustomInventory 15452
         loop
 
       Pickup:
-        TNT1 A 0 A_SetBlend("FF FF FF", 0.25, 8)
+        TNT1 A 0 A_SetBlend("FF C0 00", 0.25, 8)
         TNT1 A 0 A_GiveInventory("PlasmaGunAmmo", 100)
         TNT1 A 0 A_GiveInventory("ShotgunAmmo", 20)
         TNT1 A 0 A_GiveInventory("CarbineAmmo", 10)
