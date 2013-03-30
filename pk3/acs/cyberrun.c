@@ -69,7 +69,9 @@ script 402 (void) NET
     int vx, vy, vz,  mag, angle, pitch;
     int nx, ny, nz, nmag;
     int rx, ry, rz, rmag;
-
+	
+	if (CheckInventory("Health") > 0)
+	{
     if (CheckInventory("DashCooldown") == 0)
     {
         vx = GetActorVelX(0);
@@ -105,10 +107,13 @@ script 402 (void) NET
 
         GiveInventory("DashCooldown",30);
     }
+	}
 }
 
 script 403 (void) NET
 {
+	if (CheckInventory("Health") > 0)
+	{
     if (CheckInventory("JumpCooldown") == 0)
     {
         ActivatorSound("cyber/jump",255);
@@ -116,10 +121,13 @@ script 403 (void) NET
         ThrustThing(GetActorAngle(0)/256,12,1,0);
         GiveInventory("JumpCooldown",30);
     }
+	}
 }
 
 script 404 (void) NET
 {
+	if (CheckInventory("Health") > 0)
+	{
     if (CheckInventory("BoostCooldown") == 0)
     {
         ActivatorSound("cyber/boost",255);
@@ -127,6 +135,7 @@ script 404 (void) NET
         GiveInventory("CyberBoostSpeed",1);
         GiveInventory("BoostCooldown",300);
     }
+	}
 }
 
 
