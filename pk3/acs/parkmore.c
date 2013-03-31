@@ -1020,6 +1020,14 @@ script PARKMORE_ENTER2 enter clientside
         CPlayerGrounds[pln][0] = ground;
         CPlayerGrounds[pln][1] = wasGround;
 
+        if (!(GetActorVelX(0) || GetActorVelY(0)))
+        {
+            playerTimers[pln][TIMER_CLEFT]      = 0;
+            playerTimers[pln][TIMER_CFORWARD]   = 0;
+            playerTimers[pln][TIMER_CRIGHT]     = 0;
+            playerTimers[pln][TIMER_CBACK]      = 0;
+        }
+
         if (!getTimer(pln, TIMER_DIDDODGE))
         {
             if (keyPressed(BT_MOVELEFT) && getTimer(pln, TIMER_CLEFT))
@@ -1107,12 +1115,10 @@ script PARKMORE_ENTER2 enter clientside
                 }
             }
             else*/
+            if (!(ground || wasGround || inWater || dDirection != -1))
             {
-                if (!(wasGround || inWater || dDirection != -1))
-                {
-                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
-                    ConsoleCommand(pukeStr);
-                }
+                pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
+                ConsoleCommand(pukeStr);
             }
         }
 
