@@ -72,6 +72,8 @@ int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 
 #define HIJUMP_BACK   5.0
 #define HIJUMP_ZMULT  1.6
 
+#define MJUMP_DELAY     8
+
 #define TIMER_COUNT     7
 
 #define TIMER_CFORWARD   0

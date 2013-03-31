@@ -166,6 +166,7 @@ actor ParkmoreChecker: FastProjectile
     +PUFFGETSOWNER
     +NOTIMEFREEZE
     +MOVEWITHSECTOR
+    +PAINLESS
 
     -ACTIVATEIMPACT
     -ACTIVATEPCROSS

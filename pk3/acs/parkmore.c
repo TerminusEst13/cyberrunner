@@ -1019,9 +1019,11 @@ script PARKMORE_ENTER2 enter clientside
         dodgeDir = -1;
         dDirection = -1;
 
-        wasGround = ground;
         ground = parkmoreOnGround(0);
         direction = getDirection();
+
+        if (ground) { wasGround = MJUMP_DELAY; }
+        else { wasGround = max(0, wasGround-1); }
 
         wasInWater = inWater;
         inWater = CheckInventory("WaterIndicator");
@@ -1133,7 +1135,7 @@ script PARKMORE_ENTER2 enter clientside
                 }
             }
             else*/
-            if (!(ground || GetActorVelZ(0) > 5.0 || inWater || dDirection != -1))
+            if (!(ground || (GetActorVelZ(0) < 0 && wasGround) || wasGround >= (MJUMP_DELAY-2) || inWater || dDirection != -1))
             {
                 pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
                 ConsoleCommand(pukeStr);
