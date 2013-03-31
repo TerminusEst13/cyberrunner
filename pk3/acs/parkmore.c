@@ -351,6 +351,7 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
         j = Spawn("ParkmoreChecker2", GetActorX(0) + x + (x2*i),
                     GetActorY(0) + y + (y2*i), GetActorZ(0) + 16.0, tid);
         Thing_Remove(tid);
+        //PrintBold(s:"(", f:x3, s:", ", f:y3, s:") type ", d:type, s:" - ", d:j);
         
         if (!j) { canBounce = 1; break; }
     }
@@ -1097,14 +1098,14 @@ script PARKMORE_ENTER2 enter clientside
                 else
                 {
                     ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, dDirection);
-                    if (dDirection == WD_FORWARD) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, dDirection); }
+                    if (dDirection == WD_FORWARD) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK); }
                 }
 
                 addTimer(pln, TIMER_BOUNCED, 2);
             }
             
             i = ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, -dDirection);
-            if (dDirection == WD_FORWARD) { i |= ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_FORWARD); }
+            if (dDirection == WD_FORWARD) { i |= ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_KICK); }
 
             if (!i) { dDirection = -1; }
             //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
