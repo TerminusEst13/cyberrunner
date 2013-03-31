@@ -6,11 +6,13 @@ cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
 cyber/boost		CYBRBOST // Taken from Unreal Tournament 3
 
 parkmore/walljump   CYBRWJMP
+parkmore/wajumpup   CYBRWJMU
 parkmore/grabledge  CYBRGRAP
 parkmore/dodge      CYBRDODG
 parkmore/doubjump   CYBRDJMP
 
 $volume parkmore/walljump 0.5
+$volume parkmore/wajumpup 0.5
 $volume parkmore/doubjump 0.5
 
 menu/activate 		MENUUP // Bring up the main menu. - Taken from Mega Man X6
