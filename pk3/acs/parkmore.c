@@ -350,7 +350,6 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 
         j = Spawn("ParkmoreChecker2", GetActorX(0) + x + (x2*i),
                     GetActorY(0) + y + (y2*i), GetActorZ(0) + 16.0, tid);
-        PrintBold(s:"Trying (", f:x3, s:", ", f:y3, s:", ", f:GetActorZ(0) + 16.0, s:") - ", d:j);
         Thing_Remove(tid);
         
         if (!j) { canBounce = 1; break; }
