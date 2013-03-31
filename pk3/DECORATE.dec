@@ -2,6 +2,7 @@
 
 #include "decorate/player.dec"
 #include "decorate/powers.dec"
+#include "decorate/health.dec"
 
 #include "decorate/ammo.dec"
 #include "decorate/vent.dec"
