@@ -260,7 +260,10 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 {
     int newDir = -1;
     int justCheck;
-    int angle, x,y, i;
+    int angle, x,y, x2,y2, i, j;
+    int tid, canBounce;
+    int sideMove, forwMove;
+    int x3,y3;
 
     if (isDead(0)) { terminate; }
 
@@ -268,8 +271,8 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 
     if (type == WB_DODGE)
     {
-        int sideMove = keyDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
-        int forwMove = keyDown(BT_FORWARD) - keyDown(BT_BACK);
+        sideMove = keyDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
+        forwMove = keyDown(BT_FORWARD) - keyDown(BT_BACK);
 
         switch (direction)
         {
@@ -324,26 +327,34 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
     angle = GetActorAngle(0) + AngleOffsets[direction];
     angle = mod(angle, 1.0);
 
-    x = 72 * cos(angle); y = 72 * sin(angle);
+    x  = 20 * cos(angle); y  = 20 * sin(angle);
+    x2 = 8  * cos(angle); y2 = 8  * sin(angle);
 
     if (abs(x) > abs(y))
     {
-        y = FixedMul(y, FixedDiv(72.0, abs(x)));
-        x = 72.0 * sign(x);
+        y = FixedMul(y, FixedDiv(20.0, abs(x)));
+        x = 20.0 * sign(x);
     }
     else
     {
-        x = FixedMul(x, FixedDiv(72.0, abs(y)));
-        y = 72.0 * sign(y);
+        x = FixedMul(x, FixedDiv(20.0, abs(y)));
+        y = 20.0 * sign(y);
     }
 
+    canBounce = 0;
+    for (i = 0; i < 12; i++)
+    {
+        tid = unusedTID(25000, 30000);
+        x3 = GetActorX(0) + x + (x2*i);
+        y3 = GetActorY(0) + y + (y2*i);
 
-    int tid = unusedTID(25000, 30000);
-    int canBounce = !Spawn("ParkmoreChecker2",
-                        GetActorX(0) + x,
-                        GetActorY(0) + y,
-                        GetActorZ(0) + 16.0, tid);
-    Thing_Remove(tid);
+        j = Spawn("ParkmoreChecker2", GetActorX(0) + x + (x2*i),
+                    GetActorY(0) + y + (y2*i), GetActorZ(0) + 16.0, tid);
+        PrintBold(s:"Trying (", f:x3, s:", ", f:y3, s:", ", f:GetActorZ(0) + 16.0, s:") - ", d:j);
+        Thing_Remove(tid);
+        
+        if (!j) { canBounce = 1; break; }
+    }
     
     if (canBounce && !justCheck)
     {
@@ -570,8 +581,8 @@ script PARKMORE_LEDGEHOLD (int heightTID)
             break;
         }
 
-        ledgeX /= ledgeMag;
-        ledgeY /= ledgeMag;
+        ledgeX /= max(1, ledgeMag);
+        ledgeY /= max(1, ledgeMag);
 
         SetActorVelocity(0, 24*ledgeX, 24*ledgeY,0, 0, 0);
 
@@ -1079,8 +1090,17 @@ script PARKMORE_ENTER2 enter clientside
 
             if (dDirection != -1)
             {
-                pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
-                ConsoleCommand(pukeStr);
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
+                    ConsoleCommand(pukeStr);
+                }
+                else
+                {
+                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, dDirection);
+                    if (dDirection == WD_FORWARD) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, dDirection); }
+                }
+
                 addTimer(pln, TIMER_BOUNCED, 2);
             }
             
