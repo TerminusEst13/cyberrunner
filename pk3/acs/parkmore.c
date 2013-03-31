@@ -342,7 +342,7 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
     }
 
     canBounce = 0;
-    for (i = 0; i < 12; i++)
+    for (i = 0; i < 10; i++)
     {
         tid = unusedTID(25000, 30000);
         x3 = GetActorX(0) + x + (x2*i);
@@ -1019,11 +1019,9 @@ script PARKMORE_ENTER2 enter clientside
         dodgeDir = -1;
         dDirection = -1;
 
+        wasGround = ground;
         ground = parkmoreOnGround(0);
         direction = getDirection();
-
-        if (ground) { wasGround = 8; }
-        else { wasGround = max(0, wasGround-1); }
 
         wasInWater = inWater;
         inWater = CheckInventory("WaterIndicator");
@@ -1074,7 +1072,7 @@ script PARKMORE_ENTER2 enter clientside
             }
         }
 
-        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP))
+        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0)
         {
             switch (direction)
             {
@@ -1135,7 +1133,7 @@ script PARKMORE_ENTER2 enter clientside
                 }
             }
             else*/
-            if (!(ground || wasGround || inWater || dDirection != -1))
+            if (!(ground || GetActorVelZ(0) > 5.0 || inWater || dDirection != -1))
             {
                 pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
                 ConsoleCommand(pukeStr);
