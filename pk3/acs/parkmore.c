@@ -250,6 +250,7 @@ function void wallBounce (int type, int direction)
     {
         case WB_KICK: ActivatorSound("parkmore/walljump", 127); break;
         case WB_DODGE: ActivatorSound("parkmore/dodge", 127); break;
+        case WB_KICKUP: ActivatorSound("parkmore/wajumpup", 127); break;
     }
 
     GiveInventory("KickTrail", 1);
