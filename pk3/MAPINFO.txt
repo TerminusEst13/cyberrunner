@@ -1,5 +1,5 @@
-map CRDM01 "The Nanoplex"
+map CYDM01 "The Nanoplex"
 {
 next = "MAP01"
-music = "M_CRDM01" // Yannis Brown - Round n' Round the Mulbury
+music = "M_CYDM01" // Yannis Brown - Round n' Round the Mulbury
 }
