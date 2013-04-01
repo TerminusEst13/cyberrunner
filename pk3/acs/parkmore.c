@@ -1012,7 +1012,7 @@ script PARKMORE_ENTER2 enter clientside
     ClientEnterLocks[pln] = myLock;
 
     SetHudSize(480, 360, 1);
-    HudMessage(s:"Type 'phelp' for Parkmore help.";
+    HudMessage(s:"Input 'phelp' in the console for assistance.";
             HUDMSG_FADEOUT, 1337, CR_WHITE, 240.4, 70.0, 3.0, 2.0);
 
     while (ClientEnterLocks[pln] == myLock)
@@ -1225,12 +1225,12 @@ script PARKMORE_HELP (void) net clientside
     Delay(35);
 
     SetFont("BIGFONT");
-    HudMessage(s:"PARKMORE";
-            HUDMSG_PLAIN, HMSG_BASE, CR_YELLOW, 240.4, 20.1, 0.0);
+    HudMessage(s:"CYBERRUNNER";
+            HUDMSG_PLAIN, HMSG_BASE, CR_LIGHTBLUE, 240.4, 20.1, 0.0);
 
     SetFont("SMALLFONT");
-    HudMessage(s:"Yep, another Parkour mod"; 
-            HUDMSG_PLAIN, HMSG_BASE+1, CR_BRICK, 240.4, 48.1, 0.0);
+    HudMessage(s:"Race the Wind"; 
+            HUDMSG_PLAIN, HMSG_BASE+1, CR_GOLD, 240.4, 48.1, 0.0);
 
     HudMessage(s:HELPMSGS[0]; 
             HUDMSG_FADEINOUT, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 1.0, 1.0, 0.0);
@@ -1277,12 +1277,12 @@ script PARKMORE_HELP (void) net clientside
     }
 
     SetFont("BIGFONT");
-    HudMessage(s:"PARKMORE";
-            HUDMSG_FADEOUT, HMSG_BASE, CR_YELLOW, 240.4, 20.1, 0.0, 2.0);
+    HudMessage(s:"CYBERRUNNER";
+            HUDMSG_FADEOUT, HMSG_BASE, CR_LIGHTBLUE, 240.4, 20.1, 0.0, 2.0);
 
     SetFont("SMALLFONT");
-    HudMessage(s:"Yep, another Parkour mod"; 
-            HUDMSG_FADEOUT, HMSG_BASE+1, CR_BRICK, 240.4, 48.1, 0.0, 2.0);
+    HudMessage(s:"Race the Wind"; 
+            HUDMSG_FADEOUT, HMSG_BASE+1, CR_GOLD, 240.4, 48.1, 0.0, 2.0);
 }
 
 
