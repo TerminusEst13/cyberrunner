@@ -1,5 +1,21 @@
 [enu default]
 
+QUITMSG = "You don't have all the time in the world.";
+QUITMSG1 = "Too fast for you?";
+QUITMSG2 = "In the end, gravity is as harsh a mistress as ever.";
+QUITMSG3 = "Don't worry. I guess second place is fine, too.";
+QUITMSG4 = "So much for winning.";
+QUITMSG5 = "Cyberrunner has encountered a problem and needs to close.\nWe are sorry for the inconvenience.";
+QUITMSG6 = "Abort, Retry, Fail?";
+QUITMSG7 = "Software Failure #0000000004.000AC0B.\nAll data has been lost.";
+QUITMSG8 = "CPU#0: Possible thermal failure (lp0 on fire)";
+QUITMSG9 = "PEERDIST_ERROR_OPERATION_NOTFOUND\n4059 (0xFDB)";
+QUITMSG10 = "ERROR_RESMON_SYSTEM_RESOURCES_LACKING\n5956 (0x1744)";
+QUITMSG11 = "WSASYSCALLFAILURE\n10107 (0x277B)";
+QUITMSG12 = "REALITY 0.13 OS Unstable. Reboot?";
+QUITMSG13 = "Contestant 013-Z RUNNER-40:\nConfirm termination?";
+QUITMSG14 = "STOP: 0x0000007F\n(0x00000000, 0xB9FC8E84,\n0x00000008, 0xC0000000)";
+
 CYBERRUNNER_PK_VENT     = "\cuFull vent!";
 CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
 CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
