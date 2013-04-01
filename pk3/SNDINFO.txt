@@ -61,6 +61,9 @@ carbine/up      sounds/carbine_up.wav		// From Devil May Cry 3
 carbine/fire    sounds/carbine_fire.ogg
 carbine/wind	sounds/carbine_wind.ogg		// From Unreal Tournament 3
 
+minigun/pickup  sounds/minigun_pickup.wav  // UT99 minigun up sound
+minigun/up      sounds/minigun_up.ogg  // Slightly sped up UT2004 minigun up sound
+
 // Enemies
 // =============
 
