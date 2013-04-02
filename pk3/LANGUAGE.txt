@@ -1,20 +1,20 @@
 [enu default]
 
-QUITMSG = "You don't have all the time in the world.";
-QUITMSG1 = "Too fast for you?";
-QUITMSG2 = "In the end, gravity is as harsh a mistress as ever.";
-QUITMSG3 = "Don't worry. I guess second place is fine, too.";
-QUITMSG4 = "So much for winning.";
-QUITMSG5 = "Cyberrunner has encountered a problem and needs to close.\nWe are sorry for the inconvenience.";
-QUITMSG6 = "Abort, Retry, Fail?";
-QUITMSG7 = "Software Failure #0000000004.000AC0B.\nAll data has been lost.";
-QUITMSG8 = "CPU#0: Possible thermal failure (lp0 on fire)";
-QUITMSG9 = "PEERDIST_ERROR_OPERATION_NOTFOUND\n4059 (0xFDB)";
+QUITMSG   = "32 8c b 50 1b 3d da 1f 25 80 96 ff 29 6 93 f5\n7f 9b 4c a1 69 1a ed a6 3 98 3 69 2d af 3f 77\nc b8 7f 30 be 2d 9c 8d 88 2d bb c9 43 8 a6 7f\n22 42 38 61 ba 23 a8 eb e0 d7 ef 7f 7d 2c 1b 58\n5b 4 85 18 e1 e6 8e 3f ce 0 6 a1 ad 7a c5 74\nac e6 fa 8 f3 2e 80 7f eb 29 56 b3 28 42 6b 42\nee 6 f0 12 21 44 ca 3b ac e2 df 6b 2d f2 bd 63\ne 95 e7 4d 60 5a 79 f 89 3d f0 d1 41 33 56 59";
+QUITMSG1  = "Error 11: Address not mapped to object";
+QUITMSG2  = "Terminated on SIGSEGV (Segmentation fault)";
+QUITMSG3  = "Operating system not found";
+QUITMSG4  = "Cannot find MBR, please insert disc and hit any key";
+QUITMSG5  = "Cyberrunner has encountered a problem and needs to close.\nWe are sorry for the inconvenience.";
+QUITMSG6  = "Abort, Retry, Fail?";
+QUITMSG7  = "Software Failure #0000000004.000AC0B.\nAll data has been lost.";
+QUITMSG8  = "CPU#0: Possible thermal failure (pm0 on fire)";
+QUITMSG9  = "PEERDIST_ERROR_OPERATION_NOTFOUND\n4059 (0xFDB)";
 QUITMSG10 = "ERROR_RESMON_SYSTEM_RESOURCES_LACKING\n5956 (0x1744)";
 QUITMSG11 = "WSASYSCALLFAILURE\n10107 (0x277B)";
-QUITMSG12 = "REALITY 0.13 OS Unstable. Reboot?";
+QUITMSG12 = "[17218826182.2832] Kernel shutting down.";
 QUITMSG13 = "Contestant 013-Z RUNNER-40:\nConfirm termination?";
-QUITMSG14 = "STOP: 0x0000007F\n(0x00000000, 0xB9FC8E84,\n0x00000008, 0xC0000000)";
+QUITMSG14 = "Kernel panic: /dev/kmem not found";
 
 CYBERRUNNER_PK_VENT     = "\cuFull vent!";
 CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
