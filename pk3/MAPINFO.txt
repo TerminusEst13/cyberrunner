@@ -1,9 +1,3 @@
-gameinfo
-{
-	quitmessages = "$QUITMSG", "$QUITMSG1", "$QUITMSG2", "$QUITMSG3", "$QUITMSG4", "$QUITMSG5", "$QUITMSG6", "$QUITMSG7",
-				   "$QUITMSG8", "$QUITMSG9", "$QUITMSG10", "$QUITMSG11", "$QUITMSG12", "$QUITMSG13", "$QUITMSG14"
-}
-
 map CYDM01 "The Nanoplex"
 {
     next = "MAP01"
@@ -12,7 +6,8 @@ map CYDM01 "The Nanoplex"
 
 map CYRC01 "Having Fun, Rocketboy?"
 {
-    next = "CYRC01"
-    sky1 = "RJSPCSKY", 1
-    sky2 = "BLACKSKY"
+    next  = "CYRC01"
+    sky1  = "RJSPCSKY", 1
+    sky2  = "BLACKSKY"
+    music = "D_ECLPSE"
 }
