@@ -330,6 +330,7 @@ actor ParkmoreCounter: Inventory
 actor CanWallBounce:    ParkmoreCounter {}
 actor OpenGrab:         ParkmoreCounter {}
 actor CanGrab:          ParkmoreCounter {}
+actor HasKicked:        ParkmoreCounter {}
 actor WaterIndicator:   ParkmoreCounter {}
 actor NoParkour:        ParkmoreCounter {}
 

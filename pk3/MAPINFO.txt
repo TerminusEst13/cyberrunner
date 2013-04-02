@@ -1,5 +1,12 @@
 map CYDM01 "The Nanoplex"
 {
-next = "MAP01"
-music = "M_CYDM01" // Yannis Brown - Round n' Round the Mulbury
+    next = "MAP01"
+    music = "M_CYDM01" // Yannis Brown - Round n' Round the Mulbury
+}
+
+map CYRC01 "Having Fun, Rocketboy?"
+{
+    next = "CYRC01"
+    sky1 = "RJSPCSKY", 1
+    sky2 = "BLACKSKY"
 }

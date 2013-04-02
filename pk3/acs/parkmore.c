@@ -942,6 +942,9 @@ script PARKMORE_ENTER enter
             continue;
         }
 
+        if (hasKicked[pln] && !CheckInventory("HasKicked")) { GiveInventory("HasKicked", 1); }
+        if (!hasKicked[pln] && CheckInventory("HasKicked")) { TakeInventory("HasKicked", 0x7FFFFFFF); }
+
         wasGround = ground;
         ground = parkmoreOnGround(0);
 
@@ -1089,7 +1092,36 @@ script PARKMORE_ENTER2 enter clientside
               case DIR_E:  dDirection = WD_RIGHT;       break;
             }
 
-            if (dDirection != -1)
+            i = 0;
+            switch (dDirection)
+            {
+              case -1: break;
+
+              case WD_FORWARD:
+                if (!CheckInventory("HasKicked")
+                    && ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_KICK)) 
+                {
+                    i = 2; break;
+                }
+            
+              default:
+                if (ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, -dDirection)) { i = 1; }
+                break;
+            }
+
+            if (i == 2)
+            {
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-256);
+                    ConsoleCommand(pukeStr);
+                }
+                else
+                {
+                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK);
+                }
+            }
+            else if (i == 1)
             {
                 if (!IsServer)
                 {
@@ -1099,16 +1131,12 @@ script PARKMORE_ENTER2 enter clientside
                 else
                 {
                     ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, dDirection);
-                    if (dDirection == WD_FORWARD) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK); }
                 }
-
-                addTimer(pln, TIMER_BOUNCED, 2);
             }
-            
-            i = ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, -dDirection);
-            if (dDirection == WD_FORWARD) { i |= ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_KICK); }
+            else { dDirection = -1; }
 
-            if (!i) { dDirection = -1; }
+            
+            if (i) { addTimer(pln, TIMER_BOUNCED, 2); }
             //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
         }
 
@@ -1171,8 +1199,8 @@ script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
     else if (direction < 0)
     {
         direction = -direction;
-        ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, direction, 0);
-        if (direction == WD_FORWARD) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK, 2); }
+        if (direction == 256) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK); }
+        else { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, direction); }
     }
     else
     {
