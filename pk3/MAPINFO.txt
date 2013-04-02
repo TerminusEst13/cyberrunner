@@ -9,5 +9,11 @@ map CYRC01 "Having Fun, Rocketboy?"
     next  = "CYRC01"
     sky1  = "RJSPCSKY", 1
     sky2  = "BLACKSKY"
-    music = "D_ECLPSE"
+    music = "D_ECLPSE" // CLiNT - Eclipse
+}
+
+map CYRC02 "Deep Fried"
+{
+    next  = "CYRC02"
+    music = "M_CYRC02" // Elwood - Sick on Monday
 }
