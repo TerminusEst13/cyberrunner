@@ -1,3 +1,39 @@
+// Player
+// ============
+
+$playeralias	Cyberrunner	 male	*death			cybrunner/death
+$playersounddup	Cyberrunner	 male	*xdeath			*death
+$playersounddup	Cyberrunner	 male	*burndeath		*death
+$playersounddup	Cyberrunner	 male	*crazydeath		*death
+$playersounddup Cyberrunner  male   *wimpydeath 	*death
+$playersounddup	Cyberrunner	 male	*gibbed			*death
+$playeralias	Cyberrunner	 male	*pain100		cybrunner/ouch
+$playersounddup	Cyberrunner	 male	*pain75			*pain100
+$playersounddup	Cyberrunner	 male	*pain50			*pain100
+$playersounddup	Cyberrunner	 male	*pain25			*pain100
+$playersound	Cyberrunner	 male	*grunt			CYBPSLNC
+$playeralias	Cyberrunner	 male	*land			cybrunner/land
+$playersound	Cyberrunner	 male	*usefail		CYBPNOPE
+$playersound	Cyberrunner  male	*taunt			CYBPLAFF
+$playeralias	Cyberrunner  male	*jump			cybrunner/jump
+
+$random cybrunner/death {cybdeath1 cybdeath2 cybdeath3}
+$random cybrunner/ouch {cybouch1 cybouch2 cybouch3}
+$random cybrunner/land {cybland1 cybland2 cybland3}
+$random cybrunner/jump {cybjump1 cybjump2 cybjump3}
+cybdeath1			CYBPDIE1
+cybdeath2			CYBPDIE2
+cybdeath3			CYBPDIE3
+cybouch1			CYBPHRT1
+cybouch2			CYBPHRT2
+cybouch3			CYBPHRT3
+cybland1			CYBPLND1
+cybland2			CYBPLND2
+cybland3			CYBPLND3
+cybjump1			CYBPJMP1
+cybjump2			CYBPJMP2
+cybjump3			CYBPJMP3
+
 // Systems
 // =============
 
