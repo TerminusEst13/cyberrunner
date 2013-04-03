@@ -5,7 +5,7 @@ actor VulcanAmmo: Ammo
     +IGNORESKILL
 }
 
-actor "Cyber Vulcan" : Weapon
+actor "Cyber Vulcan" : Weapon 15503
 {
     Weapon.Kickback 100
 
@@ -84,7 +84,7 @@ actor "Cyber Vulcan" : Weapon
     }
 }
 
-actor VulcanShot: FastProjectile
+actor VulcanShot: MageWandMissile//FastProjectile
 {
     Radius 8
     Height 8
@@ -98,7 +98,11 @@ actor VulcanShot: FastProjectile
     Alpha 0.95
 	//+HEXENBOUNCE
 	//BounceCount 3
-
+  -RIPPER
+  -CANNOTPUSH
+  -NODAMAGETHRUST
+  -SPAWNSOUNDSOURCE
+  SeeSound ""
     //DeathSound "vulcan/hit"
     Decal BulletChip
     Obituary "$CYBERRUNNER_OB_VULCAN"
@@ -119,6 +123,27 @@ actor VulcanShot: FastProjectile
         //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
         Stop
     }
+}
+
+actor VulcanTracer : MageWandSmoke replaces MageWandSmoke
+{
++CLIENTSIDEONLY
+RenderStyle Add
+Scale 0.2
+Alpha 0.25
+States
+{
+  Spawn:
+    MWND CD 2
+    Stop
+	}
+}
+
+actor VulcanAmmo: Ammo
+{
+    Inventory.MaxAmount 200
+    Ammo.BackpackMaxAmount 200
+    +INVENTORY.IGNORESKILL
 }
 
 actor CyberVulcanSparkle
