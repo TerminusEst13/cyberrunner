@@ -45,16 +45,17 @@ actor "Cyber Vulcan" : Weapon 15503
 
       Fire:
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
-        TNT1 A 15 A_PlaySound("vulcan/windup",7)
+        TNT1 A 15 A_PlaySound("vulcan/windup", 7)
 		
 	  Hold:
 		TNT1 A 0 A_JumpIfNoAmmo("DryFireHold")
 		TNT1 A 0 A_GunFlash
 		TNT1 A 0 A_PlayWeaponSound("vulcan/hit")
-        TNT1 A 0 A_FireCustomMissile("VulcanShot",random(-1,1),1,0,1,0,random(-1,1))
-        TNT1 A 3 Radius_Quake(2,2,0,3,0)
+        TNT1 A 0 A_FireCustomMissile("VulcanShot", random(-50, 50)/100.0, 1, 0, 1, 0, random(-50, 50)/100.0)
+        TNT1 A 0 A_FireCustomMissile("VulcanShot", random(-100, 100)/100.0, 0, 0, 1, 0, random(-100, 100)/100.0)
+        TNT1 A 3 Radius_Quake(2, 2, 0, 3, 0)
 		TNT1 A 0 A_Refire
-		TNT1 A 0 A_PlaySound("vulcan/unwind",6)
+		TNT1 A 0 A_PlaySound("vulcan/unwind", 6)
 		TNT1 A 1 A_ClearRefire
         goto Ready
 
@@ -63,33 +64,33 @@ actor "Cyber Vulcan" : Weapon 15503
         Goto Ready
 		
 	  DryFireHold:
-		TNT1 A 0 A_PlaySound("vulcan/unwind",6)
+		TNT1 A 0 A_PlaySound("vulcan/unwind", 6)
 		TNT1 A 1 A_ClearRefire
         goto Ready
 		
 	  AltFire:
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlayWeaponSound("force/shot")
-        TNT1 A 0 A_FireCustomMissile("ForceVent",0,1,0,0)
+        TNT1 A 0 A_FireCustomMissile("ForceVent", 0, 1, 0, 0)
         TNT1 A 30 A_WeaponReady(8)
         goto Ready
     }
 }
 
-actor VulcanShot// : FastProjectile
+actor VulcanShot: FastProjectile
 {
     Radius 8
-    Height 10
+    Height 8
 
     Projectile
     Speed 300
-    Damage (20)
+    Damage (10)
 
     Scale 0.25
     RenderStyle Add
     Alpha 0.95
-	+HEXENBOUNCE
-	BounceCount 3
+	//+HEXENBOUNCE
+	//BounceCount 3
 
     //DeathSound "vulcan/hit"
     Decal BulletChip
@@ -98,14 +99,17 @@ actor VulcanShot// : FastProjectile
     States
     {
       Spawn:
-        CYVL A 1 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0,0,0, random(0,60)/10.0, 0, random(0,60)/10.0, random(0,360))//A_CustomMissile("CyberVulcanSparkle2",0,0,Random(-180,180),2,Random(-100,100))
-		TNT1 A 0 A_SpawnItemEx("CyberVulcanSparkle2", 0,0,0, random(0,60)/10.0, 0, random(0,60)/10.0, random(0,360))//A_CustomMissile("CyberVulcanSparkle2",0,0,Random(-180,180),2,Random(-100,100))
-		TNT1 A 0 A_CustomMissile("VulcanTrail",0,0,0)
+        CYVL A 1 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
+        //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
+		TNT1 A 0 A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
+        //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
+		TNT1 A 0 A_CustomMissile("VulcanTrail", 0, 0, 0)
         Loop
 
       Death:
         TNT1 A 0 BRIGHT A_Scream
-        TNT1 AAAAA 0 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0,0,0, random(0,60)/10.0, 0, random(0,60)/10.0, random(0,360))//A_CustomMissile("CyberVulcanSparkle2",0,0,Random(-180,180),2,Random(-100,100))
+        TNT1 AAAAA 0 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
+        //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
         Stop
     }
 }
