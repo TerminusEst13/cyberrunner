@@ -78,12 +78,12 @@ actor "Cyber Vulcan" : Weapon 15503
 
 actor VulcanShot// : FastProjectile
 {
-    Radius 2
-    Height 3
+    Radius 8
+    Height 10
 
     Projectile
     Speed 300
-    Damage (10)
+    Damage (20)
 
     Scale 0.25
     RenderStyle Add
