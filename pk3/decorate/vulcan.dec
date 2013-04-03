@@ -83,7 +83,7 @@ actor VulcanShot// : FastProjectile
 
     Projectile
     Speed 300
-    Damage (20)
+    Damage (10)
 
     Scale 0.25
     RenderStyle Add
