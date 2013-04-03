@@ -110,5 +110,5 @@ actor AllAmmoSparkle: RandomSpawner
     DropItem "CyberPlasmaSparkle"
     DropItem "CyberShotgunSparkle"
     DropItem "CyberCarbineSparkle"
-    DropItem "CyberMinigunSparkle"
+    DropItem "CyberVulcanSparkle"
 }
