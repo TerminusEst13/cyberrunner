@@ -1,4 +1,11 @@
-actor "Cyber Vulcan" : Weapon 15503
+actor VulcanAmmo: Ammo
+{
+    Inventory.MaxAmount 200
+    Ammo.BackpackMaxAmount 200
+    +IGNORESKILL
+}
+
+actor "Cyber Vulcan" : Weapon
 {
     Weapon.Kickback 100
 
@@ -112,13 +119,6 @@ actor VulcanShot: FastProjectile
         //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
         Stop
     }
-}
-
-actor VulcanAmmo: Ammo
-{
-    Inventory.MaxAmount 200
-    Ammo.BackpackMaxAmount 200
-    +INVENTORY.IGNORESKILL
 }
 
 actor CyberVulcanSparkle

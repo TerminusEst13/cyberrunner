@@ -5,7 +5,7 @@ actor CarbineAmmo: Ammo
     +IGNORESKILL
 }
 
-actor "Cyber Carbine" : Weapon 15502
+actor "Cyber Carbine" : Weapon
 {
     Weapon.Kickback 100
     

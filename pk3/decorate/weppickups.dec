@@ -1,0 +1,62 @@
+actor WepPickup: CustomInventory
+{
+    +AUTOACTIVATE
+    Inventory.MaxAmount 0
+
+    RenderStyle Add
+    Alpha 0.95
+
+    +NOGRAVITY
+    +FLOATBOB
+}
+
+actor CyberShotgunPickup: WepPickup 15501
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUN"
+    Inventory.PickupSound "shotgun/pickup"
+
+    States
+    {
+      Spawn:
+        CYSG Z 2 bright A_SpawnItemEx("CyberShotgunSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        loop
+
+      Pickup:
+        TNT1 A 0 A_GiveInventory("Cyber Shotgun")
+        stop
+    }
+}
+
+actor CyberCarbinePickup: WepPickup 15502
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CARBINE"
+    Inventory.PickupSound "carbine/pickup"
+
+    States
+    {
+      Spawn:
+        CYCB Z 2 bright A_SpawnItemEx("CyberCarbineSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        loop
+
+      Pickup:
+        TNT1 A 0 A_GiveInventory("Cyber Carbine")
+        stop
+    }
+}
+
+actor CyberVulcanPickup: WepPickup 15503
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.PickupSound "vulcan/pickup"
+
+    States
+    {
+      Spawn:
+        CYMG Z 2 bright A_SpawnItemEx("CyberVulcanSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        loop
+
+      Pickup:
+        TNT1 A 0 A_GiveInventory("Cyber Vulcan")
+        stop
+    }
+}

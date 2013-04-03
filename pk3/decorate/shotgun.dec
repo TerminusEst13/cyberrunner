@@ -5,7 +5,7 @@ actor ShotgunAmmo: Ammo
     +IGNORESKILL
 }
 
-actor "Cyber Shotgun" : Weapon 15501
+actor "Cyber Shotgun" : Weapon
 {
     Weapon.Kickback 100
 
