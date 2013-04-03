@@ -1,7 +1,7 @@
 actor 50Health: Health 15301
 {
     Inventory.Amount 50
-
+    Inventory.PickupSound "pickups/health"
     Inventory.PickupMessage "$CYBERRUNNER_PK_50HEALTH"
 
     RenderStyle Add

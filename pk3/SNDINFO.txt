@@ -66,6 +66,7 @@ menu/invalid 		MENUFAIL // Menu not available. - Taken from Devil May Cry 3
 // Pickups
 // =============
 
+pickups/health	sounds/HEALF.ogg // Taken from Halo
 pickups/turbo   sounds/LargeHealthPickup.wav  // UT2004 100 Health pickup
 pickups/vent	sounds/vent_pickup.ogg	// Taken from Tribes: Ascend
 pickups/ammo	sounds/allammo_get.wav	// Taken from Unreal II
