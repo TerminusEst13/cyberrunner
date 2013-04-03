@@ -99,8 +99,11 @@ carbine/up      sounds/carbine_up.wav		// From Devil May Cry 3
 carbine/fire    sounds/carbine_fire.ogg
 carbine/wind	sounds/carbine_wind.ogg		// From Unreal Tournament 3
 
-minigun/pickup  sounds/minigun_pickup.wav  // UT99 minigun up sound
-minigun/up      sounds/minigun_up.ogg  // Slightly sped up UT2004 minigun up sound
+vulcan/pickup  sounds/minigun_pickup.wav  // UT99 minigun up sound
+vulcan/up      sounds/minigun_up.ogg  // Slightly sped up UT2004 minigun up sound
+vulcan/windup  sounds/vulcan_wind.wav // Taken from Unreal 2
+vulcan/hit	   sounds/vulcan_hit.wav // Taken from Unreal 2
+vulcan/unwind  sounds/vulcan_unwind.wav // Taken from Unreal 2
 
 // Enemies
 // =============

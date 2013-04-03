@@ -9,7 +9,7 @@
 #include "decorate/plasma.dec"
 #include "decorate/shotgun.dec"
 #include "decorate/carbine.dec"
-#include "decorate/minigun.dec"
+#include "decorate/vulcan.dec"
 
 #include "decorate/enemies.dec"
 
