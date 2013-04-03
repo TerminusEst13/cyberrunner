@@ -2,6 +2,7 @@
 *.pk[37]
 *.zip
 *.bkp
+*.bak
 nocommit/*
 *.err
 wiki/*
