@@ -7,7 +7,7 @@ actor "Cyber Minigun" : Weapon 15503
     Weapon.AmmoUse1 1
     Weapon.AmmoType2 "ForceVentAmmo"
     Weapon.AmmoUse2 1
-    Weapon.SlotNumber 1
+    Weapon.SlotNumber 4
 	Weapon.UpSound "minigun/up"
 
     +NOAUTOAIM
