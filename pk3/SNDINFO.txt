@@ -15,6 +15,7 @@ $playersound	Cyberrunner	 male	*grunt			CYBPSLNC
 $playeralias	Cyberrunner	 male	*land			cybrunner/land
 $playersound	Cyberrunner	 male	*usefail		CYBPNOPE
 $playersound	Cyberrunner  male	*taunt			CYBPLAFF
+$playersound	Cyberrunner  male	*jump			CYBPJUMP
 //$playeralias	Cyberrunner  male	*jump			cybrunner/jump
 
 $random cybrunner/death {cybdeath1 cybdeath2 cybdeath3}
