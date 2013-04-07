@@ -197,3 +197,81 @@ script 414 (int tx, int ty, int tz) clientside
         if (i % 128 == 0) { Delay(1); }
     }
 }
+
+script 415 ENTER
+{
+    if (GetCvar("instagib") == 1)
+    {
+	GiveInventory("Instagib Rifle",1);
+	TakeInventory("Plasma Gun",1);
+	}
+    if (GetCvar("lastmanstanding") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+    if (GetCvar("teamlms") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+}
+
+script 416 RESPAWN
+{
+    if (GetCvar("instagib") == 1)
+    {
+	GiveInventory("Instagib Rifle",1);
+	TakeInventory("Plasma Gun",1);
+	}
+    if (GetCvar("lastmanstanding") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+    if (GetCvar("teamlms") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+}
