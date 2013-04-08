@@ -91,6 +91,7 @@ actor VulcanShot: FastProjectile
     Alpha 0.95
     Decal BulletChip
     Obituary "$CYBERRUNNER_OB_VULCAN"
+	+BLOODSPLATTER
 
     States
     {

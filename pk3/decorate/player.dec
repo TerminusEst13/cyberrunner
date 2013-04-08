@@ -15,12 +15,15 @@ actor CyberRunner : PlayerPawn
     Player.StartItem "ForceVentAmmo", 3
     Player.StartItem "FancyTrails", 1
     Player.Soundclass "Cyberrunner"
+	BloodType RobotBlood//, RobotBlood2
+	BloodColor Black // I DUNNO WHY YOU'RE STILL FUCKING SPLATTERING, BUT HERE
 	Scale 0.4
     Player.ForwardMove 1.8 1.8
     Player.SideMove 1.55 1.55
     Player.ColorRange 112, 127
     Player.JumpZ 12
     +NOSKIN
+	+NOBLOODDECALS
     +BRIGHT
     States
     {
@@ -224,4 +227,90 @@ actor CyberRunner : PlayerPawn
         CYBR M -1 BRIGHT
         Stop
     }
+}
+
+actor RobotBlood
+{
+	  //Radius 0
+	  //Height 0
+	  RenderStyle Add
+	  Alpha 0.75
+	  //Scale 0.25
+	  VSpeed 0
+	  Speed 0
+	  +CLIENTSIDEONLY
+	  +NOGRAVITY
+	  +NOCLIP
+	  -SOLID
+	  States
+	  {
+	  Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
+	  Spawn1:
+		TNT1 AAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		goto SpawnFinish
+	  Spawn2:
+		TNT1 AAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		goto SpawnFinish
+	  Spawn3:
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		goto SpawnFinish
+	  Spawn4:
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+	  SpawnFinish:
+		TNT1 AA 0 A_SpawnItemEx("RobotBlood3",0,0,0,random(-1,1),random(-1,1),random(1,4),0,32)
+		TNT1 A 0 A_SpawnItemEx("RobotBlood2",0,0,0,0,0,0,0,32)
+		//ZAP1 ABCDDEEFF 1 BRIGHT //A_FadeOut(0.05)
+		TNT1 A 1
+		stop
+	}
+}
+
+actor RobotBlood2 : RobotBlood// replaces BloodSplatter
+{
+-ALLOWPARTICLES
+Scale 0.4
+States
+	{
+	Spawn:
+		ZAP1 ABCDDEEFF 1 BRIGHT A_FadeOut(0.05)
+		stop
+	}
+}
+
+actor RobotBlood3 : RobotBlood
+{
+Scale 0.15
+States
+	{
+	Spawn:
+		ZAP1 ABCDEF 1 BRIGHT A_FadeOut(0.075)
+		stop
+	}
+}
+
+actor RobotBloodSpark
+{
+	  Radius 1
+	  Height 1
+	  Speed 1
+	  RenderStyle Add
+	  Alpha 0.75
+	  Scale 0.15
+	  +CLIENTSIDEONLY
+	  +MISSILE
+	  +DOOMBOUNCE
+	  +FLOORCLIP
+	  +DONTSPLASH
+	  +NOTELEPORT
+	  -ALLOWPARTICLES
+	  -SOLID
+	  BounceCount 3
+	  States
+	  {
+	  Spawn:
+		SPRK A 2 A_FadeOut(0.005)
+		loop
+	}
 }
