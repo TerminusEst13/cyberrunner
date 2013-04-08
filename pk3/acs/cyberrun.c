@@ -60,6 +60,9 @@ script 401 DEATH
     ACS_Terminate(403, 0);
     ACS_Terminate(404, 0);
     ACS_Terminate(400, 0);
+	TakeInventory("CannotIntoShotgun",1);
+	TakeInventory("CannotIntoCarbine",1);
+	TakeInventory("CannotIntoVulcan",1);
 }
 
 #define DASH_VEL 45
@@ -200,6 +203,10 @@ script 414 (int tx, int ty, int tz) clientside
 
 script 415 ENTER
 {
+	TakeInventory("CannotIntoShotgun",1);
+	TakeInventory("CannotIntoVulcan",1);
+	TakeInventory("CannotIntoCarbine",1);
+	
     if (GetCvar("instagib") == 1)
     {
 	GiveInventory("Instagib Rifle",1);
@@ -239,6 +246,10 @@ script 415 ENTER
 
 script 416 RESPAWN
 {
+	TakeInventory("CannotIntoShotgun",1);
+	TakeInventory("CannotIntoVulcan",1);
+	TakeInventory("CannotIntoCarbine",1);
+	
     if (GetCvar("instagib") == 1)
     {
 	GiveInventory("Instagib Rifle",1);
@@ -281,4 +292,25 @@ script 417 (void)
 	if(GetCvar("sv_weaponstay") == 1)
 		setresultvalue(1);
 		else setresultvalue(0);
+}
+
+script 418 (int cannotintowepon)
+{
+	switch (cannotintowepon)
+	{
+	case 0:
+	delay(175);
+	TakeInventory("CannotIntoShotgun",1);
+	break;
+	
+	case 1:
+	delay(175);
+	TakeInventory("CannotIntoCarbine",1);
+	break;
+	
+	case 2:
+	delay(175);
+	TakeInventory("CannotIntoVulcan",1);
+	break;
+	}
 }
