@@ -219,12 +219,50 @@ actor CyberRunner : PlayerPawn
 
       XDeath:
       Death:
-        TNT1 A 0
-        CYBR F 6 BRIGHT ACS_ExecuteAlways(401)
-        CYBR G 5 BRIGHT A_PlayerScream
-        CYBR H 4 BRIGHT A_NoBlocking
-        CYBR IJKL 3 BRIGHT
-        CYBR M -1 BRIGHT
+        CYBR F 1
+		TNT1 AA 0 A_SpawnItemEx("DroneExplosion2",Random(-3,3),Random(-3,3),Random(35,48),0,0,0,0,160)
+		TNT1 AAAAAA 0 A_SpawnItemEx("RobotJunk",Random(-3,3),Random(-3,3),Random(35,48),random(-2,2),random(-2,2),random(3,7),random(-180,180),160)
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBR F 1 BRIGHT ACS_ExecuteAlways(401)
+		CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBR G 1 BRIGHT A_PlayerScream
+		CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBR H 1 BRIGHT A_NoBlocking
+		CYBR HHH 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBR IJKL 3 BRIGHT A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(4,24),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBR MMM 1 BRIGHT A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(3,18),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR M 45
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR M 45
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR M 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR M 80
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR M 20
+		TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+		CYBR M -1
         Stop
     }
 }
@@ -307,10 +345,86 @@ actor RobotBloodSpark
 	  -ALLOWPARTICLES
 	  -SOLID
 	  BounceCount 3
+	  BounceFactor 0.45
 	  States
 	  {
 	  Spawn:
 		SPRK A 2 A_FadeOut(0.005)
 		loop
 	}
+}
+
+actor RobotJunk : Junk
+{
+Scale 0.65
+//+MISSILE
++CLIENTSIDEONLY
+//+DOOMBOUNCE
+//BounceCount 3
+//BounceFactor 0.45
+States
+{
+Spawn:
+	TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8","Spawn9","Spawn10","Spawn11","Spawn12","Spawn13","Spawn14","Spawn15","Spawn16","Spawn17","Spawn18","Spawn19","Spawn20")
+Spawn1:
+    JUNK A 700
+    Stop
+Spawn2:
+    JUNK B 700
+    Stop
+Spawn3:
+    JUNK C 700
+    Stop
+Spawn4:
+    JUNK D 700
+    Stop
+Spawn5:
+    JUNK E 700
+    Stop
+Spawn6:
+    JUNK F 700
+    Stop
+Spawn7:
+    JUNK G 700
+    Stop
+Spawn8:
+    JUNK H 700
+    Stop
+Spawn9:
+    JUNK I 700
+    Stop
+Spawn10:
+    JUNK J 700
+    Stop
+Spawn11:
+    JUNK K 700
+    Stop
+Spawn12:
+    JUNK L 700
+    Stop
+Spawn13:
+    JUNK M 700
+    Stop
+Spawn14:
+    JUNK N 700
+    Stop
+Spawn15:
+    JUNK O 700
+    Stop
+Spawn16:
+    JUNK P 700
+    Stop
+Spawn17:
+    JUNK Q 700
+    Stop
+Spawn18:
+    JUNK R 700
+    Stop
+Spawn19:
+    JUNK S 700
+    Stop
+Spawn20:
+    JUNK T 700
+    Stop
+}
 }
