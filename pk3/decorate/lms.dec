@@ -58,4 +58,5 @@ actor "Instagib Rifle" : "Cyber Carbine"
         TNT1 A 20
         TNT1 A 15 A_WeaponReady(12)
         goto Ready
+	}
 }
