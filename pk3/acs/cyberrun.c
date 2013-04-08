@@ -275,3 +275,10 @@ script 416 RESPAWN
 		}
 	}
 }
+
+script 417 (void)
+{
+	if(GetCvar("sv_weaponstay") == 1)
+		setresultvalue(1);
+		else setresultvalue(0);
+}
