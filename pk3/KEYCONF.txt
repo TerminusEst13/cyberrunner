@@ -1,7 +1,7 @@
 clearplayerclasses
 addplayerclass CyberRunner
 
-addkeysection "CyberRunner" cyberkeys
+addkeysection "Cyberrunner: Essential" cyberkeys
 addmenukey "Cyber Dash" cyberdash
 addmenukey "Cyber Jump" cyberjump
 addmenukey "Cyber Turbo" cyberboost
@@ -11,3 +11,12 @@ alias cyberboost "puke 404"
 defaultbind z cyberdash
 defaultbind x cyberjump
 defaultbind v cyberboost
+
+addkeysection "Cyberrunner: Not Essential" cyberkeys2
+addmenukey "ZDoom-style Centerview" cybercenterview
+addmenukey "Turn 180 Degrees" cyberturn180
+addmenukey "Toggle Parkour"  cyberptoggle
+
+alias cyberturn180 "puke -385 180 2"
+alias cybercenterview "puke -388 0"
+alias cyberptoggle "puke -375"

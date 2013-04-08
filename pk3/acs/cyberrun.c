@@ -18,15 +18,15 @@ int RechargingTimes[RECHARGECOUNT][2] =
 
 script 405 OPEN
 {
-    if (!GetCVar("cyberrunner_noaircontrol"))
+    if (!GetCVar("cyber_noaircontrol"))
     {
-        ConsoleCommand("set cyberrunner_noaircontrol 0");
-        ConsoleCommand("archivecvar cyberrunner_noaircontrol");
+        ConsoleCommand("set cyber_noaircontrol 0");
+        ConsoleCommand("archivecvar cyber_noaircontrol");
     }
 
     while (1)
     {
-        if (!GetCVar("cyberrunner_noaircontrol")) { SetAirControl(0.2); }
+        if (!GetCVar("cyber_noaircontrol")) { SetAirControl(0.2); }
         else { SetAirControl(0.00390625); }
         Delay(35);
     }

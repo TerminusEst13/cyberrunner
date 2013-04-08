@@ -848,10 +848,10 @@ function void HighJump(int force)
 
 script PARKMORE_OPEN open
 {
-    if (GetCVar("parkmore_jumpcount") == 0)
+    if (GetCVar("cyber_jumpcount") == 0)
     {
-        ConsoleCommand("set parkmore_jumpcount 2");
-        ConsoleCommand("archivecvar parkmore_jumpcount");
+        ConsoleCommand("set cyber_jumpcount 2");
+        ConsoleCommand("archivecvar cyber_jumpcount");
     }
 
     IsServer = 1;
@@ -861,7 +861,7 @@ script PARKMORE_OPEN open
     while (1)
     {
         oldcjumps = cjumps;
-        cjumps = GetCVar("parkmore_jumpcount");
+        cjumps = GetCVar("cyber_jumpcount");
 
         if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
 
@@ -882,14 +882,14 @@ function void addTimer(int pln, int which, int add)
 
 function void addCTimers(int pln)
 {
-    int i = max(0, defaultCVar("parkmore_dodgewindow",  8));
-    int j = max(0, defaultCVar("parkmore_hijumpwindow", 4));
+    int i = max(0, defaultCVar("cyber_dodgewindow",  8));
+    //int j = max(0, defaultCVar("cyberrunner_hijumpwindow", 4));
 
     addTimer(pln, TIMER_CFORWARD,  keyPressed(BT_FORWARD)   * i);
     addTimer(pln, TIMER_CRIGHT,    keyPressed(BT_MOVERIGHT) * i);
     addTimer(pln, TIMER_CBACK,     keyPressed(BT_BACK)      * i);
     addTimer(pln, TIMER_CLEFT,     keyPressed(BT_MOVELEFT)  * i);
-    addTimer(pln, TIMER_HBACK,     keyPressed(BT_BACK)      * j);
+    //addTimer(pln, TIMER_HBACK,     keyPressed(BT_BACK)      * j);
 }
 
 function int tickTimer(int pln, int timerNum)
@@ -1013,10 +1013,6 @@ script PARKMORE_ENTER2 enter clientside
     int i;
 
     ClientEnterLocks[pln] = myLock;
-
-    SetHudSize(480, 360, 1);
-    HudMessage(s:"Input 'phelp' in the console for assistance.";
-            HUDMSG_FADEOUT, 1337, CR_WHITE, 240.4, 70.0, 3.0, 2.0);
 
     while (ClientEnterLocks[pln] == myLock)
     {
@@ -1232,85 +1228,8 @@ script PARKMORE_TOGGLE (int which) net
             break;
     }
 
-    if (CheckInventory("NoParkour")) { Print(s:"Parkmore is \cgDISABLED\c-."); }
-    else { Print(s:"Parkmore is \cdENABLED\c-."); }
-}
-
-script PARKMORE_HELP (void) net clientside
-{
-    int i, j, k, l, signal;
-
-    SetHudSize(480, 360, 1);
-
-    SetFont("BIGFONT");
-    HudMessage(s:"PARKMORE";
-            HUDMSG_FADEINOUT|HUDMSG_LOG, HMSG_BASE, CR_YELLOW, 240.4, 20.1, 1.0, 1.0, 2.0);
-
-    SetFont("SMALLFONT");
-    HudMessage(s:"Yep, another Parkour mod"; 
-            HUDMSG_FADEINOUT, HMSG_BASE+1, CR_BRICK, 240.4, 48.1, 1.0, 1.0, 2.0);
-
-    Delay(35);
-
-    SetFont("BIGFONT");
-    HudMessage(s:"CYBERRUNNER";
-            HUDMSG_PLAIN, HMSG_BASE, CR_LIGHTBLUE, 240.4, 20.1, 0.0);
-
-    SetFont("SMALLFONT");
-    HudMessage(s:"Race the Wind"; 
-            HUDMSG_PLAIN, HMSG_BASE+1, CR_GOLD, 240.4, 48.1, 0.0);
-
-    HudMessage(s:HELPMSGS[0]; 
-            HUDMSG_FADEINOUT, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 1.0, 1.0, 0.0);
-
-    Delay(35);
-
-    for (i = 0; i < HELPMSGCOUNT; i++)
-    {
-        j = HELPTIMES[i];
-        HudMessage(s:HELPMSGS[i]; 
-                HUDMSG_FADEOUT|HUDMSG_LOG, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 2.0, 2.0);
-
-        for (k = 0; k < j; k++)
-        {
-            HudMessage(s:HELPMSGS[i]; 
-                    HUDMSG_FADEOUT, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 2.0, 2.0);
-
-            HudMessage(s:"\cf", d:j-k, s:"\c- second", s:cond(j-k != 1, "s", ""),
-                       s:" left\n\ck", d:HELPMSGCOUNT-(i+1), s:"\c- screen",
-                       s:cond(HELPMSGCOUNT-(i+1) != 1, "s", ""), s:" left\nHit \ca",
-                       k:"+crouch", s:"\c- to end this\nHit \ca", k:"+moveleft",
-                       s:"\c- and \ca", k:"+moveright", s:"\c- at the same time to",
-                       s:" skip to the next screen";
-                    HUDMSG_FADEOUT, HMSG_BASE+3, CR_GREEN, 240.4, 320.2, 1.0, 0.5);
-
-            for (l = 0; l < 35; l++)
-            {
-                if (keyPressed(BT_CROUCH)) { signal = 2; break; }
-                if (keyDown(BT_MOVELEFT | BT_MOVERIGHT))
-                {
-                    if (signal != -1) { signal = 1; break; }
-                }
-                else
-                {
-                    signal = 0;
-                }
-                Delay(1);
-            }
-
-            if (signal == 1) { signal = -1; break; }
-            if (signal == 2) { break; }
-        }
-        if (signal == 2) { break; }
-    }
-
-    SetFont("BIGFONT");
-    HudMessage(s:"CYBERRUNNER";
-            HUDMSG_FADEOUT, HMSG_BASE, CR_LIGHTBLUE, 240.4, 20.1, 0.0, 2.0);
-
-    SetFont("SMALLFONT");
-    HudMessage(s:"Race the Wind"; 
-            HUDMSG_FADEOUT, HMSG_BASE+1, CR_GOLD, 240.4, 48.1, 0.0, 2.0);
+    if (CheckInventory("NoParkour")) { Print(s:"Parkour is \cgDISABLED\c-."); }
+    else { Print(s:"Parkour is \cdENABLED\c-."); }
 }
 
 
