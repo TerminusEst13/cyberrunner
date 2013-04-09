@@ -1,3 +1,57 @@
-1: UT movement by ijon tichy, I think? OH WAIT NOW IT'S PARKMORE HA HA HA HA.
-2: Sounds from Unreal Tournament and Quake III Arena.
-3: Blast sprites taken from Wild Weasel.
+GENERAL:
+=========
+- Parkmore by ijon tichy. Lots of credit to him for his incredible ACS.
+- /vr/ for its incredible work in alpha-testing and guiding this in the right direction.
+- Zael and Synert for their high ping testing.
+
+GRAPHICS:
+=========
+- Photoshop and GIMP (The tool of choice for TerminusEst13 and ijon tichy, respectively)
+- In Pursuit of Greed (The temporary sprite for the Cyberrunner)
+- Duke Nukem 3D (The Turret Drone and Aerial Drone use edited sentry sprites)
+- Eriance (The Vent air blast puff)
+- Xaser (The Plasma balls used in the Carbine's spiral)
+- Strife (The electricity used for the Carbine, the electricity used for the Cyberrunner's blood, the junk thrown when she's destroyed)
+- Tormentor667 (The ball making up the pretty teleport effects)
+- WildWeasel (The ball and spatter from the Plasma Gun)
+- DarkLinux (The laser fence from Cybercrime)
+
+MAPS:
+=========
+- Mik57 (CYDM01)
+- DarkLinux (CyberCrime 3, which was used for heavy visual inspiration)
+- ijon tichy (CYRC01)
+
+CODE:
+=========
+- ijon tichy (Extensive amounts of ACS. Love him for the tracers. Seriously. LOVE HIM)
+- Tormentor667 (The pretty teleport effect!)
+- Ghastly_Dragon (The Jetpack Zombie, which the Aerial Drone was based off)
+- Captain Toenail (Ditto)
+
+SOUNDS:
+=========
+- Audacity (Incredible amounts of sound editing thanks to this tool)
+- Hollywood Edge/AudioJungle (Numerous stock sound effects)
+- Mega Man X6 (Bringing up/closing the main menu)
+- World of Warcraft (Changing options around)
+- Devil May Cry 3 (Are you sure you want to quit?, Menu Not Available, Carbine raise)
+- Silent Bomber (Dismissing main menu prompt)
+- Halo (Health pickup sound)
+- Tribes: Ascend (Vent pickup sound)
+- Unreal 2 (Ammo pickup, Vulcan windup/fire/unwind)
+- Unreal Tournament (Plasma gun raise, Vulcan pickup)
+- Unreal Tournament 3 (The Cyber Dash/Jump/Turbo, Plasma Gun Shot, Carbine Wind-Up)
+- Unreal Tournament 2004 (Turbo pickup, shotgun pickup, Carbine pickup, Vulcan raise)
+- Quake III (Plasma gun hit)
+- Painkiller (Shotgun hit)
+- Strife (Drone sight)
+- Doom 3 (Drone flight)
+- Serious Sam: The First Encounter (Drone firing)
+
+MUSIC:
+=========
+- Lizardking: justice-game_1b (Title screen)
+- Yannis Brown: Round n' Round the Mulbury (CYDM01: The Nanoplex)
+- CLiNT: Eclipse (CYRC01: Having Fun, Rocketboy?)
+- Elwood: Sick on Monday (CYRC02: Deep Fried)
