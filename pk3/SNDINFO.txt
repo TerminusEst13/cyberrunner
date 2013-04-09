@@ -115,3 +115,6 @@ drpain2			DRONPAN2
 drpain3			DRONPAN3
 drone/fly		DRONEFLY	// Taken from Doom 3
 drone/shot		DRONESHT	// Taken from Serious Sam: The First Encounter
+
+$rolloff drone/shot 64  2048
+$limit   drone/shot 0
