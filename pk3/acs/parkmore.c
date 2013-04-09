@@ -1039,7 +1039,7 @@ script PARKMORE_ENTER2 enter clientside
             playerTimers[pln][TIMER_CBACK]      = 0;
         }
 
-        if (!getTimer(pln, TIMER_DIDDODGE))
+        if (!getTimer(pln, TIMER_DIDDODGE) && !CheckInventory("NoParkour"))
         {
             if (keyPressed(BT_MOVELEFT) && getTimer(pln, TIMER_CLEFT))
             {
@@ -1074,7 +1074,7 @@ script PARKMORE_ENTER2 enter clientside
             }
         }
 
-        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0)
+        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0 && !CheckInventory("NoParkour"))
         {
             switch (direction)
             {
@@ -1136,7 +1136,7 @@ script PARKMORE_ENTER2 enter clientside
             //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
         }
 
-        if (keyPressed(BT_JUMP))
+        if (keyPressed(BT_JUMP) && !CheckInventory("NoParkour"))
         {
             /*
             if (getTimer(pln, TIMER_HBACK) > 0) 
