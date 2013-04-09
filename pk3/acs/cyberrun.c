@@ -3,17 +3,18 @@
 
 #library "cyberrun"
 
-#define RECHARGECOUNT 5
+#define RECHARGECOUNT 8
 
 int RechargingItems[RECHARGECOUNT] = 
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
-    "ForceVentAmmo"
+    "ForceVentAmmo", "CannotIntoShotgun", "CannotIntoCarbine",
+    "CannotIntoVulcan",
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1},
+    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1},
 };
 
 script 405 OPEN
@@ -115,8 +116,7 @@ script 402 (void) NET
 
 script 403 (void) NET
 {
-	if (CheckInventory("Health") > 0)
-	{
+    if (isDead(0)) { terminate; }
     if (CheckInventory("JumpCooldown") == 0)
     {
         ActivatorSound("cyber/jump",255);
@@ -124,13 +124,11 @@ script 403 (void) NET
         ThrustThing(GetActorAngle(0)/256,12,1,0);
         GiveInventory("JumpCooldown",30);
     }
-	}
 }
 
 script 404 (void) NET
 {
-	if (CheckInventory("Health") > 0)
-	{
+    if (isDead(0)) { terminate; }
     if (CheckInventory("BoostCooldown") == 0)
     {
         ActivatorSound("cyber/boost",255);
@@ -138,7 +136,6 @@ script 404 (void) NET
         GiveInventory("CyberBoostSpeed",1);
         GiveInventory("BoostCooldown",300);
     }
-	}
 }
 
 
@@ -209,108 +206,20 @@ script 415 ENTER
 	
     if (GetCvar("instagib") == 1)
     {
-	GiveInventory("Instagib Rifle",1);
-	TakeInventory("Plasma Gun",1);
+        GiveInventory("Instagib Rifle",1);
+        TakeInventory("Plasma Gun",1);
 	}
-    if (GetCvar("lastmanstanding") == 1)
+    else if (isLMS())
     {
-		if (GetCvar("instagib") == 1)
-		{
-		}
-		else
-		{
 		GiveInventory(" Cyber Shotgun ",1);
 		GiveInventory(" Cyber Carbine ",1);
 		GiveInventory(" Cyber Vulcan ",1);
 		GiveInventory("CarbineAmmo2",1000);
 		GiveInventory("ShotgunAmmo2",1000);
 		GiveInventory("VulcanAmmo2",1000);
-		}
-	}
-    if (GetCvar("teamlms") == 1)
-    {
-		if (GetCvar("instagib") == 1)
-		{
-		}
-		else
-		{
-		GiveInventory(" Cyber Shotgun ",1);
-		GiveInventory(" Cyber Carbine ",1);
-		GiveInventory(" Cyber Vulcan ",1);
-		GiveInventory("CarbineAmmo2",1000);
-		GiveInventory("ShotgunAmmo2",1000);
-		GiveInventory("VulcanAmmo2",1000);
-		}
 	}
 }
 
-script 416 RESPAWN
-{
-	TakeInventory("CannotIntoShotgun",1);
-	TakeInventory("CannotIntoVulcan",1);
-	TakeInventory("CannotIntoCarbine",1);
-	
-    if (GetCvar("instagib") == 1)
-    {
-	GiveInventory("Instagib Rifle",1);
-	TakeInventory("Plasma Gun",1);
-	}
-    if (GetCvar("lastmanstanding") == 1)
-    {
-		if (GetCvar("instagib") == 1)
-		{
-		}
-		else
-		{
-		GiveInventory(" Cyber Shotgun ",1);
-		GiveInventory(" Cyber Carbine ",1);
-		GiveInventory(" Cyber Vulcan ",1);
-		GiveInventory("CarbineAmmo2",1000);
-		GiveInventory("ShotgunAmmo2",1000);
-		GiveInventory("VulcanAmmo2",1000);
-		}
-	}
-    if (GetCvar("teamlms") == 1)
-    {
-		if (GetCvar("instagib") == 1)
-		{
-		}
-		else
-		{
-		GiveInventory(" Cyber Shotgun ",1);
-		GiveInventory(" Cyber Carbine ",1);
-		GiveInventory(" Cyber Vulcan ",1);
-		GiveInventory("CarbineAmmo2",1000);
-		GiveInventory("ShotgunAmmo2",1000);
-		GiveInventory("VulcanAmmo2",1000);
-		}
-	}
-}
+script 416 RESPAWN { ACS_ExecuteWIthResult(415); }
 
-script 417 (void)
-{
-	if(GetCvar("sv_weaponstay") == 1)
-		setresultvalue(1);
-		else setresultvalue(0);
-}
-
-script 418 (int cannotintowepon)
-{
-	switch (cannotintowepon)
-	{
-	case 0:
-	delay(175);
-	TakeInventory("CannotIntoShotgun",1);
-	break;
-	
-	case 1:
-	delay(175);
-	TakeInventory("CannotIntoCarbine",1);
-	break;
-	
-	case 2:
-	delay(175);
-	TakeInventory("CannotIntoVulcan",1);
-	break;
-	}
-}
+script 417 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
