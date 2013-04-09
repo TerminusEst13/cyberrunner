@@ -1,0 +1,61 @@
+actor CarbineAmmo2: Ammo
+{
+    Inventory.MaxAmount 50
+    Ammo.BackpackMaxAmount 50
+    +IGNORESKILL
+}
+
+actor ShotgunAmmo2: Ammo
+{
+    Inventory.MaxAmount 100
+    Ammo.BackpackMaxAmount 100
+    +IGNORESKILL
+}
+
+actor VulcanAmmo2: Ammo
+{
+    Inventory.MaxAmount 1000
+    Ammo.BackpackMaxAmount 1000
+    +INVENTORY.IGNORESKILL
+}
+
+actor PlasmaBolt2 : PlasmaBolt replaces PlasmaBolt
+{
+	Damage (15)
+}
+
+actor " Cyber Carbine " : "Cyber Carbine"
+{
+	Weapon.AmmoType1 "CarbineAmmo2"
+}
+
+actor " Cyber Shotgun " : "Cyber Shotgun"
+{
+	Weapon.AmmoType1 "ShotgunAmmo2"
+}
+
+actor " Cyber Vulcan " : "Cyber Vulcan"
+{
+	Weapon.AmmoType1 "VulcanAmmo2"
+}
+
+actor "Instagib Rifle" : "Cyber Carbine"
+{
+	Weapon.AmmoType1 ""
+    States
+	{
+    Fire:
+        TNT1 A 0 A_PlaySound("carbine/fire", CHAN_WEAPON)
+        TNT1 A 0 A_GunFlash
+        TNT1 A 0 A_FireCustomMissile("CarbineRing", 0, 0, 0, -8)
+        TNT1 A 0 A_FireCustomMissile("RailBeam", 0, 0, 0, -8)
+        TNT1 A 0 A_SetBlend("AD FF 2F", 0.2, 6)
+        TNT1 A 0 A_RailAttack(1000, 0, 0, "none", "none", 3, 0, "BulletPuff")
+        TNT1 A 0 A_FireBullets(0, 0, 1, 0, "CarbinePuff")
+		TNT1 A 15
+		TNT1 A 0 A_PlaySoundEx("carbine/wind","soundslot6")
+        TNT1 A 20
+        TNT1 A 15 A_WeaponReady(12)
+        goto Ready
+	}
+}

@@ -10,6 +10,7 @@
 #include "decorate/shotgun.dec"
 #include "decorate/carbine.dec"
 #include "decorate/vulcan.dec"
+#include "decorate/lms.dec"
 
 #include "decorate/weppickups.dec"
 #include "decorate/enemies.dec"

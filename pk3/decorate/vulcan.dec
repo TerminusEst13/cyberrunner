@@ -1,11 +1,4 @@
-actor VulcanAmmo: Ammo
-{
-    Inventory.MaxAmount 200
-    Ammo.BackpackMaxAmount 200
-    +IGNORESKILL
-}
-
-actor "Cyber Vulcan" : Weapon 15503
+actor "Cyber Vulcan" : Weapon
 {
     Weapon.Kickback 100
 
@@ -84,7 +77,7 @@ actor "Cyber Vulcan" : Weapon 15503
     }
 }
 
-actor VulcanShot: MageWandMissile//FastProjectile
+actor VulcanShot: FastProjectile
 {
     Radius 8
     Height 8
@@ -96,16 +89,9 @@ actor VulcanShot: MageWandMissile//FastProjectile
     Scale 0.25
     RenderStyle Add
     Alpha 0.95
-	//+HEXENBOUNCE
-	//BounceCount 3
-  -RIPPER
-  -CANNOTPUSH
-  -NODAMAGETHRUST
-  -SPAWNSOUNDSOURCE
-  SeeSound ""
-    //DeathSound "vulcan/hit"
     Decal BulletChip
     Obituary "$CYBERRUNNER_OB_VULCAN"
+	+BLOODSPLATTER
 
     States
     {
@@ -123,20 +109,6 @@ actor VulcanShot: MageWandMissile//FastProjectile
         //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
         Stop
     }
-}
-
-actor VulcanTracer : MageWandSmoke replaces MageWandSmoke
-{
-+CLIENTSIDEONLY
-RenderStyle Add
-Scale 0.2
-Alpha 0.25
-States
-{
-  Spawn:
-    MWND CD 2
-    Stop
-	}
 }
 
 actor VulcanAmmo: Ammo

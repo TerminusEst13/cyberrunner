@@ -18,15 +18,15 @@ int RechargingTimes[RECHARGECOUNT][2] =
 
 script 405 OPEN
 {
-    if (!GetCVar("cyberrunner_noaircontrol"))
+    if (!GetCVar("cyber_noaircontrol"))
     {
-        ConsoleCommand("set cyberrunner_noaircontrol 0");
-        ConsoleCommand("archivecvar cyberrunner_noaircontrol");
+        ConsoleCommand("set cyber_noaircontrol 0");
+        ConsoleCommand("archivecvar cyber_noaircontrol");
     }
 
     while (1)
     {
-        if (!GetCVar("cyberrunner_noaircontrol")) { SetAirControl(0.2); }
+        if (!GetCVar("cyber_noaircontrol")) { SetAirControl(0.2); }
         else { SetAirControl(0.00390625); }
         Delay(35);
     }
@@ -60,6 +60,9 @@ script 401 DEATH
     ACS_Terminate(403, 0);
     ACS_Terminate(404, 0);
     ACS_Terminate(400, 0);
+	TakeInventory("CannotIntoShotgun",1);
+	TakeInventory("CannotIntoCarbine",1);
+	TakeInventory("CannotIntoVulcan",1);
 }
 
 #define DASH_VEL 45
@@ -196,4 +199,118 @@ script 414 (int tx, int ty, int tz) clientside
         Spawn("RailBeam2", x+(vx*i), y+(vy*i), z+(vz*i));
         if (i % 128 == 0) { Delay(1); }
     }
+}
+
+script 415 ENTER
+{
+	TakeInventory("CannotIntoShotgun",1);
+	TakeInventory("CannotIntoVulcan",1);
+	TakeInventory("CannotIntoCarbine",1);
+	
+    if (GetCvar("instagib") == 1)
+    {
+	GiveInventory("Instagib Rifle",1);
+	TakeInventory("Plasma Gun",1);
+	}
+    if (GetCvar("lastmanstanding") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+    if (GetCvar("teamlms") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+}
+
+script 416 RESPAWN
+{
+	TakeInventory("CannotIntoShotgun",1);
+	TakeInventory("CannotIntoVulcan",1);
+	TakeInventory("CannotIntoCarbine",1);
+	
+    if (GetCvar("instagib") == 1)
+    {
+	GiveInventory("Instagib Rifle",1);
+	TakeInventory("Plasma Gun",1);
+	}
+    if (GetCvar("lastmanstanding") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+    if (GetCvar("teamlms") == 1)
+    {
+		if (GetCvar("instagib") == 1)
+		{
+		}
+		else
+		{
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+		}
+	}
+}
+
+script 417 (void)
+{
+	if(GetCvar("sv_weaponstay") == 1)
+		setresultvalue(1);
+		else setresultvalue(0);
+}
+
+script 418 (int cannotintowepon)
+{
+	switch (cannotintowepon)
+	{
+	case 0:
+	delay(175);
+	TakeInventory("CannotIntoShotgun",1);
+	break;
+	
+	case 1:
+	delay(175);
+	TakeInventory("CannotIntoCarbine",1);
+	break;
+	
+	case 2:
+	delay(175);
+	TakeInventory("CannotIntoVulcan",1);
+	break;
+	}
 }
