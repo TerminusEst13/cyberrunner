@@ -51,6 +51,7 @@ script 400 ENTER
         }
 
         time++;
+
         Delay(1);
     }
 }
@@ -200,6 +201,8 @@ script 414 (int tx, int ty, int tz) clientside
 
 script 415 ENTER
 {
+    SetActorProperty(0, APROP_Gravity, 0.8);
+
 	TakeInventory("CannotIntoShotgun",1);
 	TakeInventory("CannotIntoVulcan",1);
 	TakeInventory("CannotIntoCarbine",1);
