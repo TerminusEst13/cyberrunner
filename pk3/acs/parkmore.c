@@ -412,8 +412,8 @@ script PARKMORE_LEDGEWALL (int mode)
             terminate;
         }
         
-        curX -= (8 * cos(curAngle));
-        curY -= (8 * sin(curAngle));
+        curX -= (4 * cos(curAngle));
+        curY -= (4 * sin(curAngle));
         newZ = curZ+64.0;
         curAngle = GetActorAngle(0);
         
@@ -424,7 +424,7 @@ script PARKMORE_LEDGEWALL (int mode)
         
         while (ThingCounts(heightTID, heightTID+CACOUNT) == 0)
         {
-            newZ += 8.0;
+            newZ += 16.0;
             
             if ((newZ - 512.0) > curZ)
             {
@@ -436,7 +436,7 @@ script PARKMORE_LEDGEWALL (int mode)
             for (k = 0; k < CACOUNT; k++)
             {
                 Thing_Remove(heightTID+k);
-                l = k+3;
+                l = k+1;
                 Spawn("ParkmoreHeightFinder", curX + (i*l), curY + (j*l),
                         newZ, heightTID+k);
                 PlaceOnFloor(heightTID+k);
@@ -446,21 +446,29 @@ script PARKMORE_LEDGEWALL (int mode)
         // we got here, so one of them spawned
         highest = GetActorZ(0);
         highestTID = 0;
+
+        l = 0;
         
         for (i = 0; i < CACOUNT; i++)
         {
             j = heightTID + (CACOUNT-(i+1));
-            
-            if (GetActorZ(j) > highest)
+            k = GetActorZ(j);
+
+            if (k >= highest && ThingCount(0, j) > 0)
             {
-                highest = GetActorZ(j);
-                if (highestTID) { Thing_Remove(highestTID); }
-                highestTID = j;
+                if (k > highest) { l = 0; }
+                else { l++; }
+
+                if (l < 2)
+                {
+                    highest = k;
+                    if (highestTID) { Thing_Remove(highestTID); }
+
+                    highestTID = j;
+                }
             }
-            else
-            {
-                Thing_Remove(j);
-            }
+
+            if (highestTID != j) { Thing_Remove(j); }
         }
         
         if (highestTID == 0)
@@ -530,8 +538,9 @@ script PARKMORE_LEDGEHOLD (int heightTID)
         floorOldHeight = floorHeight;
         floorHeight = GetActorFloorZ(heightTID);
 
-        if (!PlayerInGame(pln) || isDead(0)) { break; }
-        if (GetActorZ(0) - GetActorFloorZ(0) <= 4.0) { break; }
+        if (!PlayerInGame(pln) || isDead(0) || ThingCount(0, heightTID) == 0
+          || GetActorZ(0) - GetActorFloorZ(0) <= 4.0) { break; }
+
         if (abs(floorOldHeight - floorHeight) > 16.0)
         {
             SetActorVelocity(0, 0,0,0, 0,0);

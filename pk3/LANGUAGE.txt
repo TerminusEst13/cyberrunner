@@ -1,6 +1,6 @@
 [enu default]
 
-QUITMSG   = "32 8c b 50 1b 3d da 1f 25 80 96 ff 29 6 93 f5\n7f 9b 4c a1 69 1a ed a6 3 98 3 69 2d af 3f 77\nc b8 7f 30 be 2d 9c 8d 88 2d bb c9 43 8 a6 7f\n22 42 38 61 ba 23 a8 eb e0 d7 ef 7f 7d 2c 1b 58\n5b 4 85 18 e1 e6 8e 3f ce 0 6 a1 ad 7a c5 74\nac e6 fa 8 f3 2e 80 7f eb 29 56 b3 28 42 6b 42\nee 6 f0 12 21 44 ca 3b ac e2 df 6b 2d f2 bd 63\ne 95 e7 4d 60 5a 79 f 89 3d f0 d1 41 33 56 59";
+QUITMSG   = "37 98 B1 36 90 1D 0E 6F 3E 93 4A 7D A1 B3 70 8C 51 78 B0 FF 7D 3F 76 F5 C4 5B 36 E6 96 88 59 16 EA 68 AD D1 3A 61 3D 3A 57 F9 93 B9 BE 75 D9 D7 46 1D D6 61 62 72 00 FD DA AA 73 C3 F8 3C 6A 38 51 4D 6C 89 8F 20 44 29 D0 48 58 0D 94 5C 74 1D 9E 25 D0 4A D6 4B 3D 50 98 4B 69 EA 7F 40 35 DC 4E 51 9A 40 C7 75 2E C5 4E 97 47 E2 B3 E3 F4 EC 8E 8D 18 9A D9 E2 38 BD 2C EC 46 86 0A FF 23 9D";
 QUITMSG1  = "Error 11: Address not mapped to object";
 QUITMSG2  = "Terminated on SIGSEGV (Segmentation fault)";
 QUITMSG3  = "Operating system not found";

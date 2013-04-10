@@ -236,8 +236,8 @@ actor ParkmoreCheckLedgeLip: ParkmoreChecker
 actor ParkmoreHeightFinder
 {
     Height 1
-    Radius 4
-    MaxStepHeight 256
+    Radius 2
+    MaxStepHeight 32
 
     +MOVEWITHSECTOR
     +CANPASS
