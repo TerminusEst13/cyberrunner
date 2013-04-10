@@ -25,7 +25,7 @@ actor WepPickup: CustomInventory
     }
 }
 
-actor CyberShotgunPickup: WepPickup 15501
+actor CyberShotgunPickup: WepPickup replaces Shotgun 15501
 {
     Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUN"
     Inventory.PickupSound "shotgun/pickup"
@@ -52,7 +52,9 @@ actor CyberShotgunPickup: WepPickup 15501
     }
 }
 
-actor CyberCarbinePickup: WepPickup 15502
+actor AlsoAShotgunPickup: RandomSpawner replaces SuperShotgun { dropitem "CyberShotgunPickup" }
+
+actor CyberCarbinePickup: WepPickup replaces PlasmaRIfle 15502
 {
     Inventory.PickupMessage "$CYBERRUNNER_PK_CARBINE"
     Inventory.PickupSound "carbine/pickup"
@@ -79,7 +81,7 @@ actor CyberCarbinePickup: WepPickup 15502
     }
 }
 
-actor CyberVulcanPickup: WepPickup 15503
+actor CyberVulcanPickup: WepPickup replaces Chaingun 15503
 {
     Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
     Inventory.PickupSound "vulcan/pickup"
