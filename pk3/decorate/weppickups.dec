@@ -25,7 +25,7 @@ actor WepPickup: CustomInventory
     }
 }
 
-actor CyberShotgunPickup: WepPickup replaces Shotgun 15501
+actor CyberShotgunPickup: WepPickup replaces SuperShotgun 15501
 {
     Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUN"
     Inventory.PickupSound "shotgun/pickup"
@@ -51,8 +51,6 @@ actor CyberShotgunPickup: WepPickup replaces Shotgun 15501
         goto CheckStay
     }
 }
-
-actor AlsoAShotgunPickup: RandomSpawner replaces SuperShotgun { dropitem "CyberShotgunPickup" }
 
 actor CyberCarbinePickup: WepPickup replaces PlasmaRIfle 15502
 {
@@ -107,3 +105,21 @@ actor CyberVulcanPickup: WepPickup replaces Chaingun 15503
         goto CheckStay
     }
 }
+
+actor 404PickupNotFound
+{
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor ChainsawNotFound: 404PickupNotFound replaces Chainsaw {}
+actor ShotgunNotFound:  404PickupNotFound replaces Shotgun {}
+actor RLNotFound:       404PickupNotFound replaces RocketLauncher {}
+actor BFGNotFound:      404PickupNotFound replaces BFG9000 {}
