@@ -75,8 +75,7 @@ script 402 (void) NET
     int nx, ny, nz, nmag;
     int rx, ry, rz, rmag;
 	
-	if (CheckInventory("Health") > 0)
-	{
+    if (isDead(0)) { terminate; }
     if (CheckInventory("DashCooldown") == 0)
     {
         vx = GetActorVelX(0);
@@ -112,7 +111,6 @@ script 402 (void) NET
 
         GiveInventory("DashCooldown",30);
     }
-	}
 }
 
 script 403 (void) NET
