@@ -30,12 +30,14 @@ The mode argument works like this:
  - If mode is 0, teleport the player to the coordinates of their checkpoint.
  - If mode is 1, set their checkpoint. This will not happen instantly, but rather, it'll happen when they hit the ground. When they hit the ground, their position, angle, and pitch will be saved, along with the index of the next checkpoint they can trigger. If the index of the checkpoint is not higher than the index of the last checkpoint they used, and isn't the next checkpoint set, do nothing. In pseudocode:
 
-    if index <= lastIndex and index != nextIndex:
-        terminate
-    else:
-        lastIndex = index
-        nextIndex = nextToBe
-        while not onGround: delay(1)
-        saveCoordinates()
+``
+if index <= lastIndex and index != nextIndex:
+    terminate
+else:
+    lastIndex = index
+    nextIndex = nextToBe
+    while not onGround: delay(1)
+    saveCoordinates()
+``
 
 For most intents and purposes, you can keep nextToBe set to 0. Starting your checkpoints at index 1 is suggested, and if you have a track that loops, set the "lap line" to checkpoint 0. If you do a lapping map, you must use checkpoints, even if you don't then teleport the player to those checkpoints.
