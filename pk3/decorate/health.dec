@@ -13,7 +13,8 @@ actor 50Health: Health 15301
     States
     {
       Spawn:
-        50HP Z 2 bright A_SpawnItemEx("50HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        //50HP Z 2 bright A_SpawnItemEx("50HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        50HP Z -1 bright
         loop
     }
 }
