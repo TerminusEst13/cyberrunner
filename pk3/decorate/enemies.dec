@@ -2,7 +2,7 @@ actor AerialDrone 15601
 {
 	Obituary "%o was droned."
 	Health 100
-	Radius 32
+	Radius 48
 	Height 32
 	Mass 400
 	Speed 20
@@ -193,7 +193,7 @@ actor TurretDrone 15602
 {
 	Obituary "%o was droned."
 	Health 150
-	Radius 16
+	Radius 32
 	Height 64
 	Mass 0x7FFFFFFF
 	Speed 0

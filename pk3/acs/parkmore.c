@@ -492,7 +492,7 @@ script PARKMORE_LEDGEWALL (int mode)
 script PARKMORE_LEDGEHOLD (int heightTID)
 {
     int pln = PlayerNumber();
-    int oldSpeed, instantZ;
+    int oldSpeed, oldGrav, instantZ;
     int curX, curY, curZ, newZ;
     int curAngle;
     int maxLeft, maxRight;
@@ -508,6 +508,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     grabbing[pln] = 1;
     TakeInventory("KickTrail", 1);
     oldSpeed = GetActorProperty(0, APROP_Speed);
+    oldGrav  = GetActorProperty(0, APROP_Gravity);
     SetActorProperty(0, APROP_Speed, 0.0);
     SetActorProperty(0, APROP_Gravity, 0);
     SetActorVelocity(0, 24*cos(curAngle),24*sin(curAngle),9.0, 0, 1);
@@ -653,7 +654,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
         Delay(1);
     }
 
-    SetActorProperty(0, APROP_Gravity, 1.0);
+    SetActorProperty(0, APROP_Gravity, oldGrav);
     SetActorProperty(0, APROP_Speed, oldSpeed);
     Thing_Remove(heightTID);
     grabbing[pln] = 0;
