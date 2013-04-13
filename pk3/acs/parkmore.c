@@ -459,7 +459,7 @@ script PARKMORE_LEDGEWALL (int mode)
                 if (k > highest) { l = 0; }
                 else { l++; }
 
-                if (l < 2)
+                if (l < 4)
                 {
                     highest = k;
                     if (highestTID) { Thing_Remove(highestTID); }
