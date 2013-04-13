@@ -17,3 +17,9 @@ map CYRC02 "Deep Fried"
     next  = "CYRC02"
     music = "M_CYRC02" // Elwood - Sick on Monday
 }
+
+map CYRTUT "Journey of a Thousand Miles, Etc Etc"
+{
+    next  = "CYRC01"
+    music = "M_CYRTUT" // Jeroen Tel - War Stars
+}

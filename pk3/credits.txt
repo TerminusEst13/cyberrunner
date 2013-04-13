@@ -19,7 +19,7 @@ GRAPHICS:
 MAPS:
 =========
 - Mik57 (CYDM01)
-- DarkLinux (CyberCrime 3, which was used for heavy visual inspiration)
+- DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
 - ijon tichy (CYRC01)
 
 CODE:
@@ -55,3 +55,4 @@ MUSIC:
 - Yannis Brown: Round n' Round the Mulbury (CYDM01: The Nanoplex)
 - CLiNT: Eclipse (CYRC01: Having Fun, Rocketboy?)
 - Elwood: Sick on Monday (CYRC02: Deep Fried)
+- Jeroen Tel: War Stars (CYRTUT: Journey of a Thousand Miles, Etc Etc)
