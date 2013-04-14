@@ -312,7 +312,7 @@ actor RailBeam2
       Spawn:
         PLSM I 2
         PLSM I 1 A_FadeOut(0.05)
-        goto Spawn+1
+        wait
     }
 }
 
@@ -340,6 +340,9 @@ actor CarbinePuff
       Spawn:
         TNT1 A 0
         TNT1 A 0 ACS_ExecuteWithResult(412, 1)
+        goto AfterPuff
+
+      AfterPuff:
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CarbineSpark1", 0,0,0, random(0, 80)/20.0, 0, random(0, 80)/20.0, random(0, 360))
         TNT1 A 8
         stop

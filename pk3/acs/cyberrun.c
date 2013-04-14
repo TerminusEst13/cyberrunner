@@ -154,6 +154,10 @@ script 412 (int which)
       case 1:
         ACS_ExecuteAlways(414, 0, x, y, z);
         break;
+
+      case 2:
+        ACS_ExecuteAlways(415, 0, x, y, z);
+        break;
     }
 }
 
@@ -197,7 +201,48 @@ script 414 (int tx, int ty, int tz) clientside
     }
 }
 
-script 415 ENTER
+#define RAINBOWCOLORS 12
+#define RAINBOWINTERVAL 4
+
+int RainbowBeamActors[RAINBOWCOLORS] = 
+{
+    "RainbowBeam1",
+    "RainbowBeam2",
+    "RainbowBeam3",
+    "RainbowBeam4",
+    "RainbowBeam5",
+    "RainbowBeam6",
+    "RainbowBeam7",
+    "RainbowBeam8",
+    "RainbowBeam9",
+    "RainbowBeam10",
+    "RainbowBeam11",
+    "RainbowBeam12",
+};
+
+script 415 (int tx, int ty, int tz) clientside
+{
+    int t, i, j, actor;
+    int x, y, z;
+    int vx, vy, vz, mag, magI;
+
+    x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + 24.0;
+
+    vx = tx-x; vy = ty-y; vz = tz-z; mag = magnitudeThree_f(vx, vy, vz);
+    vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
+    magI = ftoi(mag);
+
+    j = 0;
+    for (i = 8; i < magI; i += 8)
+    {
+        actor = RainbowBeamActors[(j / RAINBOWINTERVAL) % RAINBOWCOLORS];
+        Spawn(actor, x+(vx*i), y+(vy*i), z+(vz*i));
+        j++;
+        if (i % 128 == 0) { Delay(1); }
+    }
+}
+
+script 416 ENTER
 {
     SetActorProperty(0, APROP_Gravity, 0.8);
 
@@ -221,6 +266,6 @@ script 415 ENTER
 	}
 }
 
-script 416 RESPAWN { ACS_ExecuteWIthResult(415); }
+script 417 RESPAWN { ACS_ExecuteWIthResult(415); }
 
-script 417 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
+script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
