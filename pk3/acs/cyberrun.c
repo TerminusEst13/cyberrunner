@@ -202,7 +202,7 @@ script 414 (int tx, int ty, int tz) clientside
 }
 
 #define RAINBOWCOLORS 12
-#define RAINBOWINTERVAL 4
+#define RAINBOWINTERVAL 7
 
 int RainbowBeamActors[RAINBOWCOLORS] = 
 {
