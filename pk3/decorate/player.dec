@@ -14,6 +14,7 @@ actor CyberRunner : PlayerPawn
     Player.StartItem "PlasmaGunAmmo", 100
     Player.StartItem "ForceVentAmmo", 3
     Player.StartItem "FancyTrails", 1
+    Player.StartItem "WallHackToggle", 1
     Player.Soundclass "Cyberrunner"
 	BloodType RobotBlood//, RobotBlood2
 	BloodColor Black // I DUNNO WHY YOU'RE STILL FUCKING SPLATTERING, BUT HERE
