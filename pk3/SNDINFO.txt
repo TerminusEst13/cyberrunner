@@ -42,6 +42,16 @@ tele/port		TELYPROT
 
 world/jumppad1      sounds/jumppad1.wav   // Unreal jump boots sound
 
+// These UI sounds are all taken from UT2k3
+ui/check1       sounds/ui_check1.ogg
+ui/check2       sounds/ui_check2.ogg
+ui/check3       sounds/ui_check3.ogg
+ui/check4       sounds/ui_check4.ogg
+ui/check5       sounds/ui_check5.ogg
+$random ui/checkpoint { ui/check1 ui/check2 ui/check3 ui/check4 ui/check5 }
+
+ui/win          sounds/ui_win.ogg
+
 cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
 cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
 cyber/boost		CYBRBOST // Taken from Unreal Tournament 3

@@ -1,3 +1,19 @@
+actor ACSSpawnDummy
+{
+    +SERVERSIDEONLY
+    +NOINTERACTION
+
+    Radius 0
+    Height 0
+
+    States
+    {
+      Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
 #include "decorate/parkmore.dec"
 
 #include "decorate/player.dec"

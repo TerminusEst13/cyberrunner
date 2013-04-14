@@ -17,6 +17,70 @@ int RechargingTimes[RECHARGECOUNT][2] =
     {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1},
 };
 
+
+// 0, 1, 2  -> x, y, z
+// 3, 4     -> angle, pitch
+// 5        -> last checkpoint
+// 6        -> next checkpoint
+int CheckpointCoords[PLAYERMAX][7];
+
+script 105 (int mode, int index, int next)
+{
+    int pln = PlayerNumber();
+    int ttid = unusedTID(10000, 15000);
+    int x,y,z;
+
+    //Log(s:"(", d:mode, s:", ", d:index, s:", ", d:next, s:")");
+
+    switch (mode)
+    {
+      case 0:
+        x = CheckpointCoords[pln][0];
+        y = CheckpointCoords[pln][1];
+        z = CheckpointCoords[pln][2];
+        Spawn("ACSSpawnDummy", x,y,z, ttid, CheckpointCoords[pln][3]);
+        Spawn("CyberTelefog", x,y,z);
+        Spawn("CyberTelefog", GetActorX(0), GetActorY(0), GetActorZ(0));
+
+        Teleport_NoFog(ttid);
+        
+        SetActorAngle(0, CheckpointCoords[pln][3]);
+        SetActorPitch(0, CheckpointCoords[pln][4]);
+        SetActorVelocity(0, 0,0,0, 0,0);
+        
+        SetPlayerProperty(0, 1, PROP_FROZEN);
+        Delay(8);
+        SetPlayerProperty(0, 0, PROP_FROZEN);
+        break;
+      
+      case 1:
+      case 2:
+        if (index <= CheckpointCoords[pln][5] && index != CheckpointCoords[pln][6])
+            { break; }
+
+      case 3:
+      case 4:
+        CheckpointCoords[pln][5] = index;
+        CheckpointCoords[pln][6] = next;
+
+        if (mode % 2)
+        {
+            SetHudSize(320, 240, 0);
+            LocalAmbientSound("ui/checkpoint", 127);
+            HudMessage(s:"Checkpoint!"; HUDMSG_FADEOUT, 701, CR_YELLOW,
+                        160.4, 60.0, 2.0, 0.5);
+        }
+
+        while (!onGround(0)) { Delay(1); }
+
+        CheckpointCoords[pln][0] = GetActorX(0);
+        CheckpointCoords[pln][1] = GetActorY(0);
+        CheckpointCoords[pln][2] = GetActorZ(0);
+        CheckpointCoords[pln][3] = GetActorAngle(0);
+        CheckpointCoords[pln][4] = GetActorPitch(0);
+    }
+}
+
 script 405 OPEN
 {
     if (!GetCVar("cyber_noaircontrol"))
@@ -242,9 +306,14 @@ script 415 (int tx, int ty, int tz) clientside
     }
 }
 
-script 416 ENTER
+script 416 (int respawning)
 {
-    SetActorProperty(0, APROP_Gravity, 0.8);
+    int i;
+
+    if (!respawning)
+    {
+        ACS_ExecuteWithResult(105, 4);
+    }
 
 	TakeInventory("CannotIntoShotgun",1);
 	TakeInventory("CannotIntoVulcan",1);
@@ -266,6 +335,7 @@ script 416 ENTER
 	}
 }
 
-script 417 RESPAWN { ACS_ExecuteWIthResult(416); }
+script 417 ENTER   { ACS_ExecuteWIthResult(416); }
+script 419 RESPAWN { ACS_ExecuteWIthResult(416, 1); }
 
 script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }

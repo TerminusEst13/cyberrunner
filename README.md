@@ -38,4 +38,7 @@ if index > lastIndex or index == nextIndex:
     saveCoordinates()
 ```
 
+ - Mode 2 is the same as mode 1, but silent.
+ - Modes 3 and 4 are the same as 1 and 2, respectively, but will always set a checkpoint.
+
 For most intents and purposes, you can keep nextToBe set to 0. Starting your checkpoints at index 1 is suggested, and if you have a track that loops, set the "lap line" to checkpoint 0. If you do a lapping map, you must use checkpoints, even if you don't then teleport the player to those checkpoints.
