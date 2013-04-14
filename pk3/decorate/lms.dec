@@ -85,8 +85,8 @@ actor RainbowSpark
     Speed 2
     Damage 0
     RenderStyle Add
-    Alpha 0.9
-    Scale 0.25
+    Alpha 0.95
+    Scale 0.45
     Projectile
     +CLIENTSIDEONLY
     //+DOOMBOUNCE

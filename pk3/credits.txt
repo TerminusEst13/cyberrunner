@@ -3,6 +3,7 @@ GENERAL:
 - Unreal Tournament movement by ijon tichy. OH WAIT NOW IT'S PARKMORE HA HA HA HA.
 - /vr/ for its incredible work in alpha-testing and guiding this in the right direction.
 - Zael and Synert for their high ping testing.
+- Font spliced and pieced together from FixedSys, Terminal, and JACKIE.
 
 GRAPHICS:
 =========
