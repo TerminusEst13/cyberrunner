@@ -33,6 +33,7 @@ actor "Plasma Gun" : Weapon
         Loop
 
       Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlayWeaponSound("plasma/shot")
         TNT1 A 0 A_FireCustomMissile("PlasmaBolt",0,1,0,1)

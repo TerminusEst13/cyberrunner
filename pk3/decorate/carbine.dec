@@ -53,6 +53,7 @@ actor "Cyber Carbine" : Weapon
         Loop
         
       Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlaySound("carbine/fire", CHAN_WEAPON)
         TNT1 A 0 A_GunFlash

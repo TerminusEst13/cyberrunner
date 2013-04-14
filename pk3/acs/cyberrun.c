@@ -4,6 +4,47 @@
 #library "cyberrun"
 
 #define RECHARGECOUNT 8
+#libdefine TID_PLAY 600
+
+function void hudmessageonactor(int tid, int range, str sprite, str text, int id) // By Caligari 87
+{
+	int dist, ang, vang, pitch, x, y;
+	int HUDX = 1280;
+	int HUDY = 960;
+	int offset = 0;
+
+	if(sprite != -1)
+	{
+		setfont(sprite);
+		text = "A";
+		offset = 0.1;
+	}
+
+	sethudsize(HUDX, HUDY, 1);
+	x = getactorx(tid) - getactorx(0);
+	y = getactory(tid) - getactory(0); 
+
+	vang = vectorangle(x,y);
+	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
+
+	if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
+	else dist = fixeddiv(x, cos(vang));
+
+	if ((ang < 0.2 || ang > 0.8) && dist < range)
+	{
+		pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
+		pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+
+		x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
+		y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+
+		if(sprite != -1)
+			setfont(sprite);
+		hudmessage(s:text; HUDMSG_PLAIN, id, CR_UNTRANSLATED, (x<<16)+offset, ((y<<16)+offset)-32.0, 0.1);
+	}
+	else
+		hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1);
+}
 
 int RechargingItems[RECHARGECOUNT] = 
 {
@@ -314,10 +355,12 @@ script 416 (int respawning)
     {
         ACS_ExecuteWithResult(105, 4);
     }
+	Thing_ChangeTID(0,TID_PLAY+PlayerNumber());
 
 	TakeInventory("CannotIntoShotgun",1);
 	TakeInventory("CannotIntoVulcan",1);
 	TakeInventory("CannotIntoCarbine",1);
+	TakeInventory("CannotIntoWallhack",1);
 	
     if (GetCvar("instagib") == 1)
     {
@@ -339,3 +382,39 @@ script 417 ENTER   { ACS_ExecuteWIthResult(416); }
 script 419 RESPAWN { ACS_ExecuteWIthResult(416, 1); }
 
 script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
+
+Script 419 (int radar)
+{
+	switch (radar)
+	{
+	case 1:
+	Delay(1);
+	if(CheckActorInventory(ActivatorTID(), "WallHackVision"))
+	{
+		//for(int m = 0; m < 32; m++)
+		for(int m = 0; m < 64; m++)
+		{
+			//if(CheckActorInventory(TID_PLAY+m, "MarkMe"))
+			HudMessageOnActor(TID_PLAY+m,32000.0,"PLAYMARK","",3515+m);
+			restart;
+		}
+	}
+	else
+	{
+	terminate;
+	}
+	break;
+	
+	case 2:
+	TakeInventory("WallHackVision",1);
+	GiveInventory("CannotIntoWallhack",1);
+	Delay(15);
+	TakeInventory("CannotIntoWallhack",1);
+	break;
+	}
+}
+
+script 420 DEATH
+{
+    Thing_ChangeTID(0,0);
+}

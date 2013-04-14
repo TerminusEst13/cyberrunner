@@ -44,10 +44,12 @@ actor "Cyber Vulcan" : Weapon
         Loop
 
       Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 15 A_PlaySound("vulcan/windup", 7)
 		
 	  Hold:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFireHold")
 		TNT1 A 0 A_JumpIfNoAmmo("DryFireHold")
 		TNT1 A 0 A_GunFlash
 		TNT1 A 0 A_PlayWeaponSound("vulcan/hit")
