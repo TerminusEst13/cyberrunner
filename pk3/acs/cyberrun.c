@@ -385,33 +385,33 @@ script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
 
 Script 421 (int radar)
 {
-	switch (radar)
-	{
-	case 1:
-	Delay(1);
-	if(CheckActorInventory(ActivatorTID(), "WallHackVision"))
-	{
-		//for(int m = 0; m < 32; m++)
-		for(int m = 0; m < 64; m++)
-		{
-			//if(CheckActorInventory(TID_PLAY+m, "MarkMe"))
-			HudMessageOnActor(TID_PLAY+m,32000.0,"PLAYMARK","",3515+m);
-			restart;
-		}
-	}
-	else
-	{
-	terminate;
-	}
-	break;
-	
-	case 2:
-	TakeInventory("WallHackVision",1);
-	GiveInventory("CannotIntoWallhack",1);
-	Delay(15);
-	TakeInventory("CannotIntoWallhack",1);
-	break;
-	}
+    switch (radar)
+    {
+      case 1:
+        Delay(1);
+        if(CheckActorInventory(ActivatorTID(), "WallHackVision"))
+        {
+            //for(int m = 0; m < 32; m++)
+            for(int m = 0; m < 64; m++)
+            {
+                //if(CheckActorInventory(TID_PLAY+m, "MarkMe"))
+                HudMessageOnActor(TID_PLAY+m,32000.0,"PLAYMARK","",3515+m);
+                restart;
+            }
+        }
+        else
+        {
+            terminate;
+        }
+        break;
+        
+      case 2:
+        TakeInventory("WallHackVision",1);
+        GiveInventory("CannotIntoWallhack",1);
+        Delay(15);
+        TakeInventory("CannotIntoWallhack",1);
+        break;
+    }
 }
 
 script 420 DEATH
