@@ -383,7 +383,7 @@ script 419 RESPAWN { ACS_ExecuteWIthResult(416, 1); }
 
 script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
 
-Script 419 (int radar)
+Script 421 (int radar)
 {
 	switch (radar)
 	{
