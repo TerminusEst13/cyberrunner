@@ -343,7 +343,7 @@ actor CarbinePuff
         goto AfterPuff
 
       AfterPuff:
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CarbineSpark1", 0,0,0, random(0, 80)/20.0, 0, random(0, 80)/20.0, random(0, 360))
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CarbineSpark1", 0,0,0, random(0, 80)/20.0, 0, random(-80, 80)/20.0, random(0, 360))
         TNT1 A 8
         stop
     }

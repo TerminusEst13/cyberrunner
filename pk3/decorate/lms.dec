@@ -41,19 +41,20 @@ actor " Cyber Vulcan " : "Cyber Vulcan"
 
 actor "Instagib Rifle" : "Cyber Carbine"
 {
+    Obituary "$CYBERRUNNER_OB_DELETED"
 	Weapon.AmmoType1 ""
     States
 	{
     Fire:
-        TNT1 A 0 A_PlaySound("carbine/fire", CHAN_WEAPON)
+        TNT1 A 0 A_PlaySound("delete/fire", CHAN_WEAPON)
         TNT1 A 0 A_GunFlash
         TNT1 A 0 A_FireCustomMissile("CarbineRing", 0, 0, 0, -8)
         TNT1 A 0 A_FireCustomMissile("RailBeam", 0, 0, 0, -8)
-        TNT1 A 0 A_SetBlend("AD FF 2F", 0.2, 6)
+        TNT1 A 0 A_SetBlend("White", 0.2, 6)
         TNT1 A 0 A_RailAttack(32768, 0, 0, "none", "none", 3, 0, "BulletPuff")
         TNT1 A 0 A_FireBullets(0, 0, 1, 0, "RainbowCarbinePuff")
 		TNT1 A 15
-		TNT1 A 0 A_PlaySoundEx("carbine/wind","soundslot6")
+		TNT1 A 0 A_PlaySoundEx("delete/wind","soundslot6")
         TNT1 A 20
         TNT1 A 15 A_WeaponReady(12)
         goto Ready
@@ -68,6 +69,75 @@ actor RainbowCarbinePuff: CarbinePuff
         TNT1 A 0
         TNT1 A 0 ACS_ExecuteWithResult(412, 2)
         goto AfterPuff
+		
+      AfterPuff:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("RainbowSpark", 0,0,0, random(0, 80)/20.0, 0, random(-40, 40)/20.0, random(0, 360))
+        TNT1 A 8
+        stop
+    }
+}
+
+actor RainbowSpark
+{
+    Radius 0
+    Height 0
+    Speed 2
+    Damage 0
+    RenderStyle Add
+    Alpha 0.9
+    Scale 0.25
+    Projectile
+    +CLIENTSIDEONLY
+    //+DOOMBOUNCE
+    +NOINTERACTION
+    +BRIGHT
+    +RANDOMIZE
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10")
+        stop
+
+      Spawn1:
+        RNBW B 2 A_FadeOut(0.025)
+        loop
+
+      Spawn2:
+        RNBW C 2 A_FadeOut(0.025)
+        loop
+
+      Spawn3:
+        RNBW D 2 A_FadeOut(0.025)
+        loop
+
+      Spawn4:
+        RNBW E 2 A_FadeOut(0.025)
+        loop
+
+      Spawn5:
+        RNBW F 2 A_FadeOut(0.025)
+        loop
+
+      Spawn6:
+        RNBW G 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn7:
+        RNBW H 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn8:
+        RNBW I 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn9:
+        RNBW J 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn10:
+        RNBW K 2 A_FadeOut(0.025)
+        loop
     }
 }
 

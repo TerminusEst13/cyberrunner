@@ -109,6 +109,9 @@ vulcan/windup  sounds/vulcan_wind.wav // Taken from Unreal 2
 vulcan/hit	   sounds/vulcan_hit.wav // Taken from Unreal 2
 vulcan/unwind  sounds/vulcan_unwind.wav // Taken from Unreal 2
 
+delete/fire		sounds/delete_fire.ogg
+delete/wind		sounds/delete_wind.ogg
+
 // Enemies
 // =============
 
