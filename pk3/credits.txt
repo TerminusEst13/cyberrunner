@@ -3,6 +3,7 @@ GENERAL:
 - Unreal Tournament movement by ijon tichy. OH WAIT NOW IT'S PARKMORE HA HA HA HA.
 - /vr/ for its incredible work in alpha-testing and guiding this in the right direction.
 - Zael and Synert for their high ping testing.
+- Font spliced and pieced together from FixedSys, Terminal, and JACKIE.
 
 GRAPHICS:
 =========
@@ -28,11 +29,13 @@ CODE:
 - Tormentor667 (The pretty teleport effect!)
 - Ghastly_Dragon (The Jetpack Zombie, which the Aerial Drone was based off)
 - Captain Toenail (Ditto)
+- Caligari 87 (The hudmessageonactor function)
 
 SOUNDS:
 =========
 - Audacity (Incredible amounts of sound editing thanks to this tool)
 - Hollywood Edge/AudioJungle (Numerous stock sound effects)
+- Mega Man X5 (Radar going on and off)
 - Mega Man X6 (Bringing up/closing the main menu)
 - World of Warcraft (Changing options around)
 - Devil May Cry 3 (Are you sure you want to quit?, Menu Not Available, Carbine raise)
@@ -48,6 +51,7 @@ SOUNDS:
 - Strife (Drone sight)
 - Doom 3 (Drone flight)
 - Serious Sam: The First Encounter (Drone firing)
+- Phantasy Star Online (Chat sound)
 
 MUSIC:
 =========

@@ -1,6 +1,7 @@
 actor CannotIntoShotgun : ParkmoreCounter { }
 actor CannotIntoCarbine : ParkmoreCounter { }
 actor CannotIntoVulcan : ParkmoreCounter { }
+actor CannotIntoWallhack : ParkmoreCounter { }
 
 actor WepPickup: CustomInventory
 {

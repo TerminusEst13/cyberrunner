@@ -46,6 +46,7 @@ actor "Instagib Rifle" : "Cyber Carbine"
     States
 	{
     Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_PlaySound("delete/fire", CHAN_WEAPON)
         TNT1 A 0 A_GunFlash
         TNT1 A 0 A_FireCustomMissile("CarbineRing", 0, 0, 0, -8)
@@ -84,8 +85,8 @@ actor RainbowSpark
     Speed 2
     Damage 0
     RenderStyle Add
-    Alpha 0.9
-    Scale 0.25
+    Alpha 0.95
+    Scale 0.45
     Projectile
     +CLIENTSIDEONLY
     //+DOOMBOUNCE
