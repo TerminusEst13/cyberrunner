@@ -266,6 +266,6 @@ script 416 ENTER
 	}
 }
 
-script 417 RESPAWN { ACS_ExecuteWIthResult(415); }
+script 417 RESPAWN { ACS_ExecuteWIthResult(416); }
 
 script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
