@@ -129,12 +129,6 @@ script 405 OPEN
         ConsoleCommand("set cyber_noaircontrol 0");
         ConsoleCommand("archivecvar cyber_noaircontrol");
     }
-	
-    if (!GetCVar("cyber_particles"))
-    {
-        ConsoleCommand("set cyber_particles 0");
-        ConsoleCommand("archivecvar cyber_particles");
-    }
 
     while (1)
     {
@@ -499,6 +493,14 @@ script 422 (int which) clientside
     int particle, angle, dist, xmod, ymod, zmod, newtid;
     which = middle(0, which, PARTICLECOUNT-1);
     particle = ParticleTypes[which];
+	
+    if (GetCVar("cyber_cl_version") != 1)
+    {
+        ConsoleCommand("set cyber_particles 0");
+        ConsoleCommand("set cyber_particlesset 1");
+        ConsoleCommand("archivecvar cyber_particles");
+        ConsoleCommand("archivecvar cyber_cl_version");
+    }
      
     while (1)
     {
