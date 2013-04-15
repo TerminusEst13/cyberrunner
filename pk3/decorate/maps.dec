@@ -1,0 +1,19 @@
+actor RJSpaceGlyph 19001
+{
+    +SHOOTABLE
+    Health 1
+
+    Radius 32
+    Height 64
+
+    States
+    {
+      Spawn:
+        RJGL A -1 bright
+        loop
+
+      Death:
+        RJGL B -1 bright A_PlaySound("misc/p_pkup")
+        loop
+    }
+}

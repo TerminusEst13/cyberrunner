@@ -32,3 +32,5 @@ actor ACSSpawnDummy
 #include "decorate/enemies.dec"
 
 #include "decorate/effects.dec"
+
+#include "decorate/maps.dec"
