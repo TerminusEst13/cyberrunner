@@ -497,7 +497,7 @@ script 422 (int which) clientside
     if (GetCVar("cyber_cl_version") != 1)
     {
         ConsoleCommand("set cyber_particles 0");
-        ConsoleCommand("set cyber_particlesset 1");
+        ConsoleCommand("set cyber_cl_version 1");
         ConsoleCommand("archivecvar cyber_particles");
         ConsoleCommand("archivecvar cyber_cl_version");
     }
