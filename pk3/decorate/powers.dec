@@ -88,6 +88,9 @@ actor FullTurboRecharge: CustomInventory 15451
     States
     {
       Spawn:
+		TNT1 A 1
+		TURB Z 1 ACS_ExecuteAlways(422,0,4)
+	  Spawn2:
         //TURB Z 2 bright A_SpawnItemEx("TurboSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
         TURB Z -1 bright
         loop

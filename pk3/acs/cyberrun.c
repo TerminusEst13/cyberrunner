@@ -418,3 +418,41 @@ script 420 DEATH
 {
     Thing_ChangeTID(0,0);
 }
+
+#define PARTICLECOUNT 7
+#define PARTDIST_MIN  8.0
+#define PARTDIST_MAX  32.0
+ 
+int ParticleTypes[PARTICLECOUNT] = {"CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle", "TurboSparkle", "AllAmmoSparkle", "50HPSparkle"};
+ 
+script 422 (int which) clientside
+{
+    int particle, angle, dist, xmod, ymod, zmod, newtid;
+    which = middle(0, which, PARTICLECOUNT-1);
+    particle = ParticleTypes[which];
+
+    if (!GetCVar("cyber_particlesset"))
+    {
+        ConsoleCommand("set cyber_particles 1");
+        ConsoleCommand("set cyber_particlesset 1");
+        ConsoleCommand("archivecvar cyber_particles");
+        ConsoleCommand("archivecvar cyber_particleset");
+    }
+     
+    while (1)
+        {
+            if (GetCVar("cyber_particles") > 0)
+            {
+                angle = random(0, 1.0);
+                dist  = random(PARTDIST_MIN, PARTDIST_MAX);
+                xmod  = FixedMul(cos(angle), dist);
+                ymod  = FixedMul(sin(angle), dist);
+                zmod  = random(8.0, 32.0);
+                newtid = unusedTID(14000, 17000);
+     
+                Spawn(particle, GetActorX(0) + xmod, GetActorY(0) + ymod, GetActorZ(0) + zmod, newtid);
+                SetActorVelocity(newtid, 0,0,1.0, 0,0);
+        }
+        Delay(2);
+    }
+}

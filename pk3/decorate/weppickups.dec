@@ -34,6 +34,9 @@ actor CyberShotgunPickup: WepPickup replaces SuperShotgun 15501
     States
     {
       Spawn:
+		TNT1 A 1
+		CYSG Z 1 ACS_ExecuteAlways(422,0,0)
+	  Spawn2:
         //CYSG Z 2 bright A_SpawnItemEx("CyberShotgunSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
         CYSG Z -1 bright
         loop
@@ -62,6 +65,9 @@ actor CyberCarbinePickup: WepPickup replaces PlasmaRIfle 15502
     States
     {
       Spawn:
+		TNT1 A 1
+		CYCB Z 1 ACS_ExecuteAlways(422,0,1)
+	  Spawn2:
         //CYCB Z 2 bright A_SpawnItemEx("CyberCarbineSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
         CYCB Z -1 bright
         loop
@@ -90,6 +96,9 @@ actor CyberVulcanPickup: WepPickup replaces Chaingun 15503
     States
     {
       Spawn:
+		TNT1 A 1
+		CYMG Z 1 ACS_ExecuteAlways(422,0,2)
+	  Spawn2:
         //CYMG Z 2 bright A_SpawnItemEx("CyberVulcanSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
         CYMG Z -1 bright
         loop
