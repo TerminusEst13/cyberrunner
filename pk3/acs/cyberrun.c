@@ -6,6 +6,9 @@
 #define RECHARGECOUNT 8
 #libdefine TID_PLAY 600
 
+int PlayerTIDs[PLAYERMAX];
+int PlayerTimes[PLAYERMAX];
+
 function void hudmessageonactor(int tid, int range, str sprite, str text, int id) // By Caligari 87
 {
 	int dist, ang, vang, pitch, x, y;
@@ -40,7 +43,7 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int id
 
 		if(sprite != -1)
 			setfont(sprite);
-		hudmessage(s:text; HUDMSG_PLAIN, id, CR_UNTRANSLATED, (x<<16)+offset, ((y<<16)+offset)-32.0, 0.1);
+		hudmessage(s:text; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (x<<16)+offset, ((y<<16)+offset)-32.0, 0.25, 0.5);
 	}
 	else
 		hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1);
@@ -141,9 +144,14 @@ script 405 OPEN
 script 400 ENTER
 {
     int i, j, time = 0;
+    int tid;
+    int pln = PlayerNumber();
 
     while (1)
     {
+        tid = defaultTID(-1);
+        PlayerTIDs[pln] = tid;
+
         for (i = 0; i < RECHARGECOUNT; i++)
         {
             if (time % RechargingTimes[i][0] == 0)
@@ -355,7 +363,7 @@ script 416 (int respawning)
     {
         ACS_ExecuteWithResult(105, 4);
     }
-	Thing_ChangeTID(0,TID_PLAY+PlayerNumber());
+	//Thing_ChangeTID(0,TID_PLAY+PlayerNumber());
 
 	TakeInventory("CannotIntoShotgun",1);
 	TakeInventory("CannotIntoVulcan",1);
@@ -383,91 +391,37 @@ script 419 RESPAWN { ACS_ExecuteWIthResult(416, 1); }
 
 script 418 (void) { SetResultValue(!!GetCVar("sv_weaponstay")); }
 
-Script 421 (int radar)
+script 421 (int which)
 {
-    switch (radar)
+    int i, time, tid;
+    int pln = PlayerNumber();
+    
+    switch (which)
     {
       case 1:
-        Delay(1);
-        if(CheckActorInventory(ActivatorTID(), "WallHackVision"))
+        GiveInventory("WallHackVision",1);
+        GiveInventory("CannotIntoWallhack", 1);
+
+        while (1)
         {
-            //for(int m = 0; m < 32; m++)
-            //for(int m = 0; m < 64; m++)
-            //{
-                //HudMessageOnActor(TID_PLAY+m,32000.0,"PLAYMARK","",3515+m);
-				if(CheckActorInventory(TID_PLAY+0,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+0,32000.0,"PLAYMARK","",3515+0);}
-				if(CheckActorInventory(TID_PLAY+1,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+1,32000.0,"PLAYMARK","",3515+1);}
-				if(CheckActorInventory(TID_PLAY+2,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+2,32000.0,"PLAYMARK","",3515+2);}
-				if(CheckActorInventory(TID_PLAY+3,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+3,32000.0,"PLAYMARK","",3515+3);}
-				if(CheckActorInventory(TID_PLAY+4,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+4,32000.0,"PLAYMARK","",3515+4);}
-				if(CheckActorInventory(TID_PLAY+5,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+5,32000.0,"PLAYMARK","",3515+5);}
-				if(CheckActorInventory(TID_PLAY+6,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+6,32000.0,"PLAYMARK","",3515+6);}
-				if(CheckActorInventory(TID_PLAY+7,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+7,32000.0,"PLAYMARK","",3515+7);}
-				if(CheckActorInventory(TID_PLAY+8,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+8,32000.0,"PLAYMARK","",3515+8);}
-				if(CheckActorInventory(TID_PLAY+9,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+9,32000.0,"PLAYMARK","",3515+9);}
-				if(CheckActorInventory(TID_PLAY+10,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+10,32000.0,"PLAYMARK","",3515+10);}
-				if(CheckActorInventory(TID_PLAY+11,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+11,32000.0,"PLAYMARK","",3515+11);}
-				if(CheckActorInventory(TID_PLAY+12,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+12,32000.0,"PLAYMARK","",3515+12);}
-				if(CheckActorInventory(TID_PLAY+13,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+13,32000.0,"PLAYMARK","",3515+13);}
-				if(CheckActorInventory(TID_PLAY+14,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+14,32000.0,"PLAYMARK","",3515+14);}
-				if(CheckActorInventory(TID_PLAY+15,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+15,32000.0,"PLAYMARK","",3515+15);}
-				if(CheckActorInventory(TID_PLAY+16,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+16,32000.0,"PLAYMARK","",3515+16);}
-				if(CheckActorInventory(TID_PLAY+17,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+17,32000.0,"PLAYMARK","",3515+17);}
-				if(CheckActorInventory(TID_PLAY+18,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+18,32000.0,"PLAYMARK","",3515+18);}
-				if(CheckActorInventory(TID_PLAY+19,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+19,32000.0,"PLAYMARK","",3515+19);}
-				if(CheckActorInventory(TID_PLAY+20,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+20,32000.0,"PLAYMARK","",3515+20);}
-				if(CheckActorInventory(TID_PLAY+21,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+21,32000.0,"PLAYMARK","",3515+21);}
-				if(CheckActorInventory(TID_PLAY+22,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+22,32000.0,"PLAYMARK","",3515+22);}
-				if(CheckActorInventory(TID_PLAY+23,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+23,32000.0,"PLAYMARK","",3515+23);}
-				if(CheckActorInventory(TID_PLAY+24,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+24,32000.0,"PLAYMARK","",3515+24);}
-				if(CheckActorInventory(TID_PLAY+25,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+25,32000.0,"PLAYMARK","",3515+25);}
-				if(CheckActorInventory(TID_PLAY+26,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+26,32000.0,"PLAYMARK","",3515+26);}
-				if(CheckActorInventory(TID_PLAY+27,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+27,32000.0,"PLAYMARK","",3515+27);}
-				if(CheckActorInventory(TID_PLAY+28,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+28,32000.0,"PLAYMARK","",3515+28);}
-				if(CheckActorInventory(TID_PLAY+29,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+29,32000.0,"PLAYMARK","",3515+29);}
-				if(CheckActorInventory(TID_PLAY+30,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+30,32000.0,"PLAYMARK","",3515+30);}
-				if(CheckActorInventory(TID_PLAY+31,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+31,32000.0,"PLAYMARK","",3515+31);}
-				if(CheckActorInventory(TID_PLAY+32,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+32,32000.0,"PLAYMARK","",3515+32);}
-				if(CheckActorInventory(TID_PLAY+33,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+33,32000.0,"PLAYMARK","",3515+33);}
-				if(CheckActorInventory(TID_PLAY+34,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+34,32000.0,"PLAYMARK","",3515+34);}
-				if(CheckActorInventory(TID_PLAY+35,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+35,32000.0,"PLAYMARK","",3515+35);}
-				if(CheckActorInventory(TID_PLAY+36,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+36,32000.0,"PLAYMARK","",3515+36);}
-				if(CheckActorInventory(TID_PLAY+37,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+37,32000.0,"PLAYMARK","",3515+37);}
-				if(CheckActorInventory(TID_PLAY+38,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+38,32000.0,"PLAYMARK","",3515+38);}
-				if(CheckActorInventory(TID_PLAY+39,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+39,32000.0,"PLAYMARK","",3515+39);}
-				if(CheckActorInventory(TID_PLAY+40,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+40,32000.0,"PLAYMARK","",3515+40);}
-				if(CheckActorInventory(TID_PLAY+41,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+41,32000.0,"PLAYMARK","",3515+41);}
-				if(CheckActorInventory(TID_PLAY+42,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+42,32000.0,"PLAYMARK","",3515+42);}
-				if(CheckActorInventory(TID_PLAY+43,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+43,32000.0,"PLAYMARK","",3515+43);}
-				if(CheckActorInventory(TID_PLAY+44,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+44,32000.0,"PLAYMARK","",3515+44);}
-				if(CheckActorInventory(TID_PLAY+45,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+45,32000.0,"PLAYMARK","",3515+45);}
-				if(CheckActorInventory(TID_PLAY+46,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+46,32000.0,"PLAYMARK","",3515+46);}
-				if(CheckActorInventory(TID_PLAY+47,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+47,32000.0,"PLAYMARK","",3515+47);}
-				if(CheckActorInventory(TID_PLAY+48,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+48,32000.0,"PLAYMARK","",3515+48);}
-				if(CheckActorInventory(TID_PLAY+49,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+49,32000.0,"PLAYMARK","",3515+49);}
-				if(CheckActorInventory(TID_PLAY+50,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+50,32000.0,"PLAYMARK","",3515+50);}
-				if(CheckActorInventory(TID_PLAY+51,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+51,32000.0,"PLAYMARK","",3515+51);}
-				if(CheckActorInventory(TID_PLAY+52,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+52,32000.0,"PLAYMARK","",3515+52);}
-				if(CheckActorInventory(TID_PLAY+53,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+53,32000.0,"PLAYMARK","",3515+53);}
-				if(CheckActorInventory(TID_PLAY+54,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+54,32000.0,"PLAYMARK","",3515+54);}
-				if(CheckActorInventory(TID_PLAY+55,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+55,32000.0,"PLAYMARK","",3515+55);}
-				if(CheckActorInventory(TID_PLAY+56,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+56,32000.0,"PLAYMARK","",3515+56);}
-				if(CheckActorInventory(TID_PLAY+57,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+57,32000.0,"PLAYMARK","",3515+57);}
-				if(CheckActorInventory(TID_PLAY+58,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+58,32000.0,"PLAYMARK","",3515+58);}
-				if(CheckActorInventory(TID_PLAY+59,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+59,32000.0,"PLAYMARK","",3515+59);}
-				if(CheckActorInventory(TID_PLAY+60,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+60,32000.0,"PLAYMARK","",3515+60);}
-				if(CheckActorInventory(TID_PLAY+61,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+61,32000.0,"PLAYMARK","",3515+61);}
-				if(CheckActorInventory(TID_PLAY+62,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+62,32000.0,"PLAYMARK","",3515+62);}
-				if(CheckActorInventory(TID_PLAY+63,"CyberrunnerClass")) {HudMessageOnActor(TID_PLAY+63,32000.0,"PLAYMARK","",3515+63);}
-                restart;
-            //}
-        }
-        else
-        {
-            terminate;
+            for (i = 0; i < PLAYERMAX; i++)
+            {
+                if (i == pln || !PlayerInGame(i)) { continue; }
+                tid = PlayerTIDs[i];
+                //Print(n:i+1, s:"\c- - ", d:tid);
+                HudMessageOnActor(tid, 0x7FFFFFFF, "PLAYMARK", "A", tid);
+            }
+
+            Delay(18);
+
+            if (!CheckInventory("WallhackVision")) { break; }
+            TakeInventory("CannotIntoWallhack", 1);
+
+            Delay(18);
+            if (!CheckInventory("WallhackVision")) { break; }
         }
         break;
-        
+    
       case 2:
         TakeInventory("WallHackVision",1);
         GiveInventory("CannotIntoWallhack",1);

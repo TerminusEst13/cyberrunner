@@ -5,6 +5,8 @@
 #define TEAMCOUNT 8
 #define DEFAULTTID_SCRIPT 471
 
+#define SECOND_TICS 35.714285714285715
+
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }
 
@@ -765,11 +767,16 @@ function int loadStringCVar(int cvarname)
 function int defaultTID(int def)
 {
     int tid = ActivatorTID();
+    int i;
 
     if (ThingCount(0, tid) == 1) { return tid; }
 
     tid = def;
-    if (def <= 0) { tid = unusedTID(17000, 27000); }
+    if (def <= 0)
+    {
+        i = random(13, 23);
+        tid = unusedTID(i*1000, (i+10)*1000);
+    }
 
     Thing_ChangeTID(0, tid);
     ACS_ExecuteAlways(DEFAULTTID_SCRIPT, 0, tid,0,0);
@@ -779,6 +786,7 @@ function int defaultTID(int def)
 
 script DEFAULTTID_SCRIPT (int tid) clientside
 {
+    if (ConsolePlayerNumber() == -1) { terminate; }
     Thing_ChangeTID(0, tid);
 }
 
