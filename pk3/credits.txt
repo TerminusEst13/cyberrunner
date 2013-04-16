@@ -22,6 +22,7 @@ MAPS:
 - Mik57 (CYDM01)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
 - ijon tichy (CYRC01)
+- Cyber (CYRC03)
 
 CODE:
 =========
@@ -60,3 +61,4 @@ MUSIC:
 - CLiNT: Eclipse (CYRC01: Having Fun, Rocketboy?)
 - Elwood: Sick on Monday (CYRC02: Deep Fried)
 - Jeroen Tel: War Stars (CYRTUT: Journey of a Thousand Miles, Etc Etc)
+- Skaven: Data Jack (CYRC03: Bob and Weave)
