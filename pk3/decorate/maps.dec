@@ -2,6 +2,9 @@ actor RJSpaceGlyph 19001
 {
     +SHOOTABLE
     Health 1
+    Mass 0x7FFFFFFF
+
+    Damagefactor "NoDamage", 0
 
     Radius 32
     Height 64
