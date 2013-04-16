@@ -408,7 +408,8 @@ script 421 (int which)
             {
                 if (i == pln || !PlayerInGame(i)) { continue; }
                 tid = PlayerTIDs[i];
-                //Print(n:i+1, s:"\c- - ", d:tid);
+                if (isDead(tid)) { continue; }
+
                 HudMessageOnActor(tid, 0x7FFFFFFF, "PLAYMARK", "A", tid);
             }
 
