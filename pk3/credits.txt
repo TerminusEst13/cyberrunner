@@ -1,13 +1,13 @@
 GENERAL:
 =========
-- Unreal Tournament movement by ijon tichy. OH WAIT NOW IT'S PARKMORE HA HA HA HA.
+- Parkmore by Ijon Tichy.
 - /vr/ for its incredible work in alpha-testing and guiding this in the right direction.
 - Zael and Synert for their high ping testing.
 - Font spliced and pieced together from FixedSys, Terminal, and JACKIE.
 
 GRAPHICS:
 =========
-- Photoshop and GIMP (The tool of choice for TerminusEst13 and ijon tichy, respectively)
+- Photoshop and GIMP (The tool of choice for TerminusEst13 and Ijon Tichy, respectively)
 - In Pursuit of Greed (The temporary sprite for the Cyberrunner)
 - Duke Nukem 3D (The Turret Drone and Aerial Drone use edited sentry sprites)
 - Eriance (The Vent air blast puff)
@@ -19,14 +19,14 @@ GRAPHICS:
 
 MAPS:
 =========
-- Mik57 (CYDM01)
+- Mik57 (CYDM01: The Nanoplex)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
-- ijon tichy (CYRC01)
-- Cyber (CYRC03)
+- Ijon Tichy (CYRC01: Having Fun, Rocketboy?)
+- Cyber (CYRC03: Bob and Weave)
 
 CODE:
 =========
-- ijon tichy (Extensive amounts of ACS. Love him for the tracers. Seriously. LOVE HIM)
+- Ijon Tichy (Extensive amounts of ACS. Love him for the tracers. Seriously. LOVE HIM)
 - Tormentor667 (The pretty teleport effect!)
 - Ghastly_Dragon (The Jetpack Zombie, which the Aerial Drone was based off)
 - Captain Toenail (Ditto)
