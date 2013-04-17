@@ -1020,7 +1020,7 @@ script PARKMORE_ENTER2 enter clientside
     int ground, wasGround, direction, dDirection;
     int inWater, wasInWater;
     int myLock = ClientEnterLocks[pln] + 1;
-    int i;
+    int i, j, k;
 
     ClientEnterLocks[pln] = myLock;
 
@@ -1040,6 +1040,23 @@ script PARKMORE_ENTER2 enter clientside
 
         CPlayerGrounds[pln][0] = ground;
         CPlayerGrounds[pln][1] = wasGround;
+
+        if (GetCVar("cyber_cl_debug"))
+        {
+            SetHudSize(1024, 768, 1);
+            j = keysPressed();
+
+            for (i = 0; i < 32; i++)
+            {
+                k = !!(j & (1 << i));
+
+                if (k)
+                {
+                    HudMessage(d:(1<<i); HUDMSG_PLAIN, 15  + i, CR_WHITE, 900.4 - (48.0 * i), 180.0, 1.0);
+                    HudMessage(b:k;      HUDMSG_PLAIN, 105 + i, CR_BROWN, 900.4 - (48.0 * i), 200.0, 1.0);
+                }
+            }
+        }
 
         if (!(GetActorVelX(0) || GetActorVelY(0)))
         {
@@ -1071,10 +1088,16 @@ script PARKMORE_ENTER2 enter clientside
             if (dodgeDir != -1)
             {
                 addTimer(pln, TIMER_DIDDODGE, 2);
+                Log(s:"dodge timers: (", d:getTimer(pln, TIMER_DIDDODGE), s:" (did), ",
+                                         d:getTimer(pln, TIMER_CLEFT), s:" (left), ",
+                                         d:getTimer(pln, TIMER_CFORWARD), s:" (forw), ",
+                                         d:getTimer(pln, TIMER_CRIGHT), s:" (rite), ",
+                                         d:getTimer(pln, TIMER_CBACK), s:" (back))");
 
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:dodgeDir);
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be dodge: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
@@ -1120,6 +1143,7 @@ script PARKMORE_ENTER2 enter clientside
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-256);
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall kick: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
@@ -1132,6 +1156,7 @@ script PARKMORE_ENTER2 enter clientside
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall jump: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
@@ -1173,6 +1198,7 @@ script PARKMORE_ENTER2 enter clientside
             if (!(ground || (GetActorVelZ(0) < 0 && wasGround) || wasGround >= (MJUMP_DELAY-2) || inWater || dDirection != -1))
             {
                 pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
+                if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
                 ConsoleCommand(pukeStr);
             }
         }

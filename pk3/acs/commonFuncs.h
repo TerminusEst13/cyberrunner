@@ -100,13 +100,18 @@ function int keyDown_any(int key)
     return 0;
 }
 
-function int keyPressed(int key)
+function int keysPressed(void)
 {
     int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
     int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
     int newbuttons  = (buttons ^ oldbuttons) & buttons;
 
-    if ((newbuttons & key) == key) { return 1; }
+    return newbuttons;
+}
+
+function int keyPressed(int key)
+{
+    if ((keysPressed() & key) == key) { return 1; }
     return 0;
 }
 
