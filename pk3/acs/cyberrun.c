@@ -454,12 +454,12 @@ script 421 (int which)
                 HudMessageOnActor(tid, 0x7FFFFFFF, "PLAYMARK", "A", tid);
             }
 
-            Delay(9);
+            Delay(5);
 
             if (!CheckInventory("WallhackVision")) { break; }
             TakeInventory("CannotIntoWallhack", 1);
 
-            Delay(9);
+            Delay(5);
             if (!CheckInventory("WallhackVision")) { break; }
         }
         break;
