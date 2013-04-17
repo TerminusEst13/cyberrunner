@@ -93,8 +93,13 @@ function void displayTime(int tics, int id, int x, int y, int color)
     }
 }
 
-#define BARFONTCOUNT 3
-int BarGraphics[BARFONTCOUNT] = {"MPHBAR1", "MPHBAR2", "MPHBAR3"};
+#define BARFONTCOUNT 12
+#define NUMBARS 50
+int BarGraphics[BARFONTCOUNT] =
+{
+    "MPHBAR1", "MPHBAR2", "MPHBAR3", "MPHBAR4", "MPHBAR5", "MPHBAR6",
+    "MPHBAR7", "MPHBAR8", "MPHBAR9", "MPHBAR10", "MPHBAR11", "MPHBAR12",
+};
 
 function void drawSpeedometer(int speed, int id, int x, int y, int scale)
 {
@@ -103,14 +108,14 @@ function void drawSpeedometer(int speed, int id, int x, int y, int scale)
     SetFont("SMALLFONT");
     x = itof(x); y = itof(y);
     
-    for (i = 0; i < 50; i++)
+    for (i = 0; i < NUMBARS; i++)
     {
-        j = (itof(i) * scale) / 50;
+        j = (itof(i) * scale) / NUMBARS;
 
         if (j < speed)
         {
             k = ceil((speed - j) / scale)-1;
-            k = middle(0, k, BARFONTCOUNT-1);
+            k = max(0, k % BARFONTCOUNT);
             SetFont(BarGraphics[k]);
             HudMessage(s:"A"; HUDMSG_PLAIN, id+i, CR_UNTRANSLATED, (x + (i * 2.0)) + 0.1, y, 0.5, 0.5);
         }
@@ -625,7 +630,7 @@ script 424 ENTER clientside
 
         SetHudSize(800, 600, 1);
 
-        drawSpeedometer(showmag, 3501, 700, 80, 50);
+        drawSpeedometer(showmag, 3501, 700, 80, 40);
 
         time++;
 
