@@ -49,6 +49,40 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int id
 		hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1);
 }
 
+function void displayTime(int secs, int id, int x, int y, int color)
+{
+    int hours = secs / 3600;
+    int mins  = (secs % 3600) / 60;
+    secs %= 60;
+
+    x = itof(x); y = itof(y);
+
+    HudMessage(d:hours, s:"\cu:"; HUDMSG_FADEOUT, id, color,
+            x - 17.8, y, 1.5, 0.5);
+
+    if (mins < 10)
+    {
+        HudMessage(s:"0", d:mins; HUDMSG_FADEOUT, id+1, color,
+            x - 1.8, y, 1.5, 0.5);
+    }
+    else
+    {
+        HudMessage(d:mins; HUDMSG_FADEOUT, id+1, color,
+            x - 1.8, y, 1.5, 0.5);
+    }
+
+    HudMessage(s:":"; HUDMSG_FADEOUT, id+2, CR_DARKGREY, x + 0.4, y, 1.5, 0.5);
+
+    if (secs < 10)
+    {
+        HudMessage(s:"0", d:secs; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
+    }
+    else
+    {
+        HudMessage(d:secs; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
+    }
+}
+
 int RechargingItems[RECHARGECOUNT] = 
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
@@ -143,7 +177,7 @@ script 405 OPEN
 
 script 400 ENTER
 {
-    int i, j, time = 0;
+    int i, j, time = 0, secs = -1, oldsecs = 0;
     int tid;
     int pln = PlayerNumber();
 
@@ -161,6 +195,15 @@ script 400 ENTER
                 if (j > 0) { GiveInventory(RechargingItems[i], j); }
                 else { TakeInventory(RechargingItems[i], -j); }
             }
+        }
+
+        oldsecs = secs;
+        secs    = itof(time) / SECOND_TICS;
+
+        if (oldsecs != secs)
+        {
+            SetHudSize(480, 360, 0);
+            displayTime(secs, 1500, 360, 100, CR_WHITE);
         }
 
         time++;
@@ -359,11 +402,8 @@ script 416 (int respawning)
 {
     int i;
 
-    if (!respawning)
-    {
-        ACS_ExecuteWithResult(105, 4);
-    }
-	//Thing_ChangeTID(0,TID_PLAY+PlayerNumber());
+    if (!respawning) { ACS_ExecuteWithResult(105, 4); }
+    else { ACS_ExecuteWithResult(105, 0); }
 
 	TakeInventory("CannotIntoShotgun",1);
 	TakeInventory("CannotIntoVulcan",1);
@@ -472,5 +512,32 @@ script 422 (int which) clientside
             SetActorVelocity(newtid, 0,0,1.0, 0,0);
         }
         Delay(2);
+    }
+}
+
+int TimerOn;
+script 423 (void) clientside
+{
+    TimerOn = !TimerOn;
+    int time;
+    int i, j, k;
+
+    while (TimerOn)
+    {
+        SetHudSize(320, 240, 1);
+        DisplayTime(itof(time)/SECOND_TICS, 2501, 243, 80, CR_GOLD);
+        time++;
+        Delay(1);
+    }
+
+    if (time)
+    {
+        time = itof(time)/SECOND_TICS;
+        i = time/3600;
+        j = (time%3600)/60;
+        k = time%60;
+        Print(s:"End time: \ck", d:i, s:"\c- hour",   s:cond(i == 1, "", "s"), s:", \ck",
+                                 d:j, s:"\c- minute", s:cond(j == 1, "", "s"), s:", \ck",
+                                 d:k, s:"\c- second", s:cond(k == 1, "", "s"));
     }
 }

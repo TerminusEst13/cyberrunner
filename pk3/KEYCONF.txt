@@ -5,12 +5,17 @@ addkeysection "Cyberrunner: Essential" cyberkeys
 addmenukey "Cyber Dash" cyberdash
 addmenukey "Cyber Jump" cyberjump
 addmenukey "Cyber Turbo" cyberboost
+addmenukey "Toggle TImer" cybertime
+
 alias cyberdash "puke 402"
 alias cyberjump "puke 403"
 alias cyberboost "puke 404"
+alias cybertime "puke -423"
+
 defaultbind z cyberdash
 defaultbind x cyberjump
 defaultbind v cyberboost
+defaultbind y cybertime
 
 addkeysection "Cyberrunner: Not Essential" cyberkeys2
 addmenukey "ZDoom-style Centerview" cybercenterview
