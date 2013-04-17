@@ -45,8 +45,7 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int id
 			setfont(sprite);
 		hudmessage(s:text; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (x<<16)+offset, ((y<<16)+offset)-32.0, 0.25, 0.5);
 	}
-	else
-		hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1);
+	else { hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1); }
 }
 
 function int fracSec(int tics)
@@ -67,6 +66,7 @@ function void displayTime(int tics, int id, int x, int y, int color)
 
     x = itof(x); y = itof(y);
 
+    SetFont("SMALLFONT");
     HudMessage(d:hours, s:"\cu:"; HUDMSG_FADEOUT, id, color,
             x - 17.8, y, 1.5, 0.5);
 
@@ -81,15 +81,43 @@ function void displayTime(int tics, int id, int x, int y, int color)
             x - 1.8, y, 1.5, 0.5);
     }
 
-    HudMessage(s:":"; HUDMSG_FADEOUT, id+2, CR_DARKGREY, x + 0.4, y, 1.5, 0.5);
+    HudMessage(s:":"; HUDMSG_FADEOUT, id+2, CR_DARKGREY, x + 0.4, y, 0.5, 0.5);
 
     if (secs < 10)
     {
-        HudMessage(s:"0", f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
+        HudMessage(s:"0", f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 0.5, 0.5);
     }
     else
     {
-        HudMessage(f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
+        HudMessage(f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 0.5, 0.5);
+    }
+}
+
+#define BARFONTCOUNT 3
+int BarGraphics[BARFONTCOUNT] = {"MPHBAR1", "MPHBAR2", "MPHBAR3"};
+
+function void drawSpeedometer(int speed, int id, int x, int y, int scale)
+{
+    int i, j, k;
+
+    SetFont("SMALLFONT");
+    x = itof(x); y = itof(y);
+    
+    for (i = 0; i < 50; i++)
+    {
+        j = (itof(i) * scale) / 50;
+
+        if (j < speed)
+        {
+            k = ceil((speed - j) / scale)-1;
+            k = middle(0, k, BARFONTCOUNT-1);
+            SetFont(BarGraphics[k]);
+            HudMessage(s:"A"; HUDMSG_PLAIN, id+i, CR_UNTRANSLATED, (x + (i * 2.0)) + 0.1, y, 0.5, 0.5);
+        }
+        else
+        {
+            HudMessage(s:""; HUDMSG_PLAIN, id+i, 0, 0,0, 0);
+        }
     }
 }
 
@@ -521,13 +549,14 @@ script 423 (void) clientside
 {
     TimerOn = !TimerOn;
     int time = -1, time2;
-    int i, j, k;
+    int i,j,k;
 
     while (TimerOn)
     {
         time++;
         SetHudSize(480, 360, 1);
         DisplayTime(time, 2501, 420, 32, CR_GOLD);
+
         Delay(1);
     }
 
@@ -546,8 +575,16 @@ script 423 (void) clientside
 script 424 ENTER clientside
 {
     int time;
+    int x, y, z, m, mph;
+    int showmag = 0;
 
-    if (GetCVar("cyber_cl_timer") != 1)
+    if (!GetCVar("cyber_mph_noz"))
+    {
+        ConsoleCommand("set cyber_mph_noz 0");
+        ConsoleCommand("archivecvar cyber_mph_noz");
+    }
+
+    if (!GetCVar("cyber_cl_timer"))
     {
         ConsoleCommand("set cyber_cl_timer 0");
         ConsoleCommand("archivecvar cyber_cl_timer");
@@ -557,10 +594,41 @@ script 424 ENTER clientside
     {
         if (GetCVar("cyber_cl_timer") > 0)
         {
-        SetHudSize(480, 360, 0);
-        DisplayTime((time/36)*36, 1500, 420, 20, CR_WHITE);
+            SetHudSize(480, 360, 0);
+            DisplayTime((time/36)*36, 1500, 420, 20, CR_WHITE);
 		}
+
+        x = GetActorVelX(0);
+        y = GetActorVelY(0);
+
+        if (GetCVar("cyber_mph_noz")) { z = 0; }
+        else { z = GetActorVelZ(0); }
+
+        m = magnitudeThree_f(x, y, z);
+
+        if (abs(m - showmag) < 3.0)
+        {
+            showmag = m;
+        }
+        else
+        {
+            showmag += (m - showmag) / 3;
+        }
+
+        mph = FixedMul(m, UNIT_CM) / 100;   // meters/tic
+        mph = FixedMul(mph, SECOND_TICS);   // meters/second
+        mph = FixedDiv(mph, 1609.344);      // miles/second
+        mph *= 3600;                        // mph
+
+        SetHudSize(640, 480, 1);
+        HudMessage(d:round(mph), s:"\c- mph"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+
+        SetHudSize(800, 600, 1);
+
+        drawSpeedometer(showmag, 3501, 700, 80, 50);
+
         time++;
+
         Delay(1);
     }
 }

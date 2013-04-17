@@ -6,6 +6,7 @@
 #define DEFAULTTID_SCRIPT 471
 
 #define SECOND_TICS 35.714285714285715
+#define UNIT_CM     4.016188229189511
 
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }
@@ -817,6 +818,11 @@ function int roundAway(int toround)
 function int round(int toround)
 {
     return ftoi(toround + 0.5);
+}
+
+function int ceil(int toround)
+{
+    return ftoi(toround + (1.0-1));
 }
 
 function int intFloat(int toround)
