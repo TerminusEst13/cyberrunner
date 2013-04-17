@@ -15,7 +15,9 @@ GRAPHICS:
 - Strife (The electricity used for the Carbine, the electricity used for the Cyberrunner's blood, the junk thrown when she's destroyed)
 - Tormentor667 (The ball making up the pretty teleport effects)
 - WildWeasel (The ball and spatter from the Plasma Gun)
-- DarkLinux (The laser fence from Cybercrime)
+- <name> (Several textures from rjvoid)
+- Earthquake (Several textures from RJSpace31)
+- DarkLinux (Computer screens and laser fence from Cybercrime)
 
 MAPS:
 =========
