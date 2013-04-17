@@ -50,6 +50,7 @@ CODE:
 - Ghastly_Dragon (The Jetpack Zombie, which the Aerial Drone was based off)
 - Captain Toenail (Ditto)
 - Caligari 87 (The hudmessageonactor function)
+- Positron (The resolution-sensitive text display)
 
 SOUNDS:
 =========
