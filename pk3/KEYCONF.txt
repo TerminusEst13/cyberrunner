@@ -5,7 +5,7 @@ addkeysection "Cyberrunner: Essential" cyberkeys
 addmenukey "Cyber Dash" cyberdash
 addmenukey "Cyber Jump" cyberjump
 addmenukey "Cyber Turbo" cyberboost
-addmenukey "Toggle TImer" cybertime
+addmenukey "Toggle Timer" cybertime
 
 alias cyberdash "puke 402"
 alias cyberjump "puke 403"

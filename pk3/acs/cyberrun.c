@@ -60,7 +60,7 @@ function int fracSec(int tics)
 function void displayTime(int tics, int id, int x, int y, int color)
 {
     int secs = tics/36;
-    int secs2 = fracSec(tics);
+    int secs2 = fracSec(tics) % 60.0;
     int hours = secs / 3600;
     int mins  = (secs % 3600) / 60;
     secs %= 60;
@@ -547,15 +547,15 @@ script 424 ENTER clientside
 {
     int time;
 
-    if (GetCVar("cyber_timer") != 1)
+    if (GetCVar("cyber_cl_timer") != 1)
     {
-        ConsoleCommand("set cyber_timer 0");
-        ConsoleCommand("archivecvar cyber_timer");
+        ConsoleCommand("set cyber_cl_timer 0");
+        ConsoleCommand("archivecvar cyber_cl_timer");
     }
 	
     while (1)
     {
-        if (GetCVar("cyber_timer") > 0)
+        if (GetCVar("cyber_cl_timer") > 0)
         {
         SetHudSize(480, 360, 0);
         DisplayTime((time/36)*36, 1500, 420, 20, CR_WHITE);
