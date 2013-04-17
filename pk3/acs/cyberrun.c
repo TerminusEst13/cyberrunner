@@ -554,13 +554,16 @@ script 423 (void) clientside
 {
     TimerOn = !TimerOn;
     int time = -1, time2;
-    int i,j,k;
+    int i,j,k,l;
+    int dist;
 
     while (TimerOn)
     {
         time++;
         SetHudSize(480, 360, 1);
         DisplayTime(time, 2501, 420, 32, CR_GOLD);
+
+        dist += ftoi(magnitudeThree_f(GetActorVelX(0), GetActorVelY(0), GetActorVelZ(0)));
 
         Delay(1);
     }
@@ -571,9 +574,11 @@ script 423 (void) clientside
         i = time2/3600;
         j = (time2%3600)/60;
         k = fracSec(time);
+        l = dist * (UNIT_CM / 100);
         Print(s:"End time: \ck", d:i, s:"\c- hour",   s:cond(i == 1, "", "s"), s:", \ck",
                                  d:j, s:"\c- minute", s:cond(j == 1, "", "s"), s:", \ck",
-                                 f:k, s:"\c- second", s:cond(k == 1.0, "", "s"));
+                                 f:k, s:"\c- second", s:cond(k == 1.0, "", "s"),
+              s:"\nDistance travelled: \ck", f:l, s:"\c- meter", s:cond(l == 1.0, "", "s"));
     }
 }
 
@@ -626,6 +631,7 @@ script 424 ENTER clientside
         mph *= 3600;                        // mph
 
         SetHudSize(640, 480, 1);
+        SetFont("SMALLFONT");
         HudMessage(d:round(mph), s:"\c- mph"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
 
         SetHudSize(800, 600, 1);
