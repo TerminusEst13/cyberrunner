@@ -1088,11 +1088,14 @@ script PARKMORE_ENTER2 enter clientside
             if (dodgeDir != -1)
             {
                 addTimer(pln, TIMER_DIDDODGE, 2);
-                Log(s:"dodge timers: (", d:getTimer(pln, TIMER_DIDDODGE), s:" (did), ",
-                                         d:getTimer(pln, TIMER_CLEFT), s:" (left), ",
-                                         d:getTimer(pln, TIMER_CFORWARD), s:" (forw), ",
-                                         d:getTimer(pln, TIMER_CRIGHT), s:" (rite), ",
-                                         d:getTimer(pln, TIMER_CBACK), s:" (back))");
+                if (GetCVar("cyber_cl_debug"))
+                {
+                    Log(s:"dodge timers: (", d:getTimer(pln, TIMER_DIDDODGE), s:" (did), ",
+                                             d:getTimer(pln, TIMER_CLEFT), s:" (left), ",
+                                             d:getTimer(pln, TIMER_CFORWARD), s:" (forw), ",
+                                             d:getTimer(pln, TIMER_CRIGHT), s:" (rite), ",
+                                             d:getTimer(pln, TIMER_CBACK), s:" (back))");
+                }
 
                 if (!IsServer)
                 {

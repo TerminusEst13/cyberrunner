@@ -49,8 +49,18 @@ function void hudmessageonactor(int tid, int range, str sprite, str text, int id
 		hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1);
 }
 
-function void displayTime(int secs, int id, int x, int y, int color)
+function int fracSec(int tics)
 {
+    int secs   = tics/36;
+    int remain = tics%36;
+    int frac = itof(remain)/36;
+    return itof(secs) + frac;
+}
+
+function void displayTime(int tics, int id, int x, int y, int color)
+{
+    int secs = tics/36;
+    int secs2 = fracSec(tics);
     int hours = secs / 3600;
     int mins  = (secs % 3600) / 60;
     secs %= 60;
@@ -75,11 +85,11 @@ function void displayTime(int secs, int id, int x, int y, int color)
 
     if (secs < 10)
     {
-        HudMessage(s:"0", d:secs; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
+        HudMessage(s:"0", f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
     }
     else
     {
-        HudMessage(d:secs; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
+        HudMessage(f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 1.5, 0.5);
     }
 }
 
@@ -177,7 +187,7 @@ script 405 OPEN
 
 script 400 ENTER
 {
-    int i, j, time = 0, secs = -1, oldsecs = 0;
+    int i, j, time = 0;
     int tid;
     int pln = PlayerNumber();
 
@@ -195,15 +205,6 @@ script 400 ENTER
                 if (j > 0) { GiveInventory(RechargingItems[i], j); }
                 else { TakeInventory(RechargingItems[i], -j); }
             }
-        }
-
-        oldsecs = secs;
-        secs    = itof(time) / SECOND_TICS;
-
-        if (oldsecs != secs)
-        {
-            SetHudSize(480, 360, 0);
-            displayTime(secs, 1500, 360, 100, CR_WHITE);
         }
 
         time++;
@@ -519,25 +520,38 @@ int TimerOn;
 script 423 (void) clientside
 {
     TimerOn = !TimerOn;
-    int time;
+    int time = -1, time2;
     int i, j, k;
 
     while (TimerOn)
     {
-        SetHudSize(320, 240, 1);
-        DisplayTime(itof(time)/SECOND_TICS, 2501, 243, 80, CR_GOLD);
         time++;
+        SetHudSize(480, 360, 1);
+        DisplayTime(time, 2501, 360, 120, CR_GOLD);
         Delay(1);
     }
 
     if (time)
     {
-        time = itof(time)/SECOND_TICS;
-        i = time/3600;
-        j = (time%3600)/60;
-        k = time%60;
+        time2 = time/36;
+        i = time2/3600;
+        j = (time2%3600)/60;
+        k = fracSec(time);
         Print(s:"End time: \ck", d:i, s:"\c- hour",   s:cond(i == 1, "", "s"), s:", \ck",
                                  d:j, s:"\c- minute", s:cond(j == 1, "", "s"), s:", \ck",
-                                 d:k, s:"\c- second", s:cond(k == 1, "", "s"));
+                                 f:k, s:"\c- second", s:cond(k == 1.0, "", "s"));
+    }
+}
+
+script 424 ENTER clientside
+{
+    int time;
+
+    while (1)
+    {
+        SetHudSize(480, 360, 0);
+        DisplayTime((time/36)*36, 1500, 360, 100, CR_WHITE);
+        time++;
+        Delay(1);
     }
 }
