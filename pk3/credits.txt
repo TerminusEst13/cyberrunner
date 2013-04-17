@@ -1,6 +1,25 @@
+/==---
+| MAJOR CONTRIBUTERS
+\==---
+
+TerminusEst13:
+ - Majority of the soundwork and spritework.
+ - Superfast, which was used as one of the bases for Cyberrunner.
+ - Most of the DECORATE, and some ACS.
+ - The letters of the smallfont.
+ - CYRTUT, CYRC02.
+
+
+Ijon Tichy:
+ - Pickup sprites, some basic soundwork.
+ - Parkmore, which was used as the other base for Cyberrunner.
+ - Vast amounts of ACS, and some DECORATE.
+ - The punctuation and numbers of the smallfont.
+ - CYRC01.
+
+
 GENERAL:
 =========
-- Parkmore by Ijon Tichy.
 - /vr/ for its incredible work in alpha-testing and guiding this in the right direction.
 - Zael and Synert for their high ping testing.
 - Font spliced and pieced together from FixedSys, Terminal, and JACKIE.
@@ -15,20 +34,18 @@ GRAPHICS:
 - Strife (The electricity used for the Carbine, the electricity used for the Cyberrunner's blood, the junk thrown when she's destroyed)
 - Tormentor667 (The ball making up the pretty teleport effects)
 - WildWeasel (The ball and spatter from the Plasma Gun)
-- <name> (Several textures from rjvoid)
-- Earthquake (Several textures from RJSpace31)
+- <name> (PWBRICK4, N_TKGR36, N_TKGR33, N_TKGR32, N_BRIK02, FLAT30, and the FLAT14s - from rjvoid)
+- Earthquake (RJSpace31 sky texture)
 - DarkLinux (Computer screens and laser fence from Cybercrime)
 
 MAPS:
 =========
 - Mik57 (CYDM01: The Nanoplex)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
-- Ijon Tichy (CYRC01: Having Fun, Rocketboy?)
 - Cyber (CYRC03: Bob and Weave)
 
 CODE:
 =========
-- Ijon Tichy (Extensive amounts of ACS. Love him for the tracers. Seriously. LOVE HIM)
 - Tormentor667 (The pretty teleport effect!)
 - Ghastly_Dragon (The Jetpack Zombie, which the Aerial Drone was based off)
 - Captain Toenail (Ditto)
