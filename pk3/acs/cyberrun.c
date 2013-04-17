@@ -527,7 +527,7 @@ script 423 (void) clientside
     {
         time++;
         SetHudSize(480, 360, 1);
-        DisplayTime(time, 2501, 360, 120, CR_GOLD);
+        DisplayTime(time, 2501, 420, 32, CR_GOLD);
         Delay(1);
     }
 
@@ -547,10 +547,19 @@ script 424 ENTER clientside
 {
     int time;
 
+    if (GetCVar("cyber_timer") != 1)
+    {
+        ConsoleCommand("set cyber_timer 0");
+        ConsoleCommand("archivecvar cyber_timer");
+    }
+	
     while (1)
     {
+        if (GetCVar("cyber_timer") > 0)
+        {
         SetHudSize(480, 360, 0);
-        DisplayTime((time/36)*36, 1500, 360, 100, CR_WHITE);
+        DisplayTime((time/36)*36, 1500, 420, 20, CR_WHITE);
+		}
         time++;
         Delay(1);
     }
