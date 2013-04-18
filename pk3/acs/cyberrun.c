@@ -584,7 +584,7 @@ script 423 (void) clientside
 script 424 ENTER clientside
 {
     int time;
-    int x, y, z, m, mph, unitCm;
+    int f, x, y, z, m, mph, unitCm;
     int showmag = 0;
 
     if (!GetCVar("cyber_cl_timer"))
@@ -610,6 +610,18 @@ script 424 ENTER clientside
         ConsoleCommand("set cyber_mph_doomguyheight 72");
         ConsoleCommand("archivecvar cyber_mph_doomguyheight");
     }
+
+    if (!GetCVar("cyber_mph_barscale"))
+    {
+        ConsoleCommand("set cyber_mph_barscale 40");
+        ConsoleCommand("archivecvar cyber_mph_barscale");
+    }
+
+    if (!GetCVar("cyber_mph_friction"))
+    {
+        ConsoleCommand("set cyber_mph_friction 300");
+        ConsoleCommand("archivecvar cyber_mph_friction");
+    }
 	
     while (1)
     {
@@ -627,13 +639,13 @@ script 424 ENTER clientside
 
         m = magnitudeThree_f(x, y, z);
 
-        if (abs(m - showmag) < 3.0)
-        {
-            showmag = m;
-        }
+        f = GetCVar("cyber_mph_friction");
+
+        if (f <= 0) { showmag = m; }
+        else if (abs(m - showmag) < (900.0 / f)) { showmag = m; }
         else
         {
-            showmag += (m - showmag) / 3;
+            showmag += FixedDiv(m - showmag, itof(f) / 100);
         }
 
         unitCm = FixedDiv(itof(GetCVar("cyber_mph_doomguyheight")) / 51, 1.2);
@@ -646,8 +658,6 @@ script 424 ENTER clientside
         else { mph = FixedDiv(mph, 1609.344); } // miles/second
         mph *= 3600;                        // mph
         mph >>= 16;
-
-        Print(f:unitCm);
 
         SetHudSize(640, 480, 1);
         SetFont("SMALLFONT");
@@ -669,7 +679,7 @@ script 424 ENTER clientside
 
         SetHudSize(800, 600, 1);
 
-        drawSpeedometer(showmag, 3501, 700, 80, 40, 50);
+        drawSpeedometer(showmag, 3501, 700, 80, GetCvar("cyber_mph_barscale"), 50);
 
         time++;
 
