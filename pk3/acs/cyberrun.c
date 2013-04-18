@@ -588,16 +588,28 @@ script 424 ENTER clientside
     int x, y, z, m, mph;
     int showmag = 0;
 
+    if (!GetCVar("cyber_cl_timer"))
+    {
+        ConsoleCommand("set cyber_cl_timer 0");
+        ConsoleCommand("archivecvar cyber_cl_timer");
+    }
+
     if (!GetCVar("cyber_mph_noz"))
     {
         ConsoleCommand("set cyber_mph_noz 0");
         ConsoleCommand("archivecvar cyber_mph_noz");
     }
 
-    if (!GetCVar("cyber_cl_timer"))
+    if (!GetCVar("cyber_mph_km"))
     {
-        ConsoleCommand("set cyber_cl_timer 0");
-        ConsoleCommand("archivecvar cyber_cl_timer");
+        ConsoleCommand("set cyber_mph_km 0");
+        ConsoleCommand("archivecvar cyber_mph_km");
+    }
+
+    if (!GetCVar("cyber_mph_exaggerate"))
+    {
+        ConsoleCommand("set cyber_mph_exaggerate 400");
+        ConsoleCommand("archivecvar cyber_mph_exaggerate");
     }
 	
     while (1)
@@ -627,12 +639,23 @@ script 424 ENTER clientside
 
         mph = FixedMul(m, UNIT_CM) / 100;   // meters/tic
         mph = FixedMul(mph, SECOND_TICS);   // meters/second
-        mph = FixedDiv(mph, 1609.344);      // miles/second
+
+        if (GetCVar("cyber_mph_km")) { mph /= 1000; } // km/second  
+        else { mph = FixedDiv(mph, 1609.344); } // miles/second
         mph *= 3600;                        // mph
+        mph = round(FixedMul(mph, itof(GetCVar("cyber_mph_exaggerate")) / 100));
 
         SetHudSize(640, 480, 1);
         SetFont("SMALLFONT");
-        HudMessage(d:round(mph), s:"\c- mph"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+
+        if (GetCVar("cyber_mph_km"))
+        {
+            HudMessage(d:mph, s:"\c- km/h"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+        }
+        else
+        {
+            HudMessage(d:mph, s:"\c- mph"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+        }
 
         SetHudSize(800, 600, 1);
 
