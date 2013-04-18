@@ -5,7 +5,6 @@ addkeysection "Cyberrunner: Essential" cyberkeys
 addmenukey "Cyber Dash" cyberdash
 addmenukey "Cyber Jump" cyberjump
 addmenukey "Cyber Turbo" cyberboost
-addmenukey "Toggle Timer" cybertime
 
 alias cyberdash "puke 402"
 alias cyberjump "puke 403"
@@ -21,6 +20,7 @@ addkeysection "Cyberrunner: Not Essential" cyberkeys2
 addmenukey "ZDoom-style Centerview" cybercenterview
 addmenukey "Turn 180 Degrees" cyberturn180
 addmenukey "Toggle Parkour"  cyberptoggle
+addmenukey "Toggle Timer" cybertime
 
 alias cyberturn180 "puke -385 180 2"
 alias cybercenterview "puke -388 0"
