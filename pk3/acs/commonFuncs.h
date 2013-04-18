@@ -6,7 +6,7 @@
 #define DEFAULTTID_SCRIPT 471
 
 #define SECOND_TICS 35.714285714285715
-#define UNIT_CM     1.6356060606060605
+#define UNIT_CM     2.73921568627451
 
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }

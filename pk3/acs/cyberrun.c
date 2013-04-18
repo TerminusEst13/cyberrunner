@@ -94,23 +94,22 @@ function void displayTime(int tics, int id, int x, int y, int color)
 }
 
 #define BARFONTCOUNT 12
-#define NUMBARS 50
 int BarGraphics[BARFONTCOUNT] =
 {
     "MPHBAR1", "MPHBAR2", "MPHBAR3", "MPHBAR4", "MPHBAR5", "MPHBAR6",
     "MPHBAR7", "MPHBAR8", "MPHBAR9", "MPHBAR10", "MPHBAR11", "MPHBAR12",
 };
 
-function void drawSpeedometer(int speed, int id, int x, int y, int scale)
+function void drawSpeedometer(int speed, int id, int x, int y, int scale, int width)
 {
     int i, j, k;
 
     SetFont("SMALLFONT");
     x = itof(x); y = itof(y);
     
-    for (i = 0; i < NUMBARS; i++)
+    for (i = 0; i < width; i++)
     {
-        j = (itof(i) * scale) / NUMBARS;
+        j = (itof(i) * scale) / width;
 
         if (j < speed)
         {
@@ -585,7 +584,7 @@ script 423 (void) clientside
 script 424 ENTER clientside
 {
     int time;
-    int x, y, z, m, mph;
+    int x, y, z, m, mph, unitCm;
     int showmag = 0;
 
     if (!GetCVar("cyber_cl_timer"))
@@ -606,10 +605,10 @@ script 424 ENTER clientside
         ConsoleCommand("archivecvar cyber_mph_km");
     }
 
-    if (!GetCVar("cyber_mph_exaggerate"))
+    if (!GetCVar("cyber_mph_doomguyheight"))
     {
-        ConsoleCommand("set cyber_mph_exaggerate 400");
-        ConsoleCommand("archivecvar cyber_mph_exaggerate");
+        ConsoleCommand("set cyber_mph_doomguyheight 72");
+        ConsoleCommand("archivecvar cyber_mph_doomguyheight");
     }
 	
     while (1)
@@ -637,29 +636,40 @@ script 424 ENTER clientside
             showmag += (m - showmag) / 3;
         }
 
-        mph = FixedMul(m, UNIT_CM) / 100;   // meters/tic
+        unitCm = FixedDiv(itof(GetCVar("cyber_mph_doomguyheight")) / 51, 1.2);
+        unitCm = FixedMul(unitCm, 2.54);
+
+        mph = FixedMul(m, unitCm) / 100;   // meters/tic
         mph = FixedMul(mph, SECOND_TICS);   // meters/second
 
         if (GetCVar("cyber_mph_km")) { mph /= 1000; } // km/second  
         else { mph = FixedDiv(mph, 1609.344); } // miles/second
         mph *= 3600;                        // mph
-        mph = round(FixedMul(mph, itof(GetCVar("cyber_mph_exaggerate")) / 100));
+        mph >>= 16;
+
+        Print(f:unitCm);
 
         SetHudSize(640, 480, 1);
         SetFont("SMALLFONT");
 
-        if (GetCVar("cyber_mph_km"))
+        switch (GetCVar("cyber_mph_km"))
         {
+          case 2:
+            HudMessage(f:m, s:"\c- units/tic"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+            break;
+
+          case 1:
             HudMessage(d:mph, s:"\c- km/h"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
-        }
-        else
-        {
+            break;
+
+          case 0:
             HudMessage(d:mph, s:"\c- mph"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+            break;
         }
 
         SetHudSize(800, 600, 1);
 
-        drawSpeedometer(showmag, 3501, 700, 80, 40);
+        drawSpeedometer(showmag, 3501, 700, 80, 40, 50);
 
         time++;
 
