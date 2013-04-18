@@ -22,7 +22,7 @@ In order of priority:
 
 ## MAPPER INFO
 
-If you want to have checkpoints in your map, use script 105. It is (or will be) defined like this:
+If you want to have checkpoints in your map, use script 105. It is defined like this:
 
   script 105 (int mode, int index, int nextToBe)
 
