@@ -1,7 +1,7 @@
 map CYDM01 "The Nanoplex"
 {
     next = "CYDM01"
-    music = "M_CYDM01" // Yannis Brown - Round n' Round the Mulbury
+    music = "M_CYDM01" // Terminal Reality - back-198
 }
 
 map CYRC01 "Having Fun, Rocketboy?"
