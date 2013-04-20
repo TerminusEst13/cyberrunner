@@ -20,6 +20,25 @@ In order of priority:
  * Respawning. If this is to be done in the deathmatch mode, respawning puts them at a completely random place--or at the beginning. Is it possible to move a respawn point further up, upon passing a checkpoint?
  * Maps. Neither of us are especially good mappers, and this will rely very heavily on mapping--we'll need to plan out the types of obstacles, interesting things that can be done, and multiple routes for people to go on.
 
+## MAKING NEW VERSIONS
+
+If you aren't a Cyberrunner developer, this is all you need to do:
+
+ - Click the "ZIP" button below the Cyberrunner summary.
+ - Unzip everything in the resulting ZIP file to an empty folder.
+ - Navigate into the pk3/ folder.
+ - Select everything (ctrl-A).
+ - Put it all in a ZIP file.
+ - Change the name of the ZIP file to "cyberrunner-git.pk3".
+ - Play Cyberrunner.
+
+If you're a developer, the process is the same, but remember to recompile ACS when you change it. ACC must be in the pk3/acs/ directory when you recompile, or else it'll blow up on the #includes (if this is wrong, tell ijon on irc.zandronum.com/#cyberrunner).
+
+## CONTACT
+
+Both TerminusEst13, Ijon Tichy, and various other Cyberrunner players/mappers are on #cyberrunner on irc.zandronum.com. You'll need an IRC client to get there; look at HexChat ( http://hexchat.org/ ) if you're on Windows, or XChat if you're on Linux.
+
+
 ## MAPPER INFO
 
 If you want to have checkpoints in your map, use script 105. It is defined like this:
