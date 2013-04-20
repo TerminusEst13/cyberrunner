@@ -20,7 +20,7 @@ In order of priority:
  * Respawning. If this is to be done in the deathmatch mode, respawning puts them at a completely random place--or at the beginning. Is it possible to move a respawn point further up, upon passing a checkpoint?
  * Maps. Neither of us are especially good mappers, and this will rely very heavily on mapping--we'll need to plan out the types of obstacles, interesting things that can be done, and multiple routes for people to go on.
 
-## MAKING NEW VERSIONS
+## PACKAGING AND PLAYING
 
 If you aren't a Cyberrunner developer, this is all you need to do:
 
@@ -28,7 +28,7 @@ If you aren't a Cyberrunner developer, this is all you need to do:
  - Unzip everything in the resulting ZIP file to an empty folder.
  - Navigate into the pk3/ folder.
  - Select everything (ctrl-A).
- - Put it all in a ZIP file.
+ - Put it all in a ZIP or 7-Zip (7z) file. Do *not* use RAR, since Zandronum does not support most versions of RAR.
  - Change the name of the ZIP file to "cyberrunner-git.pk3".
  - Play Cyberrunner.
 
