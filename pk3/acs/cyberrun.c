@@ -356,6 +356,8 @@ script 413 (int tx, int ty, int tz) clientside
     int x, y, z;
     int vx, vy, vz, mag, magI;
 
+    if (GetCVar("cyber_cl_notrails")) { terminate; }
+
     x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + random(22.0, 26.0);
     x += random(-2.0, 2.0); y += random(-2.0, 2.0);
 
@@ -376,6 +378,8 @@ script 414 (int tx, int ty, int tz) clientside
     int t, i;
     int x, y, z;
     int vx, vy, vz, mag, magI;
+
+    if (GetCVar("cyber_cl_notrails")) { terminate; }
 
     x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + 24.0;
 
@@ -414,6 +418,8 @@ script 415 (int tx, int ty, int tz) clientside
     int t, i, j, actor;
     int x, y, z;
     int vx, vy, vz, mag, magI;
+
+    if (GetCVar("cyber_cl_notrails")) { terminate; }
 
     x  = GetActorX(0); y =  GetActorY(0);  z = GetActorZ(0) + 24.0;
 
@@ -525,18 +531,10 @@ script 422 (int which) clientside
     int particle, angle, dist, xmod, ymod, zmod, newtid;
     which = middle(0, which, PARTICLECOUNT-1);
     particle = ParticleTypes[which];
-	
-    if (GetCVar("cyber_cl_version") != 2)
-    {
-        ConsoleCommand("set cyber_cl_particles 0");
-        ConsoleCommand("set cyber_cl_version 2");
-        ConsoleCommand("archivecvar cyber_cl_particles");
-        ConsoleCommand("archivecvar cyber_cl_version");
-    }
      
     while (1)
     {
-        if (GetCVar("cyber_cl_particles") > 0)
+        if (GetCVar("cyber_cl_particles"))
         {
             angle = random(0, 1.0);
             dist  = random(PARTDIST_MIN, PARTDIST_MAX);
@@ -590,42 +588,6 @@ script 424 ENTER clientside
     int time;
     int f, x, y, z, m, mph, unitCm;
     int showmag = 0;
-
-    if (!GetCVar("cyber_cl_timer"))
-    {
-        ConsoleCommand("set cyber_cl_timer 0");
-        ConsoleCommand("archivecvar cyber_cl_timer");
-    }
-
-    if (!GetCVar("cyber_mph_noz"))
-    {
-        ConsoleCommand("set cyber_mph_noz 0");
-        ConsoleCommand("archivecvar cyber_mph_noz");
-    }
-
-    if (!GetCVar("cyber_mph_km"))
-    {
-        ConsoleCommand("set cyber_mph_km 0");
-        ConsoleCommand("archivecvar cyber_mph_km");
-    }
-
-    if (!GetCVar("cyber_mph_doomguyheight"))
-    {
-        ConsoleCommand("set cyber_mph_doomguyheight 72");
-        ConsoleCommand("archivecvar cyber_mph_doomguyheight");
-    }
-
-    if (!GetCVar("cyber_mph_barscale"))
-    {
-        ConsoleCommand("set cyber_mph_barscale 40");
-        ConsoleCommand("archivecvar cyber_mph_barscale");
-    }
-
-    if (!GetCVar("cyber_mph_friction"))
-    {
-        ConsoleCommand("set cyber_mph_friction 300");
-        ConsoleCommand("archivecvar cyber_mph_friction");
-    }
 	
     while (1)
     {
@@ -692,5 +654,56 @@ script 424 ENTER clientside
         time++;
 
         Delay(1);
+    }
+}
+
+script 425 OPEN clientside
+{
+    if (!GetCVar("cyber_cl_timer"))
+    {
+        ConsoleCommand("set cyber_cl_timer 0");
+        ConsoleCommand("archivecvar cyber_cl_timer");
+    }
+
+    if (!GetCVar("cyber_cl_particles"))
+    {
+        ConsoleCommand("set cyber_cl_particles 0");
+        ConsoleCommand("archivecvar cyber_cl_particles");
+    }
+
+    if (!GetCVar("cyber_cl_notrails"))
+    {
+        ConsoleCommand("set cyber_cl_notrails 0");
+        ConsoleCommand("archivecvar cyber_cl_notrails");
+    }
+
+    if (!GetCVar("cyber_mph_noz"))
+    {
+        ConsoleCommand("set cyber_mph_noz 0");
+        ConsoleCommand("archivecvar cyber_mph_noz");
+    }
+
+    if (!GetCVar("cyber_mph_km"))
+    {
+        ConsoleCommand("set cyber_mph_km 0");
+        ConsoleCommand("archivecvar cyber_mph_km");
+    }
+
+    if (!GetCVar("cyber_mph_doomguyheight"))
+    {
+        ConsoleCommand("set cyber_mph_doomguyheight 72");
+        ConsoleCommand("archivecvar cyber_mph_doomguyheight");
+    }
+
+    if (!GetCVar("cyber_mph_barscale"))
+    {
+        ConsoleCommand("set cyber_mph_barscale 40");
+        ConsoleCommand("archivecvar cyber_mph_barscale");
+    }
+
+    if (!GetCVar("cyber_mph_friction"))
+    {
+        ConsoleCommand("set cyber_mph_friction 300");
+        ConsoleCommand("archivecvar cyber_mph_friction");
     }
 }
