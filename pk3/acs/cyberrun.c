@@ -668,8 +668,12 @@ script 424 ENTER clientside
 
         switch (GetCVar("cyber_mph_km"))
         {
-          case 2:
+          case 3:
             HudMessage(f:m, s:"\c- units/tic"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
+            break;
+
+          case 2:
+            HudMessage(d:round(m), s:"\c- units/tic"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
             break;
 
           case 1:
