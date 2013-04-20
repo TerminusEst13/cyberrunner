@@ -510,11 +510,15 @@ script 420 DEATH
     Thing_ChangeTID(0,0);
 }
 
-#define PARTICLECOUNT 7
+#define PARTICLECOUNT 8
 #define PARTDIST_MIN  8.0
 #define PARTDIST_MAX  32.0
  
-int ParticleTypes[PARTICLECOUNT] = {"CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle", "TurboSparkle", "AllAmmoSparkle", "50HPSparkle"};
+int ParticleTypes[PARTICLECOUNT] =
+{
+    "CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle",
+    "TurboSparkle", "AllAmmoSparkle", "50HPSparkle", "InstagibSparkle",
+};
  
 script 422 (int which) clientside
 {
@@ -522,17 +526,17 @@ script 422 (int which) clientside
     which = middle(0, which, PARTICLECOUNT-1);
     particle = ParticleTypes[which];
 	
-    if (GetCVar("cyber_cl_version") != 1)
+    if (GetCVar("cyber_cl_version") != 2)
     {
-        ConsoleCommand("set cyber_particles 0");
-        ConsoleCommand("set cyber_cl_version 1");
-        ConsoleCommand("archivecvar cyber_particles");
+        ConsoleCommand("set cyber_cl_particles 0");
+        ConsoleCommand("set cyber_cl_version 2");
+        ConsoleCommand("archivecvar cyber_cl_particles");
         ConsoleCommand("archivecvar cyber_cl_version");
     }
      
     while (1)
     {
-        if (GetCVar("cyber_particles") > 0)
+        if (GetCVar("cyber_cl_particles") > 0)
         {
             angle = random(0, 1.0);
             dist  = random(PARTDIST_MIN, PARTDIST_MAX);

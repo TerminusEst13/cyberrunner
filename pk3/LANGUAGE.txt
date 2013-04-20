@@ -20,7 +20,8 @@ CYBERRUNNER_PK_VENT     = "\cuFull vent!";
 CYBERRUNNER_PK_PLASMA   = "\cnPlasma!";
 CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
 CYBERRUNNER_PK_CARBINE  = "\cdCarbine!";
-CYBERRUNNER_PK_VULCAN  = "\ctVulcan!";
+CYBERRUNNER_PK_VULCAN   = "\ctVulcan!";
+CYBERRUNNER_PK_INSTAGIB = "\cgINSTAGIB!";
 
 CYBERRUNNER_PK_50HEALTH = "\ca50 health!";
 CYBERRUNNER_PK_TURBO    = "\cfFull turbo!";

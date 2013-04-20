@@ -27,6 +27,7 @@ actor ACSSpawnDummy
 #include "decorate/carbine.dec"
 #include "decorate/vulcan.dec"
 #include "decorate/lms.dec"
+#include "decorate/instagib.dec"
 
 #include "decorate/weppickups.dec"
 #include "decorate/enemies.dec"
