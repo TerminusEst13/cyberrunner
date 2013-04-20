@@ -352,7 +352,7 @@ script 412 (int which)
 
 script 413 (int tx, int ty, int tz) clientside
 {
-    int t, i;
+    int t, i, k = 0, l;
     int x, y, z;
     int vx, vy, vz, mag, magI;
 
@@ -368,14 +368,18 @@ script 413 (int tx, int ty, int tz) clientside
     for (i = 8; i < magI; i += 8)
     {
         Spawn("ShotgunTracer", x+(vx*i), y+(vy*i), z+(vz*i));
-        if (i % 128 == 0) { Delay(1); }
+        
+        l += (i - k);
+        Delay(l / 512);
+        l %= 512;
+        k = i;
     }
 }
 
 // Hoorah for only three script arguments!
 script 414 (int tx, int ty, int tz) clientside
 {
-    int t, i;
+    int t, i, k = 0, l;
     int x, y, z;
     int vx, vy, vz, mag, magI;
 
@@ -390,12 +394,16 @@ script 414 (int tx, int ty, int tz) clientside
     for (i = 8; i < magI; i += 8)
     {
         Spawn("RailBeam2", x+(vx*i), y+(vy*i), z+(vz*i));
-        if (i % 128 == 0) { Delay(1); }
+        
+        l += (i - k);
+        Delay(l / 512);
+        l %= 512;
+        k = i;
     }
 }
 
 #define RAINBOWCOLORS 12
-#define RAINBOWINTERVAL 7
+#define RAINBOWINTERVAL 10
 
 int RainbowBeamActors[RAINBOWCOLORS] = 
 {
@@ -415,7 +423,7 @@ int RainbowBeamActors[RAINBOWCOLORS] =
 
 script 415 (int tx, int ty, int tz) clientside
 {
-    int t, i, j, actor;
+    int t, i, j, k = 0, l, actor;
     int x, y, z;
     int vx, vy, vz, mag, magI;
 
@@ -433,7 +441,11 @@ script 415 (int tx, int ty, int tz) clientside
         actor = RainbowBeamActors[(j / RAINBOWINTERVAL) % RAINBOWCOLORS];
         Spawn(actor, x+(vx*i), y+(vy*i), z+(vz*i));
         j++;
-        if (i % 128 == 0) { Delay(1); }
+
+        l += (i - k);
+        Delay(l / 512);
+        l %= 512;
+        k = i;
     }
 }
 
