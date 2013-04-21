@@ -568,7 +568,7 @@ script 423 (void) clientside
     TimerOn = !TimerOn;
     int time = -1, time2;
     int i,j,k,l;
-    int dist;
+    int dist, unitCm;
 
     while (TimerOn)
     {
@@ -583,11 +583,14 @@ script 423 (void) clientside
 
     if (time)
     {
+        unitCm = FixedDiv(itof(GetCVar("cyber_mph_doomguyheight")) / 51, 1.2);
+        unitCm = FixedMul(unitCm, 2.54);
+
         time2 = time/36;
         i = time2/3600;
         j = (time2%3600)/60;
         k = fracSec(time);
-        l = dist * (UNIT_CM / 100);
+        l = dist * (unitCm / 100);
         Print(s:"End time: \ck", d:i, s:"\c- hour",   s:cond(i == 1, "", "s"), s:", \ck",
                                  d:j, s:"\c- minute", s:cond(j == 1, "", "s"), s:", \ck",
                                  f:k, s:"\c- second", s:cond(k == 1.0, "", "s"),
