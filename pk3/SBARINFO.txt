@@ -21,7 +21,7 @@ statusbar Normal, forcescaled
     IsSelected " Cyber Shotgun " { drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0; }
     IsSelected " Cyber Carbine " { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 175, 180, 0; }
     IsSelected " Cyber Vulcan " { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 181, 180, 0; }
-    IsSelected "Instagib Carbine" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 175, 180, 0; }
+    IsSelected "Purge Rifle" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 175, 180, 0; }
 }
 
 statusbar Fullscreen, forcescaled
@@ -47,5 +47,5 @@ statusbar Fullscreen, forcescaled
     IsSelected " Cyber Shotgun " { drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0; }
     IsSelected " Cyber Carbine " { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 175, 180, 0; }
     IsSelected " Cyber Vulcan " { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 181, 180, 0; }
-    IsSelected "Instagib Carbine" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 175, 180, 0; }
+    IsSelected "Purge Rifle" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 175, 180, 0; }
 }

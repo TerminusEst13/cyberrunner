@@ -244,7 +244,7 @@ actor InstagibCarbineAmmo: Ammo
 }
 
 
-actor "Instagib Carbine": "Instagib Rifle" 15505
+actor "Purge Rifle": "Instagib Rifle" 15505
 {
     Weapon.AmmoType "InstagibCarbineAmmo"
     Weapon.AmmoUse 1
