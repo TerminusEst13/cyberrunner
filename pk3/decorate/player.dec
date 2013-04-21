@@ -21,6 +21,9 @@ actor CyberRunner : PlayerPawn
     Player.Soundclass "Cyberrunner"
     BloodType RobotBlood//, RobotBlood2
     BloodColor Black // I DUNNO WHY YOU'RE STILL FUCKING SPLATTERING, BUT HERE
+    DamageFactor "Drowning", 0.0
+    DamageFactor "Poison", 0.0
+    DamageFactor "PoisonCloud", 0.0
     Scale 0.4
     Player.ForwardMove 1.8 1.8
     Player.SideMove 1.55 1.55
