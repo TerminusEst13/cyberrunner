@@ -20,12 +20,19 @@ actor ForceVent: FastProjectile
       Spawn:
         TNT1 A 1
 		TNT1 A 0 A_Stop
-        goto Death
+        goto AirDeath
+
+      AirDeath:
+        FXPL A 0 A_Explode(96, 160)
+        goto Death2
 
       Death:
-        FXPL A 1 BRIGHT A_Explode(160,160)
-        FXPL A 1 BRIGHT A_Scream
-        FXPL BCDEF 2 BRIGHT 
+        FXPL A 0 A_Explode(160,160)
+        goto Death2
+
+      Death2:
+        FXPL A 0 A_Scream
+        FXPL ABCDEF 2 bright 
         Stop
     }
 }

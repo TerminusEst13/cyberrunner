@@ -1027,7 +1027,7 @@ script PARKMORE_ENTER2 enter clientside
     int myLock = ClientEnterLocks[pln] + 1;
     int i, j, k;
 
-    if (ConsolePlayerNumber() != pln) { terminate; }
+    if (ConsolePlayerNumber() != pln && !IsServer) { terminate; }
 
     ClientEnterLocks[pln] = myLock;
 
