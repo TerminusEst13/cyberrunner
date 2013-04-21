@@ -864,6 +864,11 @@ script PARKMORE_OPEN open
         ConsoleCommand("archivecvar cyber_jumpcount");
     }
 
+    if (GetCVar("cyber_debug") == 0)
+    {
+        ConsoleCommand("set cyber_debug 0");
+    }
+
     IsServer = 1;
 
     int cjumps, oldcjumps;
@@ -1200,9 +1205,16 @@ script PARKMORE_ENTER2 enter clientside
             else*/
             if (!(ground || (GetActorVelZ(0) < 0 && wasGround) || wasGround >= (MJUMP_DELAY-2) || inWater || dDirection != -1))
             {
-                pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
-                if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
-                ConsoleCommand(pukeStr);
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
+                    ConsoleCommand(pukeStr);
+                }
+                else if (!DidSpecials[pln] && !grabbing[pln])
+                {
+                    MultiJump(1, 0);
+                }
             }
         }
 
@@ -1223,13 +1235,19 @@ script PARKMORE_ENTER2 enter clientside
 
 script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
-    int pln;
+    int pln = PlayerNumber();
+
+    if (GetCVar("cyber_debug"))
+    {
+        PrintBold(s:"Activator is ", n:0, s:"\c- (idx ", d:pln, s:")\nExecuted on tic ", d:Timer(), s:"\nArgs: ", d:direction, s:", ", d:hijump, s:", ", d:mjump);
+    }
 
     if (isDead(0)) { terminate; }
 
     if (mjump && !DidSpecials[pln] && !grabbing[pln])
     {
-        if (!DidSpecials[pln] && !grabbing[pln]) { /*Print(d:playerJumps[pln]);*/ MultiJump(1, 0); }
+        //Print(d:playerJumps[pln]);
+        MultiJump(1, 0);
     }
     else if (direction < 0)
     {
