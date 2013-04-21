@@ -23,3 +23,29 @@ statusbar Normal, forcescaled
     IsSelected " Cyber Vulcan " { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 181, 180, 0; }
     IsSelected "Instagib Carbine" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 175, 180, 0; }
 }
+
+statusbar Fullscreen, forcescaled
+{
+	drawimage "HLTHBAR0", 2, 165;
+	drawbar "HLTHBAR1", "HLTHBAR2", Health, horizontal, 5, 183, 1;
+	drawimage "BUFFBAR0", 210, 190;
+	drawbar "BUFFBAR2", "BUFFBAR1", BoostCooldown, horizontal, 212, 191;
+	drawimage "DASHBAR0", 214, 167; 
+	drawbar "DASHBAR2", "DASHBAR1", DashCooldown, horizontal, 216, 177; 
+	drawimage "JUMPBAR0", 250, 175;
+	drawbar "JUMPBAR2", "JUMPBAR1", JumpCooldown, horizontal, 252, 184;
+
+	InInventory ForceVentAmmo, 1 { drawimage "VENTNTCH", 140, 193; }
+	InInventory ForceVentAmmo, 2 { drawimage "VENTNTCH", 160, 193; }
+	InInventory ForceVentAmmo, 3 { drawimage "VENTNTCH", 180, 193; }
+	InInventory WallHackVision, 1 {drawimage "CYBTRG", 0, 0;}
+
+    IsSelected "Plasma Gun" { drawnumber 3, BIGFONT, LightBlue, ammo1, fillzeros, 181, 180, 0; }
+    IsSelected "Cyber Shotgun" { drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0; }
+    IsSelected "Cyber Carbine" { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 175, 180, 0; }
+    IsSelected "Cyber Vulcan" { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 181, 180, 0; }
+    IsSelected " Cyber Shotgun " { drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0; }
+    IsSelected " Cyber Carbine " { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 175, 180, 0; }
+    IsSelected " Cyber Vulcan " { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 181, 180, 0; }
+    IsSelected "Instagib Carbine" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 175, 180, 0; }
+}
