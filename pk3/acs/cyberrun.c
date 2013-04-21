@@ -619,7 +619,7 @@ script 424 ENTER clientside
 
         f = GetCVar("cyber_mph_friction");
 
-        if (f <= 0) { showmag = m; }
+        if (f <= 100) { showmag = m; }
         else if (abs(m - showmag) < (900.0 / f)) { showmag = m; }
         else
         {
@@ -639,6 +639,13 @@ script 424 ENTER clientside
 
         SetHudSize(640, 480, 1);
         SetFont("SMALLFONT");
+
+        if (GetCvar("cyber_cl_debug") && Timer() % 36 == 0)
+        {
+            Print(s:"\nTime is ", d:time, s:"\n",
+                s:"MPH: (", f:x, s:", ", f:y, s:", ", f:z, s:")\nmag is ", f:m, s:" (on bar: ", f:showmag, s:")\n",
+                s:"Mode is ", d:GetCVar("cyber_mph_km"), s:", mph is ", d:mph);
+        }
 
         switch (GetCVar("cyber_mph_km"))
         {
@@ -671,6 +678,12 @@ script 424 ENTER clientside
 
 script 425 OPEN clientside
 {
+    if (!GetCVar("cyber_cl_debug"))
+    {
+        ConsoleCommand("set cyber_cl_debug 0");
+        // No archivecvar on purpose
+    }
+
     if (!GetCVar("cyber_cl_timer"))
     {
         ConsoleCommand("set cyber_cl_timer 0");
