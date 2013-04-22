@@ -1,6 +1,153 @@
 actor AerialDrone 15601
 {
 	Obituary "%o was droned."
+	Health 50
+	Radius 96
+	Height 64
+	Mass 400
+	Speed 10
+	PainChance 10
+	SeeSound "drone/sight"
+	PainSound "drone/pain"
+	ActiveSound "drone/sight"
+	Damagefactor "NoDamage", 0.0
+	Painchance "NoDamage", 0
+	Monster
+	//MinMissileChance 10
+	+FLOORCLIP
+	+FLOAT
+	+NOGRAVITY
+	+DONTFALL
+	+FLOATBOB
+	+PUSHABLE
+	+NOINFIGHTING
+	+QUICKTORETALIATE
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+NOBLOOD
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		ATRT A 3 A_Look
+		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		ATRT B 3 A_Look
+		goto See
+	See:
+		TNT1 A 0 A_Jump(8,"ADD")
+		TNT1 A 0 A_ChangeFlag("FRIGHTENED", 0)
+		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		TNT1 A 0 A_Jump(64,"See2")
+		//TNT1 A 0 A_JumpIfCloser(300,"TooClose")
+		ATRT A 3 A_Chase
+		ATRT B 3 A_Chase
+		Loop
+	See2:
+		ATRT A 3 A_FastChase
+		ATRT B 3 A_FastChase
+		TNT1 A 0 A_Jump(32, "Dodge")
+		Goto See+2
+	ADD:
+		TNT1 A 0 A_ClearTarget
+		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		ATRT A 3 A_Wander
+		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		ATRT B 3 A_Wander
+		goto See
+	Dodge:
+		TNT1 A 0 A_Jump(128, 4)
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThing(Angle*256/360-192, 1, 0, 0)
+		ATRT BAB 3
+		TNT1 A 0 A_Stop
+		Goto See+2
+		TNT1 A 0 A_Jump(128, 4)
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThing(Angle*256/360-64, 1, 0, 0)
+		ATRT BAB 3
+		TNT1 A 0 A_Stop
+		Goto See+2
+		TNT1 A 0 A_Jump(64, 4)
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThingZ(0, 4, 0, 0)
+		ATRT BAB 3
+		TNT1 A 0 A_Stop
+		Goto See+2
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThingZ(0, 4, 1, 0)
+		ATRT BAB 3
+		TNT1 A 0 A_Stop
+		Goto See+2
+	DodgeThenAttack:
+		TNT1 A 0 A_Jump(128, 4)
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThing(Angle*256/360-192, 1, 0, 0)
+		ATRT B 3
+		TNT1 A 0 A_Stop
+		Goto Missile+2
+		TNT1 A 0 A_Jump(128, 4)
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThing(Angle*256/360-64, 1, 0, 0)
+		ATRT B 3
+		TNT1 A 0 A_Stop
+		Goto Missile+2
+		TNT1 A 0 A_Jump(64, 4)
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThingZ(0, 4, 0, 0)
+		ATRT B 3
+		TNT1 A 0 A_Stop
+		Goto Missile+2
+		TNT1 A 0 A_FaceTarget
+		ATRT A 3 ThrustThingZ(0, 4, 1, 0)
+		ATRT B 3
+		TNT1 A 0 A_Stop
+		Goto Missile+2
+	Missile:
+		TNT1 A 0 A_JumpIfTargetinLOS(2, 140)
+		TNT1 A 0 A_Jump(32,"ADD")
+		ATRT AB 3 A_FaceTarget
+		TNT1 A 0
+		TNT1 A 0 A_FaceTarget
+		TNT1 A 0 A_CustomMissile("DroneShot2",32,38)
+		TNT1 A 0 A_CustomMissile("DroneShot2",32,-38)
+		ATRT C 3 Bright A_PlaySound("Drone/Shot2")
+		ATRT D 2
+		ATRT E 2
+		ATRT F 2
+		TNT1 A 0 A_Jump(25, "DodgeThenAttack")
+		Goto See
+	Pain:
+		ATRT A 2 A_Pain
+		Goto See
+	Death:
+		TNT1 A 0 A_StopSound
+		TNT1 A 0 A_Pain
+		ATRT A 4 ThrustThingZ(0, random(2, 8), 0, 0)
+		TNT1 A 0 ThrustThing (random(0, 255), random(2, 8), 0, 0)
+		ATRT B 4 A_NoBlocking
+		ATRT ABABAB 4
+		TNT1 A 0 A_ChangeFlag("FloatBob", 0)
+		TNT1 A 0 A_StopSoundEx("Drone/Fly")
+		ATRT A 4 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		ATRT BA 4
+		ATRT A 4 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		ATRT BA 4
+		ATRT B 4 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		ATRT AB 4
+		ATRT A 4 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
+		TNT1 A 0 A_Pain
+		ATRT AAAAAAAAAAA 0 A_SpawnItemEx("DroneExplosion", Random(-30, 30), Random(-30, 30), Random(20, 40), 0, 0, 0, 0, 128)
+		Stop
+	}
+}
+
+actor AerialDroneOld// 15601
+{
+	Obituary "%o was droned."
 	Health 100
 	Radius 64
 	Height 32
@@ -197,6 +344,23 @@ Actor DroneShot : ArachnotronPlasma
 	Scale 0.5
 	SeeSound ""
 	+STRIFEDAMAGE
+}
+
+actor DroneShot2 : DroneShot
+{
+	Speed 70
+	//Damage (10)
+	RenderStyle Add
+	Alpha 0.9
+	States
+	{
+	Spawn:
+		MMDB A 1 BRIGHT
+		loop
+	Death:
+		MMDB HIJKL 2 BRIGHT
+		stop
+	}
 }
 
 actor TurretDrone 15602
