@@ -223,6 +223,8 @@ script 400 ENTER
     int tid;
     int pln = PlayerNumber();
 
+    ACS_ExecuteAlways(424, 0, pln);
+
     while (1)
     {
         tid = defaultTID(-1);
@@ -563,7 +565,7 @@ script 422 (int which) clientside
 }
 
 int TimerOn;
-script 423 (void) clientside
+script 423 (void) net clientside
 {
     TimerOn = !TimerOn;
     int time = -1, time2;
@@ -598,12 +600,30 @@ script 423 (void) clientside
     }
 }
 
-script 424 ENTER clientside
+script 424 (int pln) clientside
 {
     int time;
     int f, x, y, z, m, mph, unitCm;
     int showmag = 0;
-	
+
+
+    if (GetCVar("cyber_cl_debug"))
+    {
+        int classify = ClassifyActor(0);
+        int classifyStr;
+
+        if (classify & ACTOR_WORLD) { classifyStr = "Activator is world (wat)"; }
+        else if (classify & ACTOR_PLAYER) { classifyStr = "Activator is a player"; }
+        else if (classify & ACTOR_MONSTER) { classifyStr = "Activator is a monster (wat)"; }
+        else { classifyStr = "Actor is... something"; }
+
+        PrintBold(s:"Player ", d:pln, s:" (the supposed activator) is ", s:cond(PlayerInGame(pln), "\cd", "\chnot "), s:"in game.\c-\n",
+                s:"Current activator of script 424 for player ", d:pln, s:" (", n:pln+1, s:"\c-) is \"", n:0, s:"\c-\"\c-\n",
+                s:"Activator TID is ", d:ActivatorTID(), s:"\c-\n",
+                s:classifyStr);
+    }
+
+
     while (1)
     {
         if (GetCVar("cyber_cl_timer") > 0)
@@ -643,9 +663,10 @@ script 424 ENTER clientside
         SetHudSize(640, 480, 1);
         SetFont("SMALLFONT");
 
-        if (GetCvar("cyber_cl_debug") && Timer() % 36 == 0)
+        if (GetCvar("cyber_cl_debug") >= 2 && Timer() % 36 == 0)
         {
             Print(s:"\nTime is ", d:time, s:"\n",
+                s:"Activator name is ", n:0, s:"\c- (TID ", d:ActivatorTID(), s:")\n",
                 s:"MPH: (", f:x, s:", ", f:y, s:", ", f:z, s:")\nmag is ", f:m, s:" (on bar: ", f:showmag, s:")\n",
                 s:"Mode is ", d:GetCVar("cyber_mph_km"), s:", mph is ", d:mph);
         }
