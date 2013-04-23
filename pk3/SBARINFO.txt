@@ -14,6 +14,10 @@ statusbar Normal, forcescaled
 	InInventory ForceVentAmmo, 3 { drawimage "VENTNTCH", 180, 193; }
 	InInventory WallHackVision, 1 {drawimage "CYBTRG", 0, 0;}
 
+    InInventory DashCooldown  { drawimage "NODASH",  268, 170; }
+    InInventory JumpCooldown  { drawimage "NOJUMP",  305, 175; }
+    InInventory BoostCooldown { drawimage "NOTURBO", 200, 189; }
+
     IsSelected "Plasma Gun" { drawnumber 3, BIGFONT, LightBlue, ammo1, fillzeros, 181, 180, 0; }
     IsSelected "Cyber Shotgun" { drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0; }
     IsSelected "Cyber Carbine" { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 175, 180, 0; }
