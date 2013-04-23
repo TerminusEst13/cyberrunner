@@ -19,7 +19,6 @@ actor AerialDrone 15601
 	+NOGRAVITY
 	+DONTFALL
 	+FLOATBOB
-	+PUSHABLE
 	+NOINFIGHTING
 	+QUICKTORETALIATE
 	+MISSILEMORE
@@ -35,25 +34,27 @@ actor AerialDrone 15601
 		ATRT B 3 A_Look
 		goto See
 	See:
+		TNT1 A 0 A_JumpIfTargetInLOS("See1", 140)
 		TNT1 A 0 A_Jump(8,"ADD")
-		TNT1 A 0 A_ChangeFlag("FRIGHTENED", 0)
 		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
-		TNT1 A 0 A_Jump(64,"See2")
-		//TNT1 A 0 A_JumpIfCloser(300,"TooClose")
+		ATRT AB 3 A_Chase("Missile","Missile",16)
+		Loop
+	See1:
+		TNT1 A 0 A_Jump(8,"ADD")
+		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		TNT1 A 0 A_Jump(16,"See2")
 		ATRT A 3 A_Chase
 		ATRT B 3 A_Chase
 		Loop
 	See2:
-		ATRT A 3 A_FastChase
+		ATRT A 3
 		ATRT B 3 A_FastChase
 		TNT1 A 0 A_Jump(32, "Dodge")
-		Goto See+2
+		Goto See
 	ADD:
 		TNT1 A 0 A_ClearTarget
-		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
-		ATRT A 3 A_Wander
-		TNT1 A 0 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
-		ATRT B 3 A_Wander
+		ATRT A 3 A_PlaySoundEx("Drone/Fly", "SoundSlot7", 1)
+		ATRT B 3
 		goto See
 	Dodge:
 		TNT1 A 0 A_Jump(128, 4)
@@ -61,24 +62,24 @@ actor AerialDrone 15601
 		ATRT A 3 ThrustThing(Angle*256/360-192, 1, 0, 0)
 		ATRT BAB 3
 		TNT1 A 0 A_Stop
-		Goto See+2
+		Goto See
 		TNT1 A 0 A_Jump(128, 4)
 		TNT1 A 0 A_FaceTarget
 		ATRT A 3 ThrustThing(Angle*256/360-64, 1, 0, 0)
 		ATRT BAB 3
 		TNT1 A 0 A_Stop
-		Goto See+2
+		Goto See
 		TNT1 A 0 A_Jump(64, 4)
 		TNT1 A 0 A_FaceTarget
 		ATRT A 3 ThrustThingZ(0, 4, 0, 0)
 		ATRT BAB 3
 		TNT1 A 0 A_Stop
-		Goto See+2
+		Goto See
 		TNT1 A 0 A_FaceTarget
 		ATRT A 3 ThrustThingZ(0, 4, 1, 0)
 		ATRT BAB 3
 		TNT1 A 0 A_Stop
-		Goto See+2
+		Goto See
 	DodgeThenAttack:
 		TNT1 A 0 A_Jump(128, 4)
 		TNT1 A 0 A_FaceTarget
