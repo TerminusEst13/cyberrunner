@@ -223,7 +223,7 @@ script 400 ENTER
     int tid;
     int pln = PlayerNumber();
 
-    ACS_ExecuteAlways(424, 0, pln);
+    ACS_ExecuteAlways(424, 0, pln, Timer());
 
     while (1)
     {
@@ -600,7 +600,7 @@ script 423 (void) net clientside
     }
 }
 
-script 424 (int pln) clientside
+script 424 (int pln, int startTime) clientside
 {
     int time;
     int f, x, y, z, m, mph, unitCm;
@@ -612,16 +612,20 @@ script 424 (int pln) clientside
         int classify = ClassifyActor(0);
         int classifyStr;
 
-        if (classify & ACTOR_WORLD) { classifyStr = "Activator is world (wat)"; }
+        if (classify & ACTOR_WORLD) { classifyStr = "Activator is world"; }
         else if (classify & ACTOR_PLAYER) { classifyStr = "Activator is a player"; }
-        else if (classify & ACTOR_MONSTER) { classifyStr = "Activator is a monster (wat)"; }
+        else if (classify & ACTOR_MONSTER) { classifyStr = "Activator is a monster"; }
         else { classifyStr = "Actor is... something"; }
 
-        PrintBold(s:"Player ", d:pln, s:" (the supposed activator) is ", s:cond(PlayerInGame(pln), "\cd", "\chnot "), s:"in game.\c-\n",
+        PrintBold(s:"Script started on tic ", d:startTime, s:"\n",
+                s:"Player ", d:pln, s:" (the supposed activator) is ", s:cond(PlayerInGame(pln), "\cd", "\chnot "), s:"in game.\c-\n",
                 s:"Current activator of script 424 for player ", d:pln, s:" (", n:pln+1, s:"\c-) is \"", n:0, s:"\c-\"\c-\n",
                 s:"Activator TID is ", d:ActivatorTID(), s:"\c-\n",
-                s:classifyStr);
+                s:classifyStr,
+                s:"\nActivator supposedly at (", f:GetActorX(0), s:", ", f:GetActorY(0), s:", ", f:GetActorZ(0), s:")");
     }
+
+    if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
 
 
     while (1)
