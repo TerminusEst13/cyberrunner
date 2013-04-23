@@ -4,10 +4,15 @@
 #library "cyberrun"
 
 #define RECHARGECOUNT 8
-#libdefine TID_PLAY 600
+#define TID_PLAY 600
+
+#define TIMECOUNT   3
+#define TIME_START      0
+#define TIME_CHECKPOINT 1
+#define TIME_END        2
 
 int PlayerTIDs[PLAYERMAX];
-int PlayerTimes[PLAYERMAX];
+int PlayerTimes[PLAYERMAX][TIMECOUNT];
 
 function void hudmessageonactor(int tid, int range, str sprite, str text, int id) // By Caligari 87
 {
@@ -58,6 +63,11 @@ function int fracSec(int tics)
 
 function void displayTime(int tics, int id, int x, int y, int color)
 {
+    displayTime2(tics, id, x, y, color, 0.5);
+}
+
+function void displayTime2(int tics, int id, int x, int y, int color, int duration)
+{
     int secs = tics/36;
     int secs2 = fracSec(tics) % 60.0;
     int hours = secs / 3600;
@@ -68,28 +78,28 @@ function void displayTime(int tics, int id, int x, int y, int color)
 
     SetFont("SMALLFONT");
     HudMessage(d:hours, s:"\cu:"; HUDMSG_FADEOUT, id, color,
-            x - 17.8, y, 1.5, 0.5);
+            x - 17.8, y, duration, 0.5);
 
     if (mins < 10)
     {
         HudMessage(s:"0", d:mins; HUDMSG_FADEOUT, id+1, color,
-            x - 1.8, y, 1.5, 0.5);
+            x - 1.8, y, duration, 0.5);
     }
     else
     {
         HudMessage(d:mins; HUDMSG_FADEOUT, id+1, color,
-            x - 1.8, y, 1.5, 0.5);
+            x - 1.8, y, duration, 0.5);
     }
 
-    HudMessage(s:":"; HUDMSG_FADEOUT, id+2, CR_DARKGREY, x + 0.4, y, 0.5, 0.5);
+    HudMessage(s:":"; HUDMSG_FADEOUT, id+2, CR_DARKGREY, x + 0.4, y, duration, 0.5);
 
     if (secs < 10)
     {
-        HudMessage(s:"0", f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 0.5, 0.5);
+        HudMessage(s:"0", f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, duration, 0.5);
     }
     else
     {
-        HudMessage(f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, 0.5, 0.5);
+        HudMessage(f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, duration, 0.5);
     }
 }
 
@@ -185,10 +195,21 @@ script 105 (int mode, int index, int next)
 
         if (mode % 2)
         {
-            SetHudSize(320, 240, 0);
             LocalAmbientSound("ui/checkpoint", 127);
+
+            SetHudSize(320, 240, 1);
             HudMessage(s:"Checkpoint!"; HUDMSG_FADEOUT, 701, CR_YELLOW,
                         160.4, 60.0, 2.0, 0.5);
+
+            SetHudSize(640, 480, 1);
+            HudMessage(s:"Time:"; HUDMSG_FADEOUT, 702, CR_WHITE,
+                        280.4, 140.0, 2.0, 0.5);
+            HudMessage(s:"Total:"; HUDMSG_FADEOUT, 703, CR_WHITE,
+                        278.4, 160.0, 2.0, 0.5);
+
+            displayTime2(Timer() - PlayerTimes[pln][TIME_CHECKPOINT], 704, 330, 140, CR_GOLD, 2.0);
+            displayTime2(Timer() - PlayerTimes[pln][TIME_START], 714, 330, 160, CR_LIGHTBLUE, 2.0);
+            PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
         }
 
         while (!onGround(0)) { Delay(1); }
@@ -224,6 +245,10 @@ script 400 ENTER
     int pln = PlayerNumber();
 
     ACS_ExecuteAlways(424, 0, pln, Timer());
+
+    PlayerTimes[pln][TIME_START]        = Timer();
+    PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
+    PlayerTimes[pln][TIME_END]          = 0x7FFFFFFF;
 
     while (1)
     {

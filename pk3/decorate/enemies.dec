@@ -145,7 +145,7 @@ actor AerialDrone 15601
 	}
 }
 
-actor AerialDroneOld// 15601
+actor AerialDroneOld 15603
 {
 	Obituary "%o was droned."
 	Health 100
