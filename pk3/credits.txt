@@ -1,21 +1,13 @@
-/==---
-| MAJOR CONTRIBUTERS
-\==---
 
-TerminusEst13:
- - Majority of the soundwork and spritework.
- - Superfast, which was used as one of the bases for Cyberrunner.
- - Most of the DECORATE, and some ACS.
- - The letters and some punctuation of the smallfont.
- - CYRTUT, CYRC02.
-
-
+SPECIAL THANKS TO:
+=========
 Ijon Tichy:
  - Pickup sprites, some basic soundwork.
- - Parkmore, which was used as the other base for Cyberrunner.
+ - Parkmore, which was used as half the base for Cyberrunner.
  - Vast amounts of ACS, and some DECORATE.
  - The numbers and some punctuation of the smallfont.
  - CYRC01.
+ - Generally lots of shit.
 
 
 GENERAL:
