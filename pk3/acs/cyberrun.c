@@ -241,6 +241,7 @@ script 405 OPEN
 script 400 ENTER
 {
     int i, j, time = 0;
+    int x, y;
     int tid;
     int pln = PlayerNumber();
 
@@ -264,6 +265,17 @@ script 400 ENTER
                 if (j > 0) { GiveInventory(RechargingItems[i], j); }
                 else { TakeInventory(RechargingItems[i], -j); }
             }
+        }
+
+        if (keyDown(BT_CROUCH))
+        {
+            x = GetActorVelX(0);
+            y = GetActorVelY(0);
+
+            x = FixedMul(x, 0.9);
+            y = FixedMul(y, 0.9);
+
+            SetActorVelocity(0, x, y, GetActorVelZ(0), 0,0);
         }
 
         time++;
