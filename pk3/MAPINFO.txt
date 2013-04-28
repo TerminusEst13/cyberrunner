@@ -12,16 +12,16 @@ map CYRC01 "Having Fun, Rocketboy?"
     music = "D_ECLPSE" // CLiNT - Eclipse
 }
 
-map CYRC02 "Deep Fried"
-{
-    next  = "CYRC03"
-    music = "M_CYRC02" // Elwood - Sick on Monday
-}
-
-map CYRC03 "Bob and Weave"
+map CYRC02 "Bob and Weave"
 {
     next  = "CYRC01"
     music = "M_CYRC03" // Skaven - Data Jack
+}
+
+map CYRC03 "Deep Fried"
+{
+    next  = "CYRC03"
+    music = "M_CYRC02" // Elwood - Sick on Monday
 }
 
 map CYRTUT "Journey of a Thousand Miles, Etc Etc"
