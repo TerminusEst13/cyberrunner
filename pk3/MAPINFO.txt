@@ -14,13 +14,13 @@ map CYRC01 "Having Fun, Rocketboy?"
 
 map CYRC02 "Bob and Weave"
 {
-    next  = "CYRC01"
+    next  = "CYRC03"
     music = "M_CYRC03" // Skaven - Data Jack
 }
 
 map CYRC03 "Deep Fried"
 {
-    next  = "CYRC03"
+    next  = "CYRC01"
     music = "M_CYRC02" // Elwood - Sick on Monday
 }
 
