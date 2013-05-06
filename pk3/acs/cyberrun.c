@@ -224,6 +224,8 @@ script 105 (int mode, int index, int next)
 
 script 405 OPEN
 {
+    int ac, oac;
+
     if (!GetCVar("cyber_noaircontrol"))
     {
         ConsoleCommand("set cyber_noaircontrol 0");
@@ -232,8 +234,10 @@ script 405 OPEN
 
     while (1)
     {
-        if (!GetCVar("cyber_noaircontrol")) { SetAirControl(0.2); }
-        else { SetAirControl(0.00390625); }
+        oac = ac;
+        ac = GetCVar("cyber_noaircontrol");
+        if (ac) { SetAirControl(0.2); }
+        else if (oac && !ac) { SetAirControl(0.00390625); }
         Delay(35);
     }
 }
