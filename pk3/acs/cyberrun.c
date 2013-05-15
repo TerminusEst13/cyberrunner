@@ -236,8 +236,8 @@ script 405 OPEN
     {
         oac = ac;
         ac = GetCVar("cyber_noaircontrol");
-        if (ac) { SetAirControl(0.2); }
-        else if (oac && !ac) { SetAirControl(0.00390625); }
+        if (!ac) { SetAirControl(0.2); }
+        else if (!oac && ac) { SetAirControl(0.00390625); }
         Delay(35);
     }
 }
