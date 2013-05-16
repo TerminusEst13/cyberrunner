@@ -9,7 +9,7 @@ map CYRC01 "Having Fun, Rocketboy?"
     next  = "CYRC02"
     sky1  = "RJSPCSKY", 1
     sky2  = "BLACKSKY"
-    music = "D_ECLPSE" // CLiNT - Eclipse
+    music = "M_CYRC01" // CLiNT - Eclipse
 }
 
 map CYRC02 "Bob and Weave"

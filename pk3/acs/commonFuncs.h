@@ -49,6 +49,20 @@ function int powFloat(int x, int y)
     return n;
 }
 
+function int gcf(int a, int b)
+{
+    int c;
+    while (1)
+    {
+        if (b == 0) { return a; }
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    
+    return -1;
+}
+
 function int min(int x, int y)
 {
     if (x < y) { return x; }
