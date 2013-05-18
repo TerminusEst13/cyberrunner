@@ -671,6 +671,24 @@ script 424 (int pln, int startTime) clientside
 
     while (1)
     {
+        if (GetCVar("screenblocks") >= 12)
+        {
+            for (x = 0; x < 10; x++)
+            {
+                HudMessage(s:""; HUDMSG_PLAIN, 1500+x, 0, 0,0, 0);
+            }
+
+            HudMessage(s:""; HUDMSG_PLAIN, 3500, 0, 0,0, 0);
+
+            for (x = 0; x < 50; x++)
+            {
+                HudMessage(s:""; HUDMSG_PLAIN, 3501+x, 0, 0,0, 0);
+            }
+
+            Delay(1);
+            continue;
+        }
+
         if (GetCVar("cyber_cl_timer") > 0)
         {
             SetHudSize(480, 360, 0);
