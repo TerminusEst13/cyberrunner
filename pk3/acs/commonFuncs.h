@@ -69,7 +69,7 @@ function int min(int x, int y)
     return y;
 }
 
-function int max (int x, int y)
+function int max(int x, int y)
 {
     if (x > y) { return x; }
     return y;
@@ -840,9 +840,14 @@ function int intFloat(int toround)
     return itof(ftoi(toround));
 }
 
+function int distance(int x1, int y1, int z1, int x2, int y2, int z2)
+{
+    return magnitudeThree_f(x2-x1, y2-y1, z2-z1);
+}
+
 function int distance_ftoi(int x1, int y1, int z1, int x2, int y2, int z2)
 {
-    return magnitudeThree(ftoi(x2-x1), ftoi(y2-y1), ftoi(z2-z1));
+    return ftoi(distance(x1,y1,z1, x2,y2,z2));
 }
 
 function void printDebugInfo(void)
