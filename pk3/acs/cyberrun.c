@@ -218,6 +218,15 @@ script 105 (int mode, int index, int next)
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
         }
 
+
+        // This is so that a checkpoint can't be *completely* wasted;
+        //   at least, not as easily.
+        CheckpointCoords[pln][0] = GetActorX(0);
+        CheckpointCoords[pln][1] = GetActorY(0);
+        CheckpointCoords[pln][2] = GetActorZ(0);
+        CheckpointCoords[pln][3] = GetActorAngle(0);
+        CheckpointCoords[pln][4] = GetActorPitch(0);
+
         while (!onGround(0)) { Delay(1); }
 
         CheckpointCoords[pln][0] = GetActorX(0);
