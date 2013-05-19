@@ -609,22 +609,29 @@ int TimerOn;
 script 423 (void) net clientside
 {
     TimerOn = !TimerOn;
+    int pln = PlayerNumber();
     int time = -1, time2;
     int i,j,k,l;
     int dist, unitCm;
+    int myTID;
 
-    while (TimerOn)
+    if (pln != ConsolePlayerNumber()) { terminate; }
+
+    myTID = defaultTID(-1);
+    SetActivator(-1);
+
+    while (TimerOn && !PlayerIsSpectator(pln))
     {
         time++;
         SetHudSize(480, 360, 1);
         DisplayTime(time, 2501, 420, 32, CR_GOLD);
 
-        dist += ftoi(magnitudeThree_f(GetActorVelX(0), GetActorVelY(0), GetActorVelZ(0)));
+        dist += ftoi(magnitudeThree_f(GetActorVelX(myTID), GetActorVelY(myTID), GetActorVelZ(myTID)));
 
         Delay(1);
     }
 
-    if (time)
+    if (time > 0)
     {
         unitCm = FixedDiv(itof(GetCVar("cyber_mph_doomguyheight")) / 51, 1.2);
         unitCm = FixedMul(unitCm, 2.54);
@@ -634,7 +641,7 @@ script 423 (void) net clientside
         j = (time2%3600)/60;
         k = fracSec(time);
         l = dist * (unitCm / 100);
-        Print(s:"End time: \ck", d:i, s:"\c- hour",   s:cond(i == 1, "", "s"), s:", \ck",
+        PrintBold(s:"End time: \ck", d:i, s:"\c- hour",   s:cond(i == 1, "", "s"), s:", \ck",
                                  d:j, s:"\c- minute", s:cond(j == 1, "", "s"), s:", \ck",
                                  f:k, s:"\c- second", s:cond(k == 1.0, "", "s"),
               s:"\nDistance travelled: \ck", f:l, s:"\c- meter", s:cond(l == 1.0, "", "s"));
