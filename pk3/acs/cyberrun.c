@@ -153,6 +153,7 @@ int RechargingTimes[RECHARGECOUNT][2] =
 // 5        -> last checkpoint
 // 6        -> next checkpoint
 int CheckpointCoords[PLAYERMAX][7];
+int HasTeleported[PLAYERMAX];
 
 script 105 (int mode, int index, int next)
 {
@@ -169,8 +170,13 @@ script 105 (int mode, int index, int next)
         y = CheckpointCoords[pln][1];
         z = CheckpointCoords[pln][2];
         Spawn("ACSSpawnDummy", x,y,z, ttid, CheckpointCoords[pln][3]);
-        Spawn("CyberTelefog", x,y,z);
-        Spawn("CyberTelefog", GetActorX(0), GetActorY(0), GetActorZ(0));
+
+        if (!HasTeleported[pln])
+        {
+            Spawn("CyberTelefog", x,y,z);
+            Spawn("CyberTelefog", GetActorX(0), GetActorY(0), GetActorZ(0));
+            HasTeleported[pln] = 2;
+        }
 
         Teleport_NoFog(ttid);
         
@@ -259,6 +265,7 @@ script 400 ENTER
     {
         tid = defaultTID(-1);
         PlayerTIDs[pln] = tid;
+        HasTeleported[pln] = max(0, HasTeleported[pln]-1);
 
         for (i = 0; i < RECHARGECOUNT; i++)
         {
