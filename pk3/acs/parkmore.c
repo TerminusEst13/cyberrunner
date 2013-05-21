@@ -272,8 +272,8 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 
     if (type == WB_DODGE)
     {
-        sideMove = keyDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
-        forwMove = keyDown(BT_FORWARD) - keyDown(BT_BACK);
+        sideMove = inputDown(BT_MOVERIGHT) - inputDown(BT_MOVELEFT);
+        forwMove = inputDown(BT_FORWARD) - inputDown(BT_BACK);
 
         switch (direction)
         {
@@ -530,9 +530,9 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     origDistance = magnitudeTwo(ftoi(ledgeX), ftoi(ledgeY));
 
     i =  0;
-    i =  (keyDown(BT_FORWARD) << 0);
-    i |= (keyDown(BT_BACK)    << 1);
-    i |= (keyDown(BT_JUMP)    << 2);
+    i =  (inputDown(BT_FORWARD) << 0);
+    i |= (inputDown(BT_BACK)    << 1);
+    i |= (inputDown(BT_JUMP)    << 2);
 
     while (1)
     {
@@ -597,11 +597,11 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
         SetActorVelocity(0, 24*ledgeX, 24*ledgeY,0, 0, 0);
 
-        if (keyPressed(BT_BACK) && !ledgeMove)
+        if (inputPressed(BT_BACK) && !ledgeMove)
         {
             break;
         }
-        if (keyPressed(BT_BACK) && ledgeMove)
+        if (inputPressed(BT_BACK) && ledgeMove)
         {
             for (i = 0; i < 2; i++)
             {
@@ -612,7 +612,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
             SetActorVelocity(0, -2*cos(curAngle),-2*sin(curAngle),9.0, 0, 1);
             break;
         }
-        if ((keyPressed(BT_FORWARD) && !ledgeMove) || (i & 1))  // i &= keyDown(BT_FORWARD);
+        if ((inputPressed(BT_FORWARD) && !ledgeMove) || (i & 1))  // i &= inputDown(BT_FORWARD);
         {                                                       // right before while (1)
             for (i = 0; i < 2; i++)
             {
@@ -623,7 +623,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
             SetActorVelocity(0, 2*cos(curAngle),2*sin(curAngle),9.0, 0, 1);
             break;
         }
-        if (keyPressed(BT_FORWARD) && ledgeMove)
+        if (inputPressed(BT_FORWARD) && ledgeMove)
         {
             break;
         }
@@ -632,7 +632,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
         if (!ledgeMove)  // if not facing the other way
         {
-            ledgeMove = keyDown(BT_MOVELEFT) - keyDown(BT_MOVERIGHT); 
+            ledgeMove = inputDown(BT_MOVELEFT) - inputDown(BT_MOVERIGHT); 
             ledgeMove *= 4;
 
             SetActorVelocity(heightTID, ledgeMove*cos(0.3+curAngle),ledgeMove*sin(0.3+curAngle),0, 0, 0);
@@ -732,19 +732,19 @@ script PARKMORE_WALLHOLD (void)
         if (facingWall) { SetActorVelocity(0, 0,0,-0.4, 0, 0); }
         else            { SetActorVelocity(0, 0,0,-1.6, 0, 0); }
 
-        if ((keyPressed(BT_BACK)    && !facingWall) ||
-            (keyPressed(BT_FORWARD) && facingWall))
+        if ((inputPressed(BT_BACK)    && !facingWall) ||
+            (inputPressed(BT_FORWARD) && facingWall))
         {
             break;
         }
 
-        if ((keyPressed(BT_FORWARD) && !facingWall) || keyPressed(BT_JUMP))
+        if ((inputPressed(BT_FORWARD) && !facingWall) || inputPressed(BT_JUMP))
         {
             ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, WD_FORWARD, 0);
             break;
         }
 
-        if (keyPressed(BT_BACK) && facingWall)
+        if (inputPressed(BT_BACK) && facingWall)
         {
             ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, WD_BACK, 0);
             break;
@@ -774,10 +774,10 @@ function void MultiJump(int countJump, int force)
     if ((force != 1) && (playerJumps[pln] + countJump > MaxJumpCount)) { return; }
     if (playerJumps[pln] == 0) { return; }
     
-    forward = keyDown(BT_FORWARD) - keyDown(BT_BACK);
-    forward *= cond(keyDown(BT_FORWARD), JUMP_FORWARD, JUMP_BACK);
+    forward = inputDown(BT_FORWARD) - keyDown(BT_BACK);
+    forward *= cond(inputDown(BT_FORWARD), JUMP_FORWARD, JUMP_BACK);
 
-    side    = keyDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
+    side    = inputDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
     side    *= JUMP_SIDE;
 
     forwardx = FixedMul(cos(angle), forward);
@@ -900,11 +900,11 @@ function void addCTimers(int pln)
     int i = max(0, defaultCVar("cyber_dodgewindow",  8));
     //int j = max(0, defaultCVar("cyberrunner_hijumpwindow", 4));
 
-    addTimer(pln, TIMER_CFORWARD,  keyPressed(BT_FORWARD)   * i);
-    addTimer(pln, TIMER_CRIGHT,    keyPressed(BT_MOVERIGHT) * i);
-    addTimer(pln, TIMER_CBACK,     keyPressed(BT_BACK)      * i);
-    addTimer(pln, TIMER_CLEFT,     keyPressed(BT_MOVELEFT)  * i);
-    //addTimer(pln, TIMER_HBACK,     keyPressed(BT_BACK)      * j);
+    addTimer(pln, TIMER_CFORWARD,  inputPressed(BT_FORWARD)   * i);
+    addTimer(pln, TIMER_CRIGHT,    inputPressed(BT_MOVERIGHT) * i);
+    addTimer(pln, TIMER_CBACK,     inputPressed(BT_BACK)      * i);
+    addTimer(pln, TIMER_CLEFT,     inputPressed(BT_MOVELEFT)  * i);
+    //addTimer(pln, TIMER_HBACK,     inputPressed(BT_BACK)      * j);
 }
 
 function int tickTimer(int pln, int timerNum)
@@ -1075,19 +1075,19 @@ script PARKMORE_ENTER2 enter clientside
 
         if (!getTimer(pln, TIMER_DIDDODGE) && !CheckInventory("NoParkour"))
         {
-            if (keyPressed(BT_MOVELEFT) && getTimer(pln, TIMER_CLEFT))
+            if (inputPressed(BT_MOVELEFT) && getTimer(pln, TIMER_CLEFT))
             {
                 dodgeDir = WD_LEFT;
             }
-            else if (keyPressed(BT_FORWARD) && getTimer(pln, TIMER_CFORWARD))
+            else if (inputPressed(BT_FORWARD) && getTimer(pln, TIMER_CFORWARD))
             {
                 dodgeDir = WD_FORWARD;
             }
-            else if (keyPressed(BT_MOVERIGHT) && getTimer(pln, TIMER_CRIGHT))
+            else if (inputPressed(BT_MOVERIGHT) && getTimer(pln, TIMER_CRIGHT))
             {
                 dodgeDir = WD_RIGHT;
             }
-            else if (keyPressed(BT_BACK) && getTimer(pln, TIMER_CBACK))
+            else if (inputPressed(BT_BACK) && getTimer(pln, TIMER_CBACK))
             {
                 dodgeDir = WD_BACK;
             }
@@ -1117,7 +1117,7 @@ script PARKMORE_ENTER2 enter clientside
             }
         }
 
-        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0 && !CheckInventory("NoParkour"))
+        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && inputPressed(BT_JUMP) && direction != 0 && !CheckInventory("NoParkour"))
         {
             switch (direction)
             {
@@ -1181,7 +1181,7 @@ script PARKMORE_ENTER2 enter clientside
             //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
         }
 
-        if (keyPressed(BT_JUMP) && !CheckInventory("NoParkour"))
+        if (inputPressed(BT_JUMP) && !CheckInventory("NoParkour"))
         {
             /*
             if (getTimer(pln, TIMER_HBACK) > 0) 

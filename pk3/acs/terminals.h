@@ -78,24 +78,86 @@ script 107 (int index, int titleNum, int locationNum) clientside
     TerminalLocation[index] = locationNum;
 }
 
-script 108 (int startIndex) clientside
+script 108 (int index, int nextScript, int nextDelay)
+{
+    SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+    ACS_ExecuteAlways(110, 0, index);
+
+    while (!CheckInventory("TerminalOver")) { Delay(1); }
+
+    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+    
+    if (nextScript && CheckInventory("TerminalFinished"))
+    {
+        Delay(nextDelay);
+        ACS_ExecuteAlways(nextScript, 0, index);
+    }
+}
+
+
+script 109 (int ended) net
+{
+    if (ended) { GiveInventory("TerminalFinished", 1); }
+    GiveInventory("TerminalOver", 1);
+    Delay(1);
+    TakeInventory("TerminalOver", 1);
+    TakeInventory("TerminalFinished", 1);
+}
+
+script 110 (int startIndex) clientside
 {
     int index = startIndex;
+    int count, i; 
     int oindex;
     int displaymode, message, graphic, next, prev;
     int time = 0;
+    int which = 1;
+    int urgent;
+    int health, ohealth;
+    int allowscroll;
+    int startPrev = GetPrevTerm(startIndex);
+    int backmove;
+
+    if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
 
     SetHudSize(1024, 768, 1);
+    InTerminal[PlayerNumber()] = 1;
+
+    i = index;
+
+    while (i > 0)
+    {
+        count++;
+        i = GetNextTerm(i);
+    }
+
+    health = GetActorProperty(0, APROP_Health);
 
     while (1)
     {
-        if (index <= 0) { break; }
+        if (index <= 0) { urgent = -1; break; }
+
+        ohealth = health;
+        health = GetActorProperty(0, APROP_Health);
+
+        if (health < ohealth)
+        {
+            urgent = 1;
+            break;
+        }
 
         displaymode = GetTermDisplayMode(index);
         message     = GetTermMessage(index);
         graphic     = GetTermGraphic(index);
         next        = GetNextTerm(index);
         prev        = GetPrevTerm(index);
+        backmove    = 1;
+
+        while (GetTermDisplayMode(prev) == DISPLAY_TITLE)
+        {
+            backmove++;
+            prev = GetPrevTerm(prev);
+        }
 
         if (time % 35 == 0)
         {
@@ -106,8 +168,19 @@ script 108 (int startIndex) clientside
             SetFont("CONFONT");
 
             SetHudSize(640, 480, 1);
-            HudMessage(s:"Press ", k:"+forward", s:"/", k:"+back", s:" to move up and down";
+
+            switch ((time / 105) % 2)
+            {
+              case 0:
+                HudMessage(s:"Press ", k:"+forward", s:"/", k:"+back", s:" to move forward and back";
                         HUDMSG_FADEOUT, 3001, CR_GREEN, 6.1, 410.0, 1.5, 1.0);
+                break;
+
+              case 1:
+                HudMessage(s:"Hit ", k:"+jump", s:" to leave the terminal";
+                        HUDMSG_FADEOUT, 3001, CR_GREEN, 6.1, 410.0, 1.5, 1.0);
+                break;
+            }
         }
 
         if (time % 35 == 0 || oindex != index)
@@ -120,47 +193,82 @@ script 108 (int startIndex) clientside
             HudMessage(s:GetTermLocation(index);
                         HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0);
 
-            if (displaymode == DISPLAY_TITLE)
+            HudMessage(s:"Screen ", d:which, s:"/", d:count;
+                        HUDMSG_FADEOUT, 3002, CR_GREEN, 634.2, 410.0, 1.5, 1.0);
+
+            if (graphic != "EMPTYGFX")
             {
-                SetFont(graphic);
-                HudMessage(s:"A"; HUDMSG_FADEOUT, 3005, CR_UNTRANSLATED, 320.4, 240.0, 1.5, 1.0);
-                
-                SetFont("CONFONT");
-                if (GetChar(message, 0) == '$')
+                if (displaymode == DISPLAY_TITLE)
                 {
-                    HudMessage(l:message; HUDMSG_FADEOUT, 3006, CR_GREEN, 320.4, 366.1, 1.5, 1.0);
+                    SetFont(graphic);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 320.4, 240.0, 1.5, 1.0);
+                    
+                    SetFont("CONFONT");
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 320.4, 334.1, 1.5, 1.0);
                 }
                 else
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3006, CR_GREEN, 320.4, 366.1, 1.5, 1.0);
+                    SetFont(graphic);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 192.4, 240.0, 1.5, 1.0);
+                    
+                    SetFont("CONFONT");
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 336.1, 128.1, 1.5, 1.0);
                 }
             }
             else
             {
-                SetFont(graphic);
-                HudMessage(s:"A"; HUDMSG_FADEOUT, 3005, CR_UNTRANSLATED, 192.4, 240.0, 1.5, 1.0);
-                
                 SetFont("CONFONT");
-                if (GetChar(message, 0) == '$')
+                HudMessage(s:" "; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 320.4, 240.0, 1.5, 1.0);
+
+                if (displaymode == DISPLAY_TITLE)
                 {
-                    HudMessage(l:message; HUDMSG_FADEOUT, 3006, CR_GREEN, 336.1, 128.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 320.4, 240.0, 1.5, 1.0);
                 }
                 else
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3006, CR_GREEN, 336.1, 128.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 64.1, 128.1, 1.5, 1.0);
                 }
             }
         }
 
-        //Print(d:index, s:" (", d:displaymode, s:"): ", s:message,
-        //    s:"\n", s:graphic, 
-        //    s:"\n", d:next);
+        // If we hit a title screen and it's either the first or last
+        if (oindex != index && displaymode == DISPLAY_TITLE)
+        {
+            if (prev <= 0 || next >= 0) { i = time; }   
+        }
 
         oindex = index;
 
-        if ((time+1) % 70 == 0)
+        if (displaymode == DISPLAY_TITLE && (prev <= 0 || next >= 0))
         {
-            index = next;
+            allowscroll = 0;
+
+            if (i + 35 < time)
+            {
+                index = next;
+                which++;
+            }
+        }
+        else
+        {
+            allowscroll = 1;
+        }
+
+        if (keyPressed(BT_JUMP)) { break; }
+
+        if (allowscroll)
+        {
+            if (keyPressed(BT_FORWARD))
+            {
+                index = next;
+                which++;
+            }
+
+            if (keyPressed(BT_BACK) && prev > 0 && prev != startPrev)
+            {
+                index = prev;
+                which -= backmove;
+            }
         }
         
         time++;
@@ -169,6 +277,8 @@ script 108 (int startIndex) clientside
 
     SetFont("EMPTYGFX");
     HudMessage(s:"A"; HUDMSG_FADEOUT, 3001, CR_UNTRANSLATED,
+                    512.4, 384.0, 1.5, 1.0);
+    HudMessage(s:"A"; HUDMSG_FADEOUT, 3002, CR_UNTRANSLATED,
                     512.4, 384.0, 1.5, 1.0);
     HudMessage(s:"A"; HUDMSG_FADEOUT, 3003, CR_UNTRANSLATED,
                     512.4, 384.0, 1.5, 1.0);
@@ -180,13 +290,28 @@ script 108 (int startIndex) clientside
                     512.4, 384.0, 1.5, 1.0);
     HudMessage(s:"A"; HUDMSG_FADEOUT, 4000, CR_UNTRANSLATED,
                     512.4, 384.0, 1.5, 1.0);
+
+    InTerminal[PlayerNumber()] = 0;
+
+    if (urgent != 1) { Delay(2); }
+
+    if (urgent == -1) { ConsoleCommand("puke -109 1"); }
+    else { ConsoleCommand("puke -109"); }
 }
 
 // Super debug script
 script 118 ENTER
 {
-    int derp = "Test 3";
-    ACS_ExecuteAlways(106, 0, packShorts(5, 6), "Test 1", "CYBRLOG1");
-    ACS_ExecuteAlways(106, 0, packShorts(6, 7), "Test 2", "");
-    ACS_ExecuteAlways(106, 0, packShorts(7, 0), -derp, "CYBRLOG1");
+    ACS_ExecuteAlways(106, 0, packShorts(7, 5), -("Test 1 - title with graphic"), "CYBRLOG1");
+    ACS_ExecuteAlways(106, 0, packShorts(5, 6), "Test 2 - normal text blob with graphic", "CYBRLOG1");
+    ACS_ExecuteAlways(106, 0, packShorts(6, 8), "Test 3 - normal text blob without graphic", "");
+    ACS_ExecuteAlways(106, 0, packShorts(8, 9), -("Test 4 - title without graphic"), "");
+    ACS_ExecuteAlways(106, 0, packShorts(9, 0), "Test 5 - normal text blob without graphic, after title", "");
+
+    ACS_ExecuteAlways(107, 0, 6, "Title test", "Location test");
+}
+
+script 119 (void)
+{
+    Print(s:"Sup fags");
 }

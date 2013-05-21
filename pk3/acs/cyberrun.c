@@ -257,6 +257,7 @@ script 400 ENTER
     int pln = PlayerNumber();
 
     ACS_ExecuteAlways(424, 0, pln, Timer());
+    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
 
     PlayerTimes[pln][TIME_START]        = Timer();
     PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
@@ -686,7 +687,7 @@ script 424 (int pln, int startTime) clientside
 
     while (1)
     {
-        if (GetCVar("screenblocks") >= 12)
+        if (GetCVar("screenblocks") >= 12 || InTerminal[pln])
         {
             for (x = 0; x < 10; x++)
             {

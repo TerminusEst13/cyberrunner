@@ -99,6 +99,14 @@ function int keyUp(int key)
     return 0;
 }
 
+function int keyUp_any(int key)
+{
+    int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+    if (~buttons & key) { return 1; }
+    return 0;
+}
+
 function int keyDown(int key)
 {
     int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
@@ -133,6 +141,59 @@ function int keyPressed(int key)
 function int keyPressed_any(int key)
 {
     if (keysPressed() & key) { return 1; }
+    return 0;
+}
+
+function int inputUp(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if ((~buttons & input) == input) { return 1; }
+    return 0;
+}
+
+function int inputUp_any(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if (~buttons & input) { return 1; }
+    return 0;
+}
+
+function int inputDown(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if ((buttons & input) == input) { return 1; }
+    return 0;
+}
+
+function int inputDown_any(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if (buttons & input) { return 1; }
+    return 0;
+}
+
+function int inputsPressed(void)
+{
+    int buttons     = GetPlayerInput(-1, MODINPUT_BUTTONS);
+    int oldbuttons  = GetPlayerInput(-1, MODINPUT_OLDBUTTONS);
+    int newbuttons  = (buttons ^ oldbuttons) & buttons;
+
+    return newbuttons;
+}
+
+function int inputPressed(int input)
+{
+    if ((inputsPressed() & input) == input) { return 1; }
+    return 0;
+}
+
+function int inputPressed_any(int input)
+{
+    if (inputsPressed() & input) { return 1; }
     return 0;
 }
 

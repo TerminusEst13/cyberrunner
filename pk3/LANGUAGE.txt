@@ -33,3 +33,5 @@ CYBERRUNNER_OB_CARBINE  = "%k \cdsplit \c-%o \cdinto two.";
 CYBERRUNNER_OB_VULCAN  = "%k \ctliquidated \c-%o\ct.";
 CYBERRUNNER_OB_VENT     = "%k \cucollapsed \c-%o\cu's lungs.";
 CYBERRUNNER_OB_DELETED  = "%k \cjdeleted \c-%o\cj.";
+
+TEST2 = "This is a test.";

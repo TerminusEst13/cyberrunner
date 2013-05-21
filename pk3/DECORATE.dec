@@ -1,3 +1,26 @@
+actor Boolean: Inventory
+{
+    Inventory.MaxAmount 1
+    +UNDROPPABLE
+    -INVBAR
+}
+
+actor Counter: Inventory
+{
+    Inventory.MaxAmount 0x7FFFFFFF
+    +UNDROPPABLE
+    -INVBAR
+}
+
+actor Trigger: CustomInventory
+{
+    Inventory.MaxAmount 0
+    +AUTOACTIVATE
+}
+
+actor TerminalOver: Boolean {}
+actor TerminalFinished: Boolean {}
+
 actor ACSSpawnDummy
 {
     +SERVERSIDEONLY

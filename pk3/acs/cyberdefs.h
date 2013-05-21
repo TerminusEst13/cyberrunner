@@ -8,3 +8,4 @@
 
 int PlayerTIDs[PLAYERMAX];
 int PlayerTimes[PLAYERMAX][TIMECOUNT];
+int InTerminal[PLAYERMAX];
