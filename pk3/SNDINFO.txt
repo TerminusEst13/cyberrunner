@@ -79,6 +79,10 @@ menu/invalid 		MENUFAIL // Menu not available. - Taken from Devil May Cry 3
 radar/on			sounds/radar_on.wav // Taken from Mega Man X5
 radar/off			sounds/radar_off.wav // Taken from Mega Man X5
 
+terminal/login		TERMLGIN
+terminal/logout		TERMLGOT
+terminal/page		TERMPAGE
+
 // Pickups
 // =============
 
