@@ -83,9 +83,13 @@ script 108 (int index, int nextScript, int nextDelay)
     SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
     ACS_ExecuteAlways(110, 0, index);
 
+    if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 1; }
+
     while (!CheckInventory("TerminalOver")) { Delay(1); }
 
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+
+    if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 0; }
     
     if (nextScript && CheckInventory("TerminalFinished"))
     {
@@ -107,7 +111,7 @@ script 109 (int ended) net
 script 110 (int startIndex) clientside
 {
     int index = startIndex;
-    int count, i; 
+    int count, i;
     int oindex;
     int displaymode, message, graphic, next, prev;
     int time = 0;
@@ -153,10 +157,18 @@ script 110 (int startIndex) clientside
         prev        = GetPrevTerm(index);
         backmove    = 1;
 
-        while (GetTermDisplayMode(prev) == DISPLAY_TITLE)
+        while (1)
         {
-            backmove++;
-            prev = GetPrevTerm(prev);
+            if (GetTermDisplayMode(prev) == DISPLAY_TITLE &&
+                (GetNextTerm(prev) <= 0 || GetPrevTerm(prev) <= 0))
+            {
+                backmove++;
+                prev = GetPrevTerm(prev);
+            }
+            else
+            {
+                break;
+            }
         }
 
         if (time % 35 == 0)
@@ -234,12 +246,18 @@ script 110 (int startIndex) clientside
         // If we hit a title screen and it's either the first or last
         if (oindex != index && displaymode == DISPLAY_TITLE)
         {
-            if (prev <= 0 || next >= 0) { i = time; }   
+            if (prev <= 0 || next <= 0)
+            {
+                if (next <= 0) { ActivatorSound("terminal/logout", 127); }
+                else if (prev <= 0) { ActivatorSound("terminal/login", 127); }
+                 
+                i = time;
+            }
         }
 
         oindex = index;
 
-        if (displaymode == DISPLAY_TITLE && (prev <= 0 || next >= 0))
+        if (displaymode == DISPLAY_TITLE && (prev <= 0 || next <= 0))
         {
             allowscroll = 0;
 
@@ -262,12 +280,14 @@ script 110 (int startIndex) clientside
             {
                 index = next;
                 which++;
+                LocalAmbientSound("terminal/page", 127);
             }
 
             if (keyPressed(BT_BACK) && prev > 0 && prev != startPrev)
             {
                 index = prev;
                 which -= backmove;
+                LocalAmbientSound("terminal/page", 127);
             }
         }
         

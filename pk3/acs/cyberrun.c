@@ -233,6 +233,8 @@ script 405 OPEN
 {
     int ac, oac;
 
+    IsServer = 1;
+
     if (!GetCVar("cyber_noaircontrol"))
     {
         ConsoleCommand("set cyber_noaircontrol 0");
@@ -317,6 +319,7 @@ script 402 (void) NET
     int rx, ry, rz, rmag;
 	
     if (isDead(0)) { terminate; }
+    if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("DashCooldown") == 0)
     {
         vx = GetActorVelX(0);
@@ -357,6 +360,7 @@ script 402 (void) NET
 script 403 (void) NET
 {
     if (isDead(0)) { terminate; }
+    if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("JumpCooldown") == 0)
     {
         ActivatorSound("cyber/jump",255);
@@ -369,6 +373,7 @@ script 403 (void) NET
 script 404 (void) NET
 {
     if (isDead(0)) { terminate; }
+    if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("BoostCooldown") == 0)
     {
         ActivatorSound("cyber/boost",255);
