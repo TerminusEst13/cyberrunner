@@ -2,9 +2,9 @@ clearplayerclasses
 addplayerclass CyberRunner
 
 addkeysection "Cyberrunner: Essential" cyberkeys
-addmenukey "Cyber Dash" cyberdash
-addmenukey "Cyber Jump" cyberjump
-addmenukey "Cyber Turbo" cyberboost
+addmenukey "Horizontal Boost" cyberdash
+addmenukey "Vertical Boost" cyberjump
+addmenukey "Turbo Charge" cyberboost
 
 alias cyberdash "puke 402"
 alias cyberjump "puke 403"
