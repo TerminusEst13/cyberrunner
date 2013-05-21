@@ -311,9 +311,9 @@ script 110 (int startIndex) clientside
     HudMessage(s:"A"; HUDMSG_FADEOUT, 4000, CR_UNTRANSLATED,
                     512.4, 384.0, 1.5, 1.0);
 
-    InTerminal[PlayerNumber()] = 0;
 
     if (urgent != 1) { Delay(2); }
+    InTerminal[PlayerNumber()] = 0;
 
     if (urgent == -1) { ConsoleCommand("puke -109 1"); }
     else { ConsoleCommand("puke -109"); }
@@ -326,7 +326,8 @@ script 118 ENTER
     ACS_ExecuteAlways(106, 0, packShorts(5, 6), "Test 2 - normal text blob with graphic", "CYBRLOG1");
     ACS_ExecuteAlways(106, 0, packShorts(6, 8), "Test 3 - normal text blob without graphic", "");
     ACS_ExecuteAlways(106, 0, packShorts(8, 9), -("Test 4 - title without graphic"), "");
-    ACS_ExecuteAlways(106, 0, packShorts(9, 0), "Test 5 - normal text blob without graphic, after title", "");
+    ACS_ExecuteAlways(106, 0, packShorts(9, 2), "Test 5 - normal text blob without graphic, after title", "");
+    ACS_ExecuteAlways(106, 0, packShorts(2, 0), -("Test 6 - title with graphic, at end"), "CYBRLOG1");
 
     ACS_ExecuteAlways(107, 0, 6, "Title test", "Location test");
 }
