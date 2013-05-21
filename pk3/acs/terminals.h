@@ -183,12 +183,12 @@ script 110 (int startIndex) clientside
             switch ((time / 105) % 2)
             {
               case 0:
-                HudMessage(s:"Press ", k:"+forward", s:"/", k:"+back", s:" to move forward and back";
+                HudMessage(s:"Press \cj", k:"+moveleft", s:"\c-/\cj", k:"+moveright", s:"\c- to move forward and back";
                         HUDMSG_FADEOUT, 3001, CR_GREEN, 6.1, 410.0, 1.5, 1.0);
                 break;
 
               case 1:
-                HudMessage(s:"Hit ", k:"+jump", s:" to leave the terminal";
+                HudMessage(s:"Hit \cj", k:"+jump", s:"\c- to leave the terminal";
                         HUDMSG_FADEOUT, 3001, CR_GREEN, 6.1, 410.0, 1.5, 1.0);
                 break;
             }
@@ -275,14 +275,14 @@ script 110 (int startIndex) clientside
 
         if (allowscroll)
         {
-            if (keyPressed(BT_FORWARD))
+            if (keyPressed(BT_MOVERIGHT))
             {
                 index = next;
                 which++;
                 LocalAmbientSound("terminal/page", 127);
             }
 
-            if (keyPressed(BT_BACK) && prev > 0 && prev != startPrev)
+            if (keyPressed(BT_MOVELEFT) && prev > 0 && prev != startPrev)
             {
                 index = prev;
                 which -= backmove;
