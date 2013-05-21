@@ -20,6 +20,7 @@ actor Trigger: CustomInventory
 
 actor TerminalOver: Boolean {}
 actor TerminalFinished: Boolean {}
+actor ForceParkourOff: Boolean {}
 
 actor ACSSpawnDummy
 {

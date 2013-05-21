@@ -80,14 +80,11 @@ script 107 (int index, int titleNum, int locationNum) clientside
 
 script 108 (int index, int nextScript, int nextDelay)
 {
-    SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
     ACS_ExecuteAlways(110, 0, index);
 
     if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 1; }
 
     while (!CheckInventory("TerminalOver")) { Delay(1); }
-
-    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
 
     if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 0; }
     
@@ -101,7 +98,9 @@ script 108 (int index, int nextScript, int nextDelay)
 
 script 109 (int ended) net
 {
-    if (ended) { GiveInventory("TerminalFinished", 1); }
+    if (ended == 1) { GiveInventory("TerminalFinished", 1); }
+    if (ended == 2) { UnfreezeDelay[PlayerNumber()] = 3; }
+
     GiveInventory("TerminalOver", 1);
     Delay(1);
     TakeInventory("TerminalOver", 1);
@@ -125,7 +124,6 @@ script 110 (int startIndex) clientside
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
 
     SetHudSize(1024, 768, 1);
-    InTerminal[PlayerNumber()] = 1;
 
     i = index;
 
@@ -143,6 +141,7 @@ script 110 (int startIndex) clientside
 
         ohealth = health;
         health = GetActorProperty(0, APROP_Health);
+        InTerminal[PlayerNumber()] = 1;
 
         if (health < ohealth)
         {
@@ -261,7 +260,7 @@ script 110 (int startIndex) clientside
         {
             allowscroll = 0;
 
-            if (i + 35 < time)
+            if (i + 70 < time)
             {
                 index = next;
                 which++;
@@ -312,11 +311,14 @@ script 110 (int startIndex) clientside
                     512.4, 384.0, 1.5, 1.0);
 
 
-    if (urgent != 1) { Delay(2); }
     InTerminal[PlayerNumber()] = 0;
 
-    if (urgent == -1) { ConsoleCommand("puke -109 1"); }
-    else { ConsoleCommand("puke -109"); }
+    switch (urgent)
+    {
+      case -1: ConsoleCommand("puke -109 2"); break;
+      case 1: ConsoleCommand("puke -109 1"); break;
+      default: ConsoleCommand("puke -109"); break;
+    }
 }
 
 // Super debug script

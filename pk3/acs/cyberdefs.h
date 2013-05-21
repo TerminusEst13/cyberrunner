@@ -9,4 +9,5 @@
 int PlayerTIDs[PLAYERMAX];
 int PlayerTimes[PLAYERMAX][TIMECOUNT];
 int InTerminal[PLAYERMAX];
+int UnfreezeDelay[PLAYERMAX];
 int IsServer;

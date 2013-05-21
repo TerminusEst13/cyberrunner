@@ -257,6 +257,7 @@ script 400 ENTER
     int x, y;
     int tid;
     int pln = PlayerNumber();
+    int term, oterm, unfreeze;
 
     ACS_ExecuteAlways(424, 0, pln, Timer());
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
@@ -293,6 +294,27 @@ script 400 ENTER
             SetActorVelocity(0, x, y, GetActorVelZ(0), 0,0);
         }
 
+        oterm = term;
+        term = InTerminal[pln];
+
+        if (term && !oterm)
+        {
+            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+            GiveInventory("ForceParkourOff", 1);
+        }
+
+        if (!term && oterm || unfreeze)
+        {
+            if (UnfreezeDelay[pln]) { unfreeze = 1; }
+            else
+            {
+                SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+                TakeInventory("ForceParkourOff", 1);
+                unfreeze = 0;
+            }
+        }
+
+        UnfreezeDelay[pln] = max(0, UnfreezeDelay[pln]-1);
         time++;
 
         Delay(1);
