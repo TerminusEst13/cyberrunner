@@ -189,20 +189,20 @@ script 110 (int startIndex) clientside
             SetFont("TERMBG");
             HudMessage(s:"A"; HUDMSG_FADEOUT, 4000, CR_UNTRANSLATED,
                             512.4, 384.0, 1.5, 1.0);
-            SetFont("CONFONT");
+            SetFont("TERMFONT");
 
             SetHudSize(640, 480, 1);
 
             switch ((time / 105) % 2)
             {
               case 0:
-                HudMessage(s:"Press \cj", k:"+moveleft", s:"\c-/\cj", k:"+moveright", s:"\c- to move forward and back";
-                        HUDMSG_FADEOUT, 3001, CR_GREEN, 6.1, 410.0, 1.5, 1.0);
+                HudMessage(s:"Press \c[TermWhite]", k:"+moveleft", s:"\c-/\c[TermWhite]", k:"+moveright", s:"\c- to move forward and back";
+                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3001, "TermGreen", 6.1, 410.0, 1.5, 1.0);
                 break;
 
               case 1:
-                HudMessage(s:"Hit \cj", k:"+jump", s:"\c- to leave the terminal";
-                        HUDMSG_FADEOUT, 3001, CR_GREEN, 6.1, 410.0, 1.5, 1.0);
+                HudMessage(s:"Hit \c[TermWhite]", k:"+jump", s:"\c- to leave the terminal";
+                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3001, "TermGreen", 6.1, 410.0, 1.5, 1.0);
                 break;
             }
         }
@@ -210,16 +210,16 @@ script 110 (int startIndex) clientside
         if (time % 35 == 0 || oindex != index)
         {
             SetHudSize(640, 480, 1);
-            SetFont("CONFONT");
+            SetFont("TERMFONT");
             HudMessage(s:GetTermTitle(index);
-                        HUDMSG_FADEOUT, 3003, CR_GREEN, 6.1, 70.0, 1.5, 1.0);
+                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3003, "TermGreen", 6.1, 70.0, 1.5, 1.0);
 
-            if (locmode == 2) { HudMessage(s:"Disconnecting..."; HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0); }
-            else if (locmode == 1) { HudMessage(s:"Establishing connection..."; HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0); }
-            else { HudMessage(s:GetTermLocation(index); HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0); }
+            if (locmode == 2) { HudMessage(s:"Disconnecting..."; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3004, "TermGreen", 634.2, 70.0, 1.5, 1.0); }
+            else if (locmode == 1) { HudMessage(s:"Establishing connection..."; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3004, "TermGreen", 634.2, 70.0, 1.5, 1.0); }
+            else { HudMessage(s:GetTermLocation(index); HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3004, "TermGreen", 634.2, 70.0, 1.5, 1.0); }
 
             HudMessage(s:"Screen ", d:which, s:"/", d:count;
-                        HUDMSG_FADEOUT, 3002, CR_GREEN, 634.2, 410.0, 1.5, 1.0);
+                        HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3002, "TermGreen", 634.2, 410.0, 1.5, 1.0);
 
             if (graphic != "EMPTYGFX")
             {
@@ -227,35 +227,35 @@ script 110 (int startIndex) clientside
                 {
                     SetFont(graphic);
                     SetHudSize(800, 600, 1);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
                     
                     SetHudSize(640, 480, 1);
-                    SetFont("CONFONT");
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 320.4, 354.1, 1.5, 1.0);
+                    SetFont("TERMFONT");
+                    HudMessage(s:message; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3005, "TermDarkGreen", 320.4, 354.1, 1.5, 1.0);
                 }
                 else
                 {
                     SetFont(graphic);
                     SetHudSize(800, 600, 1);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
                     
                     SetHudSize(640, 480, 1);
-                    SetFont("CONFONT");
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 336.1, 112.1, 1.5, 1.0);
+                    SetFont("TERMFONT");
+                    HudMessage(s:message; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3005, "TermDarkGreen", 336.1, 112.1, 1.5, 1.0);
                 }
             }
             else
             {
-                SetFont("CONFONT");
-                HudMessage(s:" "; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 320.4, 240.0, 1.5, 1.0);
+                SetFont("TERMFONT");
+                HudMessage(s:" "; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3006, CR_UNTRANSLATED, 320.4, 240.0, 1.5, 1.0);
 
                 if (displaymode == DISPLAY_TITLE)
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 320.4, 240.0, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3005, "TermDarkGreen", 320.4, 240.0, 1.5, 1.0);
                 }
                 else
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 16.1, 112.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3005, "TermDarkGreen", 16.1, 112.1, 1.5, 1.0);
                 }
             }
         }

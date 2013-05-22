@@ -1,4 +1,4 @@
-#define TERMCOUNT 2
+#define TERMCOUNT 4
 int TerminalTexts[TERMCOUNT] = 
 {
 "I stumble through the darkness. For some reason, I think I can see,\
@@ -14,17 +14,17 @@ int TerminalTexts[TERMCOUNT] =
 \n\
 \nI stop. An infinitely tall pillar of indeterminate substance stands \
 \nbefore me. It is bright as day, yet it emits no light upon anything \
-\nelse. Trying to feel it, I walk straight through.\
-\n\
-\nApparently, I don't exist. Either that, or the pillar doesn't. \
+\nelse. Trying to feel it, I walk straight through.",
+
+"Apparently, I don't exist. Either that, or the pillar doesn't. \
 \nRegardless, I can see again.\
 \n\
 \nI am on a rocky shore, with dust waves crashing into the rocks. The \
 \npillar is gone. The sky is still as black as ever, but now a large \
 \nwhite circle floats directly overhead. I guess that's the pillar now. \
 \nIt dimly illuminates this new world.\
-\nBesides the shore and ocean of dust, there is a red grass plain \
 \n\
+\nBesides the shore and ocean of dust, there is a red grass plain \
 \nexpanding far beyond my imagination, with solid iron pillars once again \
 \nextending to infinity. Those are probably what I felt. There's also a \
 \nset of tracks, weaving through the pillars.\
@@ -46,9 +46,9 @@ int TerminalTexts[TERMCOUNT] =
 \nable to go through the wormhole, and instantly and safely be wherever\
 \nthe drone landed. Retrieval would be simple. Colonization would be a\
 \nbreeze. Humanity would finally leave the solar system. Teleportation\
-\nwould be outed as the best space travel method out there.\
-\n\
-\nBut I guess the ratings are more important. Fucking hell, I hate the \
+\nwould be outed as the best space travel method out there.",
+
+"But I guess the ratings are more important. Fucking hell, I hate the \
 \npublic. I mean, I guess it would be nice to escape the solar system, but \
 \nclearly watching some androids run through our scientific gold mines is\
 \nmore important. Ignore the science for the flashy, fast, furious frenzy\
@@ -65,13 +65,16 @@ script 119 OPEN clientside
 {
     ACS_ExecuteAlways(106, 0, packShorts(1, 2), -("wanderer"), "ODDLOGO1");
     ACS_ExecuteAlways(106, 0, packShorts(2, 3), TerminalTexts[0]);
-    ACS_ExecuteAlways(106, 0, packShorts(3, 0), -("vitalize"), "ODDLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(3, 4), TerminalTexts[1]);
+    ACS_ExecuteAlways(106, 0, packShorts(4, 0), -("vitalize"), "ODDLOGO1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(4, 5), -("Grievances For Progress"), "SCILOGO1");
-    ACS_ExecuteAlways(106, 0, packShorts(5, 6), TerminalTexts[1]);
-    ACS_ExecuteAlways(106, 0, packShorts(6, 0), -("End of log."), "SCILOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(5, 6), -("Grievances For Progress"), "SCILOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(6, 7), TerminalTexts[2]);
+    ACS_ExecuteAlways(106, 0, packShorts(7, 8), TerminalTexts[3]);
+    ACS_ExecuteAlways(106, 0, packShorts(8, 0), -("End of log."), "SCILOGO1");
 
     ACS_ExecuteAlways(107, 0, 1, "xF%7-q", "ma&s-02c5z");
     ACS_ExecuteAlways(107, 0, 2, "xF%7-q", "ma&s-02c5z");
     ACS_ExecuteAlways(107, 0, 3, "xF%7-q", "ma&s-02c5z");
+    ACS_ExecuteAlways(107, 0, 4, "xF%7-q", "ma&s-02c5z");
 }
