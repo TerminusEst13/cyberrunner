@@ -241,7 +241,7 @@ script 110 (int startIndex) clientside
                     
                     SetHudSize(640, 480, 1);
                     SetFont("CONFONT");
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 336.1, 128.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 336.1, 112.1, 1.5, 1.0);
                 }
             }
             else
@@ -255,7 +255,7 @@ script 110 (int startIndex) clientside
                 }
                 else
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 16.1, 128.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 16.1, 112.1, 1.5, 1.0);
                 }
             }
         }

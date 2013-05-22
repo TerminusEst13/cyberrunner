@@ -9,8 +9,8 @@ int TerminalTexts[TERMCOUNT] =
 \nfor me to tell time here. Where am I going? Do I still exist? There \
 \nprobably isn't a way for me to get a definitive answer, although I'm \
 \nstarting to believe that in a part of a universe that hasn't yet \
-\nreached light. That, or I'm the between. Whatever that is, exactly. I \
-\nkeep wandering.\
+\nreached light. That, or I'm in the between. Whatever that is, exactly. \
+\nI keep wandering.\
 \n\
 \nI stop. An infinitely tall pillar of indeterminate substance stands \
 \nbefore me. It is bright as day, yet it emits no light upon anything \
