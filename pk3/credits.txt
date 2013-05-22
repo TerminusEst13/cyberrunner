@@ -67,7 +67,6 @@ SOUNDS:
 - Doom 3 (Drone flight)
 - Serious Sam: The First Encounter (Drone firing)
 - Phantasy Star Online (Chat sound)
-- Marathon 2/Infinity (Terminal login/page/logout sounds)
 
 MUSIC:
 =========
