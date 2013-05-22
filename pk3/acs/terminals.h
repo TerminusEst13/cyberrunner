@@ -231,17 +231,17 @@ script 110 (int startIndex) clientside
                     
                     SetHudSize(640, 480, 1);
                     SetFont("CONFONT");
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 320.4, 354.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 320.4, 354.1, 1.5, 1.0);
                 }
                 else
                 {
                     SetFont(graphic);
                     SetHudSize(800, 600, 1);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 240.4, 300.0, 1.5, 1.0);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
                     
                     SetHudSize(640, 480, 1);
                     SetFont("CONFONT");
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 336.1, 112.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 336.1, 112.1, 1.5, 1.0);
                 }
             }
             else
@@ -251,11 +251,11 @@ script 110 (int startIndex) clientside
 
                 if (displaymode == DISPLAY_TITLE)
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 320.4, 240.0, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 320.4, 240.0, 1.5, 1.0);
                 }
                 else
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 16.1, 112.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_DARKGREEN, 16.1, 112.1, 1.5, 1.0);
                 }
             }
         }

@@ -1,4 +1,4 @@
-#define TERMCOUNT 1
+#define TERMCOUNT 2
 int TerminalTexts[TERMCOUNT] = 
 {
 "I stumble through the darkness. For some reason, I think I can see,\
@@ -30,6 +30,35 @@ int TerminalTexts[TERMCOUNT] =
 \nset of tracks, weaving through the pillars.\
 \n\
 \nIt's a path. I'll take it. I follow the tracks.",
+
+"It's absurd how much money goes into that damned Cyberrunner thing. How \
+\nmuch money do you actually need to bunch up some androids - that you \
+\ndidn't even make yourself - get them to record what they see, and then\
+\nsend them off to a finish line? It's just one giant waste.\
+\n\
+\nHow about using some of the money to fund research of new, unprecedented\
+\ndiscoveries, like this anomaly? It doesn't get ratings, but potential\
+\nman-made wormholes would be such a boon to mankind that the way we think\
+\nof space travel would forever be redrawn.\
+\n\
+\nImagine sending a FTL drone out to some distant part of the galaxy -\
+\nhell, even another galaxy - to have it set up a wormhole there. We'd be\
+\nable to go through the wormhole, and instantly and safely be wherever\
+\nthe drone landed. Retrieval would be simple. Colonization would be a\
+\nbreeze. Humanity would finally leave the solar system. Teleportation\
+\nwould be outed as the best space travel method out there.\
+\n\
+\nBut I guess the ratings are more important. Fucking hell, I hate the \
+\npublic. I mean, I guess it would be nice to escape the solar system, but \
+\nclearly watching some androids run through our scientific gold mines is\
+\nmore important. Ignore the science for the flashy, fast, furious frenzy\
+\nof I don't even care.\
+\n\
+\nMaybe if the public knew what was best for them.\
+\n\
+\n     Dr. Vick\
+\n    2547-07-17\
+\n    15:18:24",
 };
 
 script 119 OPEN clientside
@@ -37,6 +66,10 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(1, 2), -("wanderer"), "ODDLOGO1");
     ACS_ExecuteAlways(106, 0, packShorts(2, 3), TerminalTexts[0]);
     ACS_ExecuteAlways(106, 0, packShorts(3, 0), -("vitalize"), "ODDLOGO1");
+
+    ACS_ExecuteAlways(106, 0, packShorts(4, 5), -("Grievances For Progress"), "SCILOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(5, 6), TerminalTexts[1]);
+    ACS_ExecuteAlways(106, 0, packShorts(6, 0), -("End of log."), "SCILOGO1");
 
     ACS_ExecuteAlways(107, 0, 1, "xF%7-q", "ma&s-02c5z");
     ACS_ExecuteAlways(107, 0, 2, "xF%7-q", "ma&s-02c5z");
