@@ -5,6 +5,7 @@
 
 #include "cyberdefs.h"
 #include "terminals.h"
+#include "termDefs.h"
 
 function void hudmessageonactor(int tid, int range, str sprite, str text, int id) // By Caligari 87
 {

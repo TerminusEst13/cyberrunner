@@ -226,16 +226,20 @@ script 110 (int startIndex) clientside
                 if (displaymode == DISPLAY_TITLE)
                 {
                     SetFont(graphic);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 320.4, 240.0, 1.5, 1.0);
+                    SetHudSize(800, 600, 1);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
                     
+                    SetHudSize(640, 480, 1);
                     SetFont("CONFONT");
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 320.4, 334.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 320.4, 354.1, 1.5, 1.0);
                 }
                 else
                 {
                     SetFont(graphic);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 192.4, 240.0, 1.5, 1.0);
+                    SetHudSize(800, 600, 1);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 240.4, 300.0, 1.5, 1.0);
                     
+                    SetHudSize(640, 480, 1);
                     SetFont("CONFONT");
                     HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 336.1, 128.1, 1.5, 1.0);
                 }
@@ -251,7 +255,7 @@ script 110 (int startIndex) clientside
                 }
                 else
                 {
-                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 64.1, 128.1, 1.5, 1.0);
+                    HudMessage(s:message; HUDMSG_FADEOUT, 3005, CR_GREEN, 16.1, 128.1, 1.5, 1.0);
                 }
             }
         }
@@ -324,22 +328,4 @@ script 110 (int startIndex) clientside
       case 1: ConsoleCommand("puke -109 1"); break;
       default: ConsoleCommand("puke -109"); break;
     }
-}
-
-// Super debug script
-script 118 ENTER
-{
-    ACS_ExecuteAlways(106, 0, packShorts(7, 5), -("Test 1 - title with graphic"), "CYBRLOG1");
-    ACS_ExecuteAlways(106, 0, packShorts(5, 6), "Test 2 - normal text blob with graphic", "CYBRLOG1");
-    ACS_ExecuteAlways(106, 0, packShorts(6, 8), "Test 3 - normal text blob without graphic", "");
-    ACS_ExecuteAlways(106, 0, packShorts(8, 9), -("Test 4 - title without graphic"), "");
-    ACS_ExecuteAlways(106, 0, packShorts(9, 2), "Test 5 - normal text blob without graphic, after title", "");
-    ACS_ExecuteAlways(106, 0, packShorts(2, 0), -("Test 6 - title with graphic, at end"), "CYBRLOG1");
-
-    ACS_ExecuteAlways(107, 0, 6, "Title test", "Location test");
-}
-
-script 119 (void)
-{
-    Print(s:"Sup fags");
 }
