@@ -119,7 +119,7 @@ script 110 (int startIndex) clientside
     int health, ohealth;
     int allowscroll;
     int startPrev = GetPrevTerm(startIndex);
-    int backmove;
+    int backmove, locmode;
 
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
 
@@ -137,11 +137,12 @@ script 110 (int startIndex) clientside
 
     while (1)
     {
+        InTerminal[PlayerNumber()] = 1;
+
         if (index <= 0) { urgent = -1; break; }
 
         ohealth = health;
         health = GetActorProperty(0, APROP_Health);
-        InTerminal[PlayerNumber()] = 1;
 
         if (health < ohealth)
         {
@@ -155,6 +156,18 @@ script 110 (int startIndex) clientside
         next        = GetNextTerm(index);
         prev        = GetPrevTerm(index);
         backmove    = 1;
+
+        // If we hit a title screen and it's either the first or last
+        if (oindex != index && displaymode == DISPLAY_TITLE)
+        {
+            if (prev <= 0 || next <= 0)
+            {
+                if (next <= 0) { ActivatorSound("terminal/logout", 127); locmode = 2; }
+                else if (prev <= 0) { ActivatorSound("terminal/login", 127); locmode = 1;}
+                 
+                i = time;
+            }
+        }
 
         while (1)
         {
@@ -201,8 +214,9 @@ script 110 (int startIndex) clientside
             HudMessage(s:GetTermTitle(index);
                         HUDMSG_FADEOUT, 3003, CR_GREEN, 6.1, 70.0, 1.5, 1.0);
 
-            HudMessage(s:GetTermLocation(index);
-                        HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0);
+            if (locmode == 2) { HudMessage(s:"Disconnecting..."; HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0); }
+            else if (locmode == 1) { HudMessage(s:"Establishing connection..."; HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0); }
+            else { HudMessage(s:GetTermLocation(index); HUDMSG_FADEOUT, 3004, CR_GREEN, 634.2, 70.0, 1.5, 1.0); }
 
             HudMessage(s:"Screen ", d:which, s:"/", d:count;
                         HUDMSG_FADEOUT, 3002, CR_GREEN, 634.2, 410.0, 1.5, 1.0);
@@ -242,18 +256,6 @@ script 110 (int startIndex) clientside
             }
         }
 
-        // If we hit a title screen and it's either the first or last
-        if (oindex != index && displaymode == DISPLAY_TITLE)
-        {
-            if (prev <= 0 || next <= 0)
-            {
-                if (next <= 0) { ActivatorSound("terminal/logout", 127); }
-                else if (prev <= 0) { ActivatorSound("terminal/login", 127); }
-                 
-                i = time;
-            }
-        }
-
         oindex = index;
 
         if (displaymode == DISPLAY_TITLE && (prev <= 0 || next <= 0))
@@ -264,6 +266,7 @@ script 110 (int startIndex) clientside
             {
                 index = next;
                 which++;
+                locmode = 0;
             }
         }
         else
@@ -279,6 +282,7 @@ script 110 (int startIndex) clientside
             {
                 index = next;
                 which++;
+                locmode = 0;
                 LocalAmbientSound("terminal/page", 127);
             }
 
@@ -286,6 +290,7 @@ script 110 (int startIndex) clientside
             {
                 index = prev;
                 which -= backmove;
+                locmode = 0;
                 LocalAmbientSound("terminal/page", 127);
             }
         }
