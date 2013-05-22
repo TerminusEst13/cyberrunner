@@ -246,6 +246,9 @@ actor InstagibCarbineAmmo: Ammo
 
 actor "Purge Rifle": "Instagib Rifle" 15505
 {
+    Radius 48
+    Height 48
+
     Weapon.AmmoType "InstagibCarbineAmmo"
     Weapon.AmmoUse 1
     Weapon.AmmoGive 20

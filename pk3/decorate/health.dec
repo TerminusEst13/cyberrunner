@@ -1,5 +1,8 @@
 actor 50Health: Health 15301
 {
+    Radius 48
+    Height 48
+
     Inventory.Amount 50
     Inventory.PickupSound "pickups/health"
     Inventory.PickupMessage "$CYBERRUNNER_PK_50HEALTH"

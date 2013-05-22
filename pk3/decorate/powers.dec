@@ -72,6 +72,9 @@ actor WallHackToggle : CustomInventory
 
 actor FullTurboRecharge: CustomInventory 15451
 {
+    Radius 48
+    Height 48
+
     Inventory.MaxAmount 0
     +AUTOACTIVATE
     +FLOATBOB

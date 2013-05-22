@@ -1,5 +1,8 @@
 actor ForceVentAmmo : Ammo 15401
 {
+    Radius 48
+    Height 48
+
     Inventory.Amount 3
     Inventory.MaxAmount 3
     Ammo.BackpackMaxAmount 3
@@ -66,6 +69,9 @@ actor ForceVentSparkle2
 
 actor CyberAllAmmo: CustomInventory 15452
 {
+    Radius 48
+    Height 48
+
     +FLOATBOB
     +NOGRAVITY
     +AUTOACTIVATE
