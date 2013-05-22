@@ -278,7 +278,7 @@ script 110 (int startIndex) clientside
 
         if (allowscroll)
         {
-            if (keyPressed(BT_MOVERIGHT))
+            if (keyPressed_any(BT_MOVERIGHT | BT_RIGHT))
             {
                 index = next;
                 which++;
@@ -286,7 +286,7 @@ script 110 (int startIndex) clientside
                 LocalAmbientSound("terminal/page", 127);
             }
 
-            if (keyPressed(BT_MOVELEFT) && prev > 0 && prev != startPrev)
+            if (keyPressed_any(BT_MOVELEFT | BT_LEFT) && prev > 0 && prev != startPrev)
             {
                 index = prev;
                 which -= backmove;

@@ -700,7 +700,6 @@ script 424 (int pln, int startTime) clientside
         else if (classify & ACTOR_PLAYER) { classifyStr = "Activator is a player"; }
         else if (classify & ACTOR_MONSTER) { classifyStr = "Activator is a monster"; }
         else { classifyStr = "Actor is... something"; }
-
         PrintBold(s:"Script started on tic ", d:startTime, s:"\n",
                 s:"Player ", d:pln, s:" (the supposed activator) is ", s:cond(PlayerInGame(pln), "\cd", "\chnot "), s:"in game.\c-\n",
                 s:"Current activator of script 424 for player ", d:pln, s:" (", n:pln+1, s:"\c-) is \"", n:0, s:"\c-\"\c-\n",
@@ -727,6 +726,9 @@ script 424 (int pln, int startTime) clientside
             {
                 HudMessage(s:""; HUDMSG_PLAIN, 3501+x, 0, 0,0, 0);
             }
+
+            time++;
+            showmag = 0;
 
             Delay(1);
             continue;
