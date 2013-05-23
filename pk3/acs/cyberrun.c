@@ -341,7 +341,7 @@ script 402 (void) NET
     int nx, ny, nz, nmag;
     int rx, ry, rz, rmag;
 	
-    if (isDead(0)) { terminate; }
+    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; }
     if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("DashCooldown") == 0)
     {
@@ -382,7 +382,7 @@ script 402 (void) NET
 
 script 403 (void) NET
 {
-    if (isDead(0)) { terminate; }
+    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; }
     if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("JumpCooldown") == 0)
     {
@@ -395,7 +395,7 @@ script 403 (void) NET
 
 script 404 (void) NET
 {
-    if (isDead(0)) { terminate; }
+    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; }
     if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("BoostCooldown") == 0)
     {
