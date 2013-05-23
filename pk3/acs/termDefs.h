@@ -1,4 +1,4 @@
-#define TERMCOUNT 4
+#define TERMCOUNT 6
 int TerminalTexts[TERMCOUNT] = 
 {
 "I stumble through the darkness. For some reason, I think I can see,\
@@ -16,6 +16,7 @@ int TerminalTexts[TERMCOUNT] =
 \nbefore me. It is bright as day, yet it emits no light upon anything \
 \nelse. Trying to feel it, I walk straight through.",
 
+
 "Apparently, I don't exist. Either that, or the pillar doesn't. \
 \nRegardless, I can see again.\
 \n\
@@ -30,6 +31,7 @@ int TerminalTexts[TERMCOUNT] =
 \nset of tracks, weaving through the pillars.\
 \n\
 \nIt's a path. I'll take it. I follow the tracks.",
+
 
 "It's absurd how much money goes into that damned Cyberrunner thing. How \
 \nmuch money do you actually need to bunch up some androids - that you \
@@ -48,6 +50,7 @@ int TerminalTexts[TERMCOUNT] =
 \nbreeze. Humanity would finally leave the solar system. Teleportation\
 \nwould be outed as the best space travel method out there.",
 
+
 "But I guess the ratings are more important. Fucking hell, I hate the \
 \npublic. I mean, I guess it would be nice to escape the solar system, but \
 \nclearly watching some androids run through our scientific gold mines is\
@@ -59,7 +62,17 @@ int TerminalTexts[TERMCOUNT] =
 \n     Dr. Vick\
 \n    2547-07-17\
 \n    15:18:24",
+
+"Something something I forgot the damn paper wanderer faggot dicks cocks.",
+
+"Pillars iron foamy I don't even know words crystals office cocks.",
 };
+
+function void SetMetadataRange(int start, int end, int title, int loc)
+{
+    int i;
+    for (i = start; i <= end; i++) { ACS_ExecuteAlways(107, 0, i, title, loc); }
+}
 
 script 119 OPEN clientside
 {
@@ -73,8 +86,11 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(7, 8), TerminalTexts[3]);
     ACS_ExecuteAlways(106, 0, packShorts(8, 0), -("End of log."), "SCILOGO1");
 
-    ACS_ExecuteAlways(107, 0, 1, "xF%7-q", "ma&s-02c5z");
-    ACS_ExecuteAlways(107, 0, 2, "xF%7-q", "ma&s-02c5z");
-    ACS_ExecuteAlways(107, 0, 3, "xF%7-q", "ma&s-02c5z");
-    ACS_ExecuteAlways(107, 0, 4, "xF%7-q", "ma&s-02c5z");
+    ACS_ExecuteAlways(106, 0, packShorts(9,  10), -("wanderer"), "ODDLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(10, 11), TerminalTexts[4], "");
+    ACS_ExecuteAlways(106, 0, packShorts(11, 12), TerminalTexts[5], "");
+    ACS_ExecuteAlways(106, 0, packShorts(12, 0),  -("release"), "ODDLOGO1");
+
+    SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
+    SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
 }

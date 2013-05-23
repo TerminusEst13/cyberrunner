@@ -80,19 +80,20 @@ script 107 (int index, int titleNum, int locationNum) clientside
 
 script 108 (int index, int nextScript, int nextDelay)
 {
+    SetActorVelocity(0, 0,0,0, 0,0);
     ACS_ExecuteAlways(110, 0, index);
 
     if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 1; }
 
     while (!CheckInventory("TerminalOver")) { Delay(1); }
 
-    if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 0; }
-    
-    if (nextScript && CheckInventory("TerminalFinished"))
+    if (nextScript)
     {
         Delay(nextDelay);
         ACS_ExecuteAlways(nextScript, 0, index);
     }
+
+    if (IsServer) { InTerminal[PlayerNumber()] = 0; }
 }
 
 
@@ -321,7 +322,7 @@ script 110 (int startIndex) clientside
                     512.4, 384.0, 1.5, 1.0);
 
 
-    InTerminal[PlayerNumber()] = 0;
+    if (!IsServer) { InTerminal[PlayerNumber()] = 0; }
 
     switch (urgent)
     {
