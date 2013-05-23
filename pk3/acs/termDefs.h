@@ -117,7 +117,7 @@ int TerminalTexts[TERMCOUNT] =
 \n\
 \nWhy wouldn't I fall in love?\
 \n\
-\n    Vincent Russo
+\n    Vincent Russo\
 \n    ID 943042-B-Delta\
 \n    2547-05-23\
 \n    08:42:16",
