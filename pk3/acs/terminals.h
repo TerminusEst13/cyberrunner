@@ -122,6 +122,7 @@ script 110 (int startIndex) clientside
     int backmove, locmode;
 
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
+    if (InTerminal[PlayerNumber()]) { terminate; }
 
     SetHudSize(1024, 768, 1);
 
