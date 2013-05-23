@@ -76,6 +76,8 @@ MUSIC:
 - CLiNT: Eclipse (CYRC01: Having Fun, Rocketboy?)
 - Skaven: Data Jack (CYRC02: Bob and Weave)
 - Elwood: Sick on Monday (CYRC03: Deep Fried)
+- Depeche Mode: Enjoy the Silence (D_STWIN)
+- Unknown: Gallahad's [sic] Theme (D_STLOSE)
 
 STORY:
 =========
