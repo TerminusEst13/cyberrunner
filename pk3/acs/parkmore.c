@@ -261,7 +261,7 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 {
     int newDir = -1;
     int justCheck;
-    int angle, x,y, x2,y2, i, j;
+    int angle, x,y,z, x2,y2, i, j;
     int tid, canBounce;
     int sideMove, forwMove;
     int x3,y3;
@@ -348,13 +348,16 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
         tid = unusedTID(25000, 30000);
         x3 = GetActorX(0) + x + (x2*i);
         y3 = GetActorY(0) + y + (y2*i);
+        z  = GetActorZ(0) + 16.0;
 
-        j = Spawn("ParkmoreChecker2", GetActorX(0) + x + (x2*i),
-                    GetActorY(0) + y + (y2*i), GetActorZ(0) + 24.0, tid);
+        j = Spawn("ParkmoreChecker2", x3, y3, z, tid);
+        if (!j) { canBounce = 1; }
+        Print(f:GetActorZ(tid), s:", ", f:GetActorFloorZ(tid), s:", ", f:GetActorCeilingZ(tid));
+        if (GetActorZ(tid) != z) { canBounce = 1; }
         Thing_Remove(tid);
         //PrintBold(s:"(", f:x3, s:", ", f:y3, s:") type ", d:type, s:" - ", d:j);
         
-        if (!j) { canBounce = 1; break; }
+        if (canBounce) { break; }
     }
     
     if (canBounce && !justCheck)

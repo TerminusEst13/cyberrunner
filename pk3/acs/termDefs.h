@@ -69,10 +69,42 @@ int TerminalTexts[TERMCOUNT] =
 
 
 // CYRC02 - Terminal 01 - Page 1
-"Something something I forgot the damn paper wanderer faggot dicks cocks.",
+"As I walk the track, the pillars slide away, revealing more untouched\
+\nfield. I notice a slight wind. Speeding up my walk, or outright breaking\
+\ninto a run, does not change at all how I feel the wind. At this point, I\
+\nreally shouldn't be surprised that simple assumptions can be broken so\
+\neasily, but it still catches me off guard.\
+\n\
+\nThe grass fades. The trees decay. As I walk, this red field becomes a\
+\ndesert. But the pillars remain, and the track stays constant. The land\
+\nbrightens, but the sky remains black. I realise that I'm not breathing.\
+\nHow would I?\
+\n\
+\nOne of the pillars open up. Or rather, pipes. A full robe is revealed,\
+\nbut it has no one in it. It walks out and wanders into the distance.\
+\nWhy? All there is here is desert. Or field. I'm not really sure.\
+\nRegardless, the pillar stays open. It's waiting for me, I suppose. I\
+\nwalk in, and it closes.",
 
 // CYRC02 - Terminal 01 - Page 2
-"Pillars iron foamy I don't even know words crystals office cocks.",
+"What was in that robe? What enchanted it? And where does this pipe -\
+\nthis tunnel - lead to? Will these damned questions ever stop coming?\
+\nMaybe I'll finally get answers. Knowing my luck, probably not.\
+\n\
+\nI begin to hover upward, probably from the pipe's mechanisms. The pipe's\
+\ninterior is evenly lit, so much so that everything looks completely\
+\nflat. On closer inspection, these aren't made of iron, but an odd alloy\
+\nthat I've never seen before. It's much more malleable, but when the\
+\npressure deforming it is released, it returns to its original shape.\
+\nOdd. What could it possibly be for?\
+\n\
+\nI stop rising. A floor forms below me, of the same iron-foam alloy the\
+\nwalls are made of. Maybe that's what it's for, to reform the pipe\
+\ndepending on what it's needed for. The pillar opens up, and I am now in\
+\nan abandoned building; seemingly abandoned, anyway. I step out, and the\
+\npillar closes, disappearing as it does so.\
+\n\
+\nI can see myself.",
 
 
 
