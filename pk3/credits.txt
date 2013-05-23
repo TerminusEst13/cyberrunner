@@ -71,8 +71,14 @@ SOUNDS:
 MUSIC:
 =========
 - Lizardking: justice-game_1b (Title screen)
+- Jeroen Tel: War Stars (CYRTUT: Journey of a Thousand Miles, Etc Etc)
 - laamaa: Flying Together (Slightly Edited - CYDM01: The Nanoplex)
 - CLiNT: Eclipse (CYRC01: Having Fun, Rocketboy?)
-- Elwood: Sick on Monday (CYRC02: Deep Fried)
-- Jeroen Tel: War Stars (CYRTUT: Journey of a Thousand Miles, Etc Etc)
-- Skaven: Data Jack (CYRC03: Bob and Weave)
+- Skaven: Data Jack (CYRC02: Bob and Weave)
+- Elwood: Sick on Monday (CYRC03: Deep Fried)
+
+STORY:
+=========
+- Bungie: The Marathon-style terminals
+- August Derleth, Robert Heinlein, Carl Sagan, Arthur Machen, Yukinobu Hoshino: Inspiration from their excellent works
+- Hostile V: Proofreading, editing, writing assistance
