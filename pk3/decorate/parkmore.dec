@@ -140,7 +140,7 @@ actor ParkmoreFloorChecker
 actor ParkmoreChecker2
 {
     Radius 4
-    Height 8
+    Height 16
 
     +SOLID
     +SERVERSIDEONLY

@@ -16,6 +16,8 @@ map CYRC02 "Bob and Weave"
 {
     next  = "CYRC03"
     music = "M_CYRC03" // Skaven - Data Jack
+
+    sky1  = "RJSPCSKY", 1
 }
 
 map CYRC03 "Deep Fried"
