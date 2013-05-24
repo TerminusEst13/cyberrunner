@@ -137,6 +137,7 @@ actor ParkmoreFloorChecker
     }
 }
 
+// Used for walljump detection
 actor ParkmoreChecker2
 {
     Radius 4
@@ -151,6 +152,12 @@ actor ParkmoreChecker2
         BAL1 A 105
         stop
     }
+}
+
+// Used for 3D floor detection
+actor ParkmoreChecker3
+{
+    -SOLID
 }
 
 actor ParkmoreChecker: FastProjectile

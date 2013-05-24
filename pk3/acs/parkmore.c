@@ -36,6 +36,63 @@ function int parkmoreOnGround(int tid)
         (GetActorVelZ(tid) == 0 && !spawned));
 }
 
+/* A note on 3D floors:
+ *
+ * The closest 3D floor above you in the sector you're in is considered the ceiling of the sector.
+ * The closest 3D floor below you in the sector you're in is considered the floor of the sector.
+ * Knowing this, we can determine three relationships:
+ *
+ * When changing Z height, but keeping X and Y constant:
+ *  - If both ceiling and floor height change, we have skipped over a 3D floor entirely.
+ *
+ * When raising Z height ONLY:
+ *  - If only the ceiling height changes, we have entered a 3D floor.
+ *  - If only the floor height changes, we have left a 3D floor.
+ *
+ * When lowering Z height ONLY:
+ *  - If only the ceiling height changes, we have left a 3D floor.
+ *  - If only the floor height changes, we have entered a 3D floor.
+ *
+ * There is no way to differentiate between solid and non-solid 3D floors:
+ *  at least, no way that I know of.
+ *
+ * There is also no way to detect a 3D floor that reaches from floor to ceiling,
+ *  but this really isn't much of a worry.
+ */
+
+function int parkmoreIn3DFloor(int tid)
+{
+    if (tid != 0 && ThingCount(0, tid) == 0) { return 0; }
+
+    int x0 = GetActorX(tid);
+    int y0 = GetActorY(tid);
+    int z0 = GetActorZ(tid);
+    int f0 = GetActorFloorZ(tid);
+    int c0 = GetActorCeilingZ(tid);
+
+    int z, f, c, success;
+    int checktid = unusedTID(8000, 9500);
+    z = z0 - 16.0;
+
+    while (1)
+    {
+        success = Spawn("ParkmoreChecker3", x0, y0, z, checktid);
+        if (!success) { success = 0; break; }
+
+        f = GetActorFloorZ(checktid);
+        c = GetActorCeilingZ(checktid);
+
+        if (f != f0) { success = 0; break; } // We have entered a 3D floor
+        if (c != c0) { success = 1; break; } // We have left a 3D floor
+        
+        Thing_Remove(checktid);
+        z -= 16.0;
+    }
+
+    Thing_Remove(checktid);
+    return success;
+}
+
 
 /*  :TURNING
  * Turning scripts
@@ -352,9 +409,10 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 
         j = Spawn("ParkmoreChecker2", x3, y3, z, tid);
         if (!j) { canBounce = 1; }
-        Print(f:GetActorZ(tid), s:", ", f:GetActorFloorZ(tid), s:", ", f:GetActorCeilingZ(tid));
-        if (GetActorZ(tid) != z) { canBounce = 1; }
+        if (parkmoreIn3DFloor(tid)) { canBounce = 1; }
+
         Thing_Remove(tid);
+
         //PrintBold(s:"(", f:x3, s:", ", f:y3, s:") type ", d:type, s:" - ", d:j);
         
         if (canBounce) { break; }
