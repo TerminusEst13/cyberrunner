@@ -1,4 +1,4 @@
-#define TERMCOUNT 9
+#define TERMCOUNT 11
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -153,6 +153,43 @@ int TerminalTexts[TERMCOUNT] =
 \n    ID 943042-B-Delta\
 \n    2547-05-23\
 \n    08:42:16",
+
+
+// CYRC03 - Terminal 01 - Page 1
+"I don't even remember what I used to look like, but now I look human in\
+\nform. With peach skin and torn up rags for clothes, I feel otherwise\
+\nthe same. I feel stronger than before. Must be because of this new body.\
+\nI spend a few minutes getting used to it, just to be sure.\
+\n\
+\nTaking a look at my surroundings, I noticed I'm in what was formally\
+\nsomeone's office. Long abandoned, the carpet is faded and brown; the\
+\nwalls are falling apart, revealing support, old wiring and pipes, the\
+\nlatter two long since corroded and rusted into uselessness; the wooden\
+\nfurniture has lost its polish and is slowly being eaten away; most of\
+\nthe documents not yet dust have had their ink faded into unreadability.\
+\nThere is one journal, however, that can still be read.\
+\n\
+\nI open it up and read it, finding out it's simply a journal detailing\
+\nbusiness transactions. I put it back. Useless.",
+
+// CYRC03 - Terminal 01 - Page 2
+"Before I close the drawer the journal came from, I notice something.\
+\nThere's crystals in there. They glow violet, seemingly pulsing to a\
+\nheartbeat that I'm unaware of. Naturally, I take them. They're\
+\ninteresting, why not? I stuff them into what little of a pocket my rags\
+\nhave. A bag would be very handy. I begin to search for one.\
+\n\
+\nWalking out of this office into the hallway, I notice that the hallway\
+\nis clean. No dust and broken walls that filled the office. No faded ink,\
+\nno crumbling papers, no exposed wiring and pipes. No reason for this\
+\nplace to be abandoned. I keep investigating.\
+\n\
+\nAll the other offices are wrecked as well. All of them are falling apart\
+\nas well. Only the hallway is in decent condition. I decide to enter the\
+\noffices, to investigate. They're all very similar. They all contain\
+\ndocuments wasting away. They all have furniture slowly being eaten away.\
+\n\
+\nThey all have the crystals.",
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -184,7 +221,13 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(16, 17), TerminalTexts[8], "");
     ACS_ExecuteAlways(106, 0, packShorts(17, 0),  -("End of log."), "CYBRLOG1");
 
+    ACS_ExecuteAlways(106, 0, packShorts(18, 19), -("wanderer"), "ODDLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(19, 20), TerminalTexts[9], "");
+    ACS_ExecuteAlways(106, 0, packShorts(20, 21), TerminalTexts[10], "");
+    ACS_ExecuteAlways(106, 0, packShorts(21, 0),  -("discern"), "ODDLOGO1");
+
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
     SetMetadataRange(13, 17, "zr/v-=", "zv!rs-d#cx");
+    SetMetadataRange(18, 21, "?'r,0\\", "7xz?3-.2iv");
 }
