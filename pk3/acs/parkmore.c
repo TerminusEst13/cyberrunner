@@ -555,6 +555,8 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     int pln = PlayerNumber();
     int oldSpeed, oldGrav, instantZ;
     int curX, curY, curZ, newZ;
+    int laX, laY, laZ;
+    int oldX, oldY, oldZ;   // if this breaks, I will not be surprised
     int curAngle;
     int maxLeft, maxRight;
     int ledgeMag, ledgeAngle;
@@ -605,8 +607,14 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
         if (abs(floorOldHeight - floorHeight) > 16.0)
         {
-            SetActorVelocity(0, 0,0,0, 0,0);
-            break;
+            SetActorPosition(heightTID, oldX, oldY, oldZ, 0);
+            floorHeight = GetActorFloorZ(heightTID);
+
+            if (abs(floorOldHeight - floorHeight) > 16.0)
+            {
+                SetActorVelocity(0, 0,0,0, 0,0);
+                break;
+            }
         }
 
         newZ = GetActorZ(heightTID) - 44.0;
@@ -622,8 +630,11 @@ script PARKMORE_LEDGEHOLD (int heightTID)
         curX = GetActorX(0);
         curY = GetActorY(0);
 
-        ledgeX     = GetActorX(heightTID) - curX;
-        ledgeY     = GetActorY(heightTID) - curY;
+        oldX = laX; oldY = laY; oldZ = laZ;
+        laX = GetActorX(heightTID); laY = GetActorY(heightTID); laZ = GetActorZ(heightTID);
+
+        ledgeX     = laX - curX;
+        ledgeY     = laY - curY;
         ledgeMag   = magnitudeTwo(ftoi(ledgeX), ftoi(ledgeY));
         ledgeAngle = VectorAngle(ledgeX, ledgeY);
 
@@ -647,7 +658,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
         SetActorPosition(0, curX, curY, curZ, 0);
 
-        if (curZ - GetActorZ(0) > 16.0)
+        if (curZ - GetActorZ(0) > 32.0)
         {
             Spawn("FingerCrunch", GetActorX(0), GetActorY(0), GetActorZ(0)+24.0);
             break;
