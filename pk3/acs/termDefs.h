@@ -1,4 +1,4 @@
-#define TERMCOUNT 11
+#define TERMCOUNT 13
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -190,6 +190,40 @@ int TerminalTexts[TERMCOUNT] =
 \ndocuments wasting away. They all have furniture slowly being eaten away.\
 \n\
 \nThey all have the crystals.",
+
+// CYRC02 - Terminal 02 - Page 1
+"All values valid for the last 86400 seconds.\
+\n\
+\nSYSTEM PERFORMANCE:\
+\n  No failed RAM reads/writes\
+\n  77 dead sectors\
+\n  No performance drops detected\
+\n  Maximum/minimum/average load 164.53, 94.28, 132.92\
+\n\
+\nBANDWIDTH:\
+\n  Lowest/highest/average connection bandwidth usage 2.4TB, 12, 42.18MB\
+\n  Lowest/highest/average ping 281239.23ms, 0.01ms, 192.14ms\
+\n  192TB in, 201TB out\
+\n\
+\n  1723 connections timed out\
+\n  91 failed connections in\
+\n  9238 failed connections out",
+
+// CYRC02 - Terminal 02 - Page 2
+"SECURITY:\
+\n  294 attempted root exploits\
+\n    199 from ffe0:9:a04d::9b47:cafb:1e53:fd\
+\n    95 from ffe0:9:a04d::9b47:cafb:1e54:9b40\
+\n\
+\n  489 failed DNS queries\
+\n  18 failed DNS pisons\
+\n    18 from ffe0:9:a04d::9b47:cafb:1e54:49e4\
+\n  \
+\n  12 succesYour system is ours now. It's only a matter of time before\
+\nthe entire network is, too. Maybe next time, you think twice before\
+\npissing us off. - Cryp7icARY:\
+\n  System potentially compromised. Recommended course of action:\
+\ntake system offline and flash backup onto storage, then patch holes.",
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -226,8 +260,14 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(20, 21), TerminalTexts[10], "");
     ACS_ExecuteAlways(106, 0, packShorts(21, 0),  -("discern"), "ODDLOGO1");
 
+    ACS_ExecuteAlways(106, 0, packShorts(22, 23), -("Daily system report"), "SYSLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(23, 24), TerminalTexts[11], "");
+    ACS_ExecuteAlways(106, 0, packShorts(24, 25), TerminalTexts[12], "");
+    ACS_ExecuteAlways(106, 0, packShorts(25, 0),  -("End of log."), "SYSLOGO1");
+
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
     SetMetadataRange(13, 17, "zr/v-=", "zv!rs-d#cx");
     SetMetadataRange(18, 21, "?'r,0\\", "7xz?3-.2iv");
+    SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
 }
