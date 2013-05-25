@@ -23,7 +23,7 @@ GRAPHICS:
 - Duke Nukem 3D (The Turret Drone and Aerial Drone use edited sentry sprites)
 - Eriance (The Vent air blast puff)
 - Xaser (The Plasma balls used in the Carbine's spiral)
-- Strife (The electricity used for the Carbine, the electricity used for the Cyberrunner's blood, the junk thrown when she's destroyed)
+- Strife (The electricity used for the Carbine, the electricity used for the Runner's blood, the junk thrown when destroyed)
 - Tormentor667 (The ball making up the pretty teleport effects)
 - WildWeasel (The ball and spatter from the Plasma Gun)
 - <name> (PWBRICK4, N_TKGR36, N_TKGR33, N_TKGR32, N_BRIK02, FLAT30, and the FLAT14s - from rjvoid)
@@ -31,6 +31,7 @@ GRAPHICS:
 - DarkLinux (LASER1/LASER2, P_SCRN01, and INFO1 from Cybercrime3)
 - Fuzzball Fox (N_LTOR03 and N_LTRD03 from litextra.wad)
 - 3D Realms (DNCITY05, DMD_F14, HAZARDVH, HAZARDVV)
+- Afterworldruler (CONFONT)
 
 MAPS:
 =========
@@ -82,5 +83,6 @@ MUSIC:
 STORY:
 =========
 - Bungie: The Marathon-style terminals
-- August Derleth, Robert Heinlein, Carl Sagan, Arthur Machen, Yukinobu Hoshino: Inspiration from their excellent works
+- Various Authors: Inspiration from their excellent works
+ ^-: August Derleth, Robert Heinlein, Carl Sagan, Arthur Machen, Yukinobu Hoshino, Stanislaw Lem, and Greg Kirkpatrick
 - Hostile V: Proofreading, editing, writing assistance
