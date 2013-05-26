@@ -87,7 +87,7 @@ script 108 (int index, int nextScript, int nextDelay)
 
     while (!CheckInventory("TerminalOver")) { Delay(1); }
 
-    if (nextScript)
+    if (nextScript && CheckInventory("TerminalFinished"))
     {
         Delay(nextDelay);
         ACS_ExecuteAlways(nextScript, 0, index);
@@ -99,8 +99,8 @@ script 108 (int index, int nextScript, int nextDelay)
 
 script 109 (int ended) net
 {
-    if (ended == 1) { GiveInventory("TerminalFinished", 1); }
-    if (ended == 2) { UnfreezeDelay[PlayerNumber()] = 3; }
+    if (ended == 2) { GiveInventory("TerminalFinished", 1); }
+    if (ended == 0) { UnfreezeDelay[PlayerNumber()] = 5; }
 
     GiveInventory("TerminalOver", 1);
     Delay(1);
