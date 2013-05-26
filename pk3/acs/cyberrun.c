@@ -292,7 +292,7 @@ script 400 ENTER
 
             x = FixedMul(x, 0.8);
             y = FixedMul(y, 0.8);
-            if (z < 0) { z = FixedMul(z, 0.97); }
+            if (z < 0) { z = FixedMul(z, 0.95); }
 
             SetActorVelocity(0, x,y,z, 0,0);
         }
