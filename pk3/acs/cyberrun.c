@@ -162,7 +162,6 @@ script 105 (int mode, int index, int next)
         x = CheckpointCoords[pln][0];
         y = CheckpointCoords[pln][1];
         z = CheckpointCoords[pln][2];
-        Spawn("ACSSpawnDummy", x,y,z, ttid, CheckpointCoords[pln][3]);
 
         if (!HasTeleported[pln])
         {
@@ -176,6 +175,7 @@ script 105 (int mode, int index, int next)
         SetActorAngle(0, CheckpointCoords[pln][3]);
         SetActorPitch(0, CheckpointCoords[pln][4]);
         SetActorVelocity(0, 0,0,0, 0,0);
+        SetActorPosition(0, x,y,z, 0);
         
         SetPlayerProperty(0, 1, PROP_FROZEN);
         Delay(8);
