@@ -2,7 +2,7 @@ TERMFONT
 {
     base 1
     first 1
-    count 255
+    count 254
     template TERMN%03d
 }
 
@@ -10,6 +10,6 @@ TERMFONT_BOLD
 {
     base 1
     first 1
-    count 255
+    count 254
     template TERMB%03d
 }

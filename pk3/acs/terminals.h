@@ -229,7 +229,7 @@ script 110 (int startIndex) clientside
                 {
                     SetFont(graphic);
                     SetHudSize(800, 600, 1);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 400.4, 300.0, 1.5, 1.0);
                     
                     SetHudSize(640, 480, 1);
                     SetFont("TERMFONT");
@@ -239,7 +239,7 @@ script 110 (int startIndex) clientside
                 {
                     SetFont(graphic);
                     SetHudSize(800, 600, 1);
-                    HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_COLORSTRING, 3006, CR_UNTRANSLATED, 148.4, 300.0, 1.5, 1.0);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, 3006, CR_UNTRANSLATED, 148.4, 300.0, 1.5, 1.0);
                     
                     SetHudSize(640, 480, 1);
                     SetFont("TERMFONT");

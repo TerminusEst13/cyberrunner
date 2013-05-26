@@ -255,7 +255,7 @@ script 405 OPEN
 script 400 ENTER
 {
     int i, j, time = 0;
-    int x, y;
+    int x, y, z;
     int tid;
     int pln = PlayerNumber();
     int term, oterm, unfreeze;
@@ -284,15 +284,17 @@ script 400 ENTER
             }
         }
 
-        if (keyDown(BT_CROUCH))
+        if (keyDown(BT_FORWARD | BT_BACK))
         {
             x = GetActorVelX(0);
             y = GetActorVelY(0);
+            z = GetActorVelZ(0);
 
-            x = FixedMul(x, 0.9);
-            y = FixedMul(y, 0.9);
+            x = FixedMul(x, 0.8);
+            y = FixedMul(y, 0.8);
+            if (z < 0) { z = FixedMul(z, 0.97); }
 
-            SetActorVelocity(0, x, y, GetActorVelZ(0), 0,0);
+            SetActorVelocity(0, x,y,z, 0,0);
         }
 
         oterm = term;
