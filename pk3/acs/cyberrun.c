@@ -159,6 +159,7 @@ script 105 (int mode, int index, int next)
     switch (mode)
     {
       case 0:
+        Print(s:"teleportan");
         x = CheckpointCoords[pln][0];
         y = CheckpointCoords[pln][1];
         z = CheckpointCoords[pln][2];
@@ -222,6 +223,7 @@ script 105 (int mode, int index, int next)
 
         while (!onGround(0)) { Delay(1); }
 
+        Print(s:"settan");
         CheckpointCoords[pln][0] = GetActorX(0);
         CheckpointCoords[pln][1] = GetActorY(0);
         CheckpointCoords[pln][2] = GetActorZ(0);
@@ -296,6 +298,11 @@ script 400 ENTER
 
             SetActorVelocity(0, x,y,z, 0,0);
         }
+
+        SetInventory("LeftMouseTapped", keyPressed(BT_ATTACK));
+        SetInventory("LeftMouseDown", keyDown(BT_ATTACK));
+        SetInventory("RightMouseTapped", keyPressed(BT_ALTATTACK));
+        SetInventory("RightMouseDown", keyDown(BT_ALTATTACK));
 
         oterm = term;
         term = InTerminal[pln];

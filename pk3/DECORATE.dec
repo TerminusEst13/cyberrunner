@@ -22,6 +22,11 @@ actor TerminalOver: Boolean {}
 actor TerminalFinished: Boolean {}
 actor ForceParkourOff: Boolean {}
 
+actor LeftMouseTapped: Boolean {}
+actor LeftMouseDown: Boolean {}
+actor RightMouseTapped: Boolean {}
+actor RightMouseDown: Boolean {}
+
 actor ACSSpawnDummy
 {
     +SERVERSIDEONLY
@@ -35,6 +40,56 @@ actor ACSSpawnDummy
       Spawn:
         TNT1 A -1
         stop
+    }
+}
+
+
+actor CyberrunnerWeapon: Weapon
+{
+    Weapon.Kickback 100
+
+    +NOAUTOAIM
+    +AMMO_OPTIONAL
+    +ALT_AMMO_OPTIONAL
+    +UNDROPPABLE
+
+    +FLOATBOB
+    +NOGRAVITY
+    
+    RenderStyle Add
+    Alpha 0.95
+
+    States
+    {
+      Deselect:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        TNT1 A 1 A_Lower
+        Loop
+
+      Select:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        TNT1 A 1 A_Raise
+        Loop
+
+      Ready:
+        TNT1 A 1 A_WeaponReady
+        Loop
+
+      DryFire:
+        TNT1 A 4
+        Goto Ready
+
+      Fire:
+	  AltFire:
+        TNT1 A 0 A_JumpIfInventory("ForceVentAmmo", 1, 1)
+        goto DryFire
+
+        TNT1 A 0 A_PlayWeaponSound("force/shot")
+        TNT1 A 0 A_FireCustomMissile("ForceVent", 0, 0)
+        TNT1 A 0 A_TakeInventory("ForceVentAmmo", 1)
+        TNT1 A 3
+        TNT1 A 27 A_WeaponReady(8)
+        goto Ready
     }
 }
 
