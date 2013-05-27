@@ -1,7 +1,7 @@
 #include "zcommon.acs"
-#include "commonFuncs.h"
-
 #library "cyberrun"
+
+#include "commonFuncs.h"
 
 #include "cyberdefs.h"
 #include "terminals.h"

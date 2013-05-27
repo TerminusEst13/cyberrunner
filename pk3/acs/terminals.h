@@ -8,8 +8,6 @@ world int 24:TerminalLocation[];
 world int 25:TerminalNext[];
 world int 26:TerminalPrev[];
 
-int TerminalLocks[PLAYERMAX];
-
 function int GetTermDisplayMode(int index)
 {
     if (TerminalMessages[index] < 0) { return DISPLAY_TITLE; }
