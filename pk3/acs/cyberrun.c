@@ -9,41 +9,41 @@
 
 function void hudmessageonactor(int tid, int range, str sprite, str text, int id) // By Caligari 87
 {
-	int dist, ang, vang, pitch, x, y;
-	int HUDX = 1280;
-	int HUDY = 960;
-	int offset = 0;
+    int dist, ang, vang, pitch, x, y;
+    int HUDX = 1280;
+    int HUDY = 960;
+    int offset = 0;
 
-	if(sprite != -1)
-	{
-		setfont(sprite);
-		text = "A";
-		offset = 0.1;
-	}
+    if(sprite != -1)
+    {
+        setfont(sprite);
+        text = "A";
+        offset = 0.1;
+    }
 
-	sethudsize(HUDX, HUDY, 1);
-	x = getactorx(tid) - getactorx(0);
-	y = getactory(tid) - getactory(0); 
+    sethudsize(HUDX, HUDY, 1);
+    x = getactorx(tid) - getactorx(0);
+    y = getactory(tid) - getactory(0); 
 
-	vang = vectorangle(x,y);
-	ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
+    vang = vectorangle(x,y);
+    ang = (vang - GetActorAngle(0) + 1.0) % 1.0;
 
-	if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
-	else dist = fixeddiv(x, cos(vang));
+    if(((vang+0.125)%0.5) > 0.25) dist = fixeddiv(y, sin(vang));
+    else dist = fixeddiv(x, cos(vang));
 
-	if ((ang < 0.2 || ang > 0.8) && dist < range)
-	{
-		pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
-		pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+    if ((ang < 0.2 || ang > 0.8) && dist < range)
+    {
+        pitch = vectorangle(dist, getactorz(tid) - (getactorz(0) + 41.0));
+        pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
 
-		x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
-		y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+        x = HUDX/2 - ((HUDX/2) * sin(ang) / cos(ang));
+        y = HUDY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
 
-		if(sprite != -1)
-			setfont(sprite);
-		hudmessage(s:text; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (x<<16)+offset, ((y<<16)+offset)-32.0, 0.25, 0.5);
-	}
-	else { hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1); }
+        if(sprite != -1)
+            setfont(sprite);
+        hudmessage(s:text; HUDMSG_FADEOUT, id, CR_UNTRANSLATED, (x<<16)+offset, ((y<<16)+offset)-32.0, 0.25, 0.5);
+    }
+    else { hudmessage(s:" "; HUDMSG_PLAIN, id, CR_UNTRANSLATED, 0, 0, 0.1); }
 }
 
 function int fracSec(int tics)
@@ -330,9 +330,9 @@ script 401 DEATH
     ACS_Terminate(403, 0);
     ACS_Terminate(404, 0);
     ACS_Terminate(400, 0);
-	TakeInventory("CannotIntoShotgun",1);
-	TakeInventory("CannotIntoCarbine",1);
-	TakeInventory("CannotIntoVulcan",1);
+    TakeInventory("CannotIntoShotgun",1);
+    TakeInventory("CannotIntoCarbine",1);
+    TakeInventory("CannotIntoVulcan",1);
 }
 
 #define DASH_VEL 45
@@ -342,7 +342,7 @@ script 402 (void) NET
     int vx, vy, vz,  mag, angle, pitch;
     int nx, ny, nz, nmag;
     int rx, ry, rz, rmag;
-	
+    
     if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; }
     if (InTerminal[PlayerNumber()]) { terminate; }
     if (CheckInventory("DashCooldown") == 0)
@@ -538,25 +538,25 @@ script 416 (int respawning)
     if (!respawning) { ACS_ExecuteWithResult(105, 4); }
     else { ACS_ExecuteWithResult(105, 0); }
 
-	TakeInventory("CannotIntoShotgun",1);
-	TakeInventory("CannotIntoVulcan",1);
-	TakeInventory("CannotIntoCarbine",1);
-	TakeInventory("CannotIntoWallhack",1);
-	
+    TakeInventory("CannotIntoShotgun",1);
+    TakeInventory("CannotIntoVulcan",1);
+    TakeInventory("CannotIntoCarbine",1);
+    TakeInventory("CannotIntoWallhack",1);
+    
     if (GetCvar("instagib") == 1)
     {
         GiveInventory("Instagib Rifle",1);
         TakeInventory("Plasma Gun",1);
-	}
+    }
     else if (isLMS())
     {
-		GiveInventory(" Cyber Shotgun ",1);
-		GiveInventory(" Cyber Carbine ",1);
-		GiveInventory(" Cyber Vulcan ",1);
-		GiveInventory("CarbineAmmo2",1000);
-		GiveInventory("ShotgunAmmo2",1000);
-		GiveInventory("VulcanAmmo2",1000);
-	}
+        GiveInventory(" Cyber Shotgun ",1);
+        GiveInventory(" Cyber Carbine ",1);
+        GiveInventory(" Cyber Vulcan ",1);
+        GiveInventory("CarbineAmmo2",1000);
+        GiveInventory("ShotgunAmmo2",1000);
+        GiveInventory("VulcanAmmo2",1000);
+    }
 }
 
 script 417 ENTER   { ACS_ExecuteWIthResult(416); }
@@ -741,7 +741,7 @@ script 424 (int pln, int startTime) clientside
         {
             SetHudSize(480, 360, 0);
             DisplayTime((time/36)*36, 1500, 420, 20, CR_WHITE);
-		}
+        }
 
         x = GetActorVelX(0);
         y = GetActorVelY(0);

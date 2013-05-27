@@ -19,11 +19,6 @@ actor VulcanAmmo2: Ammo
     +INVENTORY.IGNORESKILL
 }
 
-actor PlasmaBolt2 : PlasmaBolt replaces PlasmaBolt
-{
-	Damage (15)
-}
-
 actor " Cyber Carbine " : "Cyber Carbine"
 {
 	Weapon.AmmoType1 "CarbineAmmo2"
