@@ -53,13 +53,14 @@ actor "Cyber Shotgun" : Weapon
         Loop
 
       Fire:
-	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlaySound("shotgun/fire", CHAN_WEAPON)
         TNT1 A 0 A_FireBullets(4, 3, 10, 4, "ShotgunPuff")
         TNT1 A 0 A_FireBullets(4, 3, 10, 4, "ShotgunPuffNoTracer", 0)
         TNT1 A 20
-		TNT1 A 10 A_PlaySound("shotgun/load", 5)
+	TNT1 A 10 A_PlaySound("shotgun/load", 5)
         TNT1 A 10 A_WeaponReady(12)
         goto Ready
 
@@ -67,7 +68,7 @@ actor "Cyber Shotgun" : Weapon
         TNT1 A 4
         Goto Ready
 		
-	  AltFire:
+      AltFire:
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlayWeaponSound("force/shot")
         TNT1 A 0 A_FireCustomMissile("ForceVent",0,1,0,0)
