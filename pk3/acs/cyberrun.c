@@ -145,8 +145,30 @@ int RechargingTimes[RECHARGECOUNT][2] =
 // 3, 4     -> angle, pitch
 // 5        -> last checkpoint
 // 6        -> next checkpoint
-int CheckpointCoords[PLAYERMAX][7];
+int CheckpointCoords[PLAYERMAX][8];
+int OldCheckpointCoords[PLAYERMAX][8];
 int HasTeleported[PLAYERMAX];
+
+function void SetCheckpoint(int pln, int x, int y, int z, int ang, int pitch, int index, int next)
+{
+    int i;
+    for (i = 0; i < 8; i++) { OldCheckpointCoords[pln][i] = CheckpointCoords[pln][i]; }
+
+    CheckpointCoords[pln][0] = x;
+    CheckpointCoords[pln][1] = y;
+    CheckpointCoords[pln][2] = z;
+    CheckpointCoords[pln][3] = ang;
+    CheckpointCoords[pln][4] = pitch;
+    CheckpointCoords[pln][5] = index;
+    CheckpointCoords[pln][6] = next;
+    CheckpointCoords[pln][7] = Timer();
+}
+
+function void RevertCheckpoint(int pln) // can only undo once
+{
+    int i;
+    for (i = 0; i < 8; i++) { CheckpointCoords[pln][i] = OldCheckpointCoords[pln][i]; }
+}
 
 script 105 (int mode, int index, int next)
 {
@@ -160,6 +182,13 @@ script 105 (int mode, int index, int next)
     {
       case 0:
         Print(s:"teleportan");
+
+        if (CheckpointCoords[pln][7] >= Timer() - 1)
+        {
+            Print(s:"revertan");
+            RevertCheckpoint(pln);
+        }
+
         x = CheckpointCoords[pln][0];
         y = CheckpointCoords[pln][1];
         z = CheckpointCoords[pln][2];
@@ -175,7 +204,7 @@ script 105 (int mode, int index, int next)
         
         SetActorAngle(0, CheckpointCoords[pln][3]);
         SetActorPitch(0, CheckpointCoords[pln][4]);
-        SetActorVelocity(0, 0,0,0, 0,0);
+        SetActorVelocity(0, FixedMul(1.0, cos(GetActorAngle(0))), FixedMul(1.0, sin(GetActorAngle(0))),0.05, 0,0);
         SetActorPosition(0, x,y,z, 0);
         
         SetPlayerProperty(0, 1, PROP_FROZEN);
@@ -190,9 +219,6 @@ script 105 (int mode, int index, int next)
 
       case 3:
       case 4:
-        CheckpointCoords[pln][5] = index;
-        CheckpointCoords[pln][6] = next;
-
         if (mode % 2)
         {
             LocalAmbientSound("ui/checkpoint", 127);
@@ -215,20 +241,14 @@ script 105 (int mode, int index, int next)
 
         // This is so that a checkpoint can't be *completely* wasted;
         //   at least, not as easily.
-        CheckpointCoords[pln][0] = GetActorX(0);
-        CheckpointCoords[pln][1] = GetActorY(0);
-        CheckpointCoords[pln][2] = GetActorZ(0);
-        CheckpointCoords[pln][3] = GetActorAngle(0);
-        CheckpointCoords[pln][4] = GetActorPitch(0);
+        
+        Print(s:"settan");
+        SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
 
         while (!onGround(0)) { Delay(1); }
 
-        Print(s:"settan");
-        CheckpointCoords[pln][0] = GetActorX(0);
-        CheckpointCoords[pln][1] = GetActorY(0);
-        CheckpointCoords[pln][2] = GetActorZ(0);
-        CheckpointCoords[pln][3] = GetActorAngle(0);
-        CheckpointCoords[pln][4] = GetActorPitch(0);
+        Print(s:"settan2");
+        SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
     }
 }
 
