@@ -39,7 +39,7 @@ actor "No-Damage Plasma Gun": "Plasma Gun"
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlayWeaponSound("plasma/shot")
         TNT1 A 0 A_FireCustomMissile("RedPlasmaBolt",0,1,0,1)
-        TNT1 A 5
+        TNT1 AAAAA 1 A_JumpIfInventory("RightMouseTapped", 1, "AltFire")
         goto Ready
     }
 }
