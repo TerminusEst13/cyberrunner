@@ -55,11 +55,9 @@ function int parkmoreOnGround(int tid)
  *
  * There is no way to differentiate between solid and non-solid 3D floors:
  *  at least, no way that I know of.
- *
- * There is also no way to detect a 3D floor that reaches from floor to ceiling,
- *  but this really isn't much of a worry.
  */
 
+/*
 function int parkmoreIn3DFloor(int tid)
 {
     if (tid != 0 && ThingCount(0, tid) == 0) { return 0; }
@@ -92,7 +90,23 @@ function int parkmoreIn3DFloor(int tid)
     Thing_Remove(checktid);
     return success;
 }
+*/
 
+function int parkmoreIn3DFloor(int tid)
+{
+    if (tid != 0 && ThingCount(0, tid) == 0) { return 0; }
+
+    int x = GetActorX(tid);
+    int y = GetActorY(tid);
+    int f = GetActorFloorZ(tid);
+    int c = GetActorCeilingZ(tid);
+    int newtid = unusedTID(22000, 32000);
+
+    Spawn("ParkmoreChecker3", x, y, f, newtid);
+
+    if (GetActorCeilingZ(newtid) < c) { return 1; }
+    return 0;
+}
 
 /*  :TURNING
  * Turning scripts

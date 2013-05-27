@@ -157,6 +157,8 @@ actor ParkmoreChecker2
 // Used for 3D floor detection
 actor ParkmoreChecker3
 {
+    Radius 0
+    Height 0
     -SOLID
 }
 
