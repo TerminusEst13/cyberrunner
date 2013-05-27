@@ -132,12 +132,12 @@ int RechargingItems[RECHARGECOUNT] =
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
     "ForceVentAmmo", "CannotIntoShotgun", "CannotIntoCarbine",
-    "CannotIntoVulcan",
+    "CannotIntoVulcan", "RedPlasmaGunAmmo"
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1},
+    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1},
 };
 
 
@@ -545,8 +545,9 @@ script 416 (int respawning)
     
     if (GetCvar("instagib") == 1)
     {
-        GiveInventory("Instagib Rifle",1);
-        TakeInventory("Plasma Gun",1);
+        GiveInventory("Instagib Rifle", 1);
+        GiveInventory("No-Damage Plasma Gun", 1);
+        TakeInventory("Plasma Gun", 1);
     }
     else if (isLMS())
     {

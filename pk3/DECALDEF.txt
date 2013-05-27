@@ -1,0 +1,23 @@
+decal RedPlasmaScorch1
+{
+	pic NDPLA0
+	add 1.0
+	fullbright
+	animator GoAway
+	lowerdecal PlasmaScorchLower1
+}
+
+decal RedPlasmaScorch2
+{
+	pic NDPLB0
+	add 1.0
+	fullbright
+	animator GoAway
+	lowerdecal PlasmaScorchLower1
+}
+
+decalgroup RedPlasmaScorch
+{
+	RedPlasmaScorch1	1
+	RedPlasmaScorch2	1
+}

@@ -60,6 +60,29 @@ actor PlasmaGunAmmo : Ammo
     +INVENTORY.IGNORESKILL
 }
 
+actor "No-Damage Plasma Gun": "Plasma Gun"
+{
+    Weapon.AmmoType1 RedPlasmaGunAmmo
+
+    States
+    {
+      Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
+        TNT1 A 0 A_JumpIfNoAmmo("DryFire")
+        TNT1 A 0 A_PlayWeaponSound("plasma/shot")
+        TNT1 A 0 A_FireCustomMissile("RedPlasmaBolt",0,1,0,1)
+        TNT1 A 5
+        goto Ready
+    }
+}
+
+actor RedPlasmaGunAmmo : Ammo
+{
+    Inventory.MaxAmount 100
+    Ammo.BackpackMaxAmount 100
+    +INVENTORY.IGNORESKILL
+}
+
 actor PlasmaBolt: FastProjectile
 {
     Radius 5
@@ -94,6 +117,27 @@ actor PlasmaBolt: FastProjectile
     }
 }
 
+actor RedPlasmaBolt: PlasmaBolt
+{
+    Translation "192:207=16:47"
+    Decal RedPlasmaScorch
+    Damage (0)
+
+    States
+    {
+      Spawn:
+        XLSS AABBCCDDEEFF 1 BRIGHT A_CustomMissile("RedPlasmaTrail",0,0,0)
+        Loop
+
+      Death:
+        XLSE A 0 A_CustomMissile("PlasmaClimbPush", 0,0,0, CMF_TRACKOWNER, 0)
+        XLSE A 2 BRIGHT A_Scream
+        //XLSE AAAAAAAAAAAA 0 A_CustomMissile("RedPlasmaSpark2",0,0,Random(-180,180),50,Random(-180,180))
+        XLSE BCDEF 2 BRIGHT 
+        Stop
+    }
+}
+
 actor PlasmaClimbPush
 {
     Radius 1
@@ -118,22 +162,32 @@ actor PlasmaClimbPush
     }
 }
 
-actor PlasmaTrail : PlasmaBall
+actor PlasmaTrail
 { 
     Alpha 0.4
     Scale 0.6
-    Damage 0
-    Speed 0
-    +NOCLIP
-    -SOLID
+
+    +NOINTERACTION
     +CLIENTSIDEONLY
-    SeeSound ""
-    DeathSound ""
     RenderStyle Add
+
     States
     {
       Spawn:
         XLSS ABC 1 BRIGHT A_CustomMissile("PlasmaSpark",0,0,Random(-180,180),2,Random(-100,100))
+        XLSS DEF 1 BRIGHT
+        Stop
+    }
+}
+
+actor RedPlasmaTrail: PlasmaTrail
+{
+    Translation "192:207=16:47"
+
+    States
+    {
+      Spawn:
+        XLSS ABC 1 BRIGHT A_CustomMissile("RedPlasmaSpark",0,0,Random(-180,180),2,Random(-100,100))
         XLSS DEF 1 BRIGHT
         Stop
     }
@@ -162,6 +216,11 @@ actor PlasmaSpark
     }
 }
 
+actor RedPlasmaSpark: PlasmaSpark
+{
+    Translation "192:207=16:47"
+}
+
 actor PlasmaSpark2 : PlasmaSpark
 {
     Scale 0.4
@@ -171,6 +230,11 @@ actor PlasmaSpark2 : PlasmaSpark
         XLSS ABCDEF 1 BRIGHT A_FadeOut(0.1)
         loop
     }
+}
+
+actor RedPlasmaSpark2: PlasmaSpark2
+{
+    Translation "192:207=16:47"
 }
 
 actor CyberPlasmaSparkle

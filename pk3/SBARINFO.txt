@@ -19,6 +19,7 @@ statusbar Normal, forcescaled
     InInventory BoostCooldown { drawimage "NOTURBO", 200, 189; }
 
     IsSelected "Plasma Gun" { drawnumber 3, BIGFONT, LightBlue, ammo1, fillzeros, 181, 180, 0; }
+    IsSelected "No-Damage Plasma Gun" { drawnumber 3, BIGFONT, Brick, ammo1, fillzeros, 181, 180, 0; }
     IsSelected "Cyber Shotgun" { drawnumber 2, BIGFONT, Orange, ammo1, fillzeros, 175, 180, 0; }
     IsSelected "Cyber Carbine" { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 175, 180, 0; }
     IsSelected "Cyber Vulcan" { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 181, 180, 0; }
@@ -45,6 +46,7 @@ statusbar Fullscreen, forcescaled
 	InInventory WallHackVision, 1 {drawimage "CYBTRG", 0, 0;}
 
     IsSelected "Plasma Gun" { drawnumber 3, SMALLFONT, LightBlue, ammo1, fillzeros, 173, 186, 0; }
+    IsSelected "No-Damage Plasma Gun" { drawnumber 3, SMALLFONT, Brick, ammo1, fillzeros, 173, 186, 0; }
     IsSelected "Cyber Shotgun" { drawnumber 2, SMALLFONT, Orange, ammo1, fillzeros, 169, 186, 0; }
     IsSelected "Cyber Carbine" { drawnumber 2, SMALLFONT, Green,  ammo1, fillzeros, 169, 186, 0; }
     IsSelected "Cyber Vulcan" { drawnumber 3, SMALLFONT, Purple, ammo1, fillzeros, 173, 186, 0; }

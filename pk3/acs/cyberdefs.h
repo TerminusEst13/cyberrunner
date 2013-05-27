@@ -1,4 +1,4 @@
-#define RECHARGECOUNT 8
+#define RECHARGECOUNT 9
 #define TID_PLAY 600
 
 #define TIMECOUNT   3
