@@ -125,7 +125,7 @@ actor PlasmaClimbPush
         goto Death
 
       Death:
-        TNT1 A 1 A_Explode(24, 48)
+        TNT1 A 1 A_Explode(28, 48)
         stop
     }
 }
