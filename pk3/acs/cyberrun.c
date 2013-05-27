@@ -548,7 +548,16 @@ script 416 (int respawning)
         GiveInventory("Instagib Rifle",1);
         TakeInventory("Plasma Gun",1);
 	}
-    else if (isLMS())
+    else if (GetCvar("lastmanstanding") == 1)
+    {
+		GiveInventory(" Cyber Shotgun ",1);
+		GiveInventory(" Cyber Carbine ",1);
+		GiveInventory(" Cyber Vulcan ",1);
+		GiveInventory("CarbineAmmo2",1000);
+		GiveInventory("ShotgunAmmo2",1000);
+		GiveInventory("VulcanAmmo2",1000);
+	}
+    else if (GetCvar("teamlms") == 1)
     {
 		GiveInventory(" Cyber Shotgun ",1);
 		GiveInventory(" Cyber Carbine ",1);
