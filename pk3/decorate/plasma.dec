@@ -6,6 +6,7 @@ actor "Plasma Gun" : CyberrunnerWeapon
     Weapon.AmmoUse2 1
     Weapon.SlotNumber 1
 	Weapon.UpSound "plasma/up"
+	+AMMO_OPTIONAL
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_PLASMA"
 
@@ -31,6 +32,7 @@ actor PlasmaGunAmmo : Ammo
 actor "No-Damage Plasma Gun": "Plasma Gun"
 {
     Weapon.AmmoType1 RedPlasmaGunAmmo
+	+AMMO_OPTIONAL
 
     States
     {

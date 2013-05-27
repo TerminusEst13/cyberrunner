@@ -13,9 +13,6 @@ In order of priority:
  2. Simple to approach, difficult to master. For people who want to go do stuff right away, there's already the Cyber Dash, Cyber Lunge, and Cyber Boost. Those who want to be a true master and blaze through the air must experiment with the intricacies of Parkmore and Rocket Jumping, going from wall to wall and never touch the floor.
  3. Keep it simple, stupid. The winning formula lies primarily with Parkmore and Superfast combined. Let's not worry about extra classes, capture the flag, or etc until we get the basics hammered out first.
 
-## TARGET AUDIENCE
-???
-
 ## POSSIBLE PROBLEMS
  * Respawning. If this is to be done in the deathmatch mode, respawning puts them at a completely random place--or at the beginning. Is it possible to move a respawn point further up, upon passing a checkpoint?
  * Maps. Neither of us are especially good mappers, and this will rely very heavily on mapping--we'll need to plan out the types of obstacles, interesting things that can be done, and multiple routes for people to go on.
@@ -40,6 +37,14 @@ Both TerminusEst13, Ijon Tichy, and various other Cyberrunner players/mappers ar
 
 
 ## MAPPER INFO
+
+If you want to map, there's five simple things to keep in mind.
+
+- This is CYBERrunner, so it should be at least vaguely sci-fi in theme. Set in our solar system; outer space, the asteroid field, in a spatial anomaly, on Neptune, whatever.
+- Use Doom in Hexen or UDMF format for your maps. Cyberrunner makes use of several very advanced features for mappan.
+- Maps should be very wide open and spacious. This doesn't mean make a 10000x10000 field, but it should be very possible to move through at high speeds.
+- We use tracker music. That means .s3m, .it, .xm, .mod, .spc, and .vgz music. This provides the wonderful synthesized instruments so reminiscent of retro sci-fi, while being VERY easy on filesize. Sorry, but we're not going to use MP3s.
+- We will likely criticize it heavily. Please be able to take criticism--or failing that, please understand that we may edit your map.
 
 If you want to have checkpoints in your map, use script 105. It is defined like this:
 

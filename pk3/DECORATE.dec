@@ -49,7 +49,7 @@ actor CyberrunnerWeapon: Weapon
     Weapon.Kickback 100
 
     +NOAUTOAIM
-    +AMMO_OPTIONAL
+    //+AMMO_OPTIONAL
     +ALT_AMMO_OPTIONAL
     +UNDROPPABLE
 
