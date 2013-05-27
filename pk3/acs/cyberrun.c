@@ -867,3 +867,8 @@ script 425 OPEN clientside
         ConsoleCommand("archivecvar cyber_mph_friction");
     }
 }
+
+script 426 (int pln) disconnect
+{
+    InTerminal[pln] = 0;
+}

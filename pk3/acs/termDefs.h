@@ -1,4 +1,4 @@
-#define TERMCOUNT 13
+#define TERMCOUNT 14
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -224,6 +224,24 @@ int TerminalTexts[TERMCOUNT] =
 \npissing us off. - Cryp7icARY:\
 \n  System potentially compromised. Recommended course of action:\
 \ntake system offline and flash backup onto storage, then patch holes.",
+
+
+// CY0xFDED - Terminal 01 - Page 1
+"              ? 7^B> 1                           6\"r    1x           \
+\n  s9*m w 2        34 l   ;_9     1mn////  ';L        %)$              \
+\n                                                                      \
+\n2         lost path to find new possible path to freedom     4        \
+\n   sda        0x8dshs         couldn't lose the path                  \
+\n      xc       findingding new roads roads roads roads           fdEd \
+\n                                                                      \
+\n        $    maybe if all paths are gone          ;['   b    819      \
+\n u w      e                       are gone                            \
+\n         s    I can escape            are gone                   kSa  \
+\n    6*2L               determine god           are gone        <;     \
+\n                                                                  3   \
+\n   3  B   $@    c o u l d n ' t   l o s e   t h e   p a t h    $      \
+\n     3   x      c     l       t   l   s         e   p   t   4     @   \
+\n  b      3      c             t   l     e   t   e       t       1     ",
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -265,9 +283,14 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(24, 25), TerminalTexts[12], "");
     ACS_ExecuteAlways(106, 0, packShorts(25, 0),  -("End of log."), "SYSLOGO1");
 
+    ACS_ExecuteAlways(106, 0, packShorts(26, 27), -("29msa#*2na"), "ODDLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(27, 28), TerminalTexts[13], "");
+    ACS_ExecuteAlways(106, 0, packShorts(28, 0),  -("the path undeterred"), "SYSLOGO1");
+
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
     SetMetadataRange(13, 17, "zr/v-=", "zv!rs-d#cx");
     SetMetadataRange(18, 21, "?'r,0\\", "7xz?3-.2iv");
     SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
+    SetMetadataRange(26, 28, ",\"10m kSa(=-kJ", "1. 32m 78A#* a)l");
 }
