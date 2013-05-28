@@ -1,4 +1,4 @@
-#define TERMCOUNT 14
+#define TERMCOUNT 24
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -242,6 +242,97 @@ int TerminalTexts[TERMCOUNT] =
 \n   3  B   $@    c o u l d n ' t   l o s e   t h e   p a t h    $      \
 \n     3   x      c     l       t   l   s         e   p   t   4     @   \
 \n  b      3      c             t   l     e   t   e       t       1     ",
+
+
+
+// CYRTUT - Terminal 01 - Page 1 // Introduction
+"Hello, Runner. Hold on one second, let me bring up your report.\
+\n\
+\nAh-hah. Interesting. For the most part, you're in the green.\
+\nMotor systems functional, AI initialized, gyroscope aligned,\
+\naccelerometer working fine, INS online, ZPE diffusor online,\
+\naerial inertial displacer fine... Motion calibration untested.\
+\nInteresting. Let's give you a test run to get you out the door.\
+\n\
+\nThis area is designed to give you a short runthrough of everything\
+\nyou'll need to know and how to do it. If you're not sure of what to\
+\ndo in an area, there's usually a nearby terminal willing to spell\
+\nthings out for you. Complete with pretty pictures.\
+\n
+\nWhen you're ready to begin, Runner, step through the portal in\
+\nfront and begin your ascent.",
+
+// CYRTUT - Terminal 02 - Page 1 // Jumping
+"Noted. Runner needs assistance regarding how to jump.\
+\nSubmitting suggestion to the programmers to tighten up AI.\
+\n\
+\nThis is simple enough. Inside your personal settings bank, head to\
+\nthe control customization section and bind a process to jump. Activate\
+\nit, and you'll leap upwards. Jump while in mid-air, you'll jump again.",
+
+// CYRTUT - Terminal 03 - Page 1 // Dodging
+"Double-tap a direction to move in, and your body will throw itself that\
+\ndirection in a dodge. It's a quick boost of speed great for a sudden\
+\nchange in movement or veering in a new direction.\
+\n\
+\nIf you press against a wall, you can dodge off of it while in mid-air.\
+\nDodging off a wall also resets your mid-air jumps, so you can do yet\
+\nanother mid-air jump afterwards.",
+
+// CYRTUT - Terminal 04 - Page 1 // Wall Jumping/Kicking
+"Sometimes the floor just won't cooperate. That's when you start using\
+\nthe walls instead. When hitting a wall while in mid-air, at the moment\
+\nof impact push into it and jump. You'll hike up the wall and vault\
+\nhigher into the air, resetting your mid-air jump counter as well.\
+\nIf you push a different direction away from the wall and jump, then\
+\ninstead you'll jump off the wall and vault in the new direction.",
+
+// CYRTUT - Terminal 05 - Page 1 // Ledge-Grabbing/Shimmying
+"Barely missed that jump? Good thing you've got hands.\
+\nIf you reach the very edge of a platform, just underneath head height,\
+\nyou'll automatically grab and hang onto it. While hanging off the edge\
+\nyou can shimmy left or right, jump up onto the platform, or jump off\
+\nof it in a new direction.",
+
+// CYRTUT - Terminal 06 - Page 1 // Weapons 1
+"The track is not a friendly place. Along the way, you'll have to tangle\
+\nwith enemies--be they drones, other Runners, or...something else.\
+Thankfully, you have tools to take care of these problems.\
+\n\
+\nThe Cyber Shotgun is, surprise, a shotgun launching hitscan plasma\
+\nshards that can carve through metal. It has tight spread and a decent\
+\nrate of fire backing up a sharp punch, hampered only by its inaccuracy.",
+
+// CYRTUT - Terminal 07 - Page 1 // Weapons 2
+"The Cyber Carbine has both the strongest punch and the longest range\
+\nout of all the weapons, firing a hitscan copper bolt supercharged\
+\ninto plasma via 1.96TW of electricity. However, it has to recharge\
+\nafter every shot, making it the slowest of all the weapons.",
+
+// CYRTUT - Terminal 08 - Page 1 // Weapons 3
+"The Cyber Vulcan is the spray-and-pray weapon of the batch, launching\
+\ntwo glowing fuschia flechette projectiles per shot at an incredibly\
+\nrapid rate. It has decent accuracy and incredible speed, but its\
+\nlow damage leaves something to be desired.",
+
+// CYRTUT - Terminal 09 - Page 1 // Venting
+"I'd make a 'let off some steam' joke, but I'm certain I'd get fired.\
+\n\
+\nThe alt-fire of every weapon discharges a massive blast of air from your\
+\nbody. Being simple air, it does no damage, but emits massive force that\
+can help with jumping to higher areas.",
+
+// CYRTUT - Terminal 10 - Page 1 // Exit
+"Congratulations, you've completed the basic test run.\
+\nHowever, this only scratches the surface of the techniques you can make\
+\nuse of as a Runner. There are still many more techniques to learn of,\
+\nsuch as air-venting, plasma climbing, and more. As you learn, develop,\
+\nand master more techniques, soon there will be no areas you just can't\
+reach. You will have complete freedom of movement.\
+\n\
+\nYou will become as a goddess.\
+\n\
+\nGood luck, Runner.",
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
