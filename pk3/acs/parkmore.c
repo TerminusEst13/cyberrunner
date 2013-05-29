@@ -10,6 +10,7 @@ int playerJumps[PLAYERMAX] = {0};
 int hasKicked[PLAYERMAX]   = {0};
 int grabbing[PLAYERMAX]    = {0};
 int dontGrab[PLAYERMAX]    = {0};
+int oldLedgeVals[PLAYERMAX][2] = {{0}};
 
 int CPlayerGrounds[PLAYERMAX][2];
 int PlayerGrounds[PLAYERMAX][2];
@@ -590,6 +591,8 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     SetActorProperty(0, APROP_Gravity, 0);
     SetActorVelocity(0, 24*cos(curAngle),24*sin(curAngle),9.0, 0, 1);
 
+    oldLedgeVals[pln][0] = oldSpeed;
+    oldLedgeVals[pln][1] = oldGrav;
     newZ = GetActorZ(heightTID) - 36.0;
 
     Delay(1);
@@ -1349,6 +1352,11 @@ script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
     }
 }
 
+script PARKMORE_UNLOADING unloading
+{
+    GiveInventory("ParkmoreUnloadingCheck", 1);
+}
+
 
 
 /*  :USER
@@ -1412,6 +1420,14 @@ script PARKMORE_ASSORTED (int type, int a1, int a2)
 
       case 1:
         SetResultValue(CheckInventory("ParkmoreAngleIndicator"));
+        break;
+
+      case 2:
+        if (grabbing[pln])
+        {
+            SetActorProperty(0, APROP_Speed,   oldLedgeVals[pln][0]);
+            SetActorProperty(0, APROP_Gravity, oldLedgeVals[pln][1]);
+        }
         break;
     }
 }

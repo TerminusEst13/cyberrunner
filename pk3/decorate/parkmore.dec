@@ -393,3 +393,13 @@ actor PowerStayTheFuckStill: PowerSpeed
 {
     Speed 0
 }
+
+actor ParkmoreUnloadingCheck: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 ACS_ExecuteWithResult(395, 2)
+        stop
+    }
+}

@@ -3,6 +3,7 @@
 #define PARKMORE_OPEN               (PARKMORE_BASE-1)
 #define PARKMORE_ENTER              (PARKMORE_BASE-2)
 #define PARKMORE_ENTER2             (PARKMORE_BASE-3)
+#define PARKMORE_UNLOADING          (PARKMORE_BASE-4)
 
 #define PARKMORE_TURN               (PARKMORE_BASE+31)
 #define PARKMORE_PITCH              (PARKMORE_BASE+32)
