@@ -56,23 +56,29 @@ function int GetPrevTerm(int index)
     return ret;
 }
 
+function int GetTermSound(int index)
+{
+    return TerminalSounds[index];
+}
+
 function int GetTermLoginSound(int index)
 {
-    int ret = TerminalSounds[index];
+    int ret = GetTermSound(index);
     if (ret == 0 || ret == "") { return "terminal/login"; }
     return ret;
 }
 
 function int GetTermLogoutSound(int index)
 {
-    int ret = TerminalSounds[index];
+    int ret = GetTermSound(index);
     if (ret == 0 || ret == "") { return "terminal/logout"; }
     return ret;
 }
 
 function int GetTermDuration(int index)
 {
-    int ret = TerminalSounds[index];
+    int ret = TerminalDurations[index];
+
     if (ret == 0)
     {
         if (TerminalMessages[index] < 0) { return 70; }
@@ -195,20 +201,22 @@ script 111 (int startIndex) clientside
         backmove    = 1;
 
         // If we hit a screen with a duration attached
+
         if (oindex != index && duration > 0)
         {
-            if (prev <= 0 || next <= 0)
-            {
-                if (next <= 0) { ActivatorSound(GetTermLogoutSound(index), 127); locmode = 2; }
-                else if (prev <= 0) { ActivatorSound(GetTermLoginSound(index), 127); locmode = 1;}
-                 
-                nextTime = time;
-            }
+            nextTime = time;
+        }
+
+        if (oindex != index)
+        {
+            if (next <= 0) { ActivatorSound(GetTermLogoutSound(index), 127); locmode = 2; }
+            else if (prev <= 0) { ActivatorSound(GetTermLoginSound(index), 127); locmode = 1;}
+            else { ActivatorSound(GetTermSound(index), 127); locmode = 0;}
         }
 
         while (1)
         {
-            if (GetTermDuration(prev) > 0 && (GetNextTerm(prev) <= 0 || GetPrevTerm(prev) <= 0))
+            if (GetTermDuration(prev) > 0)
             {
                 backmove++;
                 prev = GetPrevTerm(prev);
@@ -295,7 +303,7 @@ script 111 (int startIndex) clientside
 
         oindex = index;
 
-        if (displaymode == DISPLAY_TITLE && (prev <= 0 || next <= 0) && duration > 0)
+        if (duration > 0)
         {
             allowscroll = 0;
 
