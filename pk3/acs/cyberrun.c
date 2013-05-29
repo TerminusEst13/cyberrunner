@@ -181,8 +181,6 @@ script 105 (int mode, int index, int next)
     switch (mode)
     {
       case 0:
-        Print(s:"teleportan");
-
         if (CheckpointCoords[pln][7] >= Timer() - 1)
         {
             Print(s:"revertan");
@@ -242,12 +240,10 @@ script 105 (int mode, int index, int next)
         // This is so that a checkpoint can't be *completely* wasted;
         //   at least, not as easily.
         
-        Print(s:"settan");
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
 
         while (!onGround(0)) { Delay(1); }
 
-        Print(s:"settan2");
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
     }
 }

@@ -81,8 +81,7 @@ function int GetTermDuration(int index)
 
     if (ret == 0)
     {
-        if (TerminalMessages[index] < 0) { return 70; }
-        else { return -1; }
+        if (TerminalMessages[index] == 0) { return 70; }
     }
     return ret;
 }
