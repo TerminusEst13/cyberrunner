@@ -7,6 +7,8 @@ world int 23:TerminalTitles[];
 world int 24:TerminalLocation[]; 
 world int 25:TerminalNext[];
 world int 26:TerminalPrev[];
+world int 27:TerminalSounds[];
+world int 28:TerminalDurations[];
 
 function int GetTermDisplayMode(int index)
 {
@@ -54,6 +56,31 @@ function int GetPrevTerm(int index)
     return ret;
 }
 
+function int GetTermLoginSound(int index)
+{
+    int ret = TerminalSounds[index];
+    if (ret == 0 || ret == "") { return "terminal/login"; }
+    return ret;
+}
+
+function int GetTermLogoutSound(int index)
+{
+    int ret = TerminalSounds[index];
+    if (ret == 0 || ret == "") { return "terminal/logout"; }
+    return ret;
+}
+
+function int GetTermDuration(int index)
+{
+    int ret = TerminalSounds[index];
+    if (ret == 0)
+    {
+        if (TerminalMessages[index] < 0) { return 70; }
+        else { return -1; }
+    }
+    return ret;
+}
+
 script 106 (int indexes, int messageNum, int graphicNum) clientside
 {
     int index = leftShort(indexes);
@@ -72,14 +99,14 @@ script 107 (int index, int titleNum, int locationNum) clientside
 {
     if (index == 0) { terminate; }
 
-    TerminalTitles[index]    = titleNum;
-    TerminalLocation[index] = locationNum;
+    TerminalTitles[index]       = titleNum;
+    TerminalLocation[index]     = locationNum;
 }
 
 script 108 (int index, int nextScript, int nextDelay)
 {
     SetActorVelocity(0, 0,0,0, 0,0);
-    ACS_ExecuteAlways(110, 0, index);
+    ACS_ExecuteAlways(111, 0, index);
 
     if (ConsolePlayerNumber() == -1) { InTerminal[PlayerNumber()] = 1; }
 
@@ -95,7 +122,15 @@ script 108 (int index, int nextScript, int nextDelay)
 }
 
 
-script 109 (int ended) net
+script 109 (int index, int sound, int time) clientside
+{
+    if (index == 0) { terminate; }
+
+    TerminalSounds[index]    = sound;
+    TerminalDurations[index] = time;
+}
+
+script 110 (int ended) net
 {
     if (ended == 2) { GiveInventory("TerminalFinished", 1); }
     if (ended == 0) { UnfreezeDelay[PlayerNumber()] = 5; }
@@ -106,12 +141,13 @@ script 109 (int ended) net
     TakeInventory("TerminalFinished", 1);
 }
 
-script 110 (int startIndex) clientside
+script 111 (int startIndex) clientside
 {
     int index = startIndex;
-    int count, i;
+    int count, nextTime;
+    int i;
     int oindex;
-    int displaymode, message, graphic, next, prev;
+    int displaymode, message, graphic, next, prev, duration;
     int time = 0;
     int which = 1;
     int urgent;
@@ -155,32 +191,29 @@ script 110 (int startIndex) clientside
         graphic     = GetTermGraphic(index);
         next        = GetNextTerm(index);
         prev        = GetPrevTerm(index);
+        duration    = GetTermDuration(index);
         backmove    = 1;
 
-        // If we hit a title screen and it's either the first or last
-        if (oindex != index && displaymode == DISPLAY_TITLE)
+        // If we hit a screen with a duration attached
+        if (oindex != index && duration > 0)
         {
             if (prev <= 0 || next <= 0)
             {
-                if (next <= 0) { ActivatorSound("terminal/logout", 127); locmode = 2; }
-                else if (prev <= 0) { ActivatorSound("terminal/login", 127); locmode = 1;}
+                if (next <= 0) { ActivatorSound(GetTermLogoutSound(index), 127); locmode = 2; }
+                else if (prev <= 0) { ActivatorSound(GetTermLoginSound(index), 127); locmode = 1;}
                  
-                i = time;
+                nextTime = time;
             }
         }
 
         while (1)
         {
-            if (GetTermDisplayMode(prev) == DISPLAY_TITLE &&
-                (GetNextTerm(prev) <= 0 || GetPrevTerm(prev) <= 0))
+            if (GetTermDuration(prev) > 0 && (GetNextTerm(prev) <= 0 || GetPrevTerm(prev) <= 0))
             {
                 backmove++;
                 prev = GetPrevTerm(prev);
             }
-            else
-            {
-                break;
-            }
+            else { break; }
         }
 
         if (time % 35 == 0)
@@ -262,11 +295,11 @@ script 110 (int startIndex) clientside
 
         oindex = index;
 
-        if (displaymode == DISPLAY_TITLE && (prev <= 0 || next <= 0))
+        if (displaymode == DISPLAY_TITLE && (prev <= 0 || next <= 0) && duration > 0)
         {
             allowscroll = 0;
 
-            if (i + 70 < time)
+            if (nextTime + duration < time)
             {
                 index = next;
                 which++;
@@ -324,8 +357,19 @@ script 110 (int startIndex) clientside
 
     switch (urgent)
     {
-      case -1: ConsoleCommand("puke -109 2"); break;
-      case 1: ConsoleCommand("puke -109 1"); break;
-      default: ConsoleCommand("puke -109"); break;
+      case -1:
+        if (IsServer) { ACS_ExecuteAlways(110, 0, 2); }
+        else { ConsoleCommand("puke -110 2"); }
+        break;
+
+      case 1:
+        if (IsServer) { ACS_ExecuteAlways(110, 0, 1); }
+        else { ConsoleCommand("puke -110 1"); }
+        break;
+
+      default:
+        if (IsServer) { ACS_ExecuteAlways(110, 0); }
+        else { ConsoleCommand("puke -110"); }
+        break;
     }
 }
