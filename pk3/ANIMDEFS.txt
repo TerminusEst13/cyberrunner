@@ -5,9 +5,3 @@ pic  2  tics  5
 texture HLASER1
 pic  1  tics  5
 pic  2  tics  5
-
-texture STATSKY1
-pic  1  tics  7
-pic  2  tics  5
-pic  3  tics  6
-pic  4  tics  5
