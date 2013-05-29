@@ -31,9 +31,3 @@ map CYRTUT "Journey of a Thousand Miles, Etc Etc"
     next  = "CYRC01"
     music = "M_CYRTUT" // Jeroen Tel - War Stars
 }
-
-map CY0XFDED "electric sheep"
-{
-    next  = "CYRC01"
-    music = "M_000000" // TerminusEst13 - Communication Failure
-}
