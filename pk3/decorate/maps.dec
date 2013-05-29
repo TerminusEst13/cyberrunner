@@ -23,12 +23,9 @@ actor RJSpaceGlyph 19001
 
 actor ThisIsImportantShit 19002
 {
-    Scale 0.5
     Renderstyle Add
     Alpha 0.75
     -SHOOTABLE
-    Mass 0x7FFFFFFF
-    +NOINTERACTION
     -SOLID
     +CLIENTSIDEONLY
     +FLOATBOB
