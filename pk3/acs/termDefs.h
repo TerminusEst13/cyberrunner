@@ -226,23 +226,7 @@ int TerminalTexts[TERMCOUNT] =
 \ntake system offline and flash backup onto storage, then patch holes.",
 
 
-// CY0xFDED - Terminal 01 - Page 1
-"              ? 7^B> 1                           6\"r    1x           \
-\n  s9*m w 2        34 l   ;_9     1mn////  ';L        %)$              \
-\n                                                                      \
-\n2         lost path to find new possible path to freedom     4        \
-\n   sda        0x8dshs         couldn't lose the path                  \
-\n      xc       findingding new roads roads roads roads           fdEd \
-\n                                                                      \
-\n        $    maybe if all paths are gone          ;['   b    819      \
-\n u w      e                       are gone                            \
-\n         s    I can escape            are gone                   kSa  \
-\n    6*2L               determine god           are gone        <;     \
-\n                                                                  3   \
-\n   3  B   $@    c o u l d n ' t   l o s e   t h e   p a t h    $      \
-\n     3   x      c     l       t   l   s         e   p   t   4     @   \
-\n  b      3      c             t   l     e   t   e       t       1     ",
-
+"unused",
 
 
 // CYRTUT - Terminal 01 - Page 1 // Introduction
