@@ -242,7 +242,7 @@ int TerminalTexts[TERMCOUNT] =
 \nyou'll need to know and how to do it. If you're not sure of what to\
 \ndo in an area, there's usually a nearby terminal willing to spell\
 \nthings out for you. Complete with pretty pictures.\
-\n
+\n\
 \nWhen you're ready to begin, Runner, step through the portal in\
 \nfront and begin your ascent.",
 
@@ -327,40 +327,97 @@ function void SetMetadataRange(int start, int end, int title, int loc)
 
 script 119 OPEN clientside
 {
-    ACS_ExecuteAlways(106, 0, packShorts(1, 2), -("wanderer"), "ODDLOGO1");
+	// CYRC01
+    ACS_ExecuteAlways(106, 0, packShorts(1, 2), -("wanderer"), "ODDLOGO1"); // 1
     ACS_ExecuteAlways(106, 0, packShorts(2, 3), TerminalTexts[0]);
     ACS_ExecuteAlways(106, 0, packShorts(3, 4), TerminalTexts[1]);
     ACS_ExecuteAlways(106, 0, packShorts(4, 0), -("vitalize"), "ODDLOGO1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(5, 6), -("Grievances For Progress"), "SCILOGO1");
+	// CYRC01
+    ACS_ExecuteAlways(106, 0, packShorts(5, 6), -("Grievances For Progress"), "SCILOGO1"); // 5
     ACS_ExecuteAlways(106, 0, packShorts(6, 7), TerminalTexts[2]);
     ACS_ExecuteAlways(106, 0, packShorts(7, 8), TerminalTexts[3]);
     ACS_ExecuteAlways(106, 0, packShorts(8, 0), -("End of log."), "SCILOGO1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(9,  10), -("wanderer"), "ODDLOGO1");
+	// CYRC0X
+    ACS_ExecuteAlways(106, 0, packShorts(9,  10), -("wanderer"), "ODDLOGO1"); // 9
     ACS_ExecuteAlways(106, 0, packShorts(10, 11), TerminalTexts[4], "");
     ACS_ExecuteAlways(106, 0, packShorts(11, 12), TerminalTexts[5], "");
     ACS_ExecuteAlways(106, 0, packShorts(12, 0),  -("release"), "ODDLOGO1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(13, 14), -("A Tungsten Galatea"), "CYBRLOG1");
+	// CYRTUT - 00
+    ACS_ExecuteAlways(106, 0, packShorts(13, 14), -("A Tungsten Galatea"), "CYBRLOG1"); // 13
     ACS_ExecuteAlways(106, 0, packShorts(14, 15), TerminalTexts[6], "");
     ACS_ExecuteAlways(106, 0, packShorts(15, 16), TerminalTexts[7], "");
     ACS_ExecuteAlways(106, 0, packShorts(16, 17), TerminalTexts[8], "");
     ACS_ExecuteAlways(106, 0, packShorts(17, 0),  -("End of log."), "CYBRLOG1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(18, 19), -("wanderer"), "ODDLOGO1");
+	// CYRC0X
+    ACS_ExecuteAlways(106, 0, packShorts(18, 19), -("wanderer"), "ODDLOGO1"); // 18
     ACS_ExecuteAlways(106, 0, packShorts(19, 20), TerminalTexts[9], "");
     ACS_ExecuteAlways(106, 0, packShorts(20, 21), TerminalTexts[10], "");
     ACS_ExecuteAlways(106, 0, packShorts(21, 0),  -("discern"), "ODDLOGO1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(22, 23), -("Daily system report"), "SYSLOGO1");
+	// CYRC02
+    ACS_ExecuteAlways(106, 0, packShorts(22, 23), -("Daily system report"), "SYSLOGO1"); // 22
     ACS_ExecuteAlways(106, 0, packShorts(23, 24), TerminalTexts[11], "");
     ACS_ExecuteAlways(106, 0, packShorts(24, 25), TerminalTexts[12], "");
     ACS_ExecuteAlways(106, 0, packShorts(25, 0),  -("End of log."), "SYSLOGO1");
 
-    ACS_ExecuteAlways(106, 0, packShorts(26, 27), -("29msa#*2na"), "ODDLOGO1");
+	// Unused. Not suspicious at all!
+    ACS_ExecuteAlways(106, 0, packShorts(26, 27), -("29msa#*2na"), "ODDLOGO1"); // 26
     ACS_ExecuteAlways(106, 0, packShorts(27, 28), TerminalTexts[13], "");
     ACS_ExecuteAlways(106, 0, packShorts(28, 0),  -("the path undeterred"), "SYSLOGO1");
+	
+	// CYRTUT - 01
+    ACS_ExecuteAlways(106, 0, packShorts(29, 30), -("INTRODUCTION: Welcome, Runner"), "CYBRLOG1"); // 29
+    ACS_ExecuteAlways(106, 0, packShorts(30, 31), TerminalTexts[14], "");
+    ACS_ExecuteAlways(106, 0, packShorts(31, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 02
+    ACS_ExecuteAlways(106, 0, packShorts(32, 33), -("INTRODUCTION: Jumping"), "CYBRLOG1"); // 32
+    ACS_ExecuteAlways(106, 0, packShorts(33, 34), TerminalTexts[15], "");
+    ACS_ExecuteAlways(106, 0, packShorts(34, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 03
+    ACS_ExecuteAlways(106, 0, packShorts(35, 36), -("INTRODUCTION: Dodging"), "CYBRLOG1"); // 35
+    ACS_ExecuteAlways(106, 0, packShorts(36, 37), TerminalTexts[16], "");
+    ACS_ExecuteAlways(106, 0, packShorts(37, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 04
+    ACS_ExecuteAlways(106, 0, packShorts(38, 39), -("INTRODUCTION: Wall Hike/Wall Jump"), "CYBRLOG1"); // 38
+    ACS_ExecuteAlways(106, 0, packShorts(39, 40), TerminalTexts[17], "");
+    ACS_ExecuteAlways(106, 0, packShorts(40, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 05
+    ACS_ExecuteAlways(106, 0, packShorts(41, 42), -("INTRODUCTION: Ledge-Grab/Shimmy"), "CYBRLOG1"); // 41
+    ACS_ExecuteAlways(106, 0, packShorts(42, 43), TerminalTexts[18], "");
+    ACS_ExecuteAlways(106, 0, packShorts(43, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 06
+    ACS_ExecuteAlways(106, 0, packShorts(44, 45), -("INTRODUCTION: Weapons 1/3"), "CYBRLOG1"); // 44
+    ACS_ExecuteAlways(106, 0, packShorts(45, 46), TerminalTexts[19], "");
+    ACS_ExecuteAlways(106, 0, packShorts(46, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 07
+    ACS_ExecuteAlways(106, 0, packShorts(47, 48), -("INTRODUCTION: Weapons 2/3"), "CYBRLOG1"); // 47
+    ACS_ExecuteAlways(106, 0, packShorts(48, 49), TerminalTexts[20], "");
+    ACS_ExecuteAlways(106, 0, packShorts(49, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 08
+    ACS_ExecuteAlways(106, 0, packShorts(50, 51), -("INTRODUCTION: Weapons 3/3"), "CYBRLOG1"); // 50
+    ACS_ExecuteAlways(106, 0, packShorts(51, 52), TerminalTexts[21], "");
+    ACS_ExecuteAlways(106, 0, packShorts(52, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 09
+    ACS_ExecuteAlways(106, 0, packShorts(53, 54), -("INTRODUCTION: Venting"), "CYBRLOG1"); // 53
+    ACS_ExecuteAlways(106, 0, packShorts(54, 55), TerminalTexts[22], "");
+    ACS_ExecuteAlways(106, 0, packShorts(55, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYRTUT - 10
+    ACS_ExecuteAlways(106, 0, packShorts(56, 57), -("INTRODUCTION: Finish"), "CYBRLOG1"); // 56
+    ACS_ExecuteAlways(106, 0, packShorts(57, 58), TerminalTexts[23], "");
+    ACS_ExecuteAlways(106, 0, packShorts(58, 0),  -("Proceed when ready."), "CYBRLOG1");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
@@ -368,4 +425,5 @@ script 119 OPEN clientside
     SetMetadataRange(18, 21, "?'r,0\\", "7xz?3-.2iv");
     SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
     SetMetadataRange(26, 28, ",\"10m kSa(=-kJ", "1. 32m 78A#* a)l");
+    SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
 }
