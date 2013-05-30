@@ -14,7 +14,9 @@ GENERAL:
 =========
 - /vr/ for its incredible work in alpha-testing and guiding this in the right direction.
 - Zael and Synert for their high ping testing.
-- Font spliced and pieced together from FixedSys, Terminal, and JACKIE.
+- Smallfont spliced and pieced together from FixedSys, Terminal, and JACKIE.
+- Bigfont a modified version of SF Square Head and SF Square Head Condensed.
+- Bigfont converted from graphic to dbigfont.lmp thanks to Blue Shadow.
 
 GRAPHICS:
 =========
