@@ -247,72 +247,117 @@ int TerminalTexts[TERMCOUNT] =
 \nfront and begin your ascent.",
 
 // CYRTUT - Terminal 02 - Page 1 // Jumping
-"Noted. Runner needs assistance regarding how to jump.\
-\nSubmitting suggestion to the programmers to tighten up AI.\
+"Noted. Runner needs assistance regarding\
+\nhow to jump. Submitting suggestion to\
+\nthe programmers to tighten up AI.\
 \n\
-\nThis is simple enough. Inside your personal settings bank, head to\
-\nthe control customization section and bind a process to jump. Activate\
-\nit, and you'll leap upwards. Jump while in mid-air, you'll jump again.",
+\nThis is simple enough. In your personal\
+\nsettings bank, head to the control\
+\ncustomization section and bind a process\
+\nto jump. Activate it, and you'll leap\
+\nupwards. Jump while in mid-air, you'll\
+\njump again.",
 
 // CYRTUT - Terminal 03 - Page 1 // Dodging
-"Double-tap a direction to move in, and your body will throw itself that\
-\ndirection in a dodge. It's a quick boost of speed great for a sudden\
-\nchange in movement or veering in a new direction.\
+"Double-tap a direction to move in, and\
+\nyour body will throw itself that way in\
+\na dodge. It's a quick boost of speed\
+\ngreat for sudden changes in movement or\
+\nveering in a new direction.\
 \n\
-\nIf you press against a wall, you can dodge off of it while in mid-air.\
-\nDodging off a wall also resets your mid-air jumps, so you can do yet\
-\nanother mid-air jump afterwards.",
+\nIf you press against a wall, you can\
+\ndodge off of it while in mid-air.\
+\nDodging off a wall also resets your mid-\
+\nair jumps, so you can do yet another\
+\nmid-air jump afterwards.",
 
 // CYRTUT - Terminal 04 - Page 1 // Wall Jumping/Kicking
-"Sometimes the floor just won't cooperate. That's when you start using\
-\nthe walls instead. When hitting a wall while in mid-air, at the moment\
-\nof impact push into it and jump. You'll hike up the wall and vault\
-\nhigher into the air, resetting your mid-air jump counter as well.\
-\nIf you push a different direction away from the wall and jump, then\
-\ninstead you'll jump off the wall and vault in the new direction.",
+"Sometimes the floor just won't cooperate.\
+\nThat's when you start using the walls.\
+\nWhen pressing against a wall while in\
+\nmid-air, push into it and jump. You'll\
+\nhike up the wall and vault higher into\
+\nthe air, resetting your mid-air jump\
+\ncounter as well.\
+\n\
+\nIf you push a different direction away\
+\nfrom the wall and jump, then instead you\
+\nwill jump off the wall and vault in the\
+\nnew direction.",
 
 // CYRTUT - Terminal 05 - Page 1 // Ledge-Grabbing/Shimmying
-"Barely missed that jump? Good thing you've got hands.\
-\nIf you reach the very edge of a platform, just underneath head height,\
-\nyou'll automatically grab and hang onto it. While hanging off the edge\
-\nyou can shimmy left or right, jump up onto the platform, or jump off\
-\nof it in a new direction.",
+"Barely missed that jump? Good thing your\
+\nhands were built to be strong.\
+\n\
+\nIf you reach the very edge of a floor,\
+\nyou'll automatically grab and hang onto\
+\nit. While hanging off the edge you can\
+\nshimmy left or right, jump up onto the\
+\nplatform, or jump off of it in a new\
+\ndirection.",
 
 // CYRTUT - Terminal 06 - Page 1 // Weapons 1
-"The track is not a friendly place. Along the way, you'll have to tangle\
-\nwith enemies--be they drones, other Runners, or...something else.\
-Thankfully, you have tools to take care of these problems.\
+"The track is not a friendly place. Along\
+\nthe road, you'll have to defend yourself\
+\nagainst drones, other Runners, or...\
+\nother things entirely.\
+\nThankfully, you have tools to take care\
+\nof these problems.\
 \n\
-\nThe Cyber Shotgun is, surprise, a shotgun launching hitscan plasma\
-\nshards that can carve through metal. It has tight spread and a decent\
-\nrate of fire backing up a sharp punch, hampered only by its inaccuracy.",
+\nThe Cyber Shotgun is, unsurprisingly, a\
+\nshotgun launching hitscan plasma shards\
+\nthat can carve through metal. It has a\
+\ntight spread and a decent rate of fire\
+\nbacking up a sharp punch, hampered only\
+\nby inaccuracy.",
 
 // CYRTUT - Terminal 07 - Page 1 // Weapons 2
-"The Cyber Carbine has both the strongest punch and the longest range\
-\nout of all the weapons, firing a hitscan copper bolt supercharged\
-\ninto plasma via 1.96TW of electricity. However, it has to recharge\
-\nafter every shot, making it the slowest of all the weapons.",
+"Not all battles will be up close, though.\
+\nEspecially when running at over 200mph,\
+\nyou have to have a punch that hits very,\
+\nvery far.\
+\n\
+\nThe Cyber Carbine can boast brutal power\
+\nalongside both the highest accuracy, and\
+\nlongest range out of all the weapons,\
+\nfiring a hitscan copper bolt supercharged\
+\ninto plasma via 1.96TW of electricity.\
+\n\
+\nHowever, it has to recharge after every\
+\nshot, making it the slowest out of all\
+\nthe weapons.",
 
 // CYRTUT - Terminal 08 - Page 1 // Weapons 3
-"The Cyber Vulcan is the spray-and-pray weapon of the batch, launching\
-\ntwo glowing fuschia flechette projectiles per shot at an incredibly\
-\nrapid rate. It has decent accuracy and incredible speed, but its\
-\nlow damage leaves something to be desired.",
+"But then comes battles where you need to\
+\nhandle a large group over an open area.\
+\nIn situations where you can't count on\
+\naccuracy, you need this little thing.\
+\n\
+\nThe Cyber Vulcan is the spray-and-pray\
+\nrapid-fire weapon of the batch, firing\
+\ntwo glowing flechette projectiles with\
+\nevery shot at incredible speeds.\
+\nIt has decent accuracy and extremely\
+\nhigh rate of fire, but its low damage\
+\nleaves something to be desired.",
 
 // CYRTUT - Terminal 09 - Page 1 // Venting
-"I'd make a 'let off some steam' joke, but I'm certain I'd get fired.\
+"I'd make a 'let off some steam' joke, but\
+\nI'm certain I'd get fired.\
 \n\
-\nThe alt-fire of every weapon discharges a massive blast of air from your\
-\nbody. Being simple air, it does no damage, but emits massive force that\
-can help with jumping to higher areas.",
+\nThe alt-fire of every weapon discharges\
+\na massive blast of air from your body.\
+\nBeing simple air, it does no damage, but\
+\nemits massive force that can help with\
+\njumping to higher areas.",
 
 // CYRTUT - Terminal 10 - Page 1 // Exit
-"Congratulations, you've completed the basic test run.\
+"Congratulations, Runner, you've completed the test run.\
 \nHowever, this only scratches the surface of the techniques you can make\
 \nuse of as a Runner. There are still many more techniques to learn of,\
 \nsuch as air-venting, plasma climbing, and more. As you learn, develop,\
-\nand master more techniques, soon there will be no areas you just can't\
-reach. You will have complete freedom of movement.\
+\nand master more techniques, soon there will be nowhere left that you\
+\ncan't reach. You will have complete freedom of movement.\
 \n\
 \nYou will become as a goddess.\
 \n\
@@ -376,42 +421,42 @@ script 119 OPEN clientside
 	
 	// CYRTUT - 02
     ACS_ExecuteAlways(106, 0, packShorts(32, 33), -("INTRODUCTION: Jumping"), "CYBRLOG1"); // 32
-    ACS_ExecuteAlways(106, 0, packShorts(33, 34), TerminalTexts[15], "");
+    ACS_ExecuteAlways(106, 0, packShorts(33, 34), TerminalTexts[15], "TUTTERM1");
     ACS_ExecuteAlways(106, 0, packShorts(34, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 03
     ACS_ExecuteAlways(106, 0, packShorts(35, 36), -("INTRODUCTION: Dodging"), "CYBRLOG1"); // 35
-    ACS_ExecuteAlways(106, 0, packShorts(36, 37), TerminalTexts[16], "");
+    ACS_ExecuteAlways(106, 0, packShorts(36, 37), TerminalTexts[16], "TUTTERM2");
     ACS_ExecuteAlways(106, 0, packShorts(37, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 04
     ACS_ExecuteAlways(106, 0, packShorts(38, 39), -("INTRODUCTION: Wall Hike/Wall Jump"), "CYBRLOG1"); // 38
-    ACS_ExecuteAlways(106, 0, packShorts(39, 40), TerminalTexts[17], "");
+    ACS_ExecuteAlways(106, 0, packShorts(39, 40), TerminalTexts[17], "TUTTERM3");
     ACS_ExecuteAlways(106, 0, packShorts(40, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 05
     ACS_ExecuteAlways(106, 0, packShorts(41, 42), -("INTRODUCTION: Ledge-Grab/Shimmy"), "CYBRLOG1"); // 41
-    ACS_ExecuteAlways(106, 0, packShorts(42, 43), TerminalTexts[18], "");
+    ACS_ExecuteAlways(106, 0, packShorts(42, 43), TerminalTexts[18], "TUTTERM4");
     ACS_ExecuteAlways(106, 0, packShorts(43, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 06
     ACS_ExecuteAlways(106, 0, packShorts(44, 45), -("INTRODUCTION: Weapons 1/3"), "CYBRLOG1"); // 44
-    ACS_ExecuteAlways(106, 0, packShorts(45, 46), TerminalTexts[19], "");
+    ACS_ExecuteAlways(106, 0, packShorts(45, 46), TerminalTexts[19], "TUTTERM5");
     ACS_ExecuteAlways(106, 0, packShorts(46, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 07
     ACS_ExecuteAlways(106, 0, packShorts(47, 48), -("INTRODUCTION: Weapons 2/3"), "CYBRLOG1"); // 47
-    ACS_ExecuteAlways(106, 0, packShorts(48, 49), TerminalTexts[20], "");
+    ACS_ExecuteAlways(106, 0, packShorts(48, 49), TerminalTexts[20], "TUTTERM6");
     ACS_ExecuteAlways(106, 0, packShorts(49, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 08
     ACS_ExecuteAlways(106, 0, packShorts(50, 51), -("INTRODUCTION: Weapons 3/3"), "CYBRLOG1"); // 50
-    ACS_ExecuteAlways(106, 0, packShorts(51, 52), TerminalTexts[21], "");
+    ACS_ExecuteAlways(106, 0, packShorts(51, 52), TerminalTexts[21], "TUTTERM7");
     ACS_ExecuteAlways(106, 0, packShorts(52, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 09
     ACS_ExecuteAlways(106, 0, packShorts(53, 54), -("INTRODUCTION: Venting"), "CYBRLOG1"); // 53
-    ACS_ExecuteAlways(106, 0, packShorts(54, 55), TerminalTexts[22], "");
+    ACS_ExecuteAlways(106, 0, packShorts(54, 55), TerminalTexts[22], "TUTTERM8");
     ACS_ExecuteAlways(106, 0, packShorts(55, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYRTUT - 10
