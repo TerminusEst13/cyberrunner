@@ -262,8 +262,8 @@ int TerminalTexts[TERMCOUNT] =
 "Double-tap a direction to move in, and\
 \nyour body will throw itself that way in\
 \na dodge. It's a quick boost of speed\
-\ngreat for sudden changes in movement or\
-\nveering in a new direction.\
+\ngreat for diving under low ceilings or\
+\nsuddenly veering in a new direction.\
 \n\
 \nIf you press against a wall, you can\
 \ndodge off of it while in mid-air.\
@@ -274,6 +274,7 @@ int TerminalTexts[TERMCOUNT] =
 // CYRTUT - Terminal 04 - Page 1 // Wall Jumping/Kicking
 "Sometimes the floor just won't cooperate.\
 \nThat's when you start using the walls.\
+\n\
 \nWhen pressing against a wall while in\
 \nmid-air, push into it and jump. You'll\
 \nhike up the wall and vault higher into\
@@ -286,8 +287,8 @@ int TerminalTexts[TERMCOUNT] =
 \nnew direction.",
 
 // CYRTUT - Terminal 05 - Page 1 // Ledge-Grabbing/Shimmying
-"Barely missed that jump? Good thing your\
-\nhands were built to be strong.\
+"Barely missed that jump? Don't worry, you\
+\nstill have your hands.\
 \n\
 \nIf you reach the very edge of a floor,\
 \nyou'll automatically grab and hang onto\
@@ -299,14 +300,14 @@ int TerminalTexts[TERMCOUNT] =
 // CYRTUT - Terminal 06 - Page 1 // Weapons 1
 "The track is not a friendly place. Along\
 \nthe road, you'll have to defend yourself\
-\nagainst drones, other Runners, or...\
+\nagainst drones, other Runners, or...maybe\
 \nother things entirely.\
 \nThankfully, you have tools to take care\
 \nof these problems.\
 \n\
 \nThe Cyber Shotgun is, unsurprisingly, a\
-\nshotgun launching hitscan plasma shards\
-\nthat can carve through metal. It has a\
+\nshotgun launching a wide hitscan spray of\
+\nnear-molten shards of metal. It has a\
 \ntight spread and a decent rate of fire\
 \nbacking up a sharp punch, hampered only\
 \nby inaccuracy.",
@@ -336,7 +337,7 @@ int TerminalTexts[TERMCOUNT] =
 \nThe Cyber Vulcan is the spray-and-pray\
 \nrapid-fire weapon of the batch, firing\
 \ntwo glowing flechette projectiles with\
-\nevery shot at incredible speeds.\
+\nmono-molecular points with every shot.\
 \nIt has decent accuracy and extremely\
 \nhigh rate of fire, but its low damage\
 \nleaves something to be desired.",
@@ -346,10 +347,13 @@ int TerminalTexts[TERMCOUNT] =
 \nI'm certain I'd get fired.\
 \n\
 \nThe alt-fire of every weapon discharges\
-\na massive blast of air from your body.\
-\nBeing simple air, it does no damage, but\
-\nemits massive force that can help with\
-\njumping to higher areas.",
+\na massive blast of air from your body,\
+\nwhich disperses very forcefully directly\
+\nin front of you. Of course, being simple\
+\nair, it does no damage at all to Drones\
+\nor other Runners; that being said, the\
+\nmassive force in its dispersal can help\
+\nwith jumping to higher areas.",
 
 // CYRTUT - Terminal 10 - Page 1 // Exit
 "Congratulations, Runner, you've completed the test run.\
