@@ -38,51 +38,10 @@ actor RainbowTrail
     {
       Spawn:
         TNT1 A 3
-        RNBW A 0 //A_Jump(256,"Red","Orange","Yellow","Chartreuse","Green","Cyan","Blue","Violet","Purple","Fuschia")
-        
-      White:
+        RNBW A 0
+      Spawn2:
         RNBW A 5 BRIGHT A_FadeOut(0.1)
         loop
-        
-      /*Red:
-        RNBW B 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Orange:
-        RNBW C 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Yellow:
-        RNBW D 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Chartreuse:
-        RNBW E 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Green:
-        RNBW F 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Cyan:
-        RNBW G 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Blue:
-        RNBW H 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Violet:
-        RNBW I 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Purple:
-        RNBW J 5 BRIGHT A_FadeOut(0.1)
-        loop
-        
-      Fuschia:
-        RNBW K 5 BRIGHT A_FadeOut(0.1)
-        loop*/
     }
 }
 

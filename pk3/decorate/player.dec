@@ -29,7 +29,6 @@ actor CyberPlayer : PlayerPawn
     Player.SideMove 1.55 1.55
     Player.ColorRange 112, 127
     Player.JumpZ 12
-    +NOSKIN
     +NOBLOODDECALS
     +BRIGHT
     States
