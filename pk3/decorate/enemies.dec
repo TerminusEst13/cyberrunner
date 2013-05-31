@@ -124,6 +124,7 @@ actor AerialDrone 15601
 	Death:
 		TNT1 A 0 A_StopSound
 		TNT1 A 0 A_Pain
+                TNT1 A 0 A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
 		ATRT A 4 ThrustThingZ(0, random(2, 8), 0, 0)
 		TNT1 A 0 ThrustThing (random(0, 255), random(2, 8), 0, 0)
 		ATRT B 4 A_NoBlocking
@@ -286,6 +287,7 @@ actor AerialDroneOld 15603
 	Death:
 		TNT1 A 0 A_StopSound
 		TNT1 A 0 A_Pain
+                TNT1 A 0 A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
 		FTRT D 4 ThrustThingZ(0, random(2, 8), 0, 0)
 		TNT1 A 0 ThrustThing (random(0, 255), random(2, 8), 0, 0)
 		FTRT E 4 A_NoBlocking
@@ -421,6 +423,7 @@ actor TurretDrone 15602
 	Death:
 		TNT1 A 0 A_StopSound
 		TNT1 A 0 A_Pain
+                TNT1 A 0 A_SpawnItemEx("DroneExplosion", Random(-20, 20), Random(-20, 20), Random(20, 40), 0, 0, 0, 0, 128)
 		GTRT E 3 A_NoBlocking
 		GTRT FGHIJK 3
 		GTRT D 3 BRIGHT A_SpawnItemEx("DroneExplosion", Random(-10, 10), Random(-10, 10), Random(10, 50), 0, 0, 0, 0, 128)
