@@ -108,8 +108,9 @@ script 107 (int index, int titleNum, int locationNum) clientside
     TerminalLocation[index]     = locationNum;
 }
 
-script 108 (int index, int nextScript, int nextDelay)
+script 108 (int index, int nextScript, int highIndex)
 {
+    index = (highIndex << 8) + index;
     SetActorVelocity(0, 0,0,0, 0,0);
     ACS_ExecuteAlways(111, 0, index);
 
@@ -119,8 +120,7 @@ script 108 (int index, int nextScript, int nextDelay)
 
     if (nextScript && CheckInventory("TerminalFinished"))
     {
-        Delay(nextDelay);
-        ACS_ExecuteAlways(nextScript, 0, index);
+        Delay(ACS_ExecuteWithResult(nextScript, index));
     }
 
     if (IsServer) { InTerminal[PlayerNumber()] = 0; }
