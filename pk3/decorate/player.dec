@@ -1,6 +1,6 @@
 actor CyberRunnerClass : ParkmoreCounter {}
 
-actor CyberRunner : PlayerPawn
+actor CyberPlayer : PlayerPawn
 {
     Speed 1
     Radius 16

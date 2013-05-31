@@ -1,5 +1,5 @@
 clearplayerclasses
-addplayerclass CyberRunner
+addplayerclass CyberPlayer
 
 addkeysection "Cyberrunner: Essential" cyberkeys
 addmenukey "Horizontal Boost" cyberdash
