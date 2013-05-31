@@ -1,0 +1,6 @@
+{
+name = "Monarch"
+sprite = CYRM
+class = Cyberrunner
+scale = 0.225
+}

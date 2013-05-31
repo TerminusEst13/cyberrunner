@@ -15,13 +15,27 @@ $playersound	Cyberrunner	 male	*grunt			CYBPSLNC
 $playeralias	Cyberrunner	 male	*land			cybrunner/land
 $playersound	Cyberrunner	 male	*usefail		CYBPNOPE
 $playersound	Cyberrunner  male	*taunt			CYBPLAFF
-$playersound	Cyberrunner  male	*jump			CYBPJUMP
-//$playeralias	Cyberrunner  male	*jump			cybrunner/jump
+$playersound	Cyberrunner  male	*jump			CYBPSLNC
+
+$playeralias	Monarch	    male	*death			monarch/death
+$playersounddup	Monarch     male	*xdeath			*death
+$playersounddup	Monarch	    male	*burndeath		*death
+$playersounddup	Monarch	    male	*crazydeath		*death
+$playersounddup Monarch     male    *wimpydeath 	*death
+$playersounddup	Monarch	    male	*gibbed			*death
+$playeralias	Monarch	    male	*pain100		monarch/pain
+$playersounddup	Monarch	    male	*pain75			*pain100
+$playersounddup	Monarch	    male	*pain50			*pain100
+$playersounddup	Monarch	    male	*pain25			*pain100
+$playersound	Monarch	    male	*grunt			CYBPSLNC
+$playersound	Monarch	    male	*land			CYMLAND1
+$playersound	Monarch	    male	*usefail		CYMNOPE
+$playersound	Monarch     male	*taunt			CYMTAUNT
+$playersound	Monarch     male	*jump			CYMJUMP
 
 $random cybrunner/death {cybdeath1 cybdeath2 cybdeath3}
 $random cybrunner/ouch {cybouch1 cybouch2 cybouch3}
 $random cybrunner/land {cybland1 cybland2 cybland3}
-$random cybrunner/jump {cybjump1 cybjump2 cybjump3}
 cybdeath1			CYBPDIE1
 cybdeath2			CYBPDIE2
 cybdeath3			CYBPDIE3
@@ -31,9 +45,16 @@ cybouch3			CYBPHRT3
 cybland1			CYBPLND1
 cybland2			CYBPLND2
 cybland3			CYBPLND3
-cybjump1			CYBPJMP1
-cybjump2			CYBPJMP2
-cybjump3			CYBPJMP3
+
+$random monarch/death {mondeath1 mondeath2 mondeath3}
+$random monarch/pain {monpain1 monpain2 monpain3 monpain4}
+mondeath1	CYMDETH1
+mondeath2	CYMDETH2
+mondeath3	CYMDETH3
+monpain1	CYMPAIN1
+monpain2	CYMPAIN2
+monpain3	CYMPAIN3
+monpain4	CYMPAIN4
 
 // Systems
 // =============
