@@ -22,6 +22,7 @@ CYBERRUNNER_PK_SHOTGUN  = "\ciShotgun!";
 CYBERRUNNER_PK_CARBINE  = "\cdCarbine!";
 CYBERRUNNER_PK_VULCAN   = "\ctVulcan!";
 CYBERRUNNER_PK_INSTAGIB = "\cgINSTAGIB!";
+CYBERRUNNER_PK_CANNON   = "\cjMass Impactor! Cause some impact events!";
 
 CYBERRUNNER_PK_50HEALTH = "\ca50 health!";
 CYBERRUNNER_PK_TURBO    = "\cfFull turbo!";
@@ -30,6 +31,7 @@ CYBERRUNNER_PK_ALLAMMO  = "\cfFull ammo!";
 CYBERRUNNER_OB_PLASMA   = "%k \cnoverheated \c-%o.";
 CYBERRUNNER_OB_SHOTGUN  = "%k \cifatally lowered \c-%o\ci's drag.";
 CYBERRUNNER_OB_CARBINE  = "%k \cdsplit \c-%o \cdinto two.";
-CYBERRUNNER_OB_VULCAN  = "%k \ctliquidated \c-%o\ct.";
+CYBERRUNNER_OB_VULCAN   = "%k \ctliquidated \c-%o\ct.";
 CYBERRUNNER_OB_VENT     = "%k \cucollapsed \c-%o\cu's lungs.";
-CYBERRUNNER_OB_DELETED  = "%k \cjdeleted \c-%o\cj.";
+CYBERRUNNER_OB_DELETED  = "%k \cgdeleted \c-%o\cg.";
+CYBERRUNNER_OB_CANNON   = "%k \cjreduced \c-%o\cjto a crater.";

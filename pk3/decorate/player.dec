@@ -10,7 +10,6 @@ actor CyberPlayer : PlayerPawn
     Health 200
     Player.MaxHealth 200
     Gravity 0.8
-    DamageFactor "NoDamage", 0
     Player.DisplayName "Cyberrunner"
     Player.StartItem "Plasma Gun", 1
     Player.StartItem "PlasmaGunAmmo", 100
@@ -24,6 +23,8 @@ actor CyberPlayer : PlayerPawn
     DamageFactor "Drowning", 0.0
     DamageFactor "Poison", 0.0
     DamageFactor "PoisonCloud", 0.0
+    DamageFactor "NoDamage", 0
+    DamageFactor "CyberCannon", 0.25
     Scale 0.4
     Player.ForwardMove 1.8 1.8
     Player.SideMove 1.55 1.55

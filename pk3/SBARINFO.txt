@@ -27,6 +27,7 @@ statusbar Normal, forcescaled
     IsSelected " Cyber Carbine " { drawnumber 2, BIGFONT, Green,  ammo1, fillzeros, 176, 177, 0; }
     IsSelected " Cyber Vulcan " { drawnumber 3, BIGFONT, Purple, ammo1, fillzeros, 182, 177, 0; }
     IsSelected "Purge Rifle" { drawnumber 2, BIGFONT, Gold, ammo1, fillzeros, 176, 177, 0; }
+    IsSelected "Mass Impactor" { drawnumber 2, BIGFONT, White, ammo1, fillzeros, 176, 177, 0; }
 }
 
 statusbar Fullscreen, forcescaled
@@ -54,6 +55,7 @@ statusbar Fullscreen, forcescaled
     IsSelected " Cyber Carbine " { drawnumber 2, SMALLFONT, Green,  ammo1, fillzeros, 169, 186, 0; }
     IsSelected " Cyber Vulcan " { drawnumber 3, SMALLFONT, Purple, ammo1, fillzeros, 173, 186, 0; }
     IsSelected "Purge Rifle" { drawnumber 2, SMALLFONT, Gold, ammo1, fillzeros, 169, 186, 0; }
+    IsSelected "Mass Impactor" { drawnumber 2, SMALLFONT, White, ammo1, fillzeros, 169, 186, 0; }
 }
 
 statusbar automap, forcescaled

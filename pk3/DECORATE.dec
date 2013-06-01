@@ -107,6 +107,7 @@ actor CyberrunnerWeapon: Weapon
 #include "decorate/vulcan.dec"
 #include "decorate/lms.dec"
 #include "decorate/instagib.dec"
+#include "decorate/cannon.dec"
 
 #include "decorate/weppickups.dec"
 #include "decorate/enemies.dec"
