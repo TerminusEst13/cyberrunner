@@ -150,6 +150,9 @@ vulcan/unwind  sounds/weapons/vulcan_unwind.wav // Taken from Unreal 2
 delete/fire		sounds/weapons/delete_fire.ogg
 delete/wind		sounds/weapons/delete_wind.ogg
 
+
+cannon/up       sounds/weapons/cannon_up.wav    // UT99 Redeemer up sound
+
 // Enemies
 // =============
 
