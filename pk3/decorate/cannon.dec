@@ -14,10 +14,10 @@ actor "Celestial Hammer": CyberrunnerWeapon
     Weapon.AmmoUse2 1
     
     Weapon.SlotNumber 5
-	Weapon.UpSound "cannon/up"
+	Weapon.UpSound "hammer/up"
     
     Inventory.PickupMessage "$CYBERRUNNER_PK_CANNON"
-    Inventory.PickupSound "cannon/pickup"
+    Inventory.PickupSound "hammer/pickup"
     Obituary "$CYBERRUNNER_OB_CANNON"
     
     States
@@ -29,13 +29,18 @@ actor "Celestial Hammer": CyberrunnerWeapon
       Fire:
 	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
-        TNT1 A 0 A_PlaySound("carbine/fire", CHAN_WEAPON)
+        TNT1 A 0 A_PlaySound("hammer/fire", CHAN_WEAPON)
         TNT1 A 0 A_GunFlash
+        TNT1 A 0 A_ZoomFactor(0.90)
         TNT1 A 0 A_FireCustomMissile("CannonShot1", 0, 1, -16, 0, 0, 3)
         TNT1 A 0 A_FireCustomMissile("CannonShot2", 0, 0, 16, 0, 0, 3)
-		TNT1 A 15
-		TNT1 A 0 A_PlaySoundEx("carbine/wind","soundslot6")
-        TNT1 A 20
+        TNT1 A 5 A_ZoomFactor(0.95)
+        TNT1 A 3 A_ZoomFactor(0.975)
+        TNT1 A 2 A_ZoomFactor(0.99)
+		TNT1 A 10 A_ZoomFactor(1)
+		TNT1 A 0 A_PlaySoundEx("hammer/wind","soundslot6")
+        TNT1 A 15
+		TNT1 A 0 A_SetBlend("FF FF FF",0.3,10)
         TNT1 A 15 A_WeaponReady(12)
         goto Ready
     }
