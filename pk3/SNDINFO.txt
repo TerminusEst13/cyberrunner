@@ -115,6 +115,7 @@ pickups/ammo	sounds/pickups/allammo_get.wav	// Taken from Unreal II
 shotgun/pickup  sounds/pickups/shotgun_pickup.wav // UT2004 Flak Cannon pickup sound
 carbine/pickup  sounds/pickups/carbine_pickup.ogg	// From Unreal Tournament 2004
 vulcan/pickup  sounds/pickups/minigun_pickup.wav  // UT99 minigun up sound
+hammer/pickup  sounds/pickups/hammer_pickup.wav  // From Devil May Cry 3
 
 // Weapons
 // =============
@@ -150,8 +151,22 @@ vulcan/unwind  sounds/weapons/vulcan_unwind.wav // Taken from Unreal 2
 delete/fire		sounds/weapons/delete_fire.ogg
 delete/wind		sounds/weapons/delete_wind.ogg
 
+hammer/ready    sounds/weapons/hammer_ready.wav // Taken from Unreal Tournament 2k4
+hammer/up       sounds/weapons/hammer_up.ogg
+hammer/fire     sounds/weapons/hammer_fire.ogg
+hammer/wind	    sounds/weapons/hammer_wind.ogg
 
-cannon/up       sounds/weapons/cannon_up.wav    // UT99 Redeemer up sound
+$random hammer/explode {hamsplode1 hamsplode2 hamsplode3 hamsplode4 hamsplode5} // Taken from Doom 3
+hamsplode1	   hamspld1
+hamsplode2	   hamspld2
+hamsplode3	   hamspld3
+hamsplode4	   hamspld4
+hamsplode5	   hamspld5
+
+$limit hammer/explode 0
+$rolloff hammer/explode 800 5200
+
+purge/up		sounds/weapons/purge_up.ogg // Taken from Unreal Tournament 2k4
 
 // Enemies
 // =============

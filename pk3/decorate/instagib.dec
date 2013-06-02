@@ -1,8 +1,9 @@
-actor "Instagib Rifle" : "Cyber Carbine"
+actor "Purge Rifle" : "Cyber Carbine"
 {
     Obituary "$CYBERRUNNER_OB_DELETED"
 	Weapon.AmmoType1 ""
-
+	Weapon.UpSound "purge/up"
+    +AMMO_OPTIONAL
     +CHEATNOTWEAPON
 
     States
@@ -244,7 +245,7 @@ actor InstagibCarbineAmmo: Ammo
 }
 
 
-actor "Purge Rifle": "Instagib Rifle" 15505
+actor " Purge Rifle ": "Purge Rifle" 15505
 {
     Radius 48
     Height 48
@@ -254,6 +255,7 @@ actor "Purge Rifle": "Instagib Rifle" 15505
     Weapon.AmmoGive 20
 
     Inventory.PickupMessage "$CYBERRUNNER_PK_INSTAGIB"
+	Inventory.PickupSound "purge/up"
     -CHEATNOTWEAPON
 
     States

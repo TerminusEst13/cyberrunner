@@ -125,7 +125,7 @@ actor CyberVulcanPickup: WepPickup replaces Chaingun 15503
 actor CyberCannonPickup: WepPickup replaces BFG9000 15504
 {
     Inventory.PickupMessage "$CYBERRUNNER_PK_CANNON"
-    Inventory.PickupSound "cannon/pickup"
+    Inventory.PickupSound "hammer/pickup"
 
     States
     {
@@ -134,14 +134,14 @@ actor CyberCannonPickup: WepPickup replaces BFG9000 15504
 		//CYMG Z 1 ACS_ExecuteAlways(422,0,2)
 	  Spawn2:
         //CYMG Z 2 bright A_SpawnItemEx("CyberVulcanSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
-        CYMG Z -1 bright
+        CYCN Z -1 bright
         loop
 
       Pickup:
 		TNT1 A 0 A_GiveInventory("CannonAmmo", 999)
-        TNT1 A 0 A_GiveInventory("Mass Impactor")
+        TNT1 A 0 A_GiveInventory("Celestial Hammer")
 
-		TNT1 A 0 A_PlaySound("cannon/pickup", CHAN_ITEM)
+		TNT1 A 0 A_PlaySound("hammer/pickup", CHAN_ITEM)
 		TNT1 A 0 A_SetBlend("FF FF FF", 0.25, 8)
         stop
     }
