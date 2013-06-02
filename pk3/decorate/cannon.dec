@@ -5,7 +5,7 @@ actor CannonAmmo: Ammo
     +IGNORESKILL
 }
 
-actor "Mass Impactor": CyberrunnerWeapon
+actor "Celestial Hammer": CyberrunnerWeapon
 {
     Weapon.AmmoType1 "CannonAmmo"
     Weapon.AmmoGive1 15
@@ -23,7 +23,7 @@ actor "Mass Impactor": CyberrunnerWeapon
     States
     {
       Spawn:
-        CYCB Z 2 bright
+        CYCN Z 2 bright
         loop
         
       Fire:
