@@ -156,6 +156,16 @@ hammer/up      sounds/weapons/hammer_up.ogg
 hammer/fire    sounds/weapons/hammer_fire.ogg
 hammer/wind	   sounds/weapons/hammer_wind.ogg
 
+$random hammer/explode {hamsplode1 hamsplode2 hamsplode3 hamsplode4 hamsplode5} // Taken from Doom 3
+hamsplode1	   hamspld1
+hamsplode2	   hamspld2
+hamsplode3	   hamspld3
+hamsplode4	   hamspld4
+hamsplode5	   hamspld5
+
+$limit hammer/explode 0
+$rolloff hammer/explode 800 5200
+
 purge/up		sounds/weapons/purge_up.ogg // Taken from Unreal Tournament 2k4
 
 // Enemies
