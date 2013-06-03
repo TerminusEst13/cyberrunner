@@ -634,14 +634,14 @@ script 420 DEATH
     Thing_ChangeTID(0,0);
 }
 
-#define PARTICLECOUNT 8
+#define PARTICLECOUNT 9
 #define PARTDIST_MIN  8.0
 #define PARTDIST_MAX  32.0
  
 int ParticleTypes[PARTICLECOUNT] =
 {
     "CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle",
-    "TurboSparkle", "AllAmmoSparkle", "50HPSparkle", "InstagibSparkle",
+    "TurboSparkle", "AllAmmoSparkle", "50HPSparkle", "InstagibSparkle", "25HPSparkle",
 };
  
 script 422 (int which) clientside
