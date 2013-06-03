@@ -29,4 +29,4 @@ actor BFG10k : BFG9000 5013
 actor CyberShotgunPickup2 : CyberShotgunPickup replaces GrenadeLauncher {}
 actor CyberVulcanPickup2 : CyberVulcanPickup replaces Minigun {}
 actor CyberCarbinePickup2 : CyberCarbinePickup replaces Railgun {}
-actor CyberHammerPickup2 : CyberHammerPickup replaces BFG10k {}
+actor CyberCannonPickup2 : CyberCannonPickup replaces BFG10k {}
