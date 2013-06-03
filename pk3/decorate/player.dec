@@ -35,153 +35,153 @@ actor CyberPlayer : PlayerPawn
     States
     {
       Spawn:
-        CYBR A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
         loop
         
         // MOVEMENT STATES
       See:
-        CYBR A 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash1")
+        CYBZ A 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash1")
         goto SeeB
         
       Dash1:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       SeeB:
-        CYBR A 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash1B")
+        CYBZ A 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash1B")
         goto See2
         
       Dash1B:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See2:
-        CYBR B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash2")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash2")
         goto See2B
         
       Dash2:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See2B:
-        CYBR B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash2B")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash2B")
         goto See3
         
       Dash2B:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See3:
-        CYBR C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash3")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash3")
         goto See3B
         
       Dash3:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See3B:
-        CYBR C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash3B")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash3B")
         goto See4
         
       Dash3B:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See4:
-        CYBR D 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR D 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash4")
+        CYBZ D 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ D 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash4")
         goto See4B
         
       Dash4:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See4B:
-        CYBR D 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR D 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash4B")
+        CYBZ D 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ D 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash4B")
         goto See5
         
       Dash4B:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See5:
-        CYBR C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash5")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash5")
         goto See5B
         
       Dash5:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See5B:
-        CYBR C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash5B")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash5B")
         goto See6
         
       Dash5B:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See6:
-        CYBR B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash6")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash6")
         goto See6B
         
       Dash6:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       See6B:
-        CYBR B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
-        CYBR B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
-        CYBR A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash6B")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberMove")
+        CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash6B")
         goto Spawn
         
       Dash6B:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(5,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         goto Spawn
         
         // END MOVEMENT STATES
@@ -189,87 +189,87 @@ actor CyberPlayer : PlayerPawn
         // START CYBER MOVEMENT STATES
         
       CyberMove:
-        CYBR D 2 BRIGHT
-        CYBR AA 0 A_SpawnItemEx("RainbowTrail",0,random(-12,12),random(5,46),0,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_CheckFloor("Spawn")
-        CYBR A 0 A_JumpIf(momx == 0, "Spawn")
-        CYBR A 0 A_JumpIf(momy == 0, "Spawn")
-        CYBR A 0 A_JumpIf(momz == 0, "Spawn")
+        CYBZ D 2 BRIGHT
+        CYBZ AA 0 A_SpawnItemEx("RainbowTrail",0,random(-12,12),random(5,46),0,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_CheckFloor("Spawn")
+        CYBZ A 0 A_JumpIf(momx == 0, "Spawn")
+        CYBZ A 0 A_JumpIf(momy == 0, "Spawn")
+        CYBZ A 0 A_JumpIf(momz == 0, "Spawn")
         goto Cybermove
         
         // END CYBER MOVEMENT STATES
         
       /*Missile:
-        CYBR E 12 BRIGHT
+        CYBZ E 12 BRIGHT
         Goto Spawn
         
       Melee:
-        CYBR F 6 BRIGHT
+        CYBZ F 6 BRIGHT
         Goto Missile*/
         
         // NO MISSILE STATES, IT'S TOO DIFFICULT TO INCLUDE DASH TRAILS
         
       Pain:
-        CYBR E 4 BRIGHT
-        CYBR E 0 A_JumpIfInventory("CyberBoostSpeed",1,"DashPain")
+        CYBZ E 4 BRIGHT
+        CYBZ E 0 A_JumpIfInventory("CyberBoostSpeed",1,"DashPain")
         goto Pain2
         
       DashPain:
-        //CYBR AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(0,46),-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
-        CYBR A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
+        //CYBZ AAAA 0 A_SpawnItemEx("DashTrail",0,random(-12,12),random(0,46),-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,10,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,25,-1,0,0,0,SXF_CLIENTSIDE)
+        CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         
       Pain2:
-        CYBR E 4 BRIGHT A_Pain
+        CYBZ E 4 BRIGHT A_Pain
         Goto Spawn
         
       XDeath:
       Death:
-        CYBR F 1
+        CYBZ F 1
         TNT1 AA 0 A_SpawnItemEx("DroneExplosion2",Random(-3,3),Random(-3,3),Random(35,48),0,0,0,0,160)
         TNT1 AAAAAA 0 A_SpawnItemEx("RobotJunk",Random(-3,3),Random(-3,3),Random(35,48),random(-2,2),random(-2,2),random(3,7),random(-180,180),160)
         TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR F 1 BRIGHT ACS_ExecuteAlways(401)
-        CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ F 1 BRIGHT ACS_ExecuteAlways(401)
+        CYBZ F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ F 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR G 1 BRIGHT A_PlayerScream
-        CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ G 1 BRIGHT A_PlayerScream
+        CYBZ G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ G 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 A 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR H 1 BRIGHT A_NoBlocking
-        CYBR HHH 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR IJKL 3 BRIGHT A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(4,24),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR MMM 1 BRIGHT A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(3,18),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR M 45
+        CYBZ H 1 BRIGHT A_NoBlocking
+        CYBZ HHH 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(5,48),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ IJKL 3 BRIGHT A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(4,24),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ MMM 1 BRIGHT A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(3,18),random(-2,2),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ M 45
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR M 45
+        CYBZ MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ M 45
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR M 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ M 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR M 80
+        CYBZ MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ M 80
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR M 20
+        CYBZ MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ M 20
         TNT1 AAA 0 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
-        CYBR M -1
+        CYBZ MM 1 A_SpawnItemEx("RobotBloodSpark",random(-2,2),random(-2,2),random(2,7),random(-1,1),random(-1,1),random(1,7),random(-180,180),32)
+        CYBZ M -1
         Stop
     }
 }
