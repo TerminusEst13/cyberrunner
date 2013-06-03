@@ -30,7 +30,19 @@ actor "Celestial Hammer": CyberrunnerWeapon
         TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlayWeaponSound("hammer/ready")
-        TNT1 A 15
+        TNT1 A 0 A_PlaySound("hammer/humstart", 5)
+        TNT1 A 14
+        TNT1 A 0 A_PlaySound("hammer/hum", 7, 1, 1)
+        goto Hold
+
+      Hold:
+        TNT1 A 1
+        TNT1 A 0 A_Refire
+        goto Fire2
+
+      Fire2:
+        TNT1 A 0 A_StopSound(7)
+        TNT1 A 0 A_PlaySound("hammer/humend", 5)
         TNT1 A 0 A_PlaySound("hammer/fire", CHAN_WEAPON)
         TNT1 A 0 A_GunFlash
         TNT1 A 0 A_ZoomFactor(0.90)

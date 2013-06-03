@@ -153,6 +153,9 @@ delete/fire		sounds/weapons/delete_fire.ogg
 delete/wind		sounds/weapons/delete_wind.ogg
 
 hammer/ready    sounds/weapons/hammer_ready.wav // Taken from Unreal Tournament 2k4
+hammer/humstart sounds/weapons/hammer_humstart.wav
+hammer/hum      sounds/weapons/hammer_hum.wav
+hammer/humend   sounds/weapons/hammer_humend.wav
 hammer/up       sounds/weapons/hammer_up.ogg
 hammer/fire     sounds/weapons/hammer_fire.ogg
 hammer/wind	    sounds/weapons/hammer_wind.ogg
@@ -163,6 +166,7 @@ hamsplode2	   hamspld2
 hamsplode3	   hamspld3
 hamsplode4	   hamspld4
 hamsplode5	   hamspld5
+
 
 $limit hammer/explode 0
 $rolloff hammer/explode 800 5200
