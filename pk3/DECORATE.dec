@@ -110,6 +110,7 @@ actor CyberrunnerWeapon: Weapon
 #include "decorate/cannon.dec"
 
 #include "decorate/weppickups.dec"
+#include "decorate/skullweps.dec"
 #include "decorate/enemies.dec"
 
 #include "decorate/effects.dec"
