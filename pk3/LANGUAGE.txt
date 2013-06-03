@@ -35,4 +35,4 @@ CYBERRUNNER_OB_CARBINE  = "%k \cdsplit \c-%o \cdinto two.";
 CYBERRUNNER_OB_VULCAN   = "%k \ctliquidated \c-%o\ct.";
 CYBERRUNNER_OB_VENT     = "%k \cucollapsed \c-%o\cu's lungs.";
 CYBERRUNNER_OB_DELETED  = "%k \cgdeleted \c-%o\cg.";
-CYBERRUNNER_OB_CANNON   = "%k \cjreduced \c-%o\cjto a crater.";
+CYBERRUNNER_OB_CANNON   = "%k \cjreduced \c-%o \cjto a crater.";
