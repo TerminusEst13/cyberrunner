@@ -964,3 +964,15 @@ function int AddActorProperty(int tid, int prop, int amount)
     SetActorProperty(tid, prop, newAmount);
     return newAmount;
 }
+
+function int ClientCount(void)
+{
+    int ret, i;
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        if (PlayerInGame(i) || PlayerIsSpectator(i)) { ret++; }
+    }
+
+    return ret;
+}

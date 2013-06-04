@@ -14,7 +14,7 @@ int PlayerTIDs[PLAYERMAX];
 int PlayerTimes[PLAYERMAX][TIMECOUNT];
 int InTerminal[PLAYERMAX];
 int UnfreezeDelay[PLAYERMAX];
-int IsServer;
+int IsServer = 0;
 int TimeDisplays[PLACEMAX][3] = {{-1, -1, -1}};  // name pointer, time, player number
 int PlayerPlace[PLAYERMAX] = {-1}; 
 

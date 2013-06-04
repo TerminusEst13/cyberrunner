@@ -5,10 +5,13 @@
 #define MODE_SUDDENDEATH    3
 #define MODE_SCOREBOARD     4
 
-#define ENDGAME_OPEN        511
-#define ENDGAME_ENTER       512
-#define ENDGAME_DISCONNECT  513
-#define ENDGAME_SWITCH      514
+#define MODES_OPEN        511
+#define MODES_ENTER       512
+#define MODES_DISCONNECT  513
+#define MODES_SWITCH      514
+
+#define MODES_OPEN_CLIENT 521
+#define MODES_INFORM      522
 
 int CRGameMode = MODE_NORMAL;
 int CRSwitchTime = 0;
@@ -30,24 +33,28 @@ function void CheckCRMusic(void)
     switch (CRGameMode)
     {
       case MODE_COUNTDOWN:
-        LocalAmbientSound("end/klaxon", 127);
-        LocalSetMusic("SILENCE");
+        AmbientSound("end/klaxon", 127);
+        SetMusic("SILENCE");
         break;
 
       case MODE_SUDDENDEATH:
-        LocalSetMusic("M_HURRY");
+        SetMusic("M_HURRY");
         break;
 
       case MODE_NORMAL:
-        LocalSetMusic("*");
+        SetMusic("*");
         break;
     }
 }
 
-script ENDGAME_OPEN open
+script MODES_OPEN open
 {
+    int clients, oclients;
     while (1)
     {
+        oclients = clients;
+        clients = ClientCount();
+
         SetHudSize(640, 480, 1);
         HudMessage(s:"Mode: ", s:CRModeNames[CRGameMode];
                 HUDMSG_PLAIN, 7741, CR_WHITE, 120.1, 100.0, 1.0, 1.0);
@@ -63,18 +70,21 @@ script ENDGAME_OPEN open
                     HUDMSG_PLAIN, 7742, CR_WHITE, 120.1, 120.0, 1.0, 1.0);
         }
 
+        if (clients != oclients || CRSwitched)
+        {
+            ACS_ExecuteAlways(MODES_INFORM, 0, CRGameMode, CRSwitchTo);
+        }
+
         Delay(1);
     }
 }
 
-script ENDGAME_ENTER enter
+script MODES_ENTER enter
 {
     int pln = PlayerNumber();
     int oplace, place;
 
     place = PlayerPlace[pln];
-
-    CheckCRMusic();
 
     while (1)
     {
@@ -83,34 +93,32 @@ script ENDGAME_ENTER enter
 
         if (oplace != place && place == 0) // Are we first?
         {
-            ACS_ExecuteWithResult(ENDGAME_SWITCH, MODE_COUNTDOWN, 70, MODE_SUDDENDEATH);
+            ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_COUNTDOWN, 70, MODE_SUDDENDEATH);
         }
-
-        if (CRSwitched) { CheckCRMusic(); }
 
         Delay(1);
     }
 }
 
-script ENDGAME_DISCONNECT (int pln) disconnect
+script MODES_DISCONNECT (int pln) disconnect
 {
     int i;
 
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (TimeDisplays[i][2] == pln) { Print(s:"ded"); RemoveTime(i); }
+        if (TimeDisplays[i][2] == pln) { RemoveTime(i); }
     }
 
     DefragTimes();
 
     if (TimeDisplays[0][0] == -1)  // no more first place
     {
-        ACS_ExecuteWithResult(ENDGAME_SWITCH, MODE_NORMAL);
+        ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_NORMAL);
     }
 }
 
 
-script ENDGAME_SWITCH (int to1, int wait, int to2)
+script MODES_SWITCH (int to1, int wait, int to2)
 {
     int i;
     int start = Timer();
@@ -142,6 +150,30 @@ script ENDGAME_SWITCH (int to1, int wait, int to2)
     CRSwitchTime = 0;
     CRSwitchTo   = -1;
     CRSwitchLock = 0;
+
+    CRSwitched = 1;
+    Delay(1);
+    CRSwitched = 0;
+}
+
+script MODES_OPEN_CLIENT open clientside
+{
+    while (1)
+    {
+        if (CRSwitched)
+        {
+            CheckCRMusic();
+        }
+        Delay(1);
+    }
+}
+
+script MODES_INFORM (int gmode, int nmode) clientside
+{
+    if (IsServer) { terminate; }
+
+    CRGameMode = gmode;
+    CRSwitchTo = nmode;
 
     CRSwitched = 1;
     Delay(1);
