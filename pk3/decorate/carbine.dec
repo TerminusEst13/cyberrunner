@@ -3,6 +3,7 @@ actor CarbineAmmo: Ammo
     Inventory.MaxAmount 10
     Ammo.BackpackMaxAmount 10
     +IGNORESKILL
+    +UNDROPPABLE
 }
 
 actor "Cyber Carbine": CyberrunnerWeapon

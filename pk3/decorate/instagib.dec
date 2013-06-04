@@ -1,4 +1,4 @@
-actor "Purge Rifle" : "Cyber Carbine"
+actor " Purge Rifle " : "Cyber Carbine"
 {
     Obituary "$CYBERRUNNER_OB_DELETED"
 	Weapon.AmmoType1 ""
@@ -242,10 +242,11 @@ actor InstagibCarbineAmmo: Ammo
     Inventory.MaxAmount 20
     Ammo.BackpackMaxAmount 20
     +IGNORESKILL
+    +UNDROPPABLE
 }
 
 
-actor " Purge Rifle ": "Purge Rifle" 15505
+actor "Purge Rifle": " Purge Rifle " 15505
 {
     Radius 48
     Height 48

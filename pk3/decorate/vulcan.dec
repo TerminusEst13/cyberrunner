@@ -80,7 +80,8 @@ actor VulcanAmmo: Ammo
 {
     Inventory.MaxAmount 200
     Ammo.BackpackMaxAmount 200
-    +INVENTORY.IGNORESKILL
+    +IGNORESKILL
+    +UNDROPPABLE
 }
 
 actor CyberVulcanSparkle

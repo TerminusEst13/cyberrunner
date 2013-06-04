@@ -3,6 +3,7 @@ actor CannonAmmo: Ammo
     Inventory.MaxAmount 15
     Ammo.BackpackMaxAmount 15
     +IGNORESKILL
+    +UNDROPPABLE
 }
 
 actor "Celestial Hammer": CyberrunnerWeapon
@@ -66,8 +67,8 @@ actor "Celestial Hammer": CyberrunnerWeapon
 
 actor CannonShot1
 {
-    Radius 10
-    Height 10
+    Radius 16
+    Height 16
 
     Projectile
     Speed 100

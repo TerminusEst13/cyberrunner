@@ -3,6 +3,7 @@ actor ShotgunAmmo: Ammo
     Inventory.MaxAmount 20
     Ammo.BackpackMaxAmount 20
     +IGNORESKILL
+    +UNDROPPABLE
 }
 
 actor "Cyber Shotgun": CyberrunnerWeapon

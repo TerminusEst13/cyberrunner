@@ -26,7 +26,8 @@ actor PlasmaGunAmmo : Ammo
 {
     Inventory.MaxAmount 100
     Ammo.BackpackMaxAmount 100
-    +INVENTORY.IGNORESKILL
+    +IGNORESKILL
+    +UNDROPPABLE
 }
 
 actor "No-Damage Plasma Gun": "Plasma Gun"
@@ -50,7 +51,8 @@ actor RedPlasmaGunAmmo : Ammo
 {
     Inventory.MaxAmount 100
     Ammo.BackpackMaxAmount 100
-    +INVENTORY.IGNORESKILL
+    +IGNORESKILL
+    +UNDROPPABLE
 }
 
 actor PlasmaBolt: FastProjectile
