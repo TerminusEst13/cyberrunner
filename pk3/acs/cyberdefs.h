@@ -15,7 +15,7 @@ int PlayerTimes[PLAYERMAX][TIMECOUNT];
 int InTerminal[PLAYERMAX];
 int UnfreezeDelay[PLAYERMAX];
 int IsServer;
-int TimeDisplays[PLACEMAX][2] = {{-1, -1}};  // name pointer, time
+int TimeDisplays[PLACEMAX][3] = {{-1, -1, -1}};  // name pointer, time, player number
 int PlayerPlace[PLAYERMAX] = {-1}; 
 
 #define BARFONTCOUNT 12
@@ -84,3 +84,11 @@ int PlaceNames[PLACENAMECOUNT] =
     "\ccNinth",
     "\csTenth",
 };
+
+// 0, 1, 2  -> x, y, z
+// 3, 4     -> angle, pitch
+// 5        -> last checkpoint
+// 6        -> next checkpoint
+int CheckpointCoords[PLAYERMAX][8];
+int OldCheckpointCoords[PLAYERMAX][8];
+int HasTeleported[PLAYERMAX];
