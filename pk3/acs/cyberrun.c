@@ -290,7 +290,7 @@ script 105 (int mode, int index, int next)
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
             HudMessage(s:"End time: \cn", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
-                        240.1, 140.0, 2.0, 0.5);
+                        320.4, 140.0, 2.0, 0.5);
 
 
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
@@ -304,10 +304,10 @@ script 105 (int mode, int index, int next)
 
         if ((mode % 2) && place != -1)
         {
-            SetHudSize(640, 480, 1);
+            SetHudSize(480, 360, 1);
 
             HudMessage(s:"Place: \cf", s:GetPlaceName(place); HUDMSG_FADEOUT, 703, CR_BRICK,
-                        280.1, 170.0, 2.0, 0.5);
+                        240.4, 128.0, 2.0, 0.5);
         }
 
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
