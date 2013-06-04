@@ -11,6 +11,7 @@
 
 int CRGameMode = MODE_NORMAL;
 int CRSwitchTime = 0;
+int CRSwitchTo = -1;
 int CRSwitchLock;
 
 int CRModeNames[MODECOUNT] =
@@ -31,7 +32,7 @@ script ENDGAME_OPEN open
 
         if (CRSwitchLock)
         {
-            HudMessage(s:"Switching... ", d:CRSwitchTime;
+            HudMessage(s:"Switching to \"", s:CRModeNames[CRSwitchTo], s:"\"... ", d:CRSwitchTime;
                     HUDMSG_PLAIN, 7742, CR_WHITE, 120.1, 120.0, 1.0, 1.0);
         }
         else
@@ -52,15 +53,22 @@ script ENDGAME_ENTER enter
 script ENDGAME_SWITCH (int to1, int wait, int to2)
 {
     int i;
+    to1--; to2--;
 
-    if (CRSwitchLock) { SetResultValue(0); }
+    if (CRSwitchLock) { SetResultValue(0); terminate; }
 
     CRSwitchLock = 1;
     SetResultValue(1);
-    CRGameMode = to1;
 
-    if (to2)
+    if (to1 > -1)
     {
+        CRGameMode = to1;
+    }
+
+    if (to2 > -1)
+    {
+        CRSwitchTo = to2;
+
         for (i = wait; i > 0; i--)
         {
             CRSwitchTime = i;
@@ -68,12 +76,9 @@ script ENDGAME_SWITCH (int to1, int wait, int to2)
         }
 
         CRGameMode = to2;
-        CRSwitchTime = 0;
-    }
-    else
-    {
-        CRSwitchTime = 0;
     }
 
+    CRSwitchTime = 0;
+    CRSwitchTo   = -1;
     CRSwitchLock = 0;
 }
