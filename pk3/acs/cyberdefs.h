@@ -16,6 +16,7 @@ int InTerminal[PLAYERMAX];
 int UnfreezeDelay[PLAYERMAX];
 int IsServer;
 int TimeDisplays[PLACEMAX][2] = {{-1, -1}};  // name pointer, time
+int PlayerPlace[PLAYERMAX] = {-1}; 
 
 #define BARFONTCOUNT 12
 

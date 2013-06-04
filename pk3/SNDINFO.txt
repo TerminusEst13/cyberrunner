@@ -73,6 +73,8 @@ $random ui/checkpoint { ui/check1 ui/check2 ui/check3 ui/check4 ui/check5 }
 
 ui/win          sounds/systems/ui_win.ogg
 
+end/klaxon      sounds/systems/end_klaxon.ogg
+
 cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
 cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
 cyber/boost		CYBRBOST // Taken from Unreal Tournament 3

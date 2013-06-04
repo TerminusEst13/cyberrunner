@@ -7,6 +7,7 @@
 #include "cyberdefs.h"
 #include "terminals.h"
 #include "termDefs.h"
+#include "endgame.h"
 
 function void hudmessageonactor(int tid, int range, str sprite, str text, int id) // By Caligari 87
 {
@@ -283,6 +284,8 @@ script 105 (int mode, int index, int next)
         {
             PlayerTimes[pln][TIME_FINISH] = Timer();
             place = AddTime(PlayerNumber(), Timer() - PlayerTimes[pln][TIME_START]);
+
+            if (PlayerPlace[pln] == -1) { PlayerPlace[pln] = place; }
         }
 
         if (mode % 2)
@@ -340,9 +343,9 @@ script 405 OPEN
     {
         oac = ac;
         ac = GetCVar("cyber_noaircontrol");
-        if (!ac) { SetAirControl(0.2); }
+        if (!ac && (oac || (Timer() % 70 == 0))) { SetAirControl(0.2); }
         else if (!oac && ac) { SetAirControl(0.00390625); }
-        Delay(35);
+        Delay(1);
     }
 }
 
@@ -353,6 +356,8 @@ script 400 ENTER
     int tid;
     int pln = PlayerNumber();
     int term, oterm, unfreeze;
+    int obegin;
+    int place = -1, oplace;
 
     ACS_ExecuteAlways(424, 0, pln, Timer());
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
@@ -360,12 +365,16 @@ script 400 ENTER
     PlayerTimes[pln][TIME_START]        = Timer();
     PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
     PlayerTimes[pln][TIME_END]          = 0x7FFFFFFF;
+    PlayerPlace[pln]                    = -1;
 
     while (1)
     {
         tid = defaultTID(-1);
         PlayerTIDs[pln] = tid;
         HasTeleported[pln] = max(0, HasTeleported[pln]-1);
+
+        oplace = place;
+        place = PlayerPlace[pln];
 
         for (i = 0; i < RECHARGECOUNT; i++)
         {
