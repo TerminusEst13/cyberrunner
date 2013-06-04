@@ -1,9 +1,10 @@
-#define MODECOUNT   4
+#define MODECOUNT   5
 
 #define MODE_NORMAL         1
 #define MODE_COUNTDOWN      2
 #define MODE_SUDDENDEATH    3
-#define MODE_SCOREBOARD     4
+#define MODE_PURGE          4
+#define MODE_SCOREBOARD     5
 
 #define MODES_OPEN        511
 #define MODES_ENTER       512
@@ -19,12 +20,15 @@ int CRSwitchTo = -1;
 int CRSwitchLock;
 int CRSwitched = 0;
 
+int SuddenDeathEnd = 0;
+
 int CRModeNames[MODECOUNT+1] =
 {
     "GrossHack",
     "Normal",
     "Countdown",
     "Sudden Death",
+    "Failure Purge",
     "Scoreboard",
 };
 
@@ -43,6 +47,11 @@ function void CheckCRMusic(void)
 
       case MODE_NORMAL:
         SetMusic("*");
+        break;
+
+      case MODE_PURGE:
+        AmbientSound("ui/lose", 127);
+        SetMusic("SILENCE");
         break;
     }
 }
@@ -73,6 +82,16 @@ script MODES_OPEN open
         if (clients != oclients || CRSwitched)
         {
             ACS_ExecuteAlways(MODES_INFORM, 0, CRGameMode, CRSwitchTo);
+        }
+
+        if (CRGameMode == MODE_SUDDENDEATH)
+        {
+            if (CRSwitched) { SuddenDeathEnd = Timer() + 2100; }
+
+            if (Timer() == SuddenDeathEnd)
+            {
+                ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_PURGE, 105, MODE_SCOREBOARD);
+            }
         }
 
         Delay(1);
