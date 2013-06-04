@@ -112,7 +112,8 @@ function int AddTime(int pln, int time)
 
     for (i = 0; i < PLACEMAX; i++)
     {
-       if (TimeDisplays[i][1] == -1) { index = i; break; }
+        Log(d:i, s:": ", d:TimeDisplays[i][1]);
+        if (TimeDisplays[i][1] == -1) { index = i; break; }
     }
 
     if (index == -1) { return -1; }
@@ -278,6 +279,12 @@ script 105 (int mode, int index, int next)
             { break; }
 
       case 6:
+        if (PlayerTimes[pln][TIME_FINISH] == 0x7FFFFFFF)
+        {
+            PlayerTimes[pln][TIME_FINISH] = Timer();
+            place = AddTime(PlayerNumber(), Timer() - PlayerTimes[pln][TIME_START]);
+        }
+
         if (mode % 2)
         {
             LocalAmbientSound("ui/checkpoint", 127);
@@ -289,25 +296,18 @@ script 105 (int mode, int index, int next)
             SetHudSize(640, 480, 1);
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
-            HudMessage(s:"End time: \cn", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
+            HudMessage(s:"Time: \cn", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
                         320.4, 140.0, 2.0, 0.5);
+
+            if (place != -1)
+            {
+                SetHudSize(480, 360, 1);
+                HudMessage(s:"Place: \cf", s:GetPlaceName(place); HUDMSG_FADEOUT, 703, CR_BRICK,
+                            240.4, 128.0, 2.0, 0.5);
+            }
 
 
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
-        }
-
-        if (PlayerTimes[pln][TIME_FINISH] == 0x7FFFFFFF)
-        {
-            PlayerTimes[pln][TIME_FINISH] = Timer();
-            place = AddTime(PlayerNumber(), Timer() - PlayerTimes[pln][TIME_START]);
-        }
-
-        if ((mode % 2) && place != -1)
-        {
-            SetHudSize(480, 360, 1);
-
-            HudMessage(s:"Place: \cf", s:GetPlaceName(place); HUDMSG_FADEOUT, 703, CR_BRICK,
-                        240.4, 128.0, 2.0, 0.5);
         }
 
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
@@ -320,7 +320,7 @@ script 105 (int mode, int index, int next)
 
 script 405 OPEN
 {
-    int ac, oac;
+    int ac, oac, i;
 
     IsServer = 1;
 
@@ -328,6 +328,12 @@ script 405 OPEN
     {
         ConsoleCommand("set cyber_noaircontrol 0");
         ConsoleCommand("archivecvar cyber_noaircontrol");
+    }
+
+    for (i = 0; i < PLACEMAX; i++)
+    {
+        TimeDisplays[i][0] = -1;
+        TimeDisplays[i][1] = -1;
     }
 
     while (1)
