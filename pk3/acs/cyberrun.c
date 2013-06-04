@@ -54,46 +54,28 @@ function int fracSec(int tics)
     return itof(secs) + frac;
 }
 
-function void displayTime(int tics, int id, int x, int y, int color)
+function int getTime(int tics, int showfrac)
 {
-    displayTime2(tics, id, x, y, color, 0.5);
-}
+    int ret = "";
 
-function void displayTime2(int tics, int id, int x, int y, int color, int duration)
-{
     int secs = tics/36;
     int secs2 = fracSec(tics) % 60.0;
     int hours = secs / 3600;
     int mins  = (secs % 3600) / 60;
     secs %= 60;
 
-    x = itof(x); y = itof(y);
+    int s_hours = padStringL(StrParam(d:hours), "0", 2);
+    int s_minutes = padStringL(StrParam(d:mins), "0", 2);
+    int s_secs = padStringL(StrParam(d:secs), "0", 2);
+    int s_secs2;
 
-    SetFont("SMALLFONT");
-    HudMessage(d:hours, s:"\cu:"; HUDMSG_FADEOUT, id, color,
-            x - 17.8, y, duration, 0.5);
+    if (secs2 < 10.0) { s_secs2 = StrParam(s:"0", f:secs2); }
+    else { s_secs2 = StrParam(f:secs2); }
 
-    if (mins < 10)
-    {
-        HudMessage(s:"0", d:mins; HUDMSG_FADEOUT, id+1, color,
-            x - 1.8, y, duration, 0.5);
-    }
-    else
-    {
-        HudMessage(d:mins; HUDMSG_FADEOUT, id+1, color,
-            x - 1.8, y, duration, 0.5);
-    }
+    if (showfrac) { ret = StrParam(s:s_hours, s:":", s:s_minutes, s:":", s:s_secs2); }
+    else { ret = StrParam(s:s_hours, s:":", s:s_minutes, s:":", s:s_secs); }
 
-    HudMessage(s:":"; HUDMSG_FADEOUT, id+2, CR_DARKGREY, x + 0.4, y, duration, 0.5);
-
-    if (secs < 10)
-    {
-        HudMessage(s:"0", f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, duration, 0.5);
-    }
-    else
-    {
-        HudMessage(f:secs2; HUDMSG_FADEOUT, id+3, color, x + 3.1, y, duration, 0.5);
-    }
+    return ret;
 }
 
 #define BARFONTCOUNT 12
@@ -175,6 +157,7 @@ script 105 (int mode, int index, int next)
     int pln = PlayerNumber();
     int ttid = unusedTID(10000, 15000);
     int x,y,z;
+    int i;
 
     //Log(s:"(", d:mode, s:", ", d:index, s:", ", d:next, s:")");
 
@@ -226,13 +209,15 @@ script 105 (int mode, int index, int next)
                         160.4, 60.0, 2.0, 0.5);
 
             SetHudSize(640, 480, 1);
-            HudMessage(s:"Time:"; HUDMSG_FADEOUT, 702, CR_WHITE,
-                        280.4, 140.0, 2.0, 0.5);
-            HudMessage(s:"Total:"; HUDMSG_FADEOUT, 703, CR_WHITE,
-                        278.4, 160.0, 2.0, 0.5);
 
-            displayTime2(Timer() - PlayerTimes[pln][TIME_CHECKPOINT], 704, 330, 140, CR_GOLD, 2.0);
-            displayTime2(Timer() - PlayerTimes[pln][TIME_START], 714, 330, 160, CR_LIGHTBLUE, 2.0);
+            i = getTime(Timer() - PlayerTimes[pln][TIME_CHECKPOINT], 1);
+            HudMessage(s:"Time: \cf", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
+                        250.1, 140.0, 2.0, 0.5);
+
+            i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
+            HudMessage(s:"Total: \cn", s:i; HUDMSG_FADEOUT, 703, CR_WHITE,
+                        246.1, 160.0, 2.0, 0.5);
+
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
         }
 
@@ -240,6 +225,37 @@ script 105 (int mode, int index, int next)
         // This is so that a checkpoint can't be *completely* wasted;
         //   at least, not as easily.
         
+        SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
+
+        while (!onGround(0)) { Delay(1); }
+
+        SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
+      
+      case 5:
+        if (index <= CheckpointCoords[pln][5] && index != CheckpointCoords[pln][6])
+            { break; }
+
+      case 6:
+        if (mode % 2)
+        {
+            LocalAmbientSound("ui/checkpoint", 127);
+
+            SetHudSize(320, 240, 1);
+            HudMessage(s:"FINISH!"; HUDMSG_FADEOUT, 701, CR_GOLD,
+                        160.4, 60.0, 2.0, 0.5);
+
+            SetHudSize(640, 480, 1);
+
+            i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
+            HudMessage(s:"End time: \cn", s:i; HUDMSG_FADEOUT, 703, CR_WHITE,
+                        240.1, 140.0, 2.0, 0.5);
+
+
+            PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
+        }
+
+        if (!PlayerTimes[pln][TIME_FINISH]) { PlayerTimes[pln][TIME_FINISH] = Timer(); }
+
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
 
         while (!onGround(0)) { Delay(1); }
@@ -687,7 +703,9 @@ script 423 (void) net clientside
     {
         time++;
         SetHudSize(480, 360, 1);
-        DisplayTime(time, 2501, 420, 32, CR_GOLD);
+
+        i = getTime(time, 1);
+        HudMessage(s:i; HUDMSG_FADEOUT, 2501, CR_GOLD, 390.1, 32.0, 1.0, 1.0);
 
         dist += ftoi(magnitudeThree_f(GetActorVelX(myTID), GetActorVelY(myTID), GetActorVelZ(myTID)));
 
@@ -714,7 +732,7 @@ script 423 (void) net clientside
 script 424 (int pln, int startTime) clientside
 {
     int time;
-    int f, x, y, z, m, mph, unitCm;
+    int i, f, x, y, z, m, mph, unitCm;
     int showmag = 0;
 
 
@@ -764,7 +782,10 @@ script 424 (int pln, int startTime) clientside
         if (GetCVar("cyber_cl_timer") > 0)
         {
             SetHudSize(480, 360, 0);
-            DisplayTime((time/36)*36, 1500, 420, 20, CR_WHITE);
+
+            i = getTime(time, 0);
+            SetFont("SMALLFONT");
+            HudMessage(s:i; HUDMSG_FADEOUT, 1500, CR_WHITE, 390.1, 20.0, 1.0, 1.0);
         }
 
         x = GetActorVelX(0);

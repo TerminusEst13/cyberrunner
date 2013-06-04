@@ -5,6 +5,7 @@
 #define TIME_START      0
 #define TIME_CHECKPOINT 1
 #define TIME_END        2
+#define TIME_FINISH     2
 
 int PlayerTIDs[PLAYERMAX];
 int PlayerTimes[PLAYERMAX][TIMECOUNT];

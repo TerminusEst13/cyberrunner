@@ -25,6 +25,10 @@ actor "Celestial Hammer": CyberrunnerWeapon
       Spawn:
         CYCN Z 2 bright
         loop
+
+      Deselect:
+        TNT1 A 0 A_StopSound(7)
+        goto Super::Deselect
         
       Fire:
         TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
