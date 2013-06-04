@@ -2,6 +2,7 @@
 #library "cyberrun"
 
 #include "commonFuncs.h"
+#include "stralloc.h"
 
 #include "cyberdefs.h"
 #include "terminals.h"
@@ -78,12 +79,6 @@ function int getTime(int tics, int showfrac)
     return ret;
 }
 
-#define BARFONTCOUNT 12
-int BarGraphics[BARFONTCOUNT] =
-{
-    "MPHBAR1", "MPHBAR2", "MPHBAR3", "MPHBAR4", "MPHBAR5", "MPHBAR6",
-    "MPHBAR7", "MPHBAR8", "MPHBAR9", "MPHBAR10", "MPHBAR11", "MPHBAR12",
-};
 
 function void drawSpeedometer(int speed, int id, int x, int y, int scale, int width)
 {
@@ -110,17 +105,64 @@ function void drawSpeedometer(int speed, int id, int x, int y, int scale, int wi
     }
 }
 
-int RechargingItems[RECHARGECOUNT] = 
+function int AddTime(int pln, int time)
 {
-    "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
-    "ForceVentAmmo", "CannotIntoShotgun", "CannotIntoCarbine",
-    "CannotIntoVulcan", "RedPlasmaGunAmmo"
-};
+    int i, index = -1;
+    int nameindex;
 
-int RechargingTimes[RECHARGECOUNT][2] = 
+    for (i = 0; i < PLACEMAX; i++)
+    {
+       if (TimeDisplays[i][1] == -1) { index = i; break; }
+    }
+
+    if (index == -1) { return -1; }
+
+    nameindex = addString(StrParam(n:pln+1));
+
+    TimeDisplays[index][0] = nameindex;
+    TimeDisplays[index][1] = time;
+
+    return index;
+}
+
+function void RemoveTime(int index)
 {
-    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1},
-};
+    if (TimeDisplays[index][0] >= 0) { freeString(TimeDisplays[index][0]); }
+    TimeDisplays[index][0] = -1;
+    TimeDisplays[index][1] = -1;
+}
+
+function int DefragTimes(void)
+{
+    int moveup, last, i;
+
+    for (i = 0; i < PLACEMAX; i++)
+    {
+        if (TimeDisplays[i][1] == -1)
+        {
+            moveup++;
+        }
+        else if (moveup > 0)
+        {
+            TimeDisplays[i-moveup][0] = TimeDisplays[i][0];
+            TimeDisplays[i-moveup][1] = TimeDisplays[i][1];
+            RemoveTime(i);
+        }
+    }
+
+    return PLACEMAX - moveup;  // the amount of actual entries
+}
+
+function int GetPlaceName(int place)
+{
+    if (place >= 0 && place < PLACENAMECOUNT)
+    {
+        return PlaceNames[place];
+    }
+
+    return StrParam(s:"\cu", d:place+1, s:"th");
+}
+
 
 
 // 0, 1, 2  -> x, y, z
@@ -157,7 +199,7 @@ script 105 (int mode, int index, int next)
     int pln = PlayerNumber();
     int ttid = unusedTID(10000, 15000);
     int x,y,z;
-    int i;
+    int i, place = -1;
 
     //Log(s:"(", d:mode, s:", ", d:index, s:", ", d:next, s:")");
 
@@ -166,7 +208,6 @@ script 105 (int mode, int index, int next)
       case 0:
         if (CheckpointCoords[pln][7] >= Timer() - 1)
         {
-            Print(s:"revertan");
             RevertCheckpoint(pln);
         }
 
@@ -230,6 +271,7 @@ script 105 (int mode, int index, int next)
         while (!onGround(0)) { Delay(1); }
 
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
+        break;
       
       case 5:
         if (index <= CheckpointCoords[pln][5] && index != CheckpointCoords[pln][6])
@@ -247,14 +289,26 @@ script 105 (int mode, int index, int next)
             SetHudSize(640, 480, 1);
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
-            HudMessage(s:"End time: \cn", s:i; HUDMSG_FADEOUT, 703, CR_WHITE,
+            HudMessage(s:"End time: \cn", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
                         240.1, 140.0, 2.0, 0.5);
 
 
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
         }
 
-        if (!PlayerTimes[pln][TIME_FINISH]) { PlayerTimes[pln][TIME_FINISH] = Timer(); }
+        if (PlayerTimes[pln][TIME_FINISH] == 0x7FFFFFFF)
+        {
+            PlayerTimes[pln][TIME_FINISH] = Timer();
+            place = AddTime(PlayerNumber(), Timer() - PlayerTimes[pln][TIME_START]);
+        }
+
+        if ((mode % 2) && place != -1)
+        {
+            SetHudSize(640, 480, 1);
+
+            HudMessage(s:"Place: \cf", s:GetPlaceName(place); HUDMSG_FADEOUT, 703, CR_BRICK,
+                        280.1, 170.0, 2.0, 0.5);
+        }
 
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
 
@@ -373,8 +427,6 @@ script 401 DEATH
     TakeInventory("CannotIntoCarbine",1);
     TakeInventory("CannotIntoVulcan",1);
 }
-
-#define DASH_VEL 45
 
 script 402 (void) NET
 {
@@ -523,25 +575,6 @@ script 414 (int tx, int ty, int tz) clientside
     }
 }
 
-#define RAINBOWCOLORS 12
-#define RAINBOWINTERVAL 10
-
-int RainbowBeamActors[RAINBOWCOLORS] = 
-{
-    "RainbowBeam1",
-    "RainbowBeam2",
-    "RainbowBeam3",
-    "RainbowBeam4",
-    "RainbowBeam5",
-    "RainbowBeam6",
-    "RainbowBeam7",
-    "RainbowBeam8",
-    "RainbowBeam9",
-    "RainbowBeam10",
-    "RainbowBeam11",
-    "RainbowBeam12",
-};
-
 script 415 (int tx, int ty, int tz) clientside
 {
     int t, i, j, k = 0, l, actor;
@@ -649,16 +682,6 @@ script 420 DEATH
 {
     Thing_ChangeTID(0,0);
 }
-
-#define PARTICLECOUNT 9
-#define PARTDIST_MIN  8.0
-#define PARTDIST_MAX  32.0
- 
-int ParticleTypes[PARTICLECOUNT] =
-{
-    "CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle",
-    "TurboSparkle", "AllAmmoSparkle", "50HPSparkle", "InstagibSparkle", "25HPSparkle",
-};
  
 script 422 (int which) clientside
 {
