@@ -24,7 +24,7 @@ actor CyberPlayer : PlayerPawn
     DamageFactor "Poison", 0.0
     DamageFactor "PoisonCloud", 0.0
     DamageFactor "NoDamage", 0
-    DamageFactor "CyberCannon", 0.25
+    DamageFactor "CyberCannon", 0.5
     Scale 0.3
     Player.ForwardMove 1.8 1.8
     Player.SideMove 1.55 1.55
