@@ -1,3 +1,14 @@
+#define MODES_OPEN          511
+#define MODES_ENTER         512
+#define MODES_DISCONNECT    513
+#define MODES_SWITCH        514
+
+#define MODES_OPEN_CLIENT   521
+#define MODES_ENTER_CLIENT  522
+#define MODES_INFORM        523
+
+#define ENDGAME_SCOREBOARD  515
+
 #define TID_PLAY 600
 
 #define DASH_VEL 45

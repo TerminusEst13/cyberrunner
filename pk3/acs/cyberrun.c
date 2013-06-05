@@ -9,6 +9,7 @@
 
 #include "terminals.h"
 #include "termDefs.h"
+#include "modes.h"
 #include "endgame.h"
 
 script 105 (int mode, int index, int next)
@@ -176,6 +177,9 @@ script 400 ENTER
 
     ACS_ExecuteAlways(424, 0, pln, Timer());
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+    SetPlayerProperty(0, 0, PROP_FLY);
+    SetActorProperty(0, APROP_RenderStyle, STYLE_Normal);
+    TakeInventory("HideCRHud", 1);
 
     PlayerTimes[pln][TIME_START]        = Timer();
     PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
@@ -613,7 +617,7 @@ script 424 (int pln, int startTime) clientside
 
     while (1)
     {
-        if (GetCVar("screenblocks") >= 12 || InTerminal[pln])
+        if (GetCVar("screenblocks") >= 12 || InTerminal[pln] || CheckInventory("HideCRHud"))
         {
             for (x = 0; x < 10; x++)
             {

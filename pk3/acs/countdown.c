@@ -1,7 +1,6 @@
 #include "zcommon.acs"
 #library "countdown"
 
-
 int FreezeTime = 36*5;
 
 script 901 OPEN
