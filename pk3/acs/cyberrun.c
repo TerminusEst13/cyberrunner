@@ -101,11 +101,12 @@ script 105 (int mode, int index, int next)
             place = AddTime(PlayerNumber(), Timer() - PlayerTimes[pln][TIME_START]);
 
             if (PlayerPlace[pln] == -1) { PlayerPlace[pln] = place; }
+            SetInventory("CyberrunnerPlace", PlayerPlace[pln]+1);
         }
 
         if (mode % 2)
         {
-            LocalAmbientSound("ui/checkpoint", 127);
+            LocalAmbientSound("ui/finish", 127);
 
             SetHudSize(320, 240, 1);
             HudMessage(s:"FINISH!"; HUDMSG_FADEOUT, 701, CR_GOLD,
@@ -189,6 +190,8 @@ script 400 ENTER
 
         oplace = place;
         place = PlayerPlace[pln];
+
+        SetInventory("CyberrunnerPlace", PlayerPlace[pln]+1);
 
         for (i = 0; i < RECHARGECOUNT; i++)
         {

@@ -27,6 +27,8 @@ actor LeftMouseDown: Boolean {}
 actor RightMouseTapped: Boolean {}
 actor RightMouseDown: Boolean {}
 
+actor CyberrunnerPlace: Counter {}
+
 actor ACSSpawnDummy
 {
     +SERVERSIDEONLY
@@ -112,6 +114,7 @@ actor CyberrunnerWeapon: Weapon
 #include "decorate/weppickups.dec"
 #include "decorate/skullweps.dec"
 #include "decorate/enemies.dec"
+#include "decorate/endgame.dec"
 
 #include "decorate/effects.dec"
 

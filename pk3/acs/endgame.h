@@ -6,13 +6,14 @@
 #define MODE_PURGE          4
 #define MODE_SCOREBOARD     5
 
-#define MODES_OPEN        511
-#define MODES_ENTER       512
-#define MODES_DISCONNECT  513
-#define MODES_SWITCH      514
+#define MODES_OPEN          511
+#define MODES_ENTER         512
+#define MODES_DISCONNECT    513
+#define MODES_SWITCH        514
 
-#define MODES_OPEN_CLIENT 521
-#define MODES_INFORM      522
+#define MODES_OPEN_CLIENT   521
+#define MODES_ENTER_CLIENT  522
+#define MODES_INFORM        523
 
 int CRGameMode = MODE_NORMAL;
 int CRSwitchTime = 0;
@@ -21,6 +22,8 @@ int CRSwitchLock;
 int CRSwitched = 0;
 
 int SuddenDeathEnd = 0;
+
+int ClientPlace;
 
 int CRModeNames[MODECOUNT+1] =
 {
@@ -37,12 +40,18 @@ function void CheckCRMusic(void)
     switch (CRGameMode)
     {
       case MODE_COUNTDOWN:
-        AmbientSound("end/klaxon", 127);
-        SetMusic("SILENCE");
+        if (ClientPlace < 1)
+        {
+            AmbientSound("end/klaxon", 127);
+            SetMusic("SILENCE");
+        }
         break;
 
       case MODE_SUDDENDEATH:
-        SetMusic("M_HURRY");
+        if (ClientPlace < 1)
+        {
+            SetMusic("M_HURRY");
+        }
         break;
 
       case MODE_NORMAL:
@@ -50,7 +59,13 @@ function void CheckCRMusic(void)
         break;
 
       case MODE_PURGE:
-        AmbientSound("ui/lose", 127);
+        switch (ClientPlace)
+        {
+          case 1: AmbientSound("ui/winall", 127); break;
+          case 0: AmbientSound("ui/lose", 127); break;
+          default: AmbientSound("ui/win", 127); break;
+        }
+
         SetMusic("SILENCE");
         break;
     }
@@ -59,6 +74,8 @@ function void CheckCRMusic(void)
 script MODES_OPEN open
 {
     int clients, oclients;
+    int inform;
+
     while (1)
     {
         oclients = clients;
@@ -81,8 +98,15 @@ script MODES_OPEN open
 
         if (clients != oclients || CRSwitched)
         {
+            inform = 3;
+        }
+
+        if (inform)
+        {
             ACS_ExecuteAlways(MODES_INFORM, 0, CRGameMode, CRSwitchTo);
         }
+
+        inform = max(inform-1, 0);
 
         if (CRGameMode == MODE_SUDDENDEATH)
         {
@@ -102,6 +126,7 @@ script MODES_ENTER enter
 {
     int pln = PlayerNumber();
     int oplace, place;
+    int selfnuke;
 
     place = PlayerPlace[pln];
 
@@ -113,6 +138,24 @@ script MODES_ENTER enter
         if (oplace != place && place == 0) // Are we first?
         {
             ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_COUNTDOWN, 70, MODE_SUDDENDEATH);
+        }
+
+        if (CRSwitched)
+        {
+            if (CRGameMode == MODE_PURGE && place < 0)
+            {
+                selfnuke = 35;
+            }
+        }
+
+        if (selfnuke)
+        {
+            selfnuke = max(0, selfnuke-1);
+
+            if (!selfnuke)
+            {
+                Spawn("PurgeKiller", GetActorX(0), GetActorY(0), GetActorZ(0) + GetActorViewHeight(0));
+            }
         }
 
         Delay(1);
@@ -177,12 +220,31 @@ script MODES_SWITCH (int to1, int wait, int to2)
 
 script MODES_OPEN_CLIENT open clientside
 {
+    int pln  = PlayerNumber();
+    int cpln = ConsolePlayerNumber();
+
     while (1)
     {
+        if (PlayerIsSpectator(cpln)) { ClientPlace = -1; }
+
         if (CRSwitched)
         {
             CheckCRMusic();
         }
+
+        Delay(1);
+    }
+}
+
+script MODES_ENTER_CLIENT enter clientside
+{
+    int pln  = PlayerNumber();
+    int cpln = ConsolePlayerNumber();
+    if (pln != cpln) { terminate; }
+
+    while (1)
+    {
+        ClientPlace = CheckInventory("CyberrunnerPlace");
         Delay(1);
     }
 }

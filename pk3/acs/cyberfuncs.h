@@ -102,7 +102,6 @@ function int AddTime(int pln, int time)
 
     for (i = 0; i < PLACEMAX; i++)
     {
-        Log(d:i, s:": ", d:TimeDisplays[i][1]);
         if (TimeDisplays[i][1] == -1) { index = i; break; }
     }
 
