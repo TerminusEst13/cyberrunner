@@ -9,6 +9,12 @@ Ijon Tichy:
  - CYRC01.
  - Generally lots of shit.
 
+Revae:
+ - Modelling, texturing, rigging, and animating the Runner.
+ - Oh, and converting the animations to sprites.
+ - And 16 different rotations.
+ - For a total of 300+ frames! Hot damn!
+
 
 GENERAL:
 =========
