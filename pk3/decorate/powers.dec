@@ -31,7 +31,7 @@ actor CyberBoostSpeed : PowerSpeed
 
 actor FancyTrails : PowerSpeed
 {
-    Powerup.Duration 0x7FFFFFFF
+    Powerup.Duration -2//0x7FFFFFFF
     Speed 1
 }
 
