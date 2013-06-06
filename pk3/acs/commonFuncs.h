@@ -976,3 +976,15 @@ function int ClientCount(void)
 
     return ret;
 }
+
+function int RealPlayerCount(void)
+{
+    int ret, i;
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        if (PlayerInGame(i) && !PlayerIsBot(i)) { ret++; }
+    }
+
+    return ret;
+}

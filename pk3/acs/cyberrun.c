@@ -99,7 +99,10 @@ script 105 (int mode, int index, int next)
         if (PlayerTimes[pln][TIME_FINISH] == 0x7FFFFFFF)
         {
             PlayerTimes[pln][TIME_FINISH] = Timer();
-            place = AddTime(PlayerNumber(), Timer() - PlayerTimes[pln][TIME_START]);
+            AddTime(pln, Timer() - PlayerTimes[pln][TIME_START]);
+            SortTimes();
+            place = FindBestTime(pln);
+            Print(d:place);
 
             if (PlayerPlace[pln] == -1) { PlayerPlace[pln] = place; }
             SetInventory("CyberrunnerPlace", PlayerPlace[pln]+1);
@@ -789,4 +792,11 @@ script 425 OPEN clientside
 script 426 (int pln) disconnect
 {
     InTerminal[pln] = 0;
+}
+
+script 427 (int snum, int a1, int a2)
+{
+    SetActivatorToTarget(0);
+
+    ACS_ExecuteAlways(snum, 0, a1, a2, 0);
 }

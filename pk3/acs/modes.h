@@ -190,7 +190,7 @@ script MODES_DISCONNECT (int pln) disconnect
         if (TimeDisplays[i][2] == pln) { RemoveTime(i); }
     }
 
-    DefragTimes();
+    SortTimes();
 
     if (TimeDisplays[0][0] == -1 && (CRGameMode == MODE_COUNTDOWN
                                   || CRGameMode == MODE_SUDDENDEATH))  // no more first place

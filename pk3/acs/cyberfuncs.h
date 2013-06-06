@@ -102,7 +102,7 @@ function int AddTime(int pln, int time)
 
     for (i = 0; i < PLACEMAX; i++)
     {
-        if (TimeDisplays[i][1] == -1) { index = i; break; }
+        if (TimeDisplays[i][2] == -1) { index = i; break; }
     }
 
     if (index == -1) { return -1; }
@@ -120,8 +120,19 @@ function void RemoveTime(int index)
 {
     if (TimeDisplays[index][0] >= 0) { freeString(TimeDisplays[index][0]); }
     TimeDisplays[index][0] = -1;
-    TimeDisplays[index][1] = -1;
+    TimeDisplays[index][1] = 0x7FFFFFFF;
     TimeDisplays[index][2] = -1;
+}
+
+function void MoveTime(int from, int to)
+{
+    TimeDisplays[to][0] = TimeDisplays[from][0];
+    TimeDisplays[to][1] = TimeDisplays[from][1];
+    TimeDisplays[to][2] = TimeDisplays[from][2];
+
+    TimeDisplays[from][0] = -1;
+    TimeDisplays[from][1] = 0x7FFFFFFF;
+    TimeDisplays[from][2] = -1;
 }
 
 function int DefragTimes(void)
@@ -136,14 +147,55 @@ function int DefragTimes(void)
         }
         else if (moveup > 0)
         {
-            TimeDisplays[i-moveup][0] = TimeDisplays[i][0];
-            TimeDisplays[i-moveup][1] = TimeDisplays[i][1];
-            TimeDisplays[i-moveup][2] = TimeDisplays[i][2];
-            RemoveTime(i);
+            MoveTime(i, i-moveup);
         }
     }
 
     return PLACEMAX - moveup;  // the amount of actual entries
+}
+
+// Simple insertion sort; not using quicksort because in most cases,
+// that'd actually be slower, since our list is mostly sorted
+
+function void SortTimes(void)
+{
+    int i, hole, name, time, pln;
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        name = TimeDisplays[i][0];
+        time = TimeDisplays[i][1];
+        pln  = TimeDisplays[i][2];
+
+        hole = i;
+
+        while (hole > 0 && time < TimeDisplays[hole-1][1])
+        {
+            TimeDisplays[hole][0] = TimeDisplays[hole-1][0];
+            TimeDisplays[hole][1] = TimeDisplays[hole-1][1];
+            TimeDisplays[hole][2] = TimeDisplays[hole-1][2];
+
+            hole--;
+        }
+
+        if (hole != i)
+        {
+            TimeDisplays[hole][0] = name;
+            TimeDisplays[hole][1] = time;
+            TimeDisplays[hole][2] = pln;
+        }
+    }
+}
+
+function int FindBestTime(int pln)
+{
+    int i;
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        Log(d:i, s:" -> ", d:TimeDisplays[i][1], s:" for pln ", d:TimeDisplays[i][2]);
+        if (pln == TimeDisplays[i][2]) { return i; }
+    }
+    return -1;
 }
 
 function int GetPlaceName(int place)
@@ -180,6 +232,7 @@ function void RevertCheckpoint(int pln) // can only undo once
 function int ReadyExitSum(void)
 {
     int ret, i;
+
     for (i = 0; i < PLAYERMAX; i++) { ret += !!ReadyToExit[i]; }
     return ret;
 }
