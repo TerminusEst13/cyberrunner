@@ -176,3 +176,10 @@ function void RevertCheckpoint(int pln) // can only undo once
     int i;
     for (i = 0; i < 8; i++) { CheckpointCoords[pln][i] = OldCheckpointCoords[pln][i]; }
 }
+
+function int ReadyExitSum(void)
+{
+    int ret, i;
+    for (i = 0; i < PLAYERMAX; i++) { ret += !!ReadyToExit[i]; }
+    return ret;
+}

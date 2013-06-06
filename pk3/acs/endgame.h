@@ -7,6 +7,8 @@ script ENDGAME_SCOREBOARD (void)
     int i;
     int exitStart = 35;
     int endTime;
+    int ready, oready;
+    int needed;
 
     SetActivator(0);
     cl = ClientCount();
@@ -24,11 +26,17 @@ script ENDGAME_SCOREBOARD (void)
 
     while (1)
     {
+        oready = ready;
+        ready = ReadyExitSum();
+        needed = min(PlayerCount(), (PlayerCount() / 2) + 1);
+
         if (time == endTime) { break; }
+        if (ready >= needed) { break; }
 
         ocl = cl;
         cl = ClientCount();
-        if (time % 35 == 0 || cl > ocl)
+
+        if (time % 35 == 0 || cl > ocl || time == exitStart || oready != ready)
         {
             SetHudSize(320, 240, 1);
 
@@ -56,8 +64,14 @@ script ENDGAME_SCOREBOARD (void)
             if (time >= exitStart)
             {
                 SetFont("SMALLFONT");
-                HudMessage(s:"Hit your use key to ready up."; HUDMSG_FADEOUT, 2501, CR_WHITE, 320.0, 400.0, 2.0, 1.0);
+                HudMessage(s:"Runners, hit your use key to ready up."; HUDMSG_FADEOUT, 2501, CR_WHITE, 320.0, 400.0, 2.0, 1.0);
+                HudMessage(s:"(\cd", d:ready, s:"\c- of \cd", d:needed, s:"\c- needed)"; HUDMSG_FADEOUT, 2502, CR_WHITE, 320.0, 420.0, 2.0, 1.0);
             }
+        }
+
+        if (time == exitStart)
+        {
+            GiveInventory("EnableUseExit", 1);
         }
 
         time++;

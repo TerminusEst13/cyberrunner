@@ -181,6 +181,11 @@ script MODES_ENTER enter
             }
         }
 
+        if (CheckInventory("EnableUseExit") && keyDown(BT_USE))
+        {
+            ReadyToExit[pln] = 1;
+        }
+
         Delay(1);
     }
 }

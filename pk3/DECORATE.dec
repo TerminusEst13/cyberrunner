@@ -22,6 +22,7 @@ actor TerminalOver: Boolean {}
 actor TerminalFinished: Boolean {}
 actor ForceParkourOff: Boolean {}
 actor HideCRHud: Boolean {}
+actor EnableUseExit: Boolean {}
 
 actor LeftMouseTapped: Boolean {}
 actor LeftMouseDown: Boolean {}
