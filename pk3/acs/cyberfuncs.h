@@ -63,8 +63,8 @@ function int getTime(int tics, int showfrac)
     if (secs2 < 10.0) { s_secs2 = StrParam(s:"0", f:secs2); }
     else { s_secs2 = StrParam(f:secs2); }
 
-    if (showfrac) { ret = StrParam(s:s_hours, s:":", s:s_minutes, s:":", s:s_secs2); }
-    else { ret = StrParam(s:s_hours, s:":", s:s_minutes, s:":", s:s_secs); }
+    if (showfrac) { ret = StrParam(s:s_hours, s:"\cu:\c-", s:s_minutes, s:"\cu:\c-", s:s_secs2); }
+    else { ret = StrParam(s:s_hours, s:"\cu:\c-", s:s_minutes, s:"\cu:\c-", s:s_secs); }
 
     return ret;
 }

@@ -1,33 +1,3 @@
-#define MODECOUNT   6
-
-#define MODE_NORMAL         1
-#define MODE_COUNTDOWN      2
-#define MODE_SUDDENDEATH    3
-#define MODE_PURGE          4
-#define MODE_SCOREBOARD     5
-#define MODE_ABORT          6
-
-int CRGameMode = MODE_NORMAL;
-int CRSwitchTime = 0;
-int CRSwitchTo = -1;
-int CRSwitchLock;
-int CRSwitched = 0;
-
-int SuddenDeathEnd = 0;
-
-int ClientPlace;
-
-int CRModeNames[MODECOUNT+1] =
-{
-    "GrossHack",
-    "Normal",
-    "Countdown",
-    "Sudden Death",
-    "Failure Purge",
-    "Scoreboard",
-    "Sudden Death Abort",
-};
-
 function void CheckCRMusic(void)
 {
     switch (CRGameMode)
@@ -71,12 +41,14 @@ script MODES_OPEN open
 {
     int clients, oclients;
     int inform;
+    int sdTimeLeft;
 
     while (1)
     {
         oclients = clients;
         clients = ClientCount();
 
+        /*
         SetHudSize(640, 480, 1);
         HudMessage(s:"Mode: ", s:CRModeNames[CRGameMode];
                 HUDMSG_PLAIN, 7741, CR_WHITE, 120.1, 100.0, 1.0, 1.0);
@@ -91,6 +63,7 @@ script MODES_OPEN open
             HudMessage(s:"";
                     HUDMSG_PLAIN, 7742, CR_WHITE, 120.1, 120.0, 1.0, 1.0);
         }
+        */
 
         if (clients != oclients || CRSwitched)
         {
@@ -106,11 +79,22 @@ script MODES_OPEN open
 
         if (CRGameMode == MODE_SUDDENDEATH)
         {
-            if (CRSwitched) { SuddenDeathEnd = Timer() + 2100; }
+            if (CRSwitched) { SuddenDeathEnd = Timer() + (60 * 36); }
+
+            sdTimeLeft = SuddenDeathEnd - Timer();
 
             if (Timer() == SuddenDeathEnd)
             {
                 ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_PURGE, 70, MODE_SCOREBOARD);
+            }
+
+            if (sdTimeLeft % 36 == 0)
+            {
+                SetHudSize(640, 480, 1);
+                SetFont("SMALLFONT");
+
+                HudMessage(s:"\cgSUDDEN DEATH!\n", s:getTime(sdTimeLeft, 0);
+                        HUDMSG_FADEOUT, 7743, CR_BRICK, 500.4, 140.0, 1.5, 1.0);
             }
         }
 
@@ -136,8 +120,14 @@ script MODES_ENTER enter
         oplace = place;
         place = PlayerPlace[pln];
 
-        if (oplace != place && place == 0) // Are we first?
+        if (oplace != place && place == 0 && CRGameMode == MODE_NORMAL) // Are we first? WILL IT HAPPEN?
         {
+            SetHudSize(640, 480, 1);
+            HudMessageBold(s:"SUDDEN DEATH!";
+                    HUDMSG_FADEOUT, 7743, CR_RED, 500.4, 140.0, 2.5, 1.0);
+            HudMessage(s:"But you don't have to worry.";
+                    HUDMSG_FADEOUT, 7744, CR_GREEN, 500.4, 160.0, 2.5, 1.0);
+
             ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_COUNTDOWN, 70, MODE_SUDDENDEATH);
         }
 
@@ -202,9 +192,14 @@ script MODES_DISCONNECT (int pln) disconnect
 
     DefragTimes();
 
-    if (TimeDisplays[0][0] == -1)  // no more first place
+    if (TimeDisplays[0][0] == -1 && (CRGameMode == MODE_COUNTDOWN
+                                  || CRGameMode == MODE_SUDDENDEATH))  // no more first place
     {
         ACS_ExecuteAlways(MODES_SWITCH, 0, MODE_NORMAL);
+
+        SetHudSize(640, 480, 1);
+        HudMessage(s:"Sudden death aborted.";
+                HUDMSG_FADEOUT, 7743, CR_GREEN, 500.4, 140.0, 1.5, 1.0);
     }
 }
 

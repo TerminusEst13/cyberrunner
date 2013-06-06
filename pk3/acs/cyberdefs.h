@@ -105,3 +105,33 @@ int PlaceNames[PLACENAMECOUNT] =
 int CheckpointCoords[PLAYERMAX][8];
 int OldCheckpointCoords[PLAYERMAX][8];
 int HasTeleported[PLAYERMAX];
+
+#define MODECOUNT   6
+
+#define MODE_NORMAL         1
+#define MODE_COUNTDOWN      2
+#define MODE_SUDDENDEATH    3
+#define MODE_PURGE          4
+#define MODE_SCOREBOARD     5
+#define MODE_ABORT          6
+
+int CRGameMode = MODE_NORMAL;
+int CRSwitchTime = 0;
+int CRSwitchTo = -1;
+int CRSwitchLock;
+int CRSwitched = 0;
+
+int SuddenDeathEnd = 0;
+
+int ClientPlace;
+
+int CRModeNames[MODECOUNT+1] =
+{
+    "GrossHack",
+    "Normal",
+    "Countdown",
+    "Sudden Death",
+    "Failure Purge",
+    "Scoreboard",
+    "Sudden Death Abort",
+};

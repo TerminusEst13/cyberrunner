@@ -1,4 +1,4 @@
-#define ENDBASE     (35 * 15)
+#define ENDBASE     (36 * 15)
 
 script ENDGAME_SCOREBOARD (void)
 {

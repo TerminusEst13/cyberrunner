@@ -70,11 +70,11 @@ script 105 (int mode, int index, int next)
             SetHudSize(640, 480, 1);
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_CHECKPOINT], 1);
-            HudMessage(s:"Time: \cf", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
+            HudMessage(s:"\cjTime: \c-", s:i; HUDMSG_FADEOUT, 702, CR_GOLD,
                         250.1, 140.0, 2.0, 0.5);
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
-            HudMessage(s:"Total: \cn", s:i; HUDMSG_FADEOUT, 703, CR_WHITE,
+            HudMessage(s:"\cjTotal: \c-", s:i; HUDMSG_FADEOUT, 703, CR_LIGHTBLUE,
                         246.1, 160.0, 2.0, 0.5);
 
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
@@ -118,7 +118,7 @@ script 105 (int mode, int index, int next)
             SetFont("SMALLFONT");
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
-            HudMessage(s:"Time: \cn", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
+            HudMessage(s:"\cjTime: \c-", s:i; HUDMSG_FADEOUT, 702, CR_LIGHTBLUE,
                         320.4, 140.0, 2.0, 0.5);
 
             if (place != -1)
@@ -131,6 +131,9 @@ script 105 (int mode, int index, int next)
 
             PlayerTimes[pln][TIME_CHECKPOINT] = Timer();
         }
+
+        if (CRGameMode == MODE_SUDDENDEATH || CRGameMode == MODE_COUNTDOWN) { LocalSetMusic("*"); }
+
 
         SetCheckpoint(pln, GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0), GetActorPitch(0), index, next);
 
