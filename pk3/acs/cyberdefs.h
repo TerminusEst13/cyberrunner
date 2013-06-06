@@ -3,7 +3,7 @@
 #define MODES_DISCONNECT    513
 #define MODES_SWITCH        514
 
-#define MODES_OPEN_CLIENT   521
+#define MODES_OPEN_CLIENT   531
 #define MODES_ENTER_CLIENT  522
 #define MODES_INFORM        523
 
