@@ -94,7 +94,7 @@ int PlaceNames[PLACENAMECOUNT] =
     "\cnSixth",
     "\cpSeventh",
     "\ctEighth",
-    "\ccNinth",
+    "\cuNinth",
     "\csTenth",
 };
 

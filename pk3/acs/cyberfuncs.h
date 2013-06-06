@@ -204,7 +204,7 @@ function int GetPlaceName(int place)
         return PlaceNames[place];
     }
 
-    return StrParam(s:"\cu", d:place+1, s:"th");
+    return StrParam(s:"\cm", d:place+1, s:"th");
 }
 
 function void SetCheckpoint(int pln, int x, int y, int z, int ang, int pitch, int index, int next)
