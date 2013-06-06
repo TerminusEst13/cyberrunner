@@ -106,7 +106,7 @@ script MODES_OPEN open
 
         if (CRGameMode == MODE_SUDDENDEATH)
         {
-            if (CRSwitched) { SuddenDeathEnd = Timer() + 210; }
+            if (CRSwitched) { SuddenDeathEnd = Timer() + 2100; }
 
             if (Timer() == SuddenDeathEnd)
             {
@@ -177,6 +177,7 @@ script MODES_ENTER enter
 
             if (!selfnuke)
             {
+                Purged[pln] = 1;
                 Spawn("PurgeKiller", GetActorX(0), GetActorY(0), GetActorZ(0) + GetActorViewHeight(0));
             }
         }

@@ -29,6 +29,7 @@ int IsServer = 0;
 int TimeDisplays[PLACEMAX][3] = {{-1, -1, -1}};  // name pointer, time, player number
 int PlayerPlace[PLAYERMAX] = {-1}; 
 int ReadyToExit[PLAYERMAX] = {0};
+int Purged[PLAYERMAX] = {0};
 
 #define BARFONTCOUNT 12
 

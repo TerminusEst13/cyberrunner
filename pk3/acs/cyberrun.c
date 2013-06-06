@@ -249,6 +249,12 @@ script 400 ENTER
             }
         }
 
+        if (Purged[pln])
+        {
+            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+            SetActorProperty(0, APROP_RenderStyle, STYLE_None);
+        }
+
         UnfreezeDelay[pln] = max(0, UnfreezeDelay[pln]-1);
         time++;
 
