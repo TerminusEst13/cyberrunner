@@ -185,12 +185,14 @@ script 400 ENTER
     SetPlayerProperty(0, 0, PROP_FLY);
     SetActorProperty(0, APROP_RenderStyle, STYLE_Normal);
     TakeInventory("HideCRHud", 1);
+    TakeInventory("EnableUseExit", 1);
     TakeInventory("ForceParkourOff", 1);
 
     PlayerTimes[pln][TIME_START]        = Timer();
     PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
     PlayerTimes[pln][TIME_END]          = 0x7FFFFFFF;
     PlayerPlace[pln]                    = -1;
+    Purged[pln]                         = 0;
 
     while (1)
     {
