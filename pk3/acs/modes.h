@@ -164,6 +164,7 @@ script MODES_ENTER enter
         if (CRGameMode == MODE_SCOREBOARD)
         {
             SetInventory("HideCRHud", 1);
+            SetInventory("ForceParkourOff", 1);
 
             SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
             SetPlayerProperty(0, 1, PROP_FLY);

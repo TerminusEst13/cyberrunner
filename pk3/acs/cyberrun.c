@@ -110,10 +110,12 @@ script 105 (int mode, int index, int next)
             LocalAmbientSound("ui/finish", 127);
 
             SetHudSize(320, 240, 1);
+            SetFont("BIGFONT");
             HudMessage(s:"FINISH!"; HUDMSG_FADEOUT, 701, CR_GOLD,
-                        160.4, 60.0, 2.0, 0.5);
+                        160.4, 50.0, 2.0, 0.5);
 
             SetHudSize(640, 480, 1);
+            SetFont("SMALLFONT");
 
             i = getTime(Timer() - PlayerTimes[pln][TIME_START], 1);
             HudMessage(s:"Time: \cn", s:i; HUDMSG_FADEOUT, 702, CR_WHITE,
@@ -180,6 +182,7 @@ script 400 ENTER
     SetPlayerProperty(0, 0, PROP_FLY);
     SetActorProperty(0, APROP_RenderStyle, STYLE_Normal);
     TakeInventory("HideCRHud", 1);
+    TakeInventory("ForceParkourOff", 1);
 
     PlayerTimes[pln][TIME_START]        = Timer();
     PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
