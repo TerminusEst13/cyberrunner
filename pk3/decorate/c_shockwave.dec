@@ -91,6 +91,7 @@ actor RedShockwaveSpawner: CannonEffect
         TNT1 A 0 A_SpawnItemEx("CannonShockwaveRed", 16,0,0, 40,0,0, 330)
         TNT1 A 0 A_SpawnItemEx("CannonShockwaveRed", 16,0,0, 40,0,0, 340)
         TNT1 A 0 A_SpawnItemEx("CannonShockwaveRed", 16,0,0, 40,0,0, 350)
+        TNT1 A 8
         stop
     }
 }
@@ -137,6 +138,7 @@ actor BlueShockwaveSpawner: CannonEffect
         TNT1 A 0 A_SpawnItemEx("CannonShockwaveBlue", 16,0,0, 40,0,0, 330)
         TNT1 A 0 A_SpawnItemEx("CannonShockwaveBlue", 16,0,0, 40,0,0, 340)
         TNT1 A 0 A_SpawnItemEx("CannonShockwaveBlue", 16,0,0, 40,0,0, 350)
+        TNT1 A 8
         stop
     }
 }

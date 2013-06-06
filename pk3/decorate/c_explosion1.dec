@@ -62,6 +62,7 @@ actor BlueExplosionSpawner: CannonEffect
         TNT1 AAAAA 0 A_SpawnItemEx("CannonBlueExplosion2", 0,0,0, random(2,4),0,random(0,2), random(0, 360))
         TNT1 AAAAAAAA 0 A_SpawnItemEx("CannonBlueExplosion", 0,0,0, random(3,8),0,random(3,8), random(0,360))
         TNT1 AAAAAAAA 0 A_SpawnItemEx("CannonBlueExplosion", 0,0,0, random(15,25),0,random(1,4), random(0,360))
+        TNT1 A 8
         stop
     }
 }
@@ -116,6 +117,7 @@ actor RedExplosionSpawner: CannonEffect
         TNT1 AAAAA 0 A_SpawnItemEx("CannonRedExplosion2", 0,0,0, random(2,4),0,random(0,2), random(0, 360))
         TNT1 AAAA 0 A_SpawnItemEx("CannonRedExplosion", 0,0,0, random(3,8),0,random(3,8), random(0,360))
         TNT1 AAAA 0 A_SpawnItemEx("CannonRedExplosion", 0,0,0, random(15,25),0,random(1,4), random(0,360))
+        TNT1 A 8
         stop
     }
 }
