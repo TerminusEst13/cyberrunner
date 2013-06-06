@@ -45,7 +45,13 @@ ui/check4       sounds/systems/ui_check4.ogg
 ui/check5       sounds/systems/ui_check5.ogg
 $random ui/checkpoint { ui/check1 ui/check2 ui/check3 ui/check4 ui/check5 }
 
+ui/finish       sounds/systems/ui_finish.ogg
+
+ui/lose         sounds/systems/ui_lose.ogg
 ui/win          sounds/systems/ui_win.ogg
+ui/winall       sounds/systems/ui_winall.ogg
+
+end/klaxon      sounds/systems/end_klaxon.ogg
 
 cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
 cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
@@ -161,3 +167,8 @@ drone/shot2		DRONSHT2	// Taken from Overlord
 
 $rolloff drone/shot 64  2048
 $limit   drone/shot 0
+
+
+
+
+$musicvolume M_HURRY 2

@@ -86,6 +86,8 @@ MUSIC:
 - Elwood: Sick on Monday (CYRC03: Deep Fried)
 - Depeche Mode: Enjoy the Silence (D_STWIN)
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
+- Unknown: Terminal Velocity (M_HURRY)
+- zabutom: Sine Ride (Sped up - M_SCORES)
 
 STORY:
 =========

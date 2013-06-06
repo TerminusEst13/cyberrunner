@@ -1,3 +1,14 @@
+#define MODES_OPEN          511
+#define MODES_ENTER         512
+#define MODES_DISCONNECT    513
+#define MODES_SWITCH        514
+
+#define MODES_OPEN_CLIENT   521
+#define MODES_ENTER_CLIENT  522
+#define MODES_INFORM        523
+
+#define ENDGAME_SCOREBOARD  515
+
 #define TID_PLAY 600
 
 #define DASH_VEL 45
@@ -14,8 +25,11 @@ int PlayerTIDs[PLAYERMAX];
 int PlayerTimes[PLAYERMAX][TIMECOUNT];
 int InTerminal[PLAYERMAX];
 int UnfreezeDelay[PLAYERMAX];
-int IsServer;
-int TimeDisplays[PLACEMAX][2] = {{-1, -1}};  // name pointer, time
+int IsServer = 0;
+int TimeDisplays[PLACEMAX][3] = {{-1, -1, -1}};  // name pointer, time, player number
+int PlayerPlace[PLAYERMAX] = {-1}; 
+int ReadyToExit[PLAYERMAX] = {0};
+int Purged[PLAYERMAX] = {0};
 
 #define BARFONTCOUNT 12
 
@@ -82,4 +96,42 @@ int PlaceNames[PLACENAMECOUNT] =
     "\ctEighth",
     "\ccNinth",
     "\csTenth",
+};
+
+// 0, 1, 2  -> x, y, z
+// 3, 4     -> angle, pitch
+// 5        -> last checkpoint
+// 6        -> next checkpoint
+int CheckpointCoords[PLAYERMAX][8];
+int OldCheckpointCoords[PLAYERMAX][8];
+int HasTeleported[PLAYERMAX];
+
+#define MODECOUNT   6
+
+#define MODE_NORMAL         1
+#define MODE_COUNTDOWN      2
+#define MODE_SUDDENDEATH    3
+#define MODE_PURGE          4
+#define MODE_SCOREBOARD     5
+#define MODE_ABORT          6
+
+int CRGameMode = MODE_NORMAL;
+int CRSwitchTime = 0;
+int CRSwitchTo = -1;
+int CRSwitchLock;
+int CRSwitched = 0;
+
+int SuddenDeathEnd = 0;
+
+int ClientPlace;
+
+int CRModeNames[MODECOUNT+1] =
+{
+    "GrossHack",
+    "Normal",
+    "Countdown",
+    "Sudden Death",
+    "Failure Purge",
+    "Scoreboard",
+    "Sudden Death Abort",
 };

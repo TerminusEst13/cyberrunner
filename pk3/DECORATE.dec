@@ -21,11 +21,15 @@ actor Trigger: CustomInventory
 actor TerminalOver: Boolean {}
 actor TerminalFinished: Boolean {}
 actor ForceParkourOff: Boolean {}
+actor HideCRHud: Boolean {}
+actor EnableUseExit: Boolean {}
 
 actor LeftMouseTapped: Boolean {}
 actor LeftMouseDown: Boolean {}
 actor RightMouseTapped: Boolean {}
 actor RightMouseDown: Boolean {}
+
+actor CyberrunnerPlace: Counter {}
 
 actor ACSSpawnDummy
 {
@@ -112,6 +116,7 @@ actor CyberrunnerWeapon: Weapon
 #include "decorate/weppickups.dec"
 #include "decorate/skullweps.dec"
 #include "decorate/enemies.dec"
+#include "decorate/endgame.dec"
 
 #include "decorate/effects.dec"
 
