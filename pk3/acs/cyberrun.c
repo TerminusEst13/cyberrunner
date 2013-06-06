@@ -102,7 +102,6 @@ script 105 (int mode, int index, int next)
             AddTime(pln, Timer() - PlayerTimes[pln][TIME_START]);
             SortTimes();
             place = FindBestTime(pln);
-            Print(d:place);
 
             if (PlayerPlace[pln] == -1) { PlayerPlace[pln] = place; }
             SetInventory("CyberrunnerPlace", PlayerPlace[pln]+1);

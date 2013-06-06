@@ -192,7 +192,6 @@ function int FindBestTime(int pln)
     int i;
     for (i = 0; i < PLAYERMAX; i++)
     {
-        Log(d:i, s:" -> ", d:TimeDisplays[i][1], s:" for pln ", d:TimeDisplays[i][2]);
         if (pln == TimeDisplays[i][2]) { return i; }
     }
     return -1;
