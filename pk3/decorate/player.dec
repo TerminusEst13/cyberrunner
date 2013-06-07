@@ -1,5 +1,6 @@
 actor CyberRunnerClass : ParkmoreCounter {}
 actor CyberIdle : ParkmoreCounter {}
+actor CyberIsIdle : Boolean {}
 
 actor CyberPlayer : PlayerPawn
 {
@@ -11,11 +12,13 @@ actor CyberPlayer : PlayerPawn
     Health 200
     Player.MaxHealth 200
     Gravity 0.8
+    Player.Viewheight 50
     Player.DisplayName "Cyberrunner"
     Player.StartItem "Plasma Gun", 1
     Player.StartItem "PlasmaGunAmmo", 100
     Player.StartItem "ForceVentAmmo", 3
     Player.StartItem "WallHackToggle", 1
+    //Player.StartItem "CyberIsIdle", 1
     Player.StartItem "CyberrunnerClass", 1
     Player.Soundclass "Cyberrunner"
     BloodType RobotBlood//, RobotBlood2
@@ -25,7 +28,8 @@ actor CyberPlayer : PlayerPawn
     DamageFactor "PoisonCloud", 0.0
     DamageFactor "NoDamage", 0
     DamageFactor "CyberCannon", 0.5
-    Scale 0.3
+    XScale 0.3
+	YScale 0.28
     Player.ForwardMove 1.8 1.8
     Player.SideMove 1.55 1.55
     Player.ColorRange 112, 127
@@ -35,24 +39,46 @@ actor CyberPlayer : PlayerPawn
     States
     {
       Spawn:
+	    TNT1 A 0 A_JumpIfInventory("CyberIsIdle",1,26)
+	    TNT1 A 0 A_JumpIfInventory("CyberIdle",400,5)
 		TNT1 A 0 A_TakeInventory("FancyTrails",999)
-	    TNT1 A 0 A_JumpIfInventory("CyberIdle",250,"Idle")
-        CYBZ A 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
-        CYBZ A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ D 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+        CYBZ D 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
 		TNT1 A 0 A_GiveInventory("CyberIdle",random(1,3))
-        loop
-		
-	  Idle:
+        goto Spawn
+	  //GoToIdle:
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
-		CYBZ B 5 BRIGHT
-		CYBZ C 6 BRIGHT
-		CYBZ D 7 BRIGHT
+        CYBZ C 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ C 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ C 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ C 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ B 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ B 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ B 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ B 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ B 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+        CYBZ B 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ B 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
+		TNT1 A 0 A_GiveInventory("CyberIsIdle",1)
+		goto Spawn
+	  //Idle:
+		TNT1 A 0 A_TakeInventory("FancyTrails",999)
+        CYBZ A 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
+		CYBZ A 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
 		goto Spawn
         
         // MOVEMENT STATES
       See:
 		TNT1 A 0 A_TakeInventory("FancyTrails",999)
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
+	    TNT1 A 0 A_TakeInventory("CyberIsIdle",999)
         CYBZ E 0 BRIGHT A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
         CYBZ E 1 BRIGHT A_JumpIfInventory("DashCooldown",29,"CyberMove")
         CYBZ A 0 A_JumpIfInventory("CyberBoostSpeed",1,"Dash1")
@@ -254,6 +280,7 @@ actor CyberPlayer : PlayerPawn
         // START CYBER MOVEMENT STATES
         
       CyberMove:
+	    TNT1 A 0 A_TakeInventory("CyberIsIdle",999)
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
         CYBZ S 2 BRIGHT A_GiveInventory("FancyTrails",1)
 		TNT1 A 0 A_JumpIfInventory("JumpCooldown",29,"CyberLeap")
@@ -265,6 +292,7 @@ actor CyberPlayer : PlayerPawn
         goto Cybermove
         
       CyberLeap:
+	    TNT1 A 0 A_TakeInventory("CyberIsIdle",999)
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
         CYBZ T 2 BRIGHT A_GiveInventory("FancyTrails",1)
 		TNT1 A 0 A_JumpIfInventory("DashCooldown",29,"CyberMove")
@@ -288,6 +316,7 @@ actor CyberPlayer : PlayerPawn
         // NO MISSILE STATES, IT'S TOO DIFFICULT TO INCLUDE DASH TRAILS
         
       Pain:
+	    TNT1 A 0 A_TakeInventory("CyberIsIdle",999)
 		TNT1 A 0 A_TakeInventory("FancyTrails",999)
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
         CYBZ M 4 BRIGHT
@@ -307,6 +336,7 @@ actor CyberPlayer : PlayerPawn
       XDeath:
       Death:
 		TNT1 A 0 A_TakeInventory("FancyTrails",999)
+	    TNT1 A 0 A_TakeInventory("CyberIsIdle",999)
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
         CYBZ M 1
         TNT1 AA 0 A_SpawnItemEx("DroneExplosion2",Random(-3,3),Random(-3,3),Random(35,48),0,0,0,0,160)
