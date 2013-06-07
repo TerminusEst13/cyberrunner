@@ -55,6 +55,8 @@ actor CannonBlueExplosion2: CannonExplosion2
 
 actor BlueExplosionSpawner: CannonEffect
 {
+    -CLIENTSIDEONLY
+
     States
     {
       Spawn:
@@ -110,6 +112,8 @@ actor CannonRedExplosion2: CannonExplosion2
 
 actor RedExplosionSpawner: CannonEffect
 {
+    -CLIENTSIDEONLY
+
     States
     {
       Spawn:

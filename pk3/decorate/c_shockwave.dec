@@ -51,6 +51,8 @@ actor CannonShockTrailBlue: CannonShockwave
 
 actor RedShockwaveSpawner: CannonEffect
 {
+    -CLIENTSIDEONLY
+
     States
     {
       Spawn:
@@ -98,6 +100,8 @@ actor RedShockwaveSpawner: CannonEffect
 
 actor BlueShockwaveSpawner: CannonEffect
 {
+    -CLIENTSIDEONLY
+
     States
     {
       Spawn:

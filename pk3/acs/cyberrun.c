@@ -471,7 +471,7 @@ script 416 (int respawning)
     {
         GiveInventory(" Purge Rifle ", 1);
         TakeInventory("Plasma Gun", 1);
-        GiveInventory("No-Damage Plasma Gun", 1);
+        //GiveInventory("No-Damage Plasma Gun", 1);
     }
     else if (isLMS())
     {
