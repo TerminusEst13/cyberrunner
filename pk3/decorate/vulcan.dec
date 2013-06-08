@@ -72,6 +72,7 @@ actor VulcanShot: FastProjectile
         TNT1 A 0 BRIGHT A_Scream
         TNT1 AAAAA 0 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
         //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
+		TNT1 A 1
         Stop
     }
 }
