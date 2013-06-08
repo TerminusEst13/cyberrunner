@@ -558,7 +558,7 @@ script PARKMORE_LEDGEWALL (int mode)
         ACS_ExecuteAlways(PARKMORE_LEDGEHOLD, 0, heightTID,0,0);
     }
     
-    Delay(1);
+    Delay(2);
 
     TakeInventory("OpenGrab", 0x7FFFFFFF);
     TakeInventory("CanGrab", 0x7FFFFFFF);
