@@ -101,6 +101,7 @@ actor CannonShot1
         wait
 
       DeathEffects:
+	    TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("BlueShockwaveSpawner")
         TNT1 A 0 A_SpawnItemEx("BlueExplosionSpawner")
         TNT1 A 0 A_SpawnItemEx("BlueSparksSpawner")
@@ -121,6 +122,7 @@ actor CannonShot2 : CannonShot1
         Loop
 
       DeathEffects:
+	    TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("RedShockwaveSpawner")
         TNT1 A 0 A_SpawnItemEx("RedExplosionSpawner")
         TNT1 A 0 A_SpawnItemEx("RedSparksSpawner")
