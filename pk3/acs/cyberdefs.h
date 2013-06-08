@@ -39,18 +39,18 @@ int BarGraphics[BARFONTCOUNT] =
     "MPHBAR7", "MPHBAR8", "MPHBAR9", "MPHBAR10", "MPHBAR11", "MPHBAR12",
 };
 
-#define RECHARGECOUNT 9
+#define RECHARGECOUNT 10
 
 int RechargingItems[RECHARGECOUNT] = 
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
     "ForceVentAmmo", "CannotIntoShotgun", "CannotIntoCarbine",
-    "CannotIntoVulcan", "RedPlasmaGunAmmo"
+    "CannotIntoVulcan", "RedPlasmaGunAmmo", "CannotIntoSuper"
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = 
 {
-    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1},
+    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1}, {1, -1}
 };
 
 #define RAINBOWCOLORS 12

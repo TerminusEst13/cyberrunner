@@ -157,6 +157,12 @@ script 405 OPEN
         ConsoleCommand("archivecvar cyber_noaircontrol");
     }
 
+    if (!GetCVar("cyber_superstay"))
+    {
+        ConsoleCommand("set cyber_superstay 0");
+        ConsoleCommand("archivecvar cyber_superstay");
+    }
+
     for (i = 0; i < PLACEMAX; i++)
     {
         RemoveTime(i);
@@ -275,9 +281,10 @@ script 401 DEATH
     ACS_Terminate(403, 0);
     ACS_Terminate(404, 0);
     ACS_Terminate(400, 0);
-    TakeInventory("CannotIntoShotgun",1);
-    TakeInventory("CannotIntoCarbine",1);
-    TakeInventory("CannotIntoVulcan",1);
+    TakeInventory("CannotIntoShotgun",999);
+    TakeInventory("CannotIntoCarbine",999);
+    TakeInventory("CannotIntoVulcan",999);
+    TakeInventory("CannotIntoSuper",999);
 }
 
 script 402 (void) NET
@@ -462,16 +469,16 @@ script 416 (int respawning)
     if (!respawning) { ACS_ExecuteWithResult(105, 4); }
     else { ACS_ExecuteWithResult(105, 0); }
 
-    TakeInventory("CannotIntoShotgun",1);
-    TakeInventory("CannotIntoVulcan",1);
-    TakeInventory("CannotIntoCarbine",1);
+    TakeInventory("CannotIntoShotgun",999);
+    TakeInventory("CannotIntoVulcan",999);
+    TakeInventory("CannotIntoCarbine",999);
     TakeInventory("CannotIntoWallhack",1);
     
     if (GetCvar("instagib") == 1)
     {
         GiveInventory(" Purge Rifle ", 1);
         TakeInventory("Plasma Gun", 1);
-        //GiveInventory("No-Damage Plasma Gun", 1);
+        GiveInventory("No-Damage Plasma Gun", 1);
     }
     else if (isLMS())
     {
@@ -799,3 +806,5 @@ script 427 (int snum, int a1, int a2)
 
     ACS_ExecuteAlways(snum, 0, a1, a2, 0);
 }
+
+script 428 (void) { SetResultValue(!!GetCVar("cyber_superstay")); }

@@ -246,7 +246,7 @@ actor InstagibCarbineAmmo: Ammo
 }
 
 
-actor "Purge Rifle": " Purge Rifle " 15505
+actor "Purge Rifle": " Purge Rifle "
 {
     Radius 48
     Height 48
