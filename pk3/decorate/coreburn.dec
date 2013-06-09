@@ -25,17 +25,3 @@ actor CoreBurn : CustomInventory replaces Berserk 15506
 	  stop
     }
 }
-
-actor CoreBurnSpeed : PowerSpeed
-{
-    Powerup.Duration -30
-    Speed 2.5
-
-    Powerup.Color "FF 00 00", 0.25
-}
-
-actor CoreBurnDamage : PowerDamage
-{
-    Powerup.Duration -30
-    DamageFactor "DashDamage", 2.5
-}

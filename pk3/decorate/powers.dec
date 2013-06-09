@@ -148,3 +148,128 @@ actor TurboSparkle2
         loop
     }
 }
+
+actor CoreBurnSpeed : PowerSpeed
+{
+    Powerup.Duration -30
+    Speed 2.5
+
+    Powerup.Color "FF 00 00", 0.25
+}
+
+actor CoreBurnDamage : PowerDamage
+{
+    Powerup.Duration -30
+    DamageFactor "DashDamage", 2.5
+}
+
+
+
+actor CyberRunmod1 : PowerSpeed
+{
+    Speed 1.1
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod2 : PowerSpeed
+{
+    Speed 1.2
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod3 : PowerSpeed
+{
+    Speed 1.3
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod4 : PowerSpeed
+{
+    Speed 1.4
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod5 : PowerSpeed
+{
+    Speed 1.5
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod6 : PowerSpeed
+{
+    Speed 1.6
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod7 : PowerSpeed
+{
+    Speed 1.7
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod8 : PowerSpeed
+{
+    Speed 1.8
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod9 : PowerSpeed
+{
+    Speed 1.9
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod10 : PowerSpeed
+{
+    Speed 2.0
+    Powerup.Duration 0x7FFFFFFF
+}
+
+
+actor CyberRunmod-1 : PowerSpeed
+{
+    Speed 0.9
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod-2 : PowerSpeed
+{
+    Speed 0.8
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod-3 : PowerSpeed
+{
+    Speed 0.7
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod-4 : PowerSpeed
+{
+    Speed 0.6
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod-5 : PowerSpeed
+{
+    Speed 0.5
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod-6 : PowerSpeed
+{
+    Speed 0.4
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod-7 : PowerSpeed
+{
+    Speed 0.3
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod-8 : PowerSpeed
+{
+    Speed 0.2
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod-9 : PowerSpeed
+{
+    Speed 0.1
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod-10 : PowerSpeed
+{
+    Speed 0.05
+    Powerup.Duration 0x7FFFFFFF
+}

@@ -163,6 +163,12 @@ script 405 OPEN
         ConsoleCommand("archivecvar cyber_superstay");
     }
 
+    if (!GetCVar("cyber_runmod"))
+    {
+        ConsoleCommand("set cyber_runmod 0");
+        ConsoleCommand("archivecvar cyber_runmod");
+    }
+
     for (i = 0; i < PLACEMAX; i++)
     {
         RemoveTime(i);
@@ -270,6 +276,143 @@ script 400 ENTER
 
         UnfreezeDelay[pln] = max(0, UnfreezeDelay[pln]-1);
         time++;
+		
+		//SetActorProperty(0,APROP_SPEED,GetCVar("cyber_runmod")); // Well, shit, that would've made things easy.
+		
+		/*if (GetCVar("cyber_runmod") != 0)
+		{
+			if (GetCVar("cyber_runmod") == -10) {	SetActorProperty(0,APROP_SPEED,0.05);	}
+			if (GetCVar("cyber_runmod") == -9)	{	SetActorProperty(0,APROP_SPEED,0.1);	}
+			if (GetCVar("cyber_runmod") == -8)	{	SetActorProperty(0,APROP_SPEED,0.2);	}
+			if (GetCVar("cyber_runmod") == -7)	{	SetActorProperty(0,APROP_SPEED,0.3);	}
+			if (GetCVar("cyber_runmod") == -6)	{	SetActorProperty(0,APROP_SPEED,0.4);	}
+			if (GetCVar("cyber_runmod") == -5)	{	SetActorProperty(0,APROP_SPEED,0.5);	}
+			if (GetCVar("cyber_runmod") == -4)	{	SetActorProperty(0,APROP_SPEED,0.6);	}
+			if (GetCVar("cyber_runmod") == -3)	{	SetActorProperty(0,APROP_SPEED,0.7);	}
+			if (GetCVar("cyber_runmod") == -2)	{	SetActorProperty(0,APROP_SPEED,0.8);	}
+			if (GetCVar("cyber_runmod") == -1)	{	SetActorProperty(0,APROP_SPEED,0.9);	}
+			if (GetCVar("cyber_runmod") == 1)	{	SetActorProperty(0,APROP_SPEED,1.1);	}
+			if (GetCVar("cyber_runmod") == 2)	{	SetActorProperty(0,APROP_SPEED,1.2);	}
+			if (GetCVar("cyber_runmod") == 3)	{	SetActorProperty(0,APROP_SPEED,1.3);	}
+			if (GetCVar("cyber_runmod") == 4)	{	SetActorProperty(0,APROP_SPEED,1.4);	}
+			if (GetCVar("cyber_runmod") == 5)	{	SetActorProperty(0,APROP_SPEED,1.5);	}
+			if (GetCVar("cyber_runmod") == 6)	{	SetActorProperty(0,APROP_SPEED,1.6);	}
+			if (GetCVar("cyber_runmod") == 7)	{	SetActorProperty(0,APROP_SPEED,1.7);	}
+			if (GetCVar("cyber_runmod") == 8)	{	SetActorProperty(0,APROP_SPEED,1.8);	}
+			if (GetCVar("cyber_runmod") == 9)	{	SetActorProperty(0,APROP_SPEED,1.9);	}
+			if (GetCVar("cyber_runmod") == 10)	{	SetActorProperty(0,APROP_SPEED,2);		}
+		}
+		else
+		{
+			SetActorProperty(0,APROP_SPEED,1);
+		}*/ // Are you KIDDING ME that didn't work EITHER
+		
+		if (GetCVar("cyber_runmod") == -10)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-10",1);
+			}
+		if (GetCVar("cyber_runmod") == -9)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-9",1);
+			}
+		if (GetCVar("cyber_runmod") == -8)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-8",1);
+			}
+		if (GetCVar("cyber_runmod") == -7)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-7",1);
+			}
+		if (GetCVar("cyber_runmod") == -6)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-6",1);
+			}
+		if (GetCVar("cyber_runmod") == -5)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-5",1);
+			}
+		if (GetCVar("cyber_runmod") == -4)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-4",1);
+			}
+		if (GetCVar("cyber_runmod") == -3)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-3",1);
+			}
+		if (GetCVar("cyber_runmod") == -2)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-2",1);
+			}
+		if (GetCVar("cyber_runmod") == -1)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod-1",1);
+			}
+		if (GetCVar("cyber_runmod") == 0)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			}
+		if (GetCVar("cyber_runmod") == 1)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod1",1);
+			}
+		if (GetCVar("cyber_runmod") == 2)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod2",1);
+			}
+		if (GetCVar("cyber_runmod") == 3)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod3",1);
+			}
+		if (GetCVar("cyber_runmod") == 4)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod4",1);
+			}
+		if (GetCVar("cyber_runmod") == 5)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod5",1);
+			}
+		if (GetCVar("cyber_runmod") == 6)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod6",1);
+			}
+		if (GetCVar("cyber_runmod") == 7)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod7",1);
+			}
+		if (GetCVar("cyber_runmod") == 8)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod8",1);
+			}
+		if (GetCVar("cyber_runmod") == 9)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod9",1);
+			}
+		if (GetCVar("cyber_runmod") == 10)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod10",1);
+			}
+		
+		
 
         Delay(1);
     }
