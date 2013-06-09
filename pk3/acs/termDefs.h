@@ -622,21 +622,21 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(58, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYDM01 - 1
-    ACS_ExecuteAlways(106, 0, packShorts(59, 60), -("Off-Topic Discussion: How do the Runners feel?"), "CYBRLOG1"); // 59
+    ACS_ExecuteAlways(106, 0, packShorts(59, 60), -("Off-Topic Discussion: How do the Runners feel?"), "SYSLOGO1"); // 59
     ACS_ExecuteAlways(106, 0, packShorts(60, 61), TerminalTexts[24], "");
     ACS_ExecuteAlways(106, 0, packShorts(61, 62), TerminalTexts[25], "");
     ACS_ExecuteAlways(106, 0, packShorts(62, 63), TerminalTexts[26], "");
     ACS_ExecuteAlways(106, 0, packShorts(63, 64), TerminalTexts[27], "");
-    ACS_ExecuteAlways(106, 0, packShorts(64, 0),  -("Post reply?"), "CYBRLOG1");
+    ACS_ExecuteAlways(106, 0, packShorts(64, 0),  -("Post reply?"), "SYSLOGO1");
 	
 	// CYDM01 - 2
-    ACS_ExecuteAlways(106, 0, packShorts(65, 66), -("The Lemnos Project"), "CYBRLOG1"); // 65
+    ACS_ExecuteAlways(106, 0, packShorts(65, 66), -("The Lemnos Project"), "SYSLOGO1"); // 65
     ACS_ExecuteAlways(106, 0, packShorts(66, 67), TerminalTexts[28], "");
     ACS_ExecuteAlways(106, 0, packShorts(67, 68), TerminalTexts[29], "");
     ACS_ExecuteAlways(106, 0, packShorts(68, 69), TerminalTexts[30], "");
     ACS_ExecuteAlways(106, 0, packShorts(69, 70), TerminalTexts[31], "");
     ACS_ExecuteAlways(106, 0, packShorts(70, 71), TerminalTexts[32], "");
-    ACS_ExecuteAlways(106, 0, packShorts(71, 0),  -("End of Diary Entry"), "CYBRLOG1");
+    ACS_ExecuteAlways(106, 0, packShorts(71, 0),  -("End of Diary Entry"), "SYSLOGO1");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
@@ -646,5 +646,5 @@ script 119 OPEN clientside
     SetMetadataRange(26, 28, ",\"10m kSa(=-kJ", "1. 32m 78A#* a)l");
     SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
     SetMetadataRange(59, 64, "Cyberrunner League Fan Forum", "Comment 238 of 249");
-    SetMetadataRange(65, 71, "19xsj)", "#38CxzA");
+    SetMetadataRange(65, 71, "e-diary", "#3833zA");
 }
