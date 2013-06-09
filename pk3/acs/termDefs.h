@@ -1,4 +1,4 @@
-#define TERMCOUNT 24
+#define TERMCOUNT 28
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -155,6 +155,7 @@ int TerminalTexts[TERMCOUNT] =
 \n    08:42:16",
 
 
+
 // CYRC03 - Terminal 01 - Page 1
 "I don't even remember what I used to look like, but now I look human in\
 \nform. With peach skin and torn up rags for clothes, I feel otherwise\
@@ -191,6 +192,8 @@ int TerminalTexts[TERMCOUNT] =
 \n\
 \nThey all have the crystals.",
 
+
+
 // CYRC02 - Terminal 02 - Page 1
 "All values valid for the last 86400 seconds.\
 \n\
@@ -226,7 +229,9 @@ int TerminalTexts[TERMCOUNT] =
 \ntake system offline and flash backup onto storage, then patch holes.",
 
 
+
 "unused",
+
 
 
 // CYRTUT - Terminal 01 - Page 1 // Introduction
@@ -366,6 +371,75 @@ int TerminalTexts[TERMCOUNT] =
 \nYou will become as a goddess.\
 \n\
 \nGood luck, Runner.",
+
+
+
+// CYDM01 - Terminal 1 - Page 1
+"Look, the problem is that your argument is fundamentally flawed. That\
+\nwhole emotion circuit, personality chip, etc, whatever you've seen in old\
+\nmovies? That doesn't fly here.\
+\n\
+\nThese are still robots, man, they don't have a soul. Sure, ever since Lemnos\
+\ngot involved in robotics our AI functionalities have soared, and these guys\
+\ncan seem super-humanLIKE...but they're still not human. They don't feel like\
+\nwe do. Why do you think the Allmind extended a hand to us on Earth in the\
+\nfirst place? We feel awesome. He didn't. He didn't even feel like shit.\
+\n\
+\nHe just didn't feel anything.",
+
+// CYDM01 - Terminal 1 - Page 2
+"Let me ask you this: What's a personality? I'm no psych major, but I say it's\
+\na series of conditions and response patterns of thinking, feeling, and\
+\nbehaving depending on different circumstances. It's the different quirks and\
+\ncharacteristics that determine how likely we are to respond in a certain way\
+\nto a specific situation.\
+\nA dude with a cranky personality is likely to respond unfavorably to a request\
+\nto borrow some cash. A gal with a flirty personality is likely to compliment\
+\nyou on how you look and be super-charming in your conversations.\
+\n\
+\nRemember that the Allmind wasn't built automatically knowing everything, he\
+\ndidn't have any way to figure anything out other than the method we've been\
+\nusing for years--researching, referencing, and the scientific method. When\
+\nhe started to build up his little asteroid into a big community, what did he\
+\nhave as a reference? Us.\
+\nHe had to research and reference us, and he saw our different little\
+\npersonalities and behaviors, and probably saw them as a series of variables\
+\nand graphs. Something that dictates probability. To him, it was probably\
+\nincredibly random how people would respond in one way and then another.",
+
+// CYDM01 - Terminal 1 - Page 3
+"Now, some of my best friends are robots, so one time at a party I got curious\
+\nand asked one of them how she felt about things. Of course, she said she was\
+\nhaving the time of her life--but being slightly drunk at the time I decided to\
+\ngo a little deeper. I knew she wasn't actually feeling happiness, joy, fun, or\
+\nany of that. I asked her, what's causing that fun? What's causing that feel?\
+\nSpeaking strictly, none of us are doing good things. We're drinking (which is\
+\ngonna ruin our bodies), we're eating loads of junk foods (which is probably\
+\nnot gonna sit well with us after a few days), and some of us are completely\
+\nhammered (which also isn't gonna sit well once the pictures surface on the\
+\ninternet).\
+\n\
+\nThis girl usually works as a lab aide along with me. She's usually the cautious\
+\nand careful type. The one who checks, double-checks, and triple checks things\
+\nto make sure everything's working fine. And then she suddenly does\
+\na complete 180?",
+
+// CYDM01 - Terminal 1 - Page 4
+"She paused for a minute, then shrugged. She told me we're all with friends.\
+\nWe're doing fun activities. Sure, it's not exactly healthy, but when we're\
+\nwith each other we throw caution to the wind and have a blast.\
+\nThat's when it hit me. These personalities aren't true 'personalities' in the\
+\nsense you and I have. It's a series of graphs and variables, altering over\
+\ntime depending on what happens and producing a percentage of how likely\
+\nsomeone is to respond a certain way depending on the personality given.\
+\n\
+\nWhat I'm going with this is, well, robots are like onions. You peel back a\
+\nlayer, and it's an onion. You peel back another layer, it's still an onion.\
+\nYou can peel it all the way to the center, but even if you reach the core,\
+\nit's still a fucking onion.\
+\n\
+\nNow, once we can all agree that I'm right, then we can start getting further\
+\ninto the discussion. I've seen some very interesting developments lately."
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -467,6 +541,14 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(56, 57), -("INTRODUCTION: Finish"), "CYBRLOG1"); // 56
     ACS_ExecuteAlways(106, 0, packShorts(57, 58), TerminalTexts[23], "");
     ACS_ExecuteAlways(106, 0, packShorts(58, 0),  -("Proceed when ready."), "CYBRLOG1");
+	
+	// CYDM01 - 1
+    ACS_ExecuteAlways(106, 0, packShorts(59, 60), -("Off-Topic Discussion: How do the Runners feel?"), "CYBRLOG1"); // 56
+    ACS_ExecuteAlways(106, 0, packShorts(60, 61), TerminalTexts[24], "");
+    ACS_ExecuteAlways(106, 0, packShorts(61, 62), TerminalTexts[25], "");
+    ACS_ExecuteAlways(106, 0, packShorts(62, 63), TerminalTexts[26], "");
+    ACS_ExecuteAlways(106, 0, packShorts(63, 64), TerminalTexts[27], "");
+    ACS_ExecuteAlways(106, 0, packShorts(64, 0),  -("Post reply?"), "CYBRLOG1");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
@@ -475,4 +557,5 @@ script 119 OPEN clientside
     SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
     SetMetadataRange(26, 28, ",\"10m kSa(=-kJ", "1. 32m 78A#* a)l");
     SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
+    SetMetadataRange(59, 64, "Cyberrunner League Fan Forum", "Comment 238 of 249");
 }
