@@ -28,6 +28,7 @@ actor CyberPlayer : PlayerPawn
     DamageFactor "PoisonCloud", 0.0
     DamageFactor "NoDamage", 0
     DamageFactor "CyberCannon", 0.5
+    DamageFactor "DashDamage", 0.5
     XScale 0.3
 	YScale 0.28
     Player.ForwardMove 1.8 1.8
@@ -546,13 +547,15 @@ actor CyberDashDamage
 	+FORCERADIUSDMG
     +NOTELEPORT
     +NOCLIP
+	+NODAMAGETHRUST
     -SOLID
     Obituary "$CYBERRUNNER_OB_DASH"
+	DamageType "DashDamage"
     States
     {
       Spawn:
 		TNT1 A 1
-        TNT1 A 1 A_Explode(192,16,0)
+        TNT1 A 1 A_Explode(384,16,0)
         stop
     }
 }

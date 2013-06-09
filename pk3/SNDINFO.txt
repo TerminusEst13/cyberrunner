@@ -92,6 +92,8 @@ pickups/health2	sounds/pickups/HEALFSML.ogg
 pickups/turbo   sounds/pickups/LargeHealthPickup.wav  // UT2004 100 Health pickup
 pickups/vent	sounds/pickups/vent_pickup.ogg	// Taken from Tribes: Ascend
 pickups/ammo	sounds/pickups/allammo_get.wav	// Taken from Unreal II
+pickups/core	sounds/pickups/core_pickup.ogg // Taken from Zero Tolerance
+core/idle		sounds/pickups/core_idle.ogg // Taken from Zero Tolerance
 
 shotgun/pickup  sounds/pickups/shotgun_pickup.wav // UT2004 Flak Cannon pickup sound
 carbine/pickup  sounds/pickups/carbine_pickup.ogg	// From Unreal Tournament 2004
