@@ -1,4 +1,4 @@
-#define TERMCOUNT 28
+#define TERMCOUNT 33
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -393,7 +393,7 @@ int TerminalTexts[TERMCOUNT] =
 \nbehaving depending on different circumstances. It's the different quirks and\
 \ncharacteristics that determine how likely we are to respond in a certain way\
 \nto a specific situation.\
-\nA dude with a cranky personality is likely to respond unfavorably to a request\
+\nA dude with a cranky personality is likely to respond unfavorably to requests\
 \nto borrow some cash. A gal with a flirty personality is likely to compliment\
 \nyou on how you look and be super-charming in your conversations.\
 \n\
@@ -410,8 +410,8 @@ int TerminalTexts[TERMCOUNT] =
 // CYDM01 - Terminal 1 - Page 3
 "Now, some of my best friends are robots, so one time at a party I got curious\
 \nand asked one of them how she felt about things. Of course, she said she was\
-\nhaving the time of her life--but being slightly drunk at the time I decided to\
-\ngo a little deeper. I knew she wasn't actually feeling happiness, joy, fun, or\
+\nhaving the time of her life--but being slightly drunk at the time I decided\
+\nto go a little deeper. I knew she wasn't actually feeling happiness, fun, or\
 \nany of that. I asked her, what's causing that fun? What's causing that feel?\
 \nSpeaking strictly, none of us are doing good things. We're drinking (which is\
 \ngonna ruin our bodies), we're eating loads of junk foods (which is probably\
@@ -419,7 +419,7 @@ int TerminalTexts[TERMCOUNT] =
 \nhammered (which also isn't gonna sit well once the pictures surface on the\
 \ninternet).\
 \n\
-\nThis girl usually works as a lab aide along with me. She's usually the cautious\
+\nThis girl usually works as a lab aide along with me. She's usually the wary\
 \nand careful type. The one who checks, double-checks, and triple checks things\
 \nto make sure everything's working fine. And then she suddenly does\
 \na complete 180?",
@@ -439,7 +439,86 @@ int TerminalTexts[TERMCOUNT] =
 \nit's still a fucking onion.\
 \n\
 \nNow, once we can all agree that I'm right, then we can start getting further\
-\ninto the discussion. I've seen some very interesting developments lately."
+\ninto the discussion. I've seen some very interesting developments lately.",
+
+
+
+// CYDM01 - Terminal 2 - Page 1
+"The machine revolution. That's pretty much what was on everyone's mind when\
+\nthey first saw the little AI in a cube starting to transform his little\
+\nasteroid into a small planet.\
+\n\
+\nThey called it 'The Lemnos Project'; build a self-aware and sentient AI with\
+\nthe bare minimum of routines and put it on a large asteroid and see what it\
+\ndoes. The goal of the experiment was to prove that no machine could sustain\
+\nitself without human input and it...backfired.\
+\nIt not only could sustain itself, it thrived and it grew and it developed. In\
+\na few short years, the asteroid started to grow, being covered with plates of\
+\nmetal and starting to expand, surges of energy emitting from its insides like\
+\na core.",
+
+// CYDM01 - Terminal 2 - Page 2
+"I guess the initial panic was still on my mind, when I learned I was going as\
+\nan ambassador. I won't lie, I was afraid of coming up here with Anna. A man\
+\nand his aide, alone and far from home in a strange country? There's a rich\
+\nhistory of that going horribly wrong. Not to mention, this was the first time\
+\nwe had ever recieved contact from the place.\
+\nThe government had enough of waiting to see what happened in the experiment.\
+\nThey were in the middle of figuring out whether to contact the place peacably\
+\nor come at it with a show of arms...then we got a message. An invitation.\
+\n\
+\nEveryone thought it was just going to be some cold complex built on a rock.\
+\nThat it was a factory for experiments and new forms of mechanical life, a\
+\ntesting ground. Wires, metal, steel, nothing else. Instead, what we found\
+\nwas...uncanny.\
+\nIt's not quite Earth. It's like Earth, but arranged differently. It's like\
+\nwalking between studio lots, imitations and replications that are more than\
+\njust set pieces and stolen designs. It's mankind's images, but remodeled and\
+\nremastered.",
+
+// CYDM01 - Terminal 2 - Page 3
+"One of the first places I saw after arriving was a hospital. Not a factory,\
+\nnot a mechanical shop, but a hospital. A janitor was sitting outside, and\
+\nwith nothing but my sheer curiosity guiding me I asked him why a place like\
+\nthis would need a janitor. His job was removal of fine particulates in mostly\
+\nsterile environments. Because they bring old robots to be disassembled to the\
+\nhospital, carefully treat the components, and use them to build new ones.\
+\n\
+\nI didn't understand why it hadn't extended a hand to us until now, asked us\
+\nto visit instead of sending its own dignitary. Its world is populated, full\
+\nof children born from derivatives of its design and improvements, and they're\
+\nworking together to make their own society and identities. So why not send\
+\nthem? I thought this would have gone one of two ways--either it would be a\
+\nshow of power or strength, or it would be an experiment reporting in trying\
+\nto seek our approval for what it had done with the world.",
+
+// CYDM01 - Terminal 2 - Page 4
+"It's...actually much more simple.\
+\n\
+\nWhen we have questions, we look at the world surrounding us for answers. We\
+\nexperiment, we reference, we develop. A behavioral psychologist often refers\
+\nto animal behavior in the wild for some sort of basis of what to expect from\
+\nhuman behavior.\
+\nThe Allmind knew us from the moment we made its most basic form, and based\
+\nits world on our own. With nothing else to act as inspiration, it looked into\
+\nthe stars with its eyes and referenced us. It developed a community based on\
+\nours. It took notes from what we did, how we did it, and why we did it, and\
+\ngave it its own little spin. This isn't a report...it's a child saying hello.\
+\n\
+\nI know that's a bit dramatic. No matter how advanced its processes are and\
+\nhow much it's developed itself, it can't actually feel anything. It can't\
+\nfeel 'attachment' or 'affection'. But that's the best way I can describe it.",
+
+// CYDM01 - Terminal 2 - Page 5
+"I just don't know if it's still our child or a whole new person. I can't tell\
+\nif this is just a humanoid face over a machine intelligence, or if it's truly\
+\nfriendly and kind and it wants to be our neighbor.\
+\n\
+\nThough now, I wonder...can it be both?\
+\n\
+\n    From the e-diary of:\
+\n    Heliodorus Vranas,\
+\n    U.N. Ambassador - Greece"
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -543,12 +622,21 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(58, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
 	// CYDM01 - 1
-    ACS_ExecuteAlways(106, 0, packShorts(59, 60), -("Off-Topic Discussion: How do the Runners feel?"), "CYBRLOG1"); // 56
+    ACS_ExecuteAlways(106, 0, packShorts(59, 60), -("Off-Topic Discussion: How do the Runners feel?"), "CYBRLOG1"); // 59
     ACS_ExecuteAlways(106, 0, packShorts(60, 61), TerminalTexts[24], "");
     ACS_ExecuteAlways(106, 0, packShorts(61, 62), TerminalTexts[25], "");
     ACS_ExecuteAlways(106, 0, packShorts(62, 63), TerminalTexts[26], "");
     ACS_ExecuteAlways(106, 0, packShorts(63, 64), TerminalTexts[27], "");
     ACS_ExecuteAlways(106, 0, packShorts(64, 0),  -("Post reply?"), "CYBRLOG1");
+	
+	// CYDM01 - 2
+    ACS_ExecuteAlways(106, 0, packShorts(65, 66), -("The Lemnos Project"), "CYBRLOG1"); // 65
+    ACS_ExecuteAlways(106, 0, packShorts(66, 67), TerminalTexts[28], "");
+    ACS_ExecuteAlways(106, 0, packShorts(67, 68), TerminalTexts[29], "");
+    ACS_ExecuteAlways(106, 0, packShorts(68, 69), TerminalTexts[30], "");
+    ACS_ExecuteAlways(106, 0, packShorts(69, 70), TerminalTexts[31], "");
+    ACS_ExecuteAlways(106, 0, packShorts(70, 71), TerminalTexts[32], "");
+    ACS_ExecuteAlways(106, 0, packShorts(71, 0),  -("End of Diary Entry"), "CYBRLOG1");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
@@ -558,4 +646,5 @@ script 119 OPEN clientside
     SetMetadataRange(26, 28, ",\"10m kSa(=-kJ", "1. 32m 78A#* a)l");
     SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
     SetMetadataRange(59, 64, "Cyberrunner League Fan Forum", "Comment 238 of 249");
+    SetMetadataRange(65, 71, "19xsj)", "#38CxzA");
 }
