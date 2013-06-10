@@ -37,3 +37,126 @@ actor ThisIsImportantShit 19002
         loop
     }
 }
+
+actor CyberrunnerStandingBase
+{
+    -SHOOTABLE
+    -SOLID
+    +CLIENTSIDEONLY
+    XScale 0.3
+	YScale 0.28
+
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        CYBZ A -1 bright
+        stop
+    }
+}
+
+actor CyberrunnerStandingGrey : CyberrunnerStandingBase 19003 {	Translation "112:127=80:111" }
+actor CyberrunnerStandingBrown : CyberrunnerStandingBase 19004 { Translation "112:127=56:79" }
+actor CyberrunnerStandingRed : CyberrunnerStandingBase 19005 {	Translation "112:127=176:191" }
+actor CyberrunnerStandingTan : CyberrunnerStandingBase 19006 {	Translation "112:127=128:143" }
+actor CyberrunnerStandingPink : CyberrunnerStandingBase 19007 {	Translation "112:127=16:47" }
+actor CyberrunnerStandingGold : CyberrunnerStandingBase 19008 {	Translation "112:127=160:167" }
+
+actor CyberrunnerProne 19009
+{
+    -SHOOTABLE
+    -SOLID
+    +CLIENTSIDEONLY
+    XScale 0.3
+	YScale 0.28
+	Translation "112:127=80:111" 
+
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        CYBZ R -1 bright
+        stop
+    }
+}
+
+actor CyberJunk1 19010
+{
+    -SHOOTABLE
+    -SOLID
+    +CLIENTSIDEONLY
+
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK B -1 bright
+        stop
+    }
+}
+
+actor CyberJunk2 : CyberJunk1 19011
+{
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK D -1 bright
+        stop
+    }
+}
+
+actor CyberJunk3 : CyberJunk1 19012
+{
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK F -1 bright
+        stop
+    }
+}
+
+actor CyberJunk4 : CyberJunk1 19013
+{
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK L -1 bright
+        stop
+    }
+}
+
+actor CyberJunk5 : CyberJunk1 19014
+{
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK O -1 bright
+        stop
+    }
+}
+
+actor CyberJunk6 : CyberJunk1 19015
+{
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK Q -1 bright
+        stop
+    }
+}
+
+actor CyberJunk7 : CyberJunk1 19016
+{
+    States
+    {
+      Spawn:
+	    TNT1 A 1
+        JUNK S -1 bright
+        stop
+    }
+}
