@@ -411,6 +411,56 @@ script 400 ENTER
 			GiveInventory("PlayerSpeedRemoval",1);
 			GiveInventory("CyberRunMod10",1);
 			}
+		if (GetCVar("cyber_runmod") == 11)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod11",1);
+			}
+		if (GetCVar("cyber_runmod") == 12)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod12",1);
+			}
+		if (GetCVar("cyber_runmod") == 13)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod13",1);
+			}
+		if (GetCVar("cyber_runmod") == 14)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod14",1);
+			}
+		if (GetCVar("cyber_runmod") == 15)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod15",1);
+			}
+		if (GetCVar("cyber_runmod") == 16)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod16",1);
+			}
+		if (GetCVar("cyber_runmod") == 17)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod17",1);
+			}
+		if (GetCVar("cyber_runmod") == 18)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod18",1);
+			}
+		if (GetCVar("cyber_runmod") == 19)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod19",1);
+			}
+		if (GetCVar("cyber_runmod") == 20)
+			{
+			GiveInventory("PlayerSpeedRemoval",1);
+			GiveInventory("CyberRunMod20",1);
+			}
 		
 		
 

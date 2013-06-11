@@ -219,6 +219,60 @@ actor CyberRunmod10 : PowerSpeed
     Powerup.Duration 0x7FFFFFFF
 }
 
+actor CyberRunmod11 : PowerSpeed
+{
+    Speed 2.1
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod12 : PowerSpeed
+{
+    Speed 2.2
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod13 : PowerSpeed
+{
+    Speed 2.3
+    Powerup.Duration 0x7FFFFFFF
+}
+
+actor CyberRunmod14 : PowerSpeed
+{
+    Speed 2.4
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod15 : PowerSpeed
+{
+    Speed 2.5
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod16 : PowerSpeed
+{
+    Speed 2.6
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod17 : PowerSpeed
+{
+    Speed 2.7
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod18 : PowerSpeed
+{
+    Speed 2.8
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod19 : PowerSpeed
+{
+    Speed 2.9
+    Powerup.Duration 0x7FFFFFFF
+}
+actor CyberRunmod20 : PowerSpeed
+{
+    Speed 3.0
+    Powerup.Duration 0x7FFFFFFF
+}
+
 
 actor CyberRunmod-1 : PowerSpeed
 {
