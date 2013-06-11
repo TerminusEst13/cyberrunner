@@ -1042,9 +1042,13 @@ script PARKMORE_ENTER enter
             grabbing[pln] = 0;
             dontGrab[pln] = 0;
             TakeInventory("KickTrail", 1);
+            TakeInventory("HasKicked", 1);
+            TakeInventory("ParkourGrabbing", 1);
             Delay(1);
             continue;
         }
+
+        SetInventory("ParkourGrabbing", grabbing[pln]);
 
         if (hasKicked[pln] && !CheckInventory("HasKicked")) { GiveInventory("HasKicked", 1); }
         if (!hasKicked[pln] && CheckInventory("HasKicked")) { TakeInventory("HasKicked", 0x7FFFFFFF); }
