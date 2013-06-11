@@ -283,9 +283,9 @@ script 400 ENTER
 
         UnfreezeDelay[pln] = max(0, UnfreezeDelay[pln]-1);
         time++;
-		
+        
         // Treats 0 as 100, negative values as 0
-		speedmod = max(0, condFalse(GetCVar("cyber_runmod"), 100)) * 0.01;
+        speedmod = max(0, condFalse(GetCVar("cyber_runmod"), 100)) * 0.01;
         jumpmod  = max(0, condFalse(GetCVar("cyber_jumpmod"), 100)) * 0.01;
 
         if (!CheckInventory("ParkourGrabbing"))
