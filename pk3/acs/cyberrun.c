@@ -4,6 +4,8 @@
 #include "commonFuncs.h"
 #include "stralloc.h"
 
+#include "shared.h"
+
 #include "cyberdefs.h"
 #include "cyberfuncs.h"
 
