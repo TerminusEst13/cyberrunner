@@ -573,6 +573,16 @@ actor PlayerSpeedRemoval: CustomInventory
 
        Pickup:
          TNT1 A 0
+         TNT1 A 0 A_TakeInventory("CyberRunmod20")
+         TNT1 A 0 A_TakeInventory("CyberRunmod19")
+         TNT1 A 0 A_TakeInventory("CyberRunmod18")
+         TNT1 A 0 A_TakeInventory("CyberRunmod17")
+         TNT1 A 0 A_TakeInventory("CyberRunmod16")
+         TNT1 A 0 A_TakeInventory("CyberRunmod15")
+         TNT1 A 0 A_TakeInventory("CyberRunmod14")
+         TNT1 A 0 A_TakeInventory("CyberRunmod13")
+         TNT1 A 0 A_TakeInventory("CyberRunmod12")
+         TNT1 A 0 A_TakeInventory("CyberRunmod11")
          TNT1 A 0 A_TakeInventory("CyberRunmod10")
          TNT1 A 0 A_TakeInventory("CyberRunmod9")
          TNT1 A 0 A_TakeInventory("CyberRunmod8")
