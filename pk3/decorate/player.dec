@@ -288,6 +288,7 @@ actor CyberPlayer : PlayerPawn
         CYBZ A 0 A_SpawnItemEx("DashTrail",0,0,40,-1,0,0,0,SXF_CLIENTSIDE)
         TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 16,"See")
         CYBZ L 1 BRIGHT
+        CYBZ U 15 BRIGHT
         goto Spawn
         
         // END MOVEMENT STATES
