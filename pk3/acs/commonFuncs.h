@@ -8,6 +8,21 @@
 #define SECOND_TICS 35.714285714285715
 #define UNIT_CM     2.73921568627451
 
+int TeamNames[TEAMCOUNT] = 
+{
+    "Blue", "Red", "Green", "Gold", "Black", "White", "Orange", "Purple"
+};
+
+int TeamColors[TEAMCOUNT] = 
+{
+    CR_BLUE, CR_RED, CR_GREEN, CR_GOLD, CR_BLACK, CR_WHITE, CR_ORANGE, CR_PURPLE
+};
+
+int TeamColorCodes[TEAMCOUNT] = 
+{
+    "\ch", "\cg", "\cd", "\cf", "\cm", "\cj", "\ci", "\ct"
+};
+
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }
 
@@ -281,7 +296,13 @@ function int magnitudeTwo(int x, int y)
 
 function int magnitudeTwo_f(int x, int y)
 {
-    return sqrt(FixedMul(x, x) + FixedMul(y, y));
+    int len, ang;
+
+    ang = VectorAngle(x, y);
+    if (((ang + 0.125) % 0.5) > 0.25) { len = FixedDiv(y, sin(ang)); }
+    else { len = FixedDiv(x, cos(ang)); }
+
+    return len;
 }
 
 function int magnitudeThree(int x, int y, int z)
@@ -546,7 +567,7 @@ function int giveHealth(int amount)
 
 function int giveHealthFactor(int amount, int maxFactor)
 {
-    return giveHealthMax(amount, ftoi(getMaxHealth() * maxFactor));
+    return giveHealthMax(amount, FixedMul(getMaxHealth(), maxFactor));
 }
 
 function int giveHealthMax(int amount, int maxHP)
@@ -554,6 +575,8 @@ function int giveHealthMax(int amount, int maxHP)
     int newHP;
 
     int curHP = GetActorProperty(0, APROP_Health);
+
+    if (curHP > maxHP) { return 0; }
 
     if (maxHP == 0) { newHP = max(curHP, curHP+amount); }
     else { newHP = middle(curHP, curHP+amount, maxHP); }
@@ -641,16 +664,16 @@ function void SetInventory(int item, int amount)
     GiveAmmo(item, amount - count);
     return;
 }
-function void ToggleInventory(int inv)
+function int ToggleInventory(int inv)
 {
     if (CheckInventory(inv))
     {
         TakeInventory(inv, 0x7FFFFFFF);
+        return 0;
     }
-    else
-    {
-        GiveInventory(inv, 1);
-    }
+
+    GiveInventory(inv, 1);
+    return 1;
 }
 
 function void GiveAmmo(int type, int amount)
@@ -843,20 +866,31 @@ function int loadStringCVar(int cvarname)
 
 function int defaultTID(int def)
 {
+    return _defaulttid(def, 0);
+}
+
+function int _defaulttid(int def, int alwaysPropagate)
+{
     int tid = ActivatorTID();
-    int i;
+    int i, changed = 0;
 
-    if (ThingCount(0, tid) == 1) { return tid; }
-
-    tid = def;
-    if (def <= 0)
+    if (ThingCount(0, tid) != 1)
     {
-        i = random(13, 23);
-        tid = unusedTID(i*1000, (i+10)*1000);
+        tid = def;
+        changed = 1;
+        if (def <= 0)
+        {
+            i = random(12, 220);
+            tid = unusedTID(i*100, (i+100)*100);
+        }
+
+        Thing_ChangeTID(0, tid);
     }
 
-    Thing_ChangeTID(0, tid);
-    ACS_ExecuteAlways(DEFAULTTID_SCRIPT, 0, tid,0,0);
+    if ((changed || (alwaysPropagate == 1)) && (alwaysPropagate != 2))
+    {
+        ACS_ExecuteAlways(DEFAULTTID_SCRIPT, 0, tid,0,0);
+    }
 
     return tid;
 }
@@ -973,6 +1007,16 @@ function int ClientCount(void)
     {
         if (PlayerInGame(i) || PlayerIsSpectator(i)) { ret++; }
     }
+
+    return ret;
+}
+
+function int HasRoom(int actorname, int x, int y, int z)
+{
+    int tid = unusedTID(40000, 50000);
+    int ret = Spawn(actorname, x, y, z, tid);
+
+    if (ret >= 1) { Thing_Remove(tid); }
 
     return ret;
 }
