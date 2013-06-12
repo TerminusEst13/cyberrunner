@@ -818,6 +818,12 @@ script 425 OPEN clientside
         ConsoleCommand("set cyber_mph_friction 300");
         ConsoleCommand("archivecvar cyber_mph_friction");
     }
+
+    if (!GetCVar("cyber_nocamerajerk"))
+    {
+        ConsoleCommand("set cyber_nocamerajerk 0");
+        ConsoleCommand("archivecvar cyber_nocamerajerk");
+    }
 }
 
 script 426 (int pln) disconnect
