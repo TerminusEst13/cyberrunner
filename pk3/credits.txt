@@ -75,6 +75,7 @@ SOUNDS:
 - Doom 3 (Drone flight)
 - Serious Sam: The First Encounter (Drone firing)
 - Phantasy Star Online (Chat sound)
+- Zero Prophet (Power Core idle and pickup sound)
 
 MUSIC:
 =========
@@ -86,7 +87,7 @@ MUSIC:
 - Elwood: Sick on Monday (CYRC03: Deep Fried)
 - Depeche Mode: Enjoy the Silence (D_STWIN)
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
-- Unknown: Terminal Velocity (M_HURRY)
+- Kyle Richards: Crythania (M_HURRY)
 - zabutom: Sine Ride (Sped up - M_SCORES)
 
 STORY:
