@@ -819,10 +819,10 @@ script 425 OPEN clientside
         ConsoleCommand("archivecvar cyber_mph_friction");
     }
 
-    if (!GetCVar("cyber_nocamerajerk"))
+    if (!GetCVar("cyber_cl_nocamerajerk"))
     {
-        ConsoleCommand("set cyber_nocamerajerk 0");
-        ConsoleCommand("archivecvar cyber_nocamerajerk");
+        ConsoleCommand("set cyber_cl_nocamerajerk 0");
+        ConsoleCommand("archivecvar cyber_cl_nocamerajerk");
     }
 }
 

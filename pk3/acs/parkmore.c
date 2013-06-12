@@ -127,7 +127,7 @@ script PARKMORE_TURN (int degrees, int factor, int direction) net clientside
         curDegrees += addDegrees;
 
         //Log(f:floatDegrees, s:", ", f:curDegrees, s:", +", f:addDegrees);
-	if (!GetCVar("cyber_nocamerajerk"))
+	if (!GetCVar("cyber_cl_nocamerajerk"))
 		{
         SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
 		}
@@ -135,7 +135,7 @@ script PARKMORE_TURN (int degrees, int factor, int direction) net clientside
     }
 
     addDegrees = floatDegrees - curDegrees;
-	if (!GetCVar("cyber_nocamerajerk"))
+	if (!GetCVar("cyber_cl_nocamerajerk"))
 		{
     SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
 		}
