@@ -27,11 +27,10 @@ GENERAL:
 GRAPHICS:
 =========
 - Photoshop and GIMP (The tool of choice for TerminusEst13 and Ijon Tichy, respectively)
-- In Pursuit of Greed (The temporary sprite for the Cyberrunner)
 - Duke Nukem 3D (The Turret Drone and Aerial Drone use edited sentry sprites)
 - Eriance (The Vent air blast puff)
 - Xaser (The Plasma balls used in the Carbine's spiral)
-- Strife (The electricity used for the Carbine, the electricity used for the Runner's blood, the junk thrown when destroyed)
+- Strife (The electricity used for the Carbine, the electricity used for the Runner's blood, the junk thrown when destroyed, the temporary Power Core)
 - Tormentor667 (The ball making up the pretty teleport effects)
 - WildWeasel (The ball and spatter from the Plasma Gun)
 - <name> (PWBRICK4, N_TKGR36, N_TKGR33, N_TKGR32, N_BRIK02, FLAT30, and the FLAT14s - from rjvoid)
@@ -40,12 +39,13 @@ GRAPHICS:
 - Fuzzball Fox (N_LTOR03 and N_LTRD03 from litextra.wad)
 - 3D Realms (DNCITY05, DMD_F14, HAZARDVH, HAZARDVV)
 - Afterworldruler (CONFONT)
+- PillowBlaster (Sprites for the Power Core)
 
 MAPS:
 =========
 - Mik57 (CYDM01: The Nanoplex)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
-- Cyber (CYRC03: Bob and Weave)
+- Cyber (CYRC02: Bob and Weave)
 
 CODE:
 =========
@@ -75,7 +75,6 @@ SOUNDS:
 - Doom 3 (Drone flight)
 - Serious Sam: The First Encounter (Drone firing)
 - Phantasy Star Online (Chat sound)
-- Zero Prophet (Power Core idle and pickup sound)
 
 MUSIC:
 =========
@@ -87,7 +86,7 @@ MUSIC:
 - Elwood: Sick on Monday (CYRC03: Deep Fried)
 - Depeche Mode: Enjoy the Silence (D_STWIN)
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
-- Kyle Richards: Crythania (M_HURRY)
+- Unknown: Terminal Velocity (M_HURRY)
 - zabutom: Sine Ride (Sped up - M_SCORES)
 
 STORY:
