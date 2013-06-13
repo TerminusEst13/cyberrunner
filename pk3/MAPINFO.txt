@@ -1,4 +1,4 @@
-map CYDM01 "The Nanoplex"
+map CYDM01 "Ctrl+Alt+Deleted"
 {
     next = "CYDM01"
     music = "M_CYDM01" // Laamaa - Flying Together (Slightly edited)
@@ -28,6 +28,7 @@ map CYRC03 "Deep Fried"
 
 map CYRTUT "Journey of a Thousand Miles, Etc Etc"
 {
+    sky1  = "SKY1", 1
     next  = "CYRC01"
     music = "M_CYRTUT" // Jeroen Tel - War Stars
 }
