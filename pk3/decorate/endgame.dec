@@ -50,30 +50,35 @@ actor PurgeKillMissile
 actor PowerCoreFinish 15600
 {
     Radius 32
-    Height 128
+    Height 192//128
+	Scale 1.5
 	+SOLID
-	+NODAMAGE
-	+SHOOTABLE
+	+FORCEYBILLBOARD
+	//+NODAMAGE
+	//+SHOOTABLE
 	Mass 0x7FFFFFFF
 	Health 1000000000
-	PainChance 255
+	//PainChance 255
 
     States
     {
       Spawn:
+	    TNT1 A 0
+	    TNT1 A 1 ACS_ExecuteAlways(499, 0)
+	  Spawn2:
 		SECR ABCD 2 bright
 		loop
-      Pain:
+      Finish:
 		TNT1 A 0 A_PlaySoundEx("powercore/ring","SoundSlot6",0,2)
 		TNT1 A 0 Radius_Quake(4,10,0,64,0)
-		TNT1 A 0 A_SpawnItemEx("PowerCoreRingExp1",0,0,54,0,0,0,0,160)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreParticleExp",random(11,-11),random(11,-11),random(44,54),random(5,-5),random(5,-5),random(5,-5),random(0,360),160)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreParticleExp2",random(11,-11),random(11,-11),random(44,54),random(10,-10),random(10,-10),random(10,-10),random(0,360),160)
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreParticleExp3",random(11,-11),random(11,-11),random(44,54),random(15,-15),random(15,-15),random(15,-15),random(0,360),160)
-		TNT1 AAAAAA 0 A_SpawnItemEx("PowerCoreExplode",random(19,-19),random(19,-19),random(44,54),random(500,-500)/100,random(500,-500)/100,random(500,-500)/100,random(0,360),160)
+		TNT1 AA 0 A_SpawnItemEx("PowerCoreRingExp1",0,0,81,0,0,0,0,160)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreParticleExp",random(11,-11),random(11,-11),random(71,91),random(5,-5),random(5,-5),random(5,-5),random(0,360),160)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreParticleExp2",random(11,-11),random(11,-11),random(71,91),random(10,-10),random(10,-10),random(10,-10),random(0,360),160)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreParticleExp3",random(11,-11),random(11,-11),random(71,91),random(15,-15),random(15,-15),random(15,-15),random(0,360),160)
+		TNT1 AAAAAA 0 A_SpawnItemEx("PowerCoreExplode",random(19,-19),random(19,-19),random(71,91),random(500,-500)/100,random(500,-500)/100,random(500,-500)/100,random(0,360),160)
 		SECR ABCD 2 bright
-		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreSmokeExp",random(12,-12),random(12,-12),random(44,54),random(100,-100)/100,random(100,-100)/100,random(100,-100)/100,random(0,360),160)
-		goto Spawn
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("PowerCoreSmokeExp",random(12,-12),random(12,-12),random(71,91),random(100,-100)/100,random(100,-100)/100,random(100,-100)/100,random(0,360),160)
+		goto Spawn2
 	}
 }
 
