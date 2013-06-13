@@ -576,10 +576,12 @@ function int giveHealthMax(int amount, int maxHP)
 
     int curHP = GetActorProperty(0, APROP_Health);
 
-    if (curHP > maxHP) { return 0; }
-
     if (maxHP == 0) { newHP = max(curHP, curHP+amount); }
-    else { newHP = middle(curHP, curHP+amount, maxHP); }
+    else
+    {
+        if (curHP > maxHP) { return 0; }
+        newHP = middle(curHP, curHP+amount, maxHP);
+    }
 
     SetActorProperty(0, APROP_Health, newHP);
 
