@@ -111,6 +111,8 @@ script 105 (int mode, int index, int next)
 
         if (mode % 2)
         {
+            SetActorState(16171,"Finish");
+	
             LocalAmbientSound("ui/finish", 127);
 
             SetHudSize(320, 240, 1);
@@ -839,3 +841,8 @@ script 427 (int snum, int a1, int a2)
 }
 
 script 428 (void) { SetResultValue(!!GetCVar("cyber_superstay")); }
+
+script 499 (void)
+{
+	Thing_ChangeTID(0, 16171);
+}
