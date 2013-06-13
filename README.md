@@ -26,7 +26,7 @@ If you want to map, there's five simple things to keep in mind.
 - This is CYBERrunner, so it should be at least vaguely sci-fi in theme. Set in our solar system; outer space, the asteroid field, in a spatial anomaly, on Neptune, whatever.
 - Use Doom in Hexen or UDMF format for your maps. Cyberrunner makes use of several very advanced features for mappan.
 - Maps should be very wide open and spacious. This doesn't mean make a 10000x10000 field, but it should be very possible to move through at high speeds.
-- We use tracker music. That means .s3m, .it, .xm, .mod, .spc, and .vgz music. This provides the wonderful synthesized instruments so reminiscent of retro sci-fi, while being VERY easy on filesize. Sorry, but we're not going to use MP3s.
+- We use tracker music. That means .s3m, .it, .xm, .mod, .spc, and .vgz music. This provides the wonderful synthesized instruments so reminiscent of retro sci-fi, while being VERY easy on filesize, AND gives us the wonderful ability to edit it as we please. Sorry, but we're not going to use MP3s.
 - We will likely criticize it heavily. Please be able to take criticism--or failing that, please understand that we may edit your map.
 
 If you want to have checkpoints in your map, use script 105. It is defined like this:
