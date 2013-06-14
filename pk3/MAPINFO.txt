@@ -18,7 +18,7 @@ map CYRC02 "Having Fun, Rocketboy?"
     music = "M_CYRC02" // CLiNT - Eclipse
 }
 
-map CYRC03 "Bob and Weave"
+map CYRC03 "Acrobatic Datagram Protocol"
 {
     next  = "CYRC01"
     music = "M_CYRC03" // Skaven - Data Jack
