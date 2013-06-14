@@ -50,3 +50,10 @@ if index > lastIndex or index == nextIndex:
  - Mode 5 is the finishline! It's the big finisher that activates sudden death.
 
 For most intents and purposes, you can keep nextToBe set to 0. Starting your checkpoints at index 1 is suggested, and if you have a track that loops, set the "lap line" to checkpoint 0. If you do a lapping map, you must use checkpoints, even if you don't then teleport the player to those checkpoints.
+
+
+## JUST HOW FAST CAN THE RUNNER GO, ANYWAY?
+
+We've calculated it to be 135494.272 mph. 0.1% away from Mach 178.
+
+So pretty goddamn fast.

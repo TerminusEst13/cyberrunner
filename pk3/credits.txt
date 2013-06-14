@@ -45,7 +45,7 @@ MAPS:
 =========
 - Mik57 (CYDM01: Ctrl+Alt+Deleted)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
-- Cyber (CYRC03: Bob and Weave)
+- Cyber (CYRC03: Acrobatic Datagram Protocol)
 
 CODE:
 =========
@@ -84,7 +84,7 @@ MUSIC:
 - laamaa: Flying Together (Slightly Edited - CYDM01: Ctrl+Alt+Deleted)
 - Elwood: Sick on Monday (CYRC01: Deep Fried)
 - CLiNT: Eclipse (CYRC02: Having Fun, Rocketboy?)
-- Skaven: Data Jack (CYRC03: Bob and Weave)
+- Skaven: Data Jack (CYRC03: Acrobatic Datagram Protocol)
 - Depeche Mode: Enjoy the Silence (D_STWIN)
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
 - Kyle Richards: Crythania (M_HURRY) 
