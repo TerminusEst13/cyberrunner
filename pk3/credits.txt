@@ -6,14 +6,14 @@ Ijon Tichy:
  - Parkmore, which was used as half the base for Cyberrunner.
  - Vast amounts of ACS, and some DECORATE.
  - The numbers and some punctuation of the smallfont.
- - CYRC01.
+ - CYRC02: Having Fun, Rocketboy?
  - Generally lots of shit.
 
 Revae:
  - Modelling, texturing, rigging, and animating the Runner.
  - Oh, and converting the animations to sprites.
  - And 16 different rotations.
- - For a total of 300+ frames! Hot damn!
+ - For a total of 350+ frames! Hot damn!
 
 
 GENERAL:
@@ -45,7 +45,7 @@ MAPS:
 =========
 - Mik57 (CYDM01: Ctrl+Alt+Deleted)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
-- Cyber (CYRC02: Bob and Weave)
+- Cyber (CYRC03: Bob and Weave)
 
 CODE:
 =========
@@ -82,9 +82,9 @@ MUSIC:
 - Lizardking: justice-game_1b (Title screen)
 - Jeroen Tel: War Stars (CYRTUT: Journey of a Thousand Miles, Etc Etc)
 - laamaa: Flying Together (Slightly Edited - CYDM01: Ctrl+Alt+Deleted)
-- CLiNT: Eclipse (CYRC01: Having Fun, Rocketboy?)
-- Skaven: Data Jack (CYRC02: Bob and Weave)
-- Elwood: Sick on Monday (CYRC03: Deep Fried)
+- Elwood: Sick on Monday (CYRC01: Deep Fried)
+- CLiNT: Eclipse (CYRC02: Having Fun, Rocketboy?)
+- Skaven: Data Jack (CYRC03: Bob and Weave)
 - Depeche Mode: Enjoy the Silence (D_STWIN)
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
 - Kyle Richards: Crythania (M_HURRY) 

@@ -4,26 +4,26 @@ map CYDM01 "Ctrl+Alt+Deleted"
     music = "M_CYDM01" // Laamaa - Flying Together (Slightly edited)
 }
 
-map CYRC01 "Having Fun, Rocketboy?"
+map CYRC01 "Deep Fried"
 {
     next  = "CYRC02"
-    sky1  = "RJSPCSKY", 1
-    sky2  = "BLACKSKY"
-    music = "M_CYRC01" // CLiNT - Eclipse
+    music = "M_CYRC01" // Elwood - Sick on Monday
 }
 
-map CYRC02 "Bob and Weave"
+map CYRC02 "Having Fun, Rocketboy?"
 {
     next  = "CYRC03"
+    sky1  = "RJSPCSKY", 1
+    sky2  = "BLACKSKY"
+    music = "M_CYRC02" // CLiNT - Eclipse
+}
+
+map CYRC03 "Bob and Weave"
+{
+    next  = "CYRC01"
     music = "M_CYRC03" // Skaven - Data Jack
 
     sky1  = "RJSPCSKY", 1
-}
-
-map CYRC03 "Deep Fried"
-{
-    next  = "CYRC01"
-    music = "M_CYRC02" // Elwood - Sick on Monday
 }
 
 map CYRTUT "Journey of a Thousand Miles, Etc Etc"
