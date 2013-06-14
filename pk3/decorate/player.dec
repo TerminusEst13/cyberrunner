@@ -58,8 +58,8 @@ actor CyberPlayer : PlayerPawn
 		
       HangingMove:
 		TNT1 A 0 A_TakeInventory("FancyTrails",999)
-        CYBZ V 6 BRIGHT
-        CYBZ W 6 BRIGHT
+        CYBZ V 10 BRIGHT
+        CYBZ W 10 BRIGHT
 		TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 8,"HangingCheck")
         CYBZ V 1 BRIGHT
         goto Hanging
