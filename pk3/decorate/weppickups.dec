@@ -132,7 +132,7 @@ actor CyberCannonPickup: WepPickup replaces BFG9000 15504
     {
       Spawn:
 		TNT1 A 1
-		CYCN Z 1 ACS_ExecuteAlways(422,0,3) // Need to do something different for this...
+		CYCN Z 1 ACS_ExecuteAlways(422,0,10)
 	  Spawn2:
         CYCN Z -1 bright
         loop

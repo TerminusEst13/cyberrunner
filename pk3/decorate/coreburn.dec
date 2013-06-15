@@ -1,4 +1,4 @@
-actor CoreBurn : CustomInventory replaces Berserk 15506
+actor RawEnergy : CustomInventory replaces Berserk 15506
 {
     RenderStyle Add
     Radius 48
@@ -14,6 +14,9 @@ actor CoreBurn : CustomInventory replaces Berserk 15506
     States
     {
     Spawn:
+	  TNT1 A 1
+	  CBRN W 1 ACS_ExecuteAlways(422,0,9)
+	Spawn2:
 	  CBRN W 1
       CBRN W 35 BRIGHT A_PlaySound("core/idle")
       CBRN ABCDEFGHIJKLMNOPQRSTUV 2 BRIGHT

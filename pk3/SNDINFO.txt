@@ -90,6 +90,7 @@ terminal/page		TERMPAGE
 
 pickups/health	sounds/pickups/HEALF.ogg // Taken from Halo
 pickups/health2	sounds/pickups/HEALFSML.ogg
+pickups/health3	sounds/pickups/HEALFBIG.ogg
 pickups/turbo   sounds/pickups/LargeHealthPickup.wav  // UT2004 100 Health pickup
 pickups/vent	sounds/pickups/vent_pickup.ogg	// Taken from Tribes: Ascend
 pickups/ammo	sounds/pickups/allammo_get.wav	// Taken from Unreal II

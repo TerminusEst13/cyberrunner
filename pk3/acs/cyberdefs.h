@@ -72,7 +72,7 @@ int RainbowBeamActors[RAINBOWCOLORS] =
     "RainbowBeam12",
 };
 
-#define PARTICLECOUNT 9
+#define PARTICLECOUNT 12
 #define PARTDIST_MIN  8.0
 #define PARTDIST_MAX  32.0
  
@@ -80,6 +80,7 @@ int ParticleTypes[PARTICLECOUNT] =
 {
     "CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle",
     "TurboSparkle", "AllAmmoSparkle", "50HPSparkle", "InstagibSparkle", "25HPSparkle",
+	"RedSparkle", "WhiteSparkle", "BlueSparkle",
 };
 
 #define PLACENAMECOUNT 10
