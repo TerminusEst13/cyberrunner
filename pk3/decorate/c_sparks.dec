@@ -66,7 +66,7 @@ actor BlueCannonSpark: CannonSpark
     States
     {
       Spawn:
-        EXSB A 1 bright A_SpawnItemEx("BlueCannonSparkTrail", 0,0,0, random(-10,10)/100.0, random(-10,10)/100.0, random(-10,10)/100.0)
+        EXSR A 1 bright A_SpawnItemEx("BlueCannonSparkTrail", 0,0,0, random(-10,10)/100.0, random(-10,10)/100.0, random(-10,10)/100.0)
         loop
     }
 }
@@ -76,7 +76,7 @@ actor BlueCannonSparkTrail: CannonSpark2
     States
     {
       Spawn:
-        EXSB A 1 bright A_FadeOut(0.01)
+        EXSR A 1 bright A_FadeOut(0.01)
         loop
     }
 }
