@@ -13,6 +13,7 @@ actor CyberPlayer : PlayerPawn
     Player.MaxHealth 200
     Gravity 0.8
     Player.Viewheight 50
+    Player.AttackZOffset 20
     Player.DisplayName "Cyberrunner"
     Player.StartItem "Plasma Gun", 1
     Player.StartItem "PlasmaGunAmmo", 100
