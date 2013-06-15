@@ -89,7 +89,7 @@ actor CannonShot1
     States
     {
       Spawn:
-        CLHM ABCDEFGHIJ 1 BRIGHT A_CustomMissile("PlasmaTrail",0,0,0)
+        CLHM ABCDEFGHIJ 1 BRIGHT A_SpawnItemEx("BlueCannonSparkTrail", 0,0,0, random(-10,10)/100.0, random(-10,10)/100.0, random(-10,10)/100.0)//A_CustomMissile("PlasmaTrail",0,0,0)
         Loop
 
       Death:
@@ -118,7 +118,7 @@ actor CannonShot2 : CannonShot1
     States
     {
       Spawn:
-        CLHM KLMNOPQRST 1 BRIGHT A_CustomMissile("RedPlasmaTrail",0,0,0)
+        CLHM KLMNOPQRST 1 BRIGHT A_SpawnItemEx("BlueCannonSparkTrail", 0,0,0, random(-10,10)/100.0, random(-10,10)/100.0, random(-10,10)/100.0)//A_CustomMissile("RedPlasmaTrail",0,0,0)
         Loop
 
       DeathEffects:
