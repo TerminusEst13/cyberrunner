@@ -381,6 +381,7 @@ script 404 (void) NET
         ActivatorSound("cyber/boost",255);
         GiveInventory("CyberBoostJump",1);
         GiveInventory("CyberBoostSpeed",1);
+        GiveInventory("CyberBoostDamage",1);
         GiveInventory("BoostCooldown",300);
     }
 }
