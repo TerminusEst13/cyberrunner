@@ -40,6 +40,7 @@ GRAPHICS:
 - 3D Realms (DNCITY05, DMD_F14, HAZARDVH, HAZARDVV)
 - Afterworldruler (CONFONT)
 - PillowBlaster (Sprites for the Power Core)
+- Cyberkill (Spanish Enye for smallfont)
 
 MAPS:
 =========
