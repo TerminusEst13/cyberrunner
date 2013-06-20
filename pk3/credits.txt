@@ -47,6 +47,7 @@ MAPS:
 - Mik57 (CYDM01: Ctrl+Alt+Deleted)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
 - Cyber (CYRC03: Acrobatic Datagram Protocol)
+- Evil Space Tomato (CYDM02: Mars Needs Wi-Fi, Man)
 
 CODE:
 =========
@@ -90,6 +91,7 @@ MUSIC:
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
 - Kyle Richards: Crythania (M_HURRY) 
 - zabutom: Sine Ride (Sped up - M_SCORES)
+- Rob Hubbard: Commando Theme (Remixed by d-Zire - CYDM02: Mars Needs Wi-Fi, Man)
 
 STORY:
 =========
