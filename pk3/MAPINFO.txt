@@ -1,7 +1,13 @@
 map CYDM01 "Ctrl+Alt+Deleted"
 {
-    next = "CYDM01"
+    next = "CYDM02"
     music = "M_CYDM01" // Laamaa - Flying Together (Slightly edited)
+}
+
+map CYDM02 "Mars Needs Wi-Fi, Man"
+{
+    next = "CYDM01"
+    music = "M_CYDM02" // Rob Hubbard/d-Zire - Commando Theme
 }
 
 map CYRC01 "Deep Fried"
