@@ -519,6 +519,8 @@ int TerminalTexts[TERMCOUNT] =
 \n    From the e-diary of:\
 \n    Heliodorus Vranas,\
 \n    U.N. Ambassador - Greece"
+
+// CY???? - Wanderer
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -531,8 +533,8 @@ script 119 OPEN clientside
 {
 	// CYRC01
     ACS_ExecuteAlways(106, 0, packShorts(1, 2), -("wanderer"), "ODDLOGO1"); // 1
-    ACS_ExecuteAlways(106, 0, packShorts(2, 3), TerminalTexts[0]);
-    ACS_ExecuteAlways(106, 0, packShorts(3, 4), TerminalTexts[1]);
+    ACS_ExecuteAlways(106, 0, packShorts(2, 3), TerminalTexts[0], "");
+    ACS_ExecuteAlways(106, 0, packShorts(3, 4), TerminalTexts[1], "");
     ACS_ExecuteAlways(106, 0, packShorts(4, 0), -("vitalize"), "ODDLOGO1");
 
 	// CYRC01
@@ -565,11 +567,6 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(23, 24), TerminalTexts[11], "");
     ACS_ExecuteAlways(106, 0, packShorts(24, 25), TerminalTexts[12], "");
     ACS_ExecuteAlways(106, 0, packShorts(25, 0),  -("End of log."), "SYSLOGO1");
-
-	// Unused. Not suspicious at all!
-    ACS_ExecuteAlways(106, 0, packShorts(26, 27), -("29msa#*2na"), "ODDLOGO1"); // 26
-    ACS_ExecuteAlways(106, 0, packShorts(27, 28), TerminalTexts[13], "");
-    ACS_ExecuteAlways(106, 0, packShorts(28, 0),  -("the path undeterred"), "SYSLOGO1");
 	
 	// CYRTUT - 01
     ACS_ExecuteAlways(106, 0, packShorts(29, 30), -("INTRODUCTION: Welcome, Runner"), "CYBRLOG1"); // 29
@@ -643,7 +640,6 @@ script 119 OPEN clientside
     SetMetadataRange(13, 17, "zr/v-=", "zv!rs-d#cx");
     SetMetadataRange(18, 21, "?'r,0\\", "7xz?3-.2iv");
     SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
-    SetMetadataRange(26, 28, ",\"10m kSa(=-kJ", "1. 32m 78A#* a)l");
     SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
     SetMetadataRange(59, 64, "Cyberrunner League Fan Forum", "Comment 238 of 249");
     SetMetadataRange(65, 71, "e-diary", "#3833zA");
