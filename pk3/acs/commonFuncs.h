@@ -8,6 +8,8 @@
 #define SECOND_TICS 35.714285714285715
 #define UNIT_CM     2.73921568627451
 
+#define DAMAGE_NORANDOM     0x40000000
+
 int TeamNames[TEAMCOUNT] = 
 {
     "Blue", "Red", "Green", "Gold", "Black", "White", "Orange", "Purple"
