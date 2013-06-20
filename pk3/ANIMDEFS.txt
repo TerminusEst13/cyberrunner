@@ -5,13 +5,3 @@ pic  2  tics  5
 texture HLASER1
 pic  1  tics  5
 pic  2  tics  5
-
-
-
-cameratexture MCAM0000 512 512 fit 128 128
-cameratexture MCAM0001 512 512 fit 128 128
-
-flat MATRIX41 range MATRIX44 tics 8
-
-switch MATRIX30 on sound Switch1 pic MATRIX31 tics 0
-switch MATRIX31 off sound Switch2 pic MATRIX30 tics 0
