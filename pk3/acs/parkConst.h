@@ -61,6 +61,8 @@
 
 int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 };
 
+int noLedgeGrab[PLAYERMAX];
+
 
 #define JUMP_FORWARD 15.0
 #define JUMP_BACK    5.0

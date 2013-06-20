@@ -443,6 +443,9 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 script PARKMORE_LEDGEWALL (int mode)
 {
     int pln = PlayerNumber();
+
+    if (noLedgeGrab[pln]) { terminate; }
+
     int curX, curY, curZ, curAngle, newZ;
     int maxLeft, maxRight;
     int highest, highestTID;
@@ -578,6 +581,8 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     int origDistance;
     int i;
     
+    if (noLedgeGrab[pln]) { terminate; }
+
     curAngle = GetActorAngle(0);
 
     grabbing[pln] = 1;
@@ -613,6 +618,8 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
     while (1)
     {
+        if (noLedgeGrab[pln]) { break; }
+
         floorOldHeight = floorHeight;
         floorHeight = GetActorFloorZ(heightTID);
 
@@ -1116,11 +1123,15 @@ script PARKMORE_ENTER2 enter clientside
     int ground, wasGround, direction, dDirection;
     int inWater, wasInWater;
     int myLock = ClientEnterLocks[pln] + 1;
+    int flags, oflags;
     int i, j, k;
 
     if (ConsolePlayerNumber() != pln && !IsServer) { terminate; }
 
     ClientEnterLocks[pln] = myLock;
+
+    flags = GetParkmoreFlags();
+    ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags));
 
     while (ClientEnterLocks[pln] == myLock)
     {
@@ -1129,6 +1140,11 @@ script PARKMORE_ENTER2 enter clientside
 
         ground = parkmoreOnGround(0);
         direction = getDirection();
+
+        oflags = flags;
+        flags  = GetParkmoreFlags();
+
+        if (oflags != flags) { ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags)); }
 
         if (ground) { wasGround = MJUMP_DELAY; }
         else { wasGround = max(0, wasGround-1); }
@@ -1365,26 +1381,36 @@ script PARKMORE_UNLOADING unloading
  * The customisable crap
  */
 
-script PARKMORE_TOGGLE (int which) net
+script PARKMORE_TOGGLE (int which, int a1, int a2) net
 {
+    int pln = PlayerNumber();
+
     switch (which)
     {
-        case 0:
-            if (CheckInventory("NoParkour")) { TakeInventory("NoParkour", 0x7FFFFFFF); }
-            else { GiveInventory("NoParkour", 1); }
-            break;
-        
-        case 1:
-            GiveInventory("NoParkour", 1);
-            break;
+      case 0:
+        if (CheckInventory("NoParkour")) { TakeInventory("NoParkour", 0x7FFFFFFF); }
+        else { GiveInventory("NoParkour", 1); }
+        break;
+    
+      case 1:
+        GiveInventory("NoParkour", 1);
+        break;
 
-        case -1:
-            TakeInventory("NoParkour", 0x7FFFFFFF);
-            break;
+      case 2:
+        noLedgeGrab[pln] = !!(a1 & 1);
+        break;
+      
+
+      case -1:
+        TakeInventory("NoParkour", 0x7FFFFFFF);
+        break;
     }
 
-    if (CheckInventory("NoParkour")) { Print(s:"Parkour is \cgDISABLED\c-."); }
-    else { Print(s:"Parkour is \cdENABLED\c-."); }
+    if (which == 0 || which == 1 || which == -1)
+    {
+        if (CheckInventory("NoParkour")) { Print(s:"Parkour is \cgDISABLED\c-."); }
+        else { Print(s:"Parkour is \cdENABLED\c-."); }
+    }
 }
 
 

@@ -622,6 +622,8 @@ script 423 (void) net clientside
         Delay(1);
     }
 
+    TimerOn = 0;
+
     if (time > 0)
     {
         unitCm = FixedDiv(itof(GetCVar("cyber_mph_doomguyheight")) / 51, 1.2);
@@ -645,6 +647,7 @@ script 424 (int pln, int startTime) clientside
     int i, f, x, y, z, m, mph, unitCm;
     int showmag = 0;
 
+    if (pln != ConsolePlayerNumber()) { terminate; }
 
     if (GetCVar("cyber_cl_debug"))
     {
@@ -665,6 +668,10 @@ script 424 (int pln, int startTime) clientside
 
     if (ClassifyActor(0) & ACTOR_WORLD) { terminate; }
 
+    if (GetCVar("cyber_cl_autotime") && !TimerOn)
+    {
+        ACS_ExecuteWithResult(423);
+    }
 
     while (1)
     {
@@ -822,10 +829,22 @@ script 425 OPEN clientside
         ConsoleCommand("archivecvar cyber_mph_friction");
     }
 
+    if (!GetCVar("cyber_cl_noledgegrab"))
+    {
+        ConsoleCommand("set cyber_cl_noledgegrab 0");
+        ConsoleCommand("archivecvar cyber_cl_noledgegrab");
+    }
+
     if (!GetCVar("cyber_cl_nocamerajerk"))
     {
         ConsoleCommand("set cyber_cl_nocamerajerk 0");
         ConsoleCommand("archivecvar cyber_cl_nocamerajerk");
+    }
+
+    if (!GetCVar("cyber_cl_autotime"))
+    {
+        ConsoleCommand("set cyber_cl_autotime 0");
+        ConsoleCommand("archivecvar cyber_cl_autotime");
     }
 }
 

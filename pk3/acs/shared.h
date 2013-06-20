@@ -7,3 +7,12 @@ function int parkmoreOnGround(int tid)
     return (onGround(tid) ||
         (GetActorVelZ(tid) == 0 && !spawned));
 }
+
+function int GetParkmoreFlags(void)
+{
+    int ret = 0;
+
+    ret |= !!GetCVar("cyber_cl_noledgegrab") << 0;  // bit 1
+
+    return ret;
+}
