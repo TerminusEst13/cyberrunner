@@ -4,6 +4,7 @@ pic  2  tics  5
 
 texture HLASER1
 pic  1  tics  5
+pic  2  tics  5
 
 texture TROOM01
 pic 1 tics 4
