@@ -128,7 +128,7 @@ int ClientPlace;
 
 int CRModeNames[MODECOUNT+1] = // These are the modes activated one after each other in the finish sequence
 {
-    "GrossHack", // ?
+    "GrossHack", // <ijon> the "GrossHack" is there so I don't have to subtract 1 every time I want to get the name of a CR mode
     "Normal", // Playing normally
     "Countdown", // Hit the finish line, time to countdown
     "Sudden Death", // Mid-Sudden Death

@@ -263,13 +263,13 @@ script 400 ENTER
         oterm = term;
         term = InTerminal[pln];
 
-        if (term && !oterm) // If the player is in the terminal...
+        if (term && !oterm) // If the player just entered the terminal...
         {
             SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); // Freezes them
             GiveInventory("ForceParkourOff", 1); // And keeps them from parkour-ing
         }
 
-        if (!term && oterm || unfreeze) // If the player is out of the terminal...
+        if (!term && oterm || unfreeze) // If the player left the terminal or something kicked them out, like DCing/death...
         {
             if (UnfreezeDelay[pln]) { unfreeze = 1; }
             else
