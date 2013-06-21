@@ -18,18 +18,10 @@ map CYRC01 "Deep Fried"
 
 map CYRC02 "Having Fun, Rocketboy?"
 {
-    next  = "CYRC03"
+    next  = "CYRC01"
     sky1  = "RJSPCSKY", 1
     sky2  = "BLACKSKY"
     music = "M_CYRC02" // CLiNT - Eclipse
-}
-
-map CYRC03 "Acrobatic Datagram Protocol"
-{
-    next  = "CYRC01"
-    music = "M_CYRC03" // Skaven - Data Jack
-
-    sky1  = "RJSPCSKY", 1
 }
 
 map CYRTUT "Journey of a Thousand Miles, Etc Etc"
