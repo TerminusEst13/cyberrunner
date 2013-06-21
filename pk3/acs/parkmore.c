@@ -93,12 +93,14 @@ function int parkmoreIn3DFloor(int tid)
     int y = GetActorY(tid);
     int f = GetActorFloorZ(tid);
     int c = GetActorCeilingZ(tid);
-    int newtid = unusedTID(22000, 32000);
+    int i = random(5, 22);
+    int newtid = unusedTID(1000 * i, 1000 * (10+i));
 
     Spawn("ParkmoreChecker3", x, y, f, newtid);
 
-    if (GetActorCeilingZ(newtid) < c) { return 1; }
-    return 0;
+    int ret = GetActorCeilingZ(newtid) < c;
+    Thing_Remove(newtid);
+    return ret;
 }
 
 /*  :TURNING
@@ -412,9 +414,10 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
     }
 
     canBounce = 0;
+    tid = unusedTID(25000, 30000);
+
     for (i = 0; i < 10; i++)
     {
-        tid = unusedTID(25000, 30000);
         x3 = GetActorX(0) + x + (x2*i);
         y3 = GetActorY(0) + y + (y2*i);
         z  = GetActorZ(0) + 16.0;
