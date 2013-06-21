@@ -206,12 +206,12 @@ script 400 ENTER
     int speedmod, jumpmod;
 
     ACS_ExecuteAlways(424, 0, pln, Timer());
-    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
-    SetPlayerProperty(0, 0, PROP_FLY);
-    SetActorProperty(0, APROP_RenderStyle, STYLE_Normal);
-    TakeInventory("HideCRHud", 1);
-    TakeInventory("EnableUseExit", 1);
-    TakeInventory("ForceParkourOff", 1);
+    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); // Unfreezes the player from the Scoreboard
+    SetPlayerProperty(0, 0, PROP_FLY); // Unsets fly on the player from the Scoreboard
+    SetActorProperty(0, APROP_RenderStyle, STYLE_Normal); // Makes the player visible from the Scoreboard
+    TakeInventory("HideCRHud", 1); // Yeah, more scoreboard removing
+    TakeInventory("EnableUseExit", 1); // Etc
+    TakeInventory("ForceParkourOff", 1); // Etc
 
     PlayerTimes[pln][TIME_START]        = Timer();
     PlayerTimes[pln][TIME_CHECKPOINT]   = Timer();
@@ -241,17 +241,18 @@ script 400 ENTER
             }
         }
 
-        if (keyDown(BT_FORWARD | BT_BACK))
+        // This is the brake function
+        if (keyDown(BT_FORWARD | BT_BACK)) // If the player is holding down both forward and back at the same time...
         {
-            x = GetActorVelX(0);
-            y = GetActorVelY(0);
-            z = GetActorVelZ(0);
+            x = GetActorVelX(0); // Checks the player's (0 tid means the player!) x movement.
+            y = GetActorVelY(0); // Same with Y
+            z = GetActorVelZ(0); // Same with Z
 
-            x = FixedMul(x, 0.8);
-            y = FixedMul(y, 0.8);
-            if (z < 0) { z = FixedMul(z, 0.95); }
+            x = FixedMul(x, 0.8); // This returns the result of two fixed-point numbers multiplied together. In this case, X (the previous definition) and 0.8
+            y = FixedMul(y, 0.8); // Same with Y
+            if (z < 0) { z = FixedMul(z, 0.95); } // This checks to see if the player's Z movement is less than 0 (going downwards), and if so slows down the descent. Mid-air braking!
 
-            SetActorVelocity(0, x,y,z, 0,0);
+            SetActorVelocity(0, x,y,z, 0,0); // This sets the TID of 0 (the player) x, y, and z velocities to what was previously determined. Does not Add or SetBob.
         }
 
         SetInventory("LeftMouseTapped", keyPressed(BT_ATTACK));
@@ -262,27 +263,27 @@ script 400 ENTER
         oterm = term;
         term = InTerminal[pln];
 
-        if (term && !oterm)
+        if (term && !oterm) // If the player is in the terminal...
         {
-            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-            GiveInventory("ForceParkourOff", 1);
+            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); // Freezes them
+            GiveInventory("ForceParkourOff", 1); // And keeps them from parkour-ing
         }
 
-        if (!term && oterm || unfreeze)
+        if (!term && oterm || unfreeze) // If the player is out of the terminal...
         {
             if (UnfreezeDelay[pln]) { unfreeze = 1; }
             else
             {
-                SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
-                TakeInventory("ForceParkourOff", 1);
-                unfreeze = 0;
+                SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); // Unfreezes them
+                TakeInventory("ForceParkourOff", 1); // Allows them to parkour again
+                unfreeze = 0; // And takes away their "unfreeze me!" identifier.
             }
         }
 
-        if (Purged[pln])
+        if (Purged[pln]) // Once the game is over and everyone is purged.
         {
-            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-            SetActorProperty(0, APROP_RenderStyle, STYLE_None);
+            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); // Freeze them in air for the scoreboard.
+            SetActorProperty(0, APROP_RenderStyle, STYLE_None); // Render their body invisible.
         }
 
         UnfreezeDelay[pln] = max(0, UnfreezeDelay[pln]-1);
@@ -292,22 +293,22 @@ script 400 ENTER
         speedmod = max(0, condFalse(GetCVar("cyber_runmod"), 100)) * 0.01;
         jumpmod  = max(0, condFalse(GetCVar("cyber_jumpmod"), 100)) * 0.01;
 
-        if (!CheckInventory("ParkourGrabbing"))
+        if (!CheckInventory("ParkourGrabbing")) // Is the player hanging on the ledge? No? Then...
         {
-            SetActorProperty(0, APROP_Speed, speedmod);
-            SetActorProperty(0, APROP_JumpZ, 12 * sqrt(jumpmod));
+            SetActorProperty(0, APROP_Speed, speedmod); // Adjust the player's speed according to the cyber_runmod
+            SetActorProperty(0, APROP_JumpZ, 12 * sqrt(jumpmod)); // Adjust the player's jump according to cyber_jumpmod
         }
 
-        Delay(1);
+        Delay(1); // One tic delay before the entire process runs again.
     }
 }
 
 script 401 DEATH
 {
-    ACS_Terminate(402, 0);
-    ACS_Terminate(403, 0);
-    ACS_Terminate(404, 0);
-    ACS_Terminate(400, 0);
+    ACS_Terminate(402, 0); // Kills the Dash script.
+    ACS_Terminate(403, 0); // Kills the Jump script.
+    ACS_Terminate(404, 0); // Kills the Turbo script.
+    ACS_Terminate(400, 0); // Kills the above Enter Script.
     TakeInventory("CannotIntoShotgun",999);
     TakeInventory("CannotIntoCarbine",999);
     TakeInventory("CannotIntoVulcan",999);
@@ -320,15 +321,15 @@ script 402 (void) NET
     int nx, ny, nz, nmag;
     int rx, ry, rz, rmag;
     
-    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; }
-    if (InTerminal[PlayerNumber()]) { terminate; }
-    if (CheckInventory("DashCooldown") == 0)
+    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; } // Is the player dead or spectating? Yes? Stop the script.
+    if (InTerminal[PlayerNumber()]) { terminate; } // Is the player in a terminal? Yes? Stop the script.
+    if (CheckInventory("DashCooldown") == 0) // Only activates if the player has no cooldown.
     {
-        vx = GetActorVelX(0);
-        vy = GetActorVelY(0);
-        vz = GetActorVelZ(0);
-        angle = GetActorAngle(0);
-        pitch = middle(-0.027, GetActorPitch(0), 0.25);
+        vx = GetActorVelX(0); // Checks for the player's X velocity and assigns it to vx
+        vy = GetActorVelY(0); // Same for Y
+        vz = GetActorVelZ(0); // Same for Z
+        angle = GetActorAngle(0); // Checks for the player's angle and assigns it to angle
+        pitch = middle(-0.027, GetActorPitch(0), 0.25); // This checks for the middle ground of the player's pitch, and will register up to a certain height
         mag = magnitudeThree_f(vx, vy, vz);
 
         nx = FixedMul(DASH_VEL * cos(angle), cos(pitch));
@@ -361,10 +362,10 @@ script 402 (void) NET
 
 script 403 (void) NET
 {
-    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; }
-    if (InTerminal[PlayerNumber()]) { terminate; }
-    if (CheckInventory("JumpCooldown") == 0)
-    {
+    if (isDead(0) || PlayerIsSpectator(PlayerNumber())) { terminate; } // Is the player dead or spectating? Yes? Stop the script.
+    if (InTerminal[PlayerNumber()]) { terminate; } // Is the player in a terminal? Yes? Stop the script.
+    if (CheckInventory("JumpCooldown") == 0) // Only activates if the player has no cooldown.
+    { // Wait, why am I commenting my own code? Ijon's code is the hard one. :(
         ActivatorSound("cyber/jump",255);
         ThrustThingZ(0,80,0,0);
         ThrustThing(GetActorAngle(0)/256,12,1,0);
@@ -494,8 +495,8 @@ script 416 (int respawning)
 {
     int i;
 
-    if (!respawning) { ACS_ExecuteWithResult(105, 4); }
-    else { ACS_ExecuteWithResult(105, 0); }
+    if (!respawning) { ACS_ExecuteWithResult(105, 4); } // If the player is not respawning and gamemode is currently race mode, have them set a checkpoint.
+    else { ACS_ExecuteWithResult(105, 0); } // Else (if this is still race mode), send them back to the checkpoint.
 
     TakeInventory("CannotIntoShotgun",999);
     TakeInventory("CannotIntoVulcan",999);

@@ -33,7 +33,7 @@ int Purged[PLAYERMAX] = {0};
 
 #define BARFONTCOUNT 12
 
-int BarGraphics[BARFONTCOUNT] =
+int BarGraphics[BARFONTCOUNT] = // These are the different graphics that make up the MPH bar.
 {
     "MPHBAR1", "MPHBAR2", "MPHBAR3", "MPHBAR4", "MPHBAR5", "MPHBAR6",
     "MPHBAR7", "MPHBAR8", "MPHBAR9", "MPHBAR10", "MPHBAR11", "MPHBAR12",
@@ -41,14 +41,14 @@ int BarGraphics[BARFONTCOUNT] =
 
 #define RECHARGECOUNT 10
 
-int RechargingItems[RECHARGECOUNT] = 
+int RechargingItems[RECHARGECOUNT] = // These are the items that "recharge" over time, that are slowly removed or added to the player's inventory.
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
     "ForceVentAmmo", "CannotIntoShotgun", "CannotIntoCarbine",
     "CannotIntoVulcan", "RedPlasmaGunAmmo", "CannotIntoSuper"
 };
 
-int RechargingTimes[RECHARGECOUNT][2] = 
+int RechargingTimes[RECHARGECOUNT][2] = // The max amount of an item, and whether 1 is given or -1 is taken.
 {
     {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1}, {1, -1}
 };
@@ -56,7 +56,7 @@ int RechargingTimes[RECHARGECOUNT][2] =
 #define RAINBOWCOLORS 12
 #define RAINBOWINTERVAL 10
 
-int RainbowBeamActors[RAINBOWCOLORS] = 
+int RainbowBeamActors[RAINBOWCOLORS] = // The Purge Rifle's pretty colors.
 {
     "RainbowBeam1",
     "RainbowBeam2",
@@ -76,7 +76,7 @@ int RainbowBeamActors[RAINBOWCOLORS] =
 #define PARTDIST_MIN  8.0
 #define PARTDIST_MAX  32.0
  
-int ParticleTypes[PARTICLECOUNT] =
+int ParticleTypes[PARTICLECOUNT] = // The particles that are summoned from an item
 {
     "CyberShotgunSparkle", "CyberCarbineSparkle", "CyberVulcanSparkle", "ForceVentSparkle",
     "TurboSparkle", "AllAmmoSparkle", "50HPSparkle", "InstagibSparkle", "25HPSparkle",
@@ -85,7 +85,7 @@ int ParticleTypes[PARTICLECOUNT] =
 
 #define PLACENAMECOUNT 10
 
-int PlaceNames[PLACENAMECOUNT] =
+int PlaceNames[PLACENAMECOUNT] = // The ranks on a scoreboard
 {
     "\cfFirst",
     "\cjSecond",
@@ -126,13 +126,13 @@ int SuddenDeathEnd = 0;
 
 int ClientPlace;
 
-int CRModeNames[MODECOUNT+1] =
+int CRModeNames[MODECOUNT+1] = // These are the modes activated one after each other in the finish sequence
 {
-    "GrossHack",
-    "Normal",
-    "Countdown",
-    "Sudden Death",
-    "Failure Purge",
-    "Scoreboard",
-    "Sudden Death Abort",
+    "GrossHack", // ?
+    "Normal", // Playing normally
+    "Countdown", // Hit the finish line, time to countdown
+    "Sudden Death", // Mid-Sudden Death
+    "Failure Purge", // Didn't make it to the finish line, everyone gets kabloom'd
+    "Scoreboard", // Display the scoreboard
+    "Sudden Death Abort", // Player who hit the switch left the game
 };
