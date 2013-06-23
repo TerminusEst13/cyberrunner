@@ -167,7 +167,6 @@ actor CyberrunnerPosing 19017
     +SOLID
 	Radius 64
 	Height 160
-    +CLIENTSIDEONLY
 	//Translation "112:127=88:103", "160:167=96:111", "208:223=96:111", "64:79=96:111", "152:159=96:111", "13:15=96:111"
     //XScale 0.75
 	YScale 0.9
