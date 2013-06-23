@@ -403,9 +403,9 @@ int TerminalTexts[TERMCOUNT] =
 \nhe started to build up his little asteroid into a big community, what did he\
 \nhave as a reference? Us.\
 \nHe had to research and reference us, and he saw our different little\
-\npersonalities and behaviors, and probably saw them as a series of variables\
-\nand graphs. Something that dictates probability. To him, it was probably\
-\nincredibly random how people would respond in one way and then another.",
+\npersonalities and behaviors; to him, it was probably incredibly random how\
+\npeople would respond in one way at one moment and then another way at another\
+\nmoment in time. How do you properly represent that, man?",
 
 // CYDM01 - Terminal 1 - Page 3
 "Now, some of my best friends are robots, so one time at a party I got curious\
@@ -432,6 +432,8 @@ int TerminalTexts[TERMCOUNT] =
 \nsense you and I have. It's a series of graphs and variables, altering over\
 \ntime depending on what happens and producing a percentage of how likely\
 \nsomeone is to respond a certain way depending on the personality given.\
+\nWhat seems to be their 'personality' is really just one big fancy prettied-up\
+\nstatistical likelihood ratio!\
 \n\
 \nWhat I'm going with this is, well, robots are like onions. You peel back a\
 \nlayer, and it's an onion. You peel back another layer, it's still an onion.\
