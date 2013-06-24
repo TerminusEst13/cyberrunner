@@ -1,4 +1,4 @@
-#define TERMCOUNT 35
+#define TERMCOUNT 36
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -362,11 +362,28 @@ int TerminalTexts[TERMCOUNT] =
 
 // CYRTUT - Terminal 10 - Page 1 // Exit
 "Congratulations, Runner, you've completed the test run.\
-\nHowever, this only scratches the surface of the techniques you can make\
-\nuse of as a Runner. There are still many more techniques to learn of,\
-\nsuch as air-venting, plasma climbing, and more. As you learn, develop,\
-\nand master more techniques, soon there will be nowhere left that you\
-\ncan't reach. You will have complete freedom of movement.\
+\nDon't think that means you instantly know everything, though.\
+\n\
+\nFor example, there are three extra keys to bind, being the Horizontal Boost,\
+\nVertical Boost, and Turbo Charge keys. True to their name, they give you a\
+\nboost across the horizontal axis, the vertical axis, and a dramatic increase\
+\nin all movement.\
+\nHitting the 'Use Item' key will activate your radar, which will instantly\
+\nflood the screen with light, as well as locate where the other Runners are at\
+\nthat moment--showing up as bright red dots.\
+\nHitting both back and forward at the same time will activate the manual brake\
+\nand instantly halt all movement, as well as reducing your gravity so that\
+\ndescent through the air becomes slower.",
+
+"...and that's just the tip of the iceberg.\
+\n\
+\nThere's still plenty more techniques out there that haven't been covered in\
+\nthis facility--it's up to you to learn them, develop them, and master them.\
+\nAs you develop your arsenal, eventually performing these techniques will\
+\nbecome second nature to you. There will be no delay between thought and\
+\nexecution. There will be no more obstacles.\
+\nThere will be nowhere that you can't reach.\
+\nYou will have complete freedom of movement.\
 \n\
 \nYou will become as a goddess.\
 \n\
@@ -653,29 +670,31 @@ script 119 OPEN clientside
 	// CYRTUT - 10
     ACS_ExecuteAlways(106, 0, packShorts(56, 57), -("INTRODUCTION: Finish"), "CYBRLOG1"); // 56
     ACS_ExecuteAlways(106, 0, packShorts(57, 58), TerminalTexts[23], "");
-    ACS_ExecuteAlways(106, 0, packShorts(58, 0),  -("Proceed when ready."), "CYBRLOG1");
+    ACS_ExecuteAlways(106, 0, packShorts(58, 59), TerminalTexts[24], "");
+    ACS_ExecuteAlways(106, 0, packShorts(59, 0),  -("Proceed when ready."), "CYBRLOG1");
 	
-	// CYDM01 - 1
-    ACS_ExecuteAlways(106, 0, packShorts(59, 60), -("Off-Topic Discussion: How do the Runners feel?"), "SYSLOGO1"); // 59
-    ACS_ExecuteAlways(106, 0, packShorts(60, 61), TerminalTexts[24], "");
+	// CYDM02 - 1
+    ACS_ExecuteAlways(106, 0, packShorts(60, 61), -("Off-Topic Discussion: How do the Runners feel?"), "SYSLOGO1"); // 60
     ACS_ExecuteAlways(106, 0, packShorts(61, 62), TerminalTexts[25], "");
     ACS_ExecuteAlways(106, 0, packShorts(62, 63), TerminalTexts[26], "");
     ACS_ExecuteAlways(106, 0, packShorts(63, 64), TerminalTexts[27], "");
-    ACS_ExecuteAlways(106, 0, packShorts(64, 0),  -("Post reply?"), "SYSLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(64, 65), TerminalTexts[28], "");
+    ACS_ExecuteAlways(106, 0, packShorts(65, 0),  -("Post reply?"), "SYSLOGO1");
 	
 	// CYDM01 - 2
-    ACS_ExecuteAlways(106, 0, packShorts(65, 66), -("The Lemnos Project"), "SYSLOGO1"); // 65
-    ACS_ExecuteAlways(106, 0, packShorts(66, 67), TerminalTexts[28], "");
+    ACS_ExecuteAlways(106, 0, packShorts(66, 67), -("The Lemnos Project"), "SYSLOGO1"); // 66
     ACS_ExecuteAlways(106, 0, packShorts(67, 68), TerminalTexts[29], "");
     ACS_ExecuteAlways(106, 0, packShorts(68, 69), TerminalTexts[30], "");
     ACS_ExecuteAlways(106, 0, packShorts(69, 70), TerminalTexts[31], "");
     ACS_ExecuteAlways(106, 0, packShorts(70, 71), TerminalTexts[32], "");
-    ACS_ExecuteAlways(106, 0, packShorts(71, 0),  -("End of Diary Entry"), "SYSLOGO1");
+    ACS_ExecuteAlways(106, 0, packShorts(71, 72), TerminalTexts[33], "");
+    ACS_ExecuteAlways(106, 0, packShorts(72, 0),  -("End of Diary Entry"), "SYSLOGO1");
 	
-    ACS_ExecuteAlways(106, 0, packShorts(72, 73), -("Single terminal seeks single reader"), "UNLOGO1"); // 72
-    ACS_ExecuteAlways(106, 0, packShorts(73, 74), TerminalTexts[33], "");
+	// CYRC01 - 2
+    ACS_ExecuteAlways(106, 0, packShorts(73, 74), -("Single terminal seeks good reader"), "UNLOGO1"); // 73
     ACS_ExecuteAlways(106, 0, packShorts(74, 75), TerminalTexts[34], "");
-    ACS_ExecuteAlways(106, 0, packShorts(75, 0),  -("No prev relationship experience req'd"), "");
+    ACS_ExecuteAlways(106, 0, packShorts(75, 76), TerminalTexts[35], "");
+    ACS_ExecuteAlways(106, 0, packShorts(76, 0),  -("No prev relationship experience req'd"), "");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "e-diary", "#49A4x551");
