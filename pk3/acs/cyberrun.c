@@ -205,7 +205,7 @@ script 400 ENTER
     int place = -1, oplace;
     int speedmod, jumpmod;
 
-    //ACS_ExecuteAlways(424, 0, pln, Timer());
+    ACS_ExecuteAlways(424, 0, pln, Timer());
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); // Unfreezes the player from the Scoreboard
     SetPlayerProperty(0, 0, PROP_FLY); // Unsets fly on the player from the Scoreboard
     SetActorProperty(0, APROP_RenderStyle, STYLE_Normal); // Makes the player visible from the Scoreboard
@@ -648,7 +648,7 @@ script 424 (int pln, int startTime) clientside
     int i, f, x, y, z, m, mph, unitCm;
     int showmag = 0;
 
-    if (pln != ConsolePlayerNumber()) { terminate; }
+    //if (pln != ConsolePlayerNumber()) { terminate; }
 
     if (GetCVar("cyber_cl_debug"))
     {
