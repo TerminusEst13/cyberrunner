@@ -702,7 +702,7 @@ script 119 OPEN clientside
     SetMetadataRange(18, 21, "e-diary", "#vr13889i");;
     SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
     SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
-    SetMetadataRange(59, 64, "Cyberrunner League Fan Forum", "Comment 238 of 249");
-    SetMetadataRange(65, 71, "e-diary", "#3833zA");
-    SetMetadataRange(72, 75, "neglect", "genuflect");
+    SetMetadataRange(59, 65, "Cyberrunner League Fan Forum", "Comment 238 of 249");
+    SetMetadataRange(66, 72, "e-diary", "#3833zA");
+    SetMetadataRange(73, 76, "neglect", "genuflect");
 }
