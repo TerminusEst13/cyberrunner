@@ -1,0 +1,25 @@
+// Server cvars
+server int cyber_noaircontrol = 0;
+server int cyber_runmod = 0;
+server int cyber_jumpmod = 0;
+server int cyber_superstay = 0;
+server int cyber_jumpcount = 2;
+
+// Clientside cvars
+
+user int cyber_cl_timer = 0;
+user int cyber_cl_particles = 0;
+user int cyber_cl_notrails = 0;
+user int cyber_cl_debug = 0;
+user int cyber_cl_nocamerajerk = 0;
+user int cyber_cl_noledgegrab = 0;
+user int cyber_cl_autotime = 0;
+user int cyber_cl_dodgewindow = 8;
+
+// Speedometer (clientside)
+
+user int cyber_mph_noz = 0;
+user int cyber_mph_km = 0;
+user int cyber_mph_doomguyheight = 72;
+user int cyber_mph_barscale = 0;
+user int cyber_mph_friction = 300;

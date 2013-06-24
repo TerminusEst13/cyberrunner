@@ -155,7 +155,7 @@ script 405 OPEN
 
     IsServer = 1;
 
-    if (!GetCVar("cyber_noaircontrol"))
+    /*if (!GetCVar("cyber_noaircontrol"))
     {
         ConsoleCommand("set cyber_noaircontrol 0");
         ConsoleCommand("archivecvar cyber_noaircontrol");
@@ -177,7 +177,7 @@ script 405 OPEN
     {
         ConsoleCommand("set cyber_jumpmod 0");
         ConsoleCommand("archivecvar cyber_jumpmod");
-    }
+    }*/
 
     for (i = 0; i < PLACEMAX; i++)
     {
@@ -205,7 +205,7 @@ script 400 ENTER
     int place = -1, oplace;
     int speedmod, jumpmod;
 
-    ACS_ExecuteAlways(424, 0, pln, Timer());
+    //ACS_ExecuteAlways(424, 0, pln, Timer());
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); // Unfreezes the player from the Scoreboard
     SetPlayerProperty(0, 0, PROP_FLY); // Unsets fly on the player from the Scoreboard
     SetActorProperty(0, APROP_RenderStyle, STYLE_Normal); // Makes the player visible from the Scoreboard
@@ -774,7 +774,7 @@ script 424 (int pln, int startTime) clientside
     }
 }
 
-script 425 OPEN clientside
+/*script 425 OPEN clientside
 {
     if (!GetCVar("cyber_cl_debug"))
     {
@@ -847,7 +847,7 @@ script 425 OPEN clientside
         ConsoleCommand("set cyber_cl_autotime 0");
         ConsoleCommand("archivecvar cyber_cl_autotime");
     }
-}
+}*/
 
 script 426 (int pln) disconnect
 {

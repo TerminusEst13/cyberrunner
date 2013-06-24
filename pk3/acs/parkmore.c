@@ -954,16 +954,11 @@ function void HighJump(int force)
 
 script PARKMORE_OPEN open
 {
-    if (GetCVar("cyber_jumpcount") == 0)
+    /*if (GetCVar("cyber_jumpcount") == 0)
     {
         ConsoleCommand("set cyber_jumpcount 2");
         ConsoleCommand("archivecvar cyber_jumpcount");
-    }
-
-    if (GetCVar("cyber_debug") == 0)
-    {
-        ConsoleCommand("set cyber_debug 0");
-    }
+    }*/
 
     IsServer = 1;
 
@@ -992,7 +987,7 @@ function void addTimer(int pln, int which, int add)
 
 function void addCTimers(int pln)
 {
-    int i = max(0, defaultCVar("cyber_dodgewindow",  8));
+    int i = max(0, defaultCVar("cyber_cl_dodgewindow",  8));
     //int j = max(0, defaultCVar("cyberrunner_hijumpwindow", 4));
 
     addTimer(pln, TIMER_CFORWARD,  keyPressed(BT_FORWARD)   * i);
@@ -1128,12 +1123,12 @@ script PARKMORE_ENTER2 enter clientside
     int flags, oflags;
     int i, j, k;
 
-    if (ConsolePlayerNumber() != pln && !IsServer) { terminate; }
+    //if (ConsolePlayerNumber() != pln && !IsServer) { terminate; }
 
     ClientEnterLocks[pln] = myLock;
 
     flags = GetParkmoreFlags();
-    ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags));
+    //ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags));
 
     while (ClientEnterLocks[pln] == myLock)
     {
@@ -1146,7 +1141,7 @@ script PARKMORE_ENTER2 enter clientside
         oflags = flags;
         flags  = GetParkmoreFlags();
 
-        if (oflags != flags) { ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags)); }
+        if (oflags != flags) { /*ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags));*/}
 
         if (ground) { wasGround = MJUMP_DELAY; }
         else { wasGround = max(0, wasGround-1); }
@@ -1217,7 +1212,7 @@ script PARKMORE_ENTER2 enter clientside
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:dodgeDir);
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be dodge: ", s:pukeStr); }
-                    ConsoleCommand(pukeStr);
+                    //ConsoleCommand(pukeStr);
                 }
                 else
                 {
@@ -1263,7 +1258,7 @@ script PARKMORE_ENTER2 enter clientside
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-256);
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall kick: ", s:pukeStr); }
-                    ConsoleCommand(pukeStr);
+                    //ConsoleCommand(pukeStr);
                 }
                 else
                 {
@@ -1276,7 +1271,7 @@ script PARKMORE_ENTER2 enter clientside
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall jump: ", s:pukeStr); }
-                    ConsoleCommand(pukeStr);
+                    //ConsoleCommand(pukeStr);
                 }
                 else
                 {
@@ -1320,7 +1315,7 @@ script PARKMORE_ENTER2 enter clientside
                 {
                     pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
-                    ConsoleCommand(pukeStr);
+                    //ConsoleCommand(pukeStr);
                 }
                 else if (!DidSpecials[pln] && !grabbing[pln])
                 {
@@ -1348,7 +1343,7 @@ script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
     int pln = PlayerNumber();
 
-    if (GetCVar("cyber_debug"))
+    if (GetCVar("cyber_cl_debug"))
     {
         PrintBold(s:"Activator is ", n:0, s:"\c- (idx ", d:pln, s:")\nExecuted on tic ", d:Timer(), s:"\nArgs: ", d:direction, s:", ", d:hijump, s:", ", d:mjump);
     }
