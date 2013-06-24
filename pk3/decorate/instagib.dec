@@ -1,0 +1,295 @@
+actor " Purge Rifle " : "Cyber Carbine"
+{
+    Obituary "$CYBERRUNNER_OB_DELETED"
+	Weapon.AmmoType1 ""
+	Weapon.UpSound "purge/up"
+    +AMMO_OPTIONAL
+    +CHEATNOTWEAPON
+
+    States
+	{
+      Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
+        TNT1 A 0 A_PlaySound("delete/fire", CHAN_WEAPON)
+        TNT1 A 0 A_GunFlash
+        TNT1 A 0 A_FireCustomMissile("CarbineRing", 0, 0, 0, -8)
+        TNT1 A 0 A_FireCustomMissile("RailBeam", 0, 0, 0, -8)
+        TNT1 A 0 A_SetBlend("White", 0.2, 6)
+        TNT1 A 0 A_RailAttack(32768, 0, 0, "none", "none", 3, 0, "BulletPuff")
+        TNT1 A 0 A_FireBullets(0, 0, 1, 0, "RainbowCarbinePuff")
+		TNT1 A 15
+		TNT1 A 0 A_PlaySoundEx("delete/wind","soundslot6")
+        TNT1 A 20
+        TNT1 A 15 A_WeaponReady(12)
+        goto Ready
+	}
+}
+
+actor RainbowCarbinePuff: CarbinePuff
+{
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 ACS_ExecuteWithResult(412, 2)
+        goto AfterPuff
+		
+      AfterPuff:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("RainbowSpark", 0,0,0, random(0, 80)/20.0, 0, random(-40, 40)/20.0, random(0, 360))
+        TNT1 A 8
+        stop
+    }
+}
+
+actor RainbowSpark
+{
+    Radius 0
+    Height 0
+    Speed 2
+    Damage 0
+    RenderStyle Add
+    Alpha 0.95
+    Scale 0.45
+    Projectile
+    +CLIENTSIDEONLY
+    //+DOOMBOUNCE
+    +NOINTERACTION
+    +BRIGHT
+    +RANDOMIZE
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8", "Spawn9", "Spawn10")
+        stop
+
+      Spawn1:
+        RNBW B 2 A_FadeOut(0.025)
+        loop
+
+      Spawn2:
+        RNBW C 2 A_FadeOut(0.025)
+        loop
+
+      Spawn3:
+        RNBW D 2 A_FadeOut(0.025)
+        loop
+
+      Spawn4:
+        RNBW E 2 A_FadeOut(0.025)
+        loop
+
+      Spawn5:
+        RNBW F 2 A_FadeOut(0.025)
+        loop
+
+      Spawn6:
+        RNBW G 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn7:
+        RNBW H 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn8:
+        RNBW I 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn9:
+        RNBW J 2 A_FadeOut(0.025)
+        loop
+		
+      Spawn10:
+        RNBW K 2 A_FadeOut(0.025)
+        loop
+    }
+}
+
+actor RainbowBeam1: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL A 2
+        RBPL A 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam2: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL B 2
+        RBPL B 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam3: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL C 2
+        RBPL C 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam4: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL D 2
+        RBPL D 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam5: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL E 2
+        RBPL E 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam6: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL F 2
+        RBPL F 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam7: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL G 2
+        RBPL G 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam8: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL H 2
+        RBPL H 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam9: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL I 2
+        RBPL I 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam10: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL J 2
+        RBPL J 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam11: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL K 2
+        RBPL K 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor RainbowBeam12: RailBeam2
+{
+    States
+    {
+      Spawn:
+        RBPL L 2
+        RBPL L 1 A_FadeOut(0.025)
+        wait
+    }
+}
+
+actor InstagibCarbineAmmo: Ammo
+{
+    Inventory.MaxAmount 20
+    Ammo.BackpackMaxAmount 20
+    +IGNORESKILL
+    +UNDROPPABLE
+}
+
+
+actor "Purge Rifle": " Purge Rifle "
+{
+    Radius 48
+    Height 48
+
+    Weapon.AmmoType "InstagibCarbineAmmo"
+    Weapon.AmmoUse 1
+    Weapon.AmmoGive 20
+
+    Inventory.PickupMessage "$CYBERRUNNER_PK_INSTAGIB"
+	Inventory.PickupSound "purge/up"
+    -CHEATNOTWEAPON
+
+    States
+    {
+      Spawn:
+        CYIG Z 0 bright
+        CYIG Z -1 bright ACS_ExecuteAlways(422, 0, 7)
+        loop
+
+      Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
+        TNT1 A 0 A_JumpIfNoAmmo("DryFire")
+        TNT1 A 0 A_PlaySound("delete/fire", CHAN_WEAPON)
+        TNT1 A 0 A_GunFlash
+        TNT1 A 0 A_FireCustomMissile("CarbineRing", 0, 0, 0, -8)
+        TNT1 A 0 A_FireCustomMissile("RailBeam", 0, 0, 0, -8)
+        TNT1 A 0 A_SetBlend("White", 0.2, 6)
+        TNT1 A 0 A_RailAttack(32768, 0, 0, "none", "none", 3, 0, "BulletPuff")
+        TNT1 A 0 A_FireBullets(0, 0, 1, 0, "RainbowCarbinePuff")
+		TNT1 A 15
+		TNT1 A 0 A_PlaySoundEx("delete/wind","soundslot6")
+        TNT1 A 30
+        TNT1 A 15 A_WeaponReady(12)
+        goto Ready
+	}
+}
+
+actor InstagibSparkle: RandomSpawner
+{
+    DropItem "CyberPlasmaSparkle"
+    DropItem "CyberShotgunSparkle"
+    DropItem "CyberCarbineSparkle"
+    DropItem "CyberVulcanSparkle"
+    DropItem "TurboSparkle"
+    DropItem "50HPSparkle"
+}

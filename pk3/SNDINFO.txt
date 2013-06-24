@@ -1,16 +1,71 @@
+// Player
+// ============
+
+$playeralias	Cyberrunner	 male	*death			cybrunner/death
+$playersounddup	Cyberrunner	 male	*xdeath			*death
+$playersounddup	Cyberrunner	 male	*burndeath		*death
+$playersounddup	Cyberrunner	 male	*crazydeath		*death
+$playersounddup Cyberrunner  male   *wimpydeath 	*death
+$playersounddup	Cyberrunner	 male	*gibbed			*death
+$playeralias	Cyberrunner	 male	*pain100		cybrunner/ouch
+$playersounddup	Cyberrunner	 male	*pain75			*pain100
+$playersounddup	Cyberrunner	 male	*pain50			*pain100
+$playersounddup	Cyberrunner	 male	*pain25			*pain100
+$playersound	Cyberrunner	 male	*grunt			CYBPSLNC
+$playeralias	Cyberrunner	 male	*land			cybrunner/land
+$playersound	Cyberrunner	 male	*usefail		CYBPNOPE
+$playersound	Cyberrunner  male	*taunt			CYBPLAFF
+$playersound	Cyberrunner  male	*jump			CYBPSLNC
+
+$random cybrunner/death {cybdeath1 cybdeath2 cybdeath3}
+$random cybrunner/ouch {cybouch1 cybouch2 cybouch3}
+$random cybrunner/land {cybland1 cybland2 cybland3}
+cybdeath1			CYBPDIE1
+cybdeath2			CYBPDIE2
+cybdeath3			CYBPDIE3
+cybouch1			CYBPHRT1
+cybouch2			CYBPHRT2
+cybouch3			CYBPHRT3
+cybland1			CYBPLND1
+cybland2			CYBPLND2
+cybland3			CYBPLND3
+
 // Systems
 // =============
+
+tele/port		TELYPROT
+powercore/boom  COREBOOM // Taken from Devil May Cry 3
+
+world/jumppad1      sounds/systems/jumppad1.wav   // Unreal jump boots sound
+
+// These UI sounds are all taken from UT2k3
+ui/check1       sounds/systems/ui_check1.ogg
+ui/check2       sounds/systems/ui_check2.ogg
+ui/check3       sounds/systems/ui_check3.ogg
+ui/check4       sounds/systems/ui_check4.ogg
+ui/check5       sounds/systems/ui_check5.ogg
+$random ui/checkpoint { ui/check1 ui/check2 ui/check3 ui/check4 ui/check5 }
+
+ui/finish       sounds/systems/ui_finish.ogg
+
+ui/lose         sounds/systems/ui_lose.ogg
+ui/win          sounds/systems/ui_win.ogg
+ui/winall       sounds/systems/ui_winall.ogg
+
+end/klaxon      sounds/systems/end_klaxon.ogg
 
 cyber/dash		CYBRDASH // Taken from Unreal Tournament 3
 cyber/jump		CYBRJUMP // Taken from Unreal Tournament 3
 cyber/boost		CYBRBOST // Taken from Unreal Tournament 3
 
 parkmore/walljump   CYBRWJMP
+parkmore/wajumpup   CYBRWJMU
 parkmore/grabledge  CYBRGRAP
 parkmore/dodge      CYBRDODG
 parkmore/doubjump   CYBRDJMP
 
 $volume parkmore/walljump 0.5
+$volume parkmore/wajumpup 0.5
 $volume parkmore/doubjump 0.5
 
 menu/activate 		MENUUP // Bring up the main menu. - Taken from Mega Man X6
@@ -23,33 +78,84 @@ menu/prompt 		MENUQUIT // Are you sure you want to quit? - Taken from Devil May 
 menu/dismiss 		MENUDSMS // Dismiss a prompt. - Taken from Silent Bomber
 menu/invalid 		MENUFAIL // Menu not available. - Taken from Devil May Cry 3
 
+radar/on			sounds/systems/radar_on.wav // Taken from Mega Man X5
+radar/off			sounds/systems/radar_off.wav // Taken from Mega Man X5
+
+terminal/login		TERMLGIN
+terminal/logout		TERMLGOT
+terminal/page		TERMPAGE
+
+// Pickups
+// =============
+
+pickups/health	sounds/pickups/HEALF.ogg // Taken from Halo
+pickups/health2	sounds/pickups/HEALFSML.ogg
+pickups/health3	sounds/pickups/HEALFBIG.ogg
+pickups/turbo   sounds/pickups/LargeHealthPickup.wav  // UT2004 100 Health pickup
+pickups/vent	sounds/pickups/vent_pickup.ogg	// Taken from Tribes: Ascend
+pickups/ammo	sounds/pickups/allammo_get.wav	// Taken from Unreal II
+pickups/core	sounds/pickups/core_pickup.ogg // Taken from Zero Tolerance
+core/idle		sounds/pickups/core_idle.ogg // Taken from Zero Tolerance
+
+shotgun/pickup  sounds/pickups/shotgun_pickup.wav // UT2004 Flak Cannon pickup sound
+carbine/pickup  sounds/pickups/carbine_pickup.ogg	// From Unreal Tournament 2004
+vulcan/pickup  sounds/pickups/minigun_pickup.wav  // UT99 minigun up sound
+hammer/pickup  sounds/pickups/hammer_pickup.wav  // From Devil May Cry 3
+
 // Weapons
 // =============
 
-plasma/up       sounds/plasma_up.wav    // Unreal Tournament Pulse Rifle raise
+plasma/up       sounds/weapons/plasma_up.wav    // Unreal Tournament Pulse Rifle raise
 plasma/shot		PLASSHOT // Taken from Unreal Tournament 3
 plasma/hit		PLASHIT // Taken from Quake III
 
 force/shot		FRCESHOT
 force/hit		FRCEHIT
 
-shotgun/pickup  sounds/shotgun_pickup.wav
-shotgun/up      sounds/shotgun_up.ogg  // Based off the Unreal Flak Cannon reload
-shotgun/fire    sounds/shotgun_fire.ogg  // Based off the Unreal Flak Cannon fire
-shotgun/load    sounds/shotgun_load.ogg // Based off the Unreal Flak Cannon reload
+shotgun/up      sounds/weapons/shotgun_up.ogg  // Sped up Unreal Flak Cannon reload
+shotgun/fire    sounds/weapons/shotgun_fire.ogg  // Based off the Unreal Flak Cannon fire
+shotgun/load    sounds/weapons/shotgun_load.ogg // Based off the Unreal Flak Cannon reload
 $random shotgun/hit {shit1 shit2 shit3} // Taken from Painkiller
-shit1			sounds/shotgun_hit1.ogg
-shit2			sounds/shotgun_hit2.ogg
-shit3			sounds/shotgun_hit3.ogg
+shit1			sounds/weapons/shotgun_hit1.ogg
+shit2			sounds/weapons/shotgun_hit2.ogg
+shit3			sounds/weapons/shotgun_hit3.ogg
 
 $limit shotgun/hit 0
 $volume shotgun/hit 0.2
 $rolloff shotgun/hit 64 512
 
-carbine/pickup  sounds/carbine_pickup.ogg	// From Unreal Tournament 2004
-carbine/up      sounds/carbine_up.wav		// From Devil May Cry 3
-carbine/fire    sounds/carbine_fire.ogg
-carbine/wind	sounds/carbine_wind.ogg		// From Unreal Tournament 3
+carbine/up      sounds/weapons/carbine_up.wav		// From Devil May Cry 3
+carbine/fire    sounds/weapons/carbine_fire.ogg
+carbine/wind	sounds/weapons/carbine_wind.ogg		// From Unreal Tournament 3
+
+vulcan/up      sounds/weapons/minigun_up.ogg  // Slightly sped up UT2004 minigun up sound
+vulcan/windup  sounds/weapons/vulcan_wind.wav // Taken from Unreal 2
+vulcan/hit	   sounds/weapons/vulcan_hit.wav // Taken from Unreal 2
+vulcan/unwind  sounds/weapons/vulcan_unwind.wav // Taken from Unreal 2
+
+delete/fire		sounds/weapons/delete_fire.ogg
+delete/wind		sounds/weapons/delete_wind.ogg
+
+hammer/ready    sounds/weapons/hammer_ready.wav // Taken from Unreal Tournament 2k4
+hammer/humstart sounds/weapons/hammer_humstart.wav
+hammer/hum      sounds/weapons/hammer_hum.wav
+hammer/humend   sounds/weapons/hammer_humend.wav
+hammer/up       sounds/weapons/hammer_up.ogg
+hammer/fire     sounds/weapons/hammer_fire.ogg
+hammer/wind	    sounds/weapons/hammer_wind.ogg
+
+$random hammer/explode {hamsplode1 hamsplode2 hamsplode3 hamsplode4 hamsplode5} // Taken from Doom 3
+hamsplode1	   hamspld1
+hamsplode2	   hamspld2
+hamsplode3	   hamspld3
+hamsplode4	   hamspld4
+hamsplode5	   hamspld5
+
+
+$limit hammer/explode 0
+$rolloff hammer/explode 800 5200
+
+purge/up		sounds/weapons/purge_up.ogg // Taken from Unreal Tournament 2k4
 
 // Enemies
 // =============
@@ -61,3 +167,12 @@ drpain2			DRONPAN2
 drpain3			DRONPAN3
 drone/fly		DRONEFLY	// Taken from Doom 3
 drone/shot		DRONESHT	// Taken from Serious Sam: The First Encounter
+drone/shot2		DRONSHT2	// Taken from Overlord
+
+$rolloff drone/shot 64  2048
+$limit   drone/shot 0
+
+
+
+
+$musicvolume M_HURRY 2

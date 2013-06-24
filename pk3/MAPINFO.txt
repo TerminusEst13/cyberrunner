@@ -1,0 +1,32 @@
+map CYDM01 "Ctrl+Alt+Deleted"
+{
+    next = "CYDM02"
+    music = "M_CYDM01" // Laamaa - Flying Together (Slightly edited)
+}
+
+map CYDM02 "Mars Needs Wi-Fi, Man"
+{
+    next = "CYDM01"
+    music = "M_CYDM02" // Rob Hubbard/d-Zire - Commando Theme
+}
+
+map CYRC01 "Deep Fried"
+{
+    next  = "CYRC02"
+    music = "M_CYRC01" // Elwood - Sick on Monday
+}
+
+map CYRC02 "Having Fun, Rocketboy?"
+{
+    next  = "CYRC01"
+    sky1  = "RJSPCSKY", 1
+    sky2  = "BLACKSKY"
+    music = "M_CYRC02" // CLiNT - Eclipse
+}
+
+map CYRTUT "Journey of a Thousand Miles, Etc Etc"
+{
+    sky1  = "SKY1", 1
+    next  = "CYRC01"
+    music = "M_CYRTUT" // Jeroen Tel - War Stars
+}

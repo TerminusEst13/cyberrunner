@@ -25,11 +25,146 @@ actor CyberBoostSpeed : PowerSpeed
 {
     Powerup.Duration -15
     Speed 1.6
+
+    Powerup.Color "FF C0 00", 0.1
+}
+
+actor CyberBoostDamage : PowerDamage
+{
+    Powerup.Duration -15
+    DamageFactor "DashDamage", 2.0
 }
 
 actor FancyTrails : PowerSpeed
 {
-    Powerup.Duration 0x7FFFFFFF
+    Powerup.Duration -2//0x7FFFFFFF
     Speed 1
 }
 
+actor WallHackVision : PowerLightAmp
+{
+    Powerup.Duration 0x7FFFFFFF
+	//Powerup.Color InverseMap
+}
+
+actor WallHackToggle : CustomInventory
+{
+	+INVBAR
+    +INVENTORY.UNDROPPABLE
+    +inventory.hubpower
+    Inventory.MaxAmount 1
+    States
+    {
+
+      Use:
+        TNT1 A 0 A_JumpIfInventory("CannotIntoWallhack",1,"UseFail")
+        TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"TurnOff")
+        TNT1 A 0 A_PlaySoundEx("radar/on","item",0,0)
+		TNT1 A 0 A_SetBlend("White", 0.75, 12)
+        TNT1 A 0 ACS_ExecuteAlways(421,0,1)
+        fail
+
+      TurnOff:
+        TNT1 A 0 A_PlaySoundEx("radar/off","item",0,0)
+		TNT1 A 0 A_SetBlend("Black", 0.75, 12)
+        TNT1 A 0 ACS_ExecuteAlways(421,0,2)
+        fail
+		
+	  UseFail:
+		TNT1 A 1
+		fail
+    }
+}
+
+actor FullTurboRecharge: CustomInventory 15451
+{
+    Radius 48
+    Height 48
+
+    Inventory.MaxAmount 0
+    +AUTOACTIVATE
+    +FLOATBOB
+    +NOGRAVITY
+
+    Inventory.PickupMessage "$CYBERRUNNER_PK_TURBO"
+    Inventory.PickupSound "pickups/turbo"
+
+    RenderStyle Add
+    Alpha 0.9
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		TURB Z 1 ACS_ExecuteAlways(422,0,4)
+	  Spawn2:
+        //TURB Z 2 bright A_SpawnItemEx("TurboSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        TURB Z -1 bright
+        loop
+
+      Pickup:
+        TURB A 0 A_JumpIfInventory("BoostCooldown", 1, "PickupSucceed")
+        TURB A 0 A_JumpIfInventory("DashCooldown", 1, "PickupSucceed")
+        TURB A 0 A_JumpIfInventory("JumpCooldown", 1, "PickupSucceed")
+        fail
+
+      PickupSucceed:
+        TURB A 0 A_SetBlend("FF C0 00", 0.25, 8)
+        TURB A 0 A_TakeInventory("BoostCooldown")
+        TURB A 0 A_TakeInventory("DashCooldown")
+        TURB A 0 A_TakeInventory("JumpCooldown")
+        stop
+    }
+}
+
+actor TurboSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("TurboSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor TurboSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.75
+
+    States
+    {
+      Spawn:
+        TURB W 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
+
+actor CoreBurnSpeed : PowerSpeed
+{
+    Powerup.Duration -30
+    Speed 2.5
+
+    Powerup.Color "FF 00 00", 0.25
+}
+
+actor CoreBurnDamage : PowerDamage
+{
+    Powerup.Duration -30
+    DamageFactor "DashDamage", 2.5
+}

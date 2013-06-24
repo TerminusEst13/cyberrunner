@@ -4,12 +4,15 @@
 #include "commonFuncs.h"
 #include "parkConst.h"
 
+#include "shared.h"
+
 world int 0:MaxJumpCount;
 
 int playerJumps[PLAYERMAX] = {0};
 int hasKicked[PLAYERMAX]   = {0};
 int grabbing[PLAYERMAX]    = {0};
 int dontGrab[PLAYERMAX]    = {0};
+int oldLedgeVals[PLAYERMAX][2] = {{0}};
 
 int CPlayerGrounds[PLAYERMAX][2];
 int PlayerGrounds[PLAYERMAX][2];
@@ -26,12 +29,79 @@ int IsServer;
  *  :ASSORTED   - Where everything else goes
  */
 
-function int parkmoreOnGround(int tid)
-{
-    return (onGround(tid) ||
-        (GetActorVelZ(tid) == 0 && !Spawn("ParkmoreFloorChecker", GetActorX(tid), GetActorY(tid), GetActorZ(tid)-4.0)));
-}
+/* A note on 3D floors:
+ *
+ * The closest 3D floor above you in the sector you're in is considered the ceiling of the sector.
+ * The closest 3D floor below you in the sector you're in is considered the floor of the sector.
+ * Knowing this, we can determine three relationships:
+ *
+ * When changing Z height, but keeping X and Y constant:
+ *  - If both ceiling and floor height change, we have skipped over a 3D floor entirely.
+ *
+ * When raising Z height ONLY:
+ *  - If only the ceiling height changes, we have entered a 3D floor.
+ *  - If only the floor height changes, we have left a 3D floor.
+ *
+ * When lowering Z height ONLY:
+ *  - If only the ceiling height changes, we have left a 3D floor.
+ *  - If only the floor height changes, we have entered a 3D floor.
+ *
+ * There is no way to differentiate between solid and non-solid 3D floors:
+ *  at least, no way that I know of.
+ */
 
+/*
+function int parkmoreIn3DFloor(int tid)
+{
+    if (tid != 0 && ThingCount(0, tid) == 0) { return 0; }
+
+    int x0 = GetActorX(tid);
+    int y0 = GetActorY(tid);
+    int z0 = GetActorZ(tid);
+    int f0 = GetActorFloorZ(tid);
+    int c0 = GetActorCeilingZ(tid);
+
+    int z, f, c, success;
+    int checktid = unusedTID(8000, 9500);
+    z = z0 - 16.0;
+
+    while (1)
+    {
+        success = Spawn("ParkmoreChecker3", x0, y0, z, checktid);
+        if (!success) { success = 0; break; }
+
+        f = GetActorFloorZ(checktid);
+        c = GetActorCeilingZ(checktid);
+
+        if (f != f0) { success = 0; break; } // We have entered a 3D floor
+        if (c != c0) { success = 1; break; } // We have left a 3D floor
+        
+        Thing_Remove(checktid);
+        z -= 16.0;
+    }
+
+    Thing_Remove(checktid);
+    return success;
+}
+*/
+
+function int parkmoreIn3DFloor(int tid)
+{
+    if (tid != 0 && ThingCount(0, tid) == 0) { return 0; }
+
+    int x = GetActorX(tid);
+    int y = GetActorY(tid);
+    int f = GetActorFloorZ(tid);
+    int c = GetActorCeilingZ(tid);
+    int i = random(5, 22);
+    int newtid = unusedTID(1000 * i, 1000 * (10+i));
+
+    Spawn("ParkmoreChecker3", x, y, f, newtid);
+
+    int ret = GetActorCeilingZ(newtid) < c;
+    Thing_Remove(newtid);
+    return ret;
+}
 
 /*  :TURNING
  * Turning scripts
@@ -58,12 +128,19 @@ script PARKMORE_TURN (int degrees, int factor, int direction) net clientside
         addDegrees = (floatDegrees - curDegrees) / factor;
         curDegrees += addDegrees;
 
+        //Log(f:floatDegrees, s:", ", f:curDegrees, s:", +", f:addDegrees);
+	if (!GetCVar("cyber_cl_nocamerajerk"))
+		{
         SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
+		}
         Delay(1);
     }
 
     addDegrees = floatDegrees - curDegrees;
+	if (!GetCVar("cyber_cl_nocamerajerk"))
+		{
     SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
+		}
 }
 
 script PARKMORE_PITCH (int degrees, int factor, int direction) net clientside
@@ -244,6 +321,7 @@ function void wallBounce (int type, int direction)
     {
         case WB_KICK: ActivatorSound("parkmore/walljump", 127); break;
         case WB_DODGE: ActivatorSound("parkmore/dodge", 127); break;
+        case WB_KICKUP: ActivatorSound("parkmore/wajumpup", 127); break;
     }
 
     GiveInventory("KickTrail", 1);
@@ -253,11 +331,20 @@ function void wallBounce (int type, int direction)
 script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 {
     int newDir = -1;
+    int justCheck;
+    int angle, x,y,z, x2,y2, i, j;
+    int tid, canBounce;
+    int sideMove, forwMove;
+    int x3,y3;
+
+    if (isDead(0)) { terminate; }
+
+    if (direction < 0) { direction = -direction; justCheck = 1; }
 
     if (type == WB_DODGE)
     {
-        int sideMove = keyDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
-        int forwMove = keyDown(BT_FORWARD) - keyDown(BT_BACK);
+        sideMove = keyDown(BT_MOVERIGHT) - keyDown(BT_MOVELEFT);
+        forwMove = keyDown(BT_FORWARD) - keyDown(BT_BACK);
 
         switch (direction)
         {
@@ -309,22 +396,59 @@ script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
 
     if (mask == 0) { mask = 1; }
 
-    GiveInventory(wallCheckers[direction], 1);
-    Delay(1);
+    angle = GetActorAngle(0) + AngleOffsets[direction];
+    angle = mod(angle, 1.0);
 
-    if (CheckInventory("CanWallBounce") & mask)
+    x  = 20 * cos(angle); y  = 20 * sin(angle);
+    x2 = 8  * cos(angle); y2 = 8  * sin(angle);
+
+    if (abs(x) > abs(y))
+    {
+        y = FixedMul(y, FixedDiv(20.0, abs(x)));
+        x = 20.0 * sign(x);
+    }
+    else
+    {
+        x = FixedMul(x, FixedDiv(20.0, abs(y)));
+        y = 20.0 * sign(y);
+    }
+
+    canBounce = 0;
+    tid = unusedTID(25000, 30000);
+
+    for (i = 0; i < 10; i++)
+    {
+        x3 = GetActorX(0) + x + (x2*i);
+        y3 = GetActorY(0) + y + (y2*i);
+        z  = GetActorZ(0) + 16.0;
+
+        j = Spawn("ParkmoreChecker2", x3, y3, z, tid);
+        if (!j) { canBounce = 1; }
+        if (parkmoreIn3DFloor(tid)) { canBounce = 1; }
+
+        Thing_Remove(tid);
+
+        //PrintBold(s:"(", f:x3, s:", ", f:y3, s:") type ", d:type, s:" - ", d:j);
+        
+        if (canBounce) { break; }
+    }
+    
+    if (canBounce && !justCheck)
     {
         wallBounce(type, direction);
     }
 
-    Delay(1);
-    TakeInventory("CanWallBounce", 0x7FFFFFFF);
+    //Print(s:"wallbounce (func): ", d:canBounce, s:" - angle is ", f:angle, s:", direction is ", d:direction, s:" (", f:x, s:", ", f:y, s:")");
+    SetResultValue(canBounce);
 }
 
 
 script PARKMORE_LEDGEWALL (int mode)
 {
     int pln = PlayerNumber();
+
+    if (noLedgeGrab[pln]) { terminate; }
+
     int curX, curY, curZ, curAngle, newZ;
     int maxLeft, maxRight;
     int highest, highestTID;
@@ -335,7 +459,7 @@ script PARKMORE_LEDGEWALL (int mode)
     curY = GetActorY(0);
     curZ = GetActorZ(0);
 
-    if (parkmoreOnGround(0) || grabbing[pln]) { terminate; }
+    if (parkmoreOnGround(0) || grabbing[pln] || isDead(0)) { terminate; }
 
     switch (mode)
     {
@@ -367,8 +491,8 @@ script PARKMORE_LEDGEWALL (int mode)
             terminate;
         }
         
-        curX -= (8 * cos(curAngle));
-        curY -= (8 * sin(curAngle));
+        curX -= (4 * cos(curAngle));
+        curY -= (4 * sin(curAngle));
         newZ = curZ+64.0;
         curAngle = GetActorAngle(0);
         
@@ -379,7 +503,7 @@ script PARKMORE_LEDGEWALL (int mode)
         
         while (ThingCounts(heightTID, heightTID+CACOUNT) == 0)
         {
-            newZ += 8.0;
+            newZ += 16.0;
             
             if ((newZ - 512.0) > curZ)
             {
@@ -391,7 +515,7 @@ script PARKMORE_LEDGEWALL (int mode)
             for (k = 0; k < CACOUNT; k++)
             {
                 Thing_Remove(heightTID+k);
-                l = k+3;
+                l = k+1;
                 Spawn("ParkmoreHeightFinder", curX + (i*l), curY + (j*l),
                         newZ, heightTID+k);
                 PlaceOnFloor(heightTID+k);
@@ -401,21 +525,29 @@ script PARKMORE_LEDGEWALL (int mode)
         // we got here, so one of them spawned
         highest = GetActorZ(0);
         highestTID = 0;
+
+        l = 0;
         
         for (i = 0; i < CACOUNT; i++)
         {
             j = heightTID + (CACOUNT-(i+1));
-            
-            if (GetActorZ(j) > highest)
+            k = GetActorZ(j);
+
+            if (k >= highest && ThingCount(0, j) > 0)
             {
-                highest = GetActorZ(j);
-                if (highestTID) { Thing_Remove(highestTID); }
-                highestTID = j;
+                if (k > highest) { l = 0; }
+                else { l++; }
+
+                if (l < 4)
+                {
+                    highest = k;
+                    if (highestTID) { Thing_Remove(highestTID); }
+
+                    highestTID = j;
+                }
             }
-            else
-            {
-                Thing_Remove(j);
-            }
+
+            if (highestTID != j) { Thing_Remove(j); }
         }
         
         if (highestTID == 0)
@@ -429,7 +561,7 @@ script PARKMORE_LEDGEWALL (int mode)
         ACS_ExecuteAlways(PARKMORE_LEDGEHOLD, 0, heightTID,0,0);
     }
     
-    Delay(1);
+    Delay(2);
 
     TakeInventory("OpenGrab", 0x7FFFFFFF);
     TakeInventory("CanGrab", 0x7FFFFFFF);
@@ -439,8 +571,10 @@ script PARKMORE_LEDGEWALL (int mode)
 script PARKMORE_LEDGEHOLD (int heightTID)
 {
     int pln = PlayerNumber();
-    int oldSpeed, instantZ;
+    int oldSpeed, oldGrav, instantZ;
     int curX, curY, curZ, newZ;
+    int laX, laY, laZ;
+    int oldX, oldY, oldZ;   // if this breaks, I will not be surprised
     int curAngle;
     int maxLeft, maxRight;
     int ledgeMag, ledgeAngle;
@@ -450,15 +584,20 @@ script PARKMORE_LEDGEHOLD (int heightTID)
     int origDistance;
     int i;
     
+    if (noLedgeGrab[pln]) { terminate; }
+
     curAngle = GetActorAngle(0);
 
     grabbing[pln] = 1;
     TakeInventory("KickTrail", 1);
     oldSpeed = GetActorProperty(0, APROP_Speed);
+    oldGrav  = GetActorProperty(0, APROP_Gravity);
     SetActorProperty(0, APROP_Speed, 0.0);
     SetActorProperty(0, APROP_Gravity, 0);
     SetActorVelocity(0, 24*cos(curAngle),24*sin(curAngle),9.0, 0, 1);
 
+    oldLedgeVals[pln][0] = oldSpeed;
+    oldLedgeVals[pln][1] = oldGrav;
     newZ = GetActorZ(heightTID) - 36.0;
 
     Delay(1);
@@ -482,15 +621,24 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
     while (1)
     {
+        if (noLedgeGrab[pln]) { break; }
+
         floorOldHeight = floorHeight;
         floorHeight = GetActorFloorZ(heightTID);
 
-        if (!PlayerInGame(pln) || isDead(0)) { break; }
-        if (GetActorZ(0) - GetActorFloorZ(0) <= 4.0) { break; }
+        if (!PlayerInGame(pln) || isDead(0) || ThingCount(0, heightTID) == 0
+          || GetActorZ(0) - GetActorFloorZ(0) <= 4.0) { break; }
+
         if (abs(floorOldHeight - floorHeight) > 16.0)
         {
-            SetActorVelocity(0, 0,0,0, 0,0);
-            break;
+            SetActorPosition(heightTID, oldX, oldY, oldZ, 0);
+            floorHeight = GetActorFloorZ(heightTID);
+
+            if (abs(floorOldHeight - floorHeight) > 16.0)
+            {
+                SetActorVelocity(0, 0,0,0, 0,0);
+                break;
+            }
         }
 
         newZ = GetActorZ(heightTID) - 44.0;
@@ -506,8 +654,11 @@ script PARKMORE_LEDGEHOLD (int heightTID)
         curX = GetActorX(0);
         curY = GetActorY(0);
 
-        ledgeX     = GetActorX(heightTID) - curX;
-        ledgeY     = GetActorY(heightTID) - curY;
+        oldX = laX; oldY = laY; oldZ = laZ;
+        laX = GetActorX(heightTID); laY = GetActorY(heightTID); laZ = GetActorZ(heightTID);
+
+        ledgeX     = laX - curX;
+        ledgeY     = laY - curY;
         ledgeMag   = magnitudeTwo(ftoi(ledgeX), ftoi(ledgeY));
         ledgeAngle = VectorAngle(ledgeX, ledgeY);
 
@@ -531,14 +682,14 @@ script PARKMORE_LEDGEHOLD (int heightTID)
 
         SetActorPosition(0, curX, curY, curZ, 0);
 
-        if (curZ - GetActorZ(0) > 16.0)
+        if (curZ - GetActorZ(0) > 32.0)
         {
             Spawn("FingerCrunch", GetActorX(0), GetActorY(0), GetActorZ(0)+24.0);
             break;
         }
 
-        ledgeX /= ledgeMag;
-        ledgeY /= ledgeMag;
+        ledgeX /= max(1, ledgeMag);
+        ledgeY /= max(1, ledgeMag);
 
         SetActorVelocity(0, 24*ledgeX, 24*ledgeY,0, 0, 0);
 
@@ -599,7 +750,7 @@ script PARKMORE_LEDGEHOLD (int heightTID)
         Delay(1);
     }
 
-    SetActorProperty(0, APROP_Gravity, 1.0);
+    SetActorProperty(0, APROP_Gravity, oldGrav);
     SetActorProperty(0, APROP_Speed, oldSpeed);
     Thing_Remove(heightTID);
     grabbing[pln] = 0;
@@ -686,14 +837,12 @@ script PARKMORE_WALLHOLD (void)
         if ((keyPressed(BT_FORWARD) && !facingWall) || keyPressed(BT_JUMP))
         {
             ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, WD_FORWARD, 0);
-            addTimer(pln, TIMER_BOUNCED, 2);
             break;
         }
 
         if (keyPressed(BT_BACK) && facingWall)
         {
             ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, WD_BACK, 0);
-            addTimer(pln, TIMER_BOUNCED, 2);
             break;
         }
 
@@ -805,6 +954,17 @@ function void HighJump(int force)
 
 script PARKMORE_OPEN open
 {
+    if (GetCVar("cyber_jumpcount") == 0)
+    {
+        ConsoleCommand("set cyber_jumpcount 2");
+        ConsoleCommand("archivecvar cyber_jumpcount");
+    }
+
+    if (GetCVar("cyber_debug") == 0)
+    {
+        ConsoleCommand("set cyber_debug 0");
+    }
+
     IsServer = 1;
 
     int cjumps, oldcjumps;
@@ -812,8 +972,7 @@ script PARKMORE_OPEN open
     while (1)
     {
         oldcjumps = cjumps;
-        cjumps = GetCVar("parkmore_jumpcount");
-        if (!cjumps) { cjumps = 2; }
+        cjumps = GetCVar("cyber_jumpcount");
 
         if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
 
@@ -833,17 +992,14 @@ function void addTimer(int pln, int which, int add)
 
 function void addCTimers(int pln)
 {
-    int d = GetCVar("parkmore_dodgewindow"); if (!d) { d = 6; }
-    int h = GetCVar("parkmore_hijumpwindow"); if (!h) { h = 4; }
-
-    int i = max(0, d);
-    int j = max(0, h);
+    int i = max(0, defaultCVar("cyber_dodgewindow",  8));
+    //int j = max(0, defaultCVar("cyberrunner_hijumpwindow", 4));
 
     addTimer(pln, TIMER_CFORWARD,  keyPressed(BT_FORWARD)   * i);
     addTimer(pln, TIMER_CRIGHT,    keyPressed(BT_MOVERIGHT) * i);
     addTimer(pln, TIMER_CBACK,     keyPressed(BT_BACK)      * i);
     addTimer(pln, TIMER_CLEFT,     keyPressed(BT_MOVELEFT)  * i);
-    addTimer(pln, TIMER_HBACK,     keyPressed(BT_BACK)      * j);
+    //addTimer(pln, TIMER_HBACK,     keyPressed(BT_BACK)      * j);
 }
 
 function int tickTimer(int pln, int timerNum)
@@ -892,9 +1048,17 @@ script PARKMORE_ENTER enter
             grabbing[pln] = 0;
             dontGrab[pln] = 0;
             TakeInventory("KickTrail", 1);
+            TakeInventory("HasKicked", 1);
+            TakeInventory("ParkourGrabbing", 1);
             Delay(1);
             continue;
         }
+
+        if (grabbing[pln]) { GiveInventory("ParkourGrabbing", 1); }
+        else { TakeInventory("ParkourGrabbing", 0x7FFFFFFF); }
+
+        if (hasKicked[pln] && !CheckInventory("HasKicked")) { GiveInventory("HasKicked", 1); }
+        if (!hasKicked[pln] && CheckInventory("HasKicked")) { TakeInventory("HasKicked", 0x7FFFFFFF); }
 
         wasGround = ground;
         ground = parkmoreOnGround(0);
@@ -907,7 +1071,7 @@ script PARKMORE_ENTER enter
 
         direction = getDirection();
 
-        if (CheckInventory("NoParkour"))
+        if (CheckInventory("NoParkour") && !CheckInventory("ForceParkourOff"))
         {
             TakeInventory("KickTrail", 1);
             if (ground)
@@ -925,33 +1089,6 @@ script PARKMORE_ENTER enter
             continue;
         }
 
-        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP))
-        {
-            dDirection = -1;
-
-            switch (direction)
-            {
-              case DIR_NW: dDirection = WD_FORWLEFT;    break;
-              case DIR_N:  dDirection = WD_FORWARD;     break;
-              case DIR_NE: dDirection = WD_FORWRITE;    break;
-              case DIR_SW: dDirection = WD_BACKLEFT;    break;
-              case DIR_S:  dDirection = WD_BACK;        break;
-              case DIR_SE: dDirection = WD_BACKRITE;    break;
-              case DIR_W:  dDirection = WD_LEFT;        break;
-              case DIR_E:  dDirection = WD_RIGHT;       break;
-            }
-
-            if (dDirection != -1)
-            {
-                ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICK, dDirection, 0);
-                if (dDirection == WD_FORWARD)
-                {
-                    ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_KICKUP, WD_KICK, 2);
-                }
-                addTimer(pln, TIMER_BOUNCED, 2);
-            }
-        }
-
         didSpecial = 0;
 
         if (ground || inWater)
@@ -963,20 +1100,11 @@ script PARKMORE_ENTER enter
         }
         else
         {
-            if (keyPressed(BT_JUMP) && !DidSpecials[pln] && !grabbing[pln])
-            {
-                MultiJump(1, 0);
-            }
-
             playerJumps[pln] = max(1, playerJumps[pln]);
 
-            if (!(ground || wasGround))
+            if (!(ground || wasGround) && !CheckInventory("NoParkour") && !CheckInventory("ForceParkourOff"))
             {
-                if (keyDown(BT_CROUCH) && !grabbing[pln] && !dontGrab[pln])
-                {
-                    ACS_ExecuteAlways(PARKMORE_LEDGEWALL, 0, LW_WALL,0,0);
-                }
-                else if ((GetActorVelZ(0) < 0) && !grabbing[pln] && !dontGrab[pln])
+                if ((GetActorVelZ(0) < 0) && !grabbing[pln] && !dontGrab[pln])
                 {
                     ACS_ExecuteAlways(PARKMORE_LEDGEWALL, 0, LW_LEDGE,0,0);
                 }
@@ -994,26 +1122,67 @@ script PARKMORE_ENTER2 enter clientside
 {
     int pln = PlayerNumber();
     int dodgeDir, pukeStr;
-    int ground, wasGround;
+    int ground, wasGround, direction, dDirection;
+    int inWater, wasInWater;
     int myLock = ClientEnterLocks[pln] + 1;
+    int flags, oflags;
+    int i, j, k;
+
+    if (ConsolePlayerNumber() != pln && !IsServer) { terminate; }
 
     ClientEnterLocks[pln] = myLock;
 
-    SetHudSize(480, 360, 1);
-    HudMessage(s:"Type 'phelp' for Parkmore help.";
-            HUDMSG_FADEOUT, 1337, CR_WHITE, 240.4, 70.0, 3.0, 2.0);
+    flags = GetParkmoreFlags();
+    ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags));
 
     while (ClientEnterLocks[pln] == myLock)
     {
         dodgeDir = -1;
+        dDirection = -1;
 
-        wasGround = ground;
         ground = parkmoreOnGround(0);
+        direction = getDirection();
+
+        oflags = flags;
+        flags  = GetParkmoreFlags();
+
+        if (oflags != flags) { ConsoleCommand(StrParam(s:"puke -", d:PARKMORE_TOGGLE, s:" 2 ", d:flags)); }
+
+        if (ground) { wasGround = MJUMP_DELAY; }
+        else { wasGround = max(0, wasGround-1); }
+
+        wasInWater = inWater;
+        inWater = CheckInventory("WaterIndicator");
 
         CPlayerGrounds[pln][0] = ground;
         CPlayerGrounds[pln][1] = wasGround;
 
-        if (!getTimer(pln, TIMER_DIDDODGE))
+        if (GetCVar("cyber_cl_debug"))
+        {
+            SetHudSize(1024, 768, 1);
+            j = keysPressed();
+
+            for (i = 0; i < 32; i++)
+            {
+                k = !!(j & (1 << i));
+
+                if (k)
+                {
+                    HudMessage(d:(1<<i); HUDMSG_PLAIN, 15  + i, CR_WHITE, 900.4 - (48.0 * i), 180.0, 1.0);
+                    HudMessage(b:k;      HUDMSG_PLAIN, 105 + i, CR_BROWN, 900.4 - (48.0 * i), 200.0, 1.0);
+                }
+            }
+        }
+
+        if (!(GetActorVelX(0) || GetActorVelY(0)))
+        {
+            playerTimers[pln][TIMER_CLEFT]      = 0;
+            playerTimers[pln][TIMER_CFORWARD]   = 0;
+            playerTimers[pln][TIMER_CRIGHT]     = 0;
+            playerTimers[pln][TIMER_CBACK]      = 0;
+        }
+
+        if (!getTimer(pln, TIMER_DIDDODGE) && !CheckInventory("NoParkour") && !CheckInventory("ForceParkourOff"))
         {
             if (keyPressed(BT_MOVELEFT) && getTimer(pln, TIMER_CLEFT))
             {
@@ -1035,18 +1204,95 @@ script PARKMORE_ENTER2 enter clientside
             if (dodgeDir != -1)
             {
                 addTimer(pln, TIMER_DIDDODGE, 2);
-
-                /*if (IsServer)  // is serverside anyway, let's not go through hoops
+                if (GetCVar("cyber_cl_debug") > 2)
                 {
-                    ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, dodgeDir, 0);
-                }*/
-                ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, dodgeDir, 0);
-                //else
+                    Log(s:"dodge timers: (", d:getTimer(pln, TIMER_DIDDODGE), s:" (did), ",
+                                             d:getTimer(pln, TIMER_CLEFT), s:" (left), ",
+                                             d:getTimer(pln, TIMER_CFORWARD), s:" (forw), ",
+                                             d:getTimer(pln, TIMER_CRIGHT), s:" (rite), ",
+                                             d:getTimer(pln, TIMER_CBACK), s:" (back))");
+                }
+
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:dodgeDir);
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be dodge: ", s:pukeStr); }
+                    ConsoleCommand(pukeStr);
+                }
+                else
+                {
+                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_DODGE, dodgeDir, 0);
+                }
             }
         }
 
-        if (keyPressed(BT_JUMP))
+        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0 && !CheckInventory("NoParkour") && !CheckInventory("ForceParkourOff"))
         {
+            switch (direction)
+            {
+              case DIR_NW: dDirection = WD_FORWLEFT;    break;
+              case DIR_N:  dDirection = WD_FORWARD;     break;
+              case DIR_NE: dDirection = WD_FORWRITE;    break;
+              case DIR_SW: dDirection = WD_BACKLEFT;    break;
+              case DIR_S:  dDirection = WD_BACK;        break;
+              case DIR_SE: dDirection = WD_BACKRITE;    break;
+              case DIR_W:  dDirection = WD_LEFT;        break;
+              case DIR_E:  dDirection = WD_RIGHT;       break;
+            }
+
+            i = 0;
+            switch (dDirection)
+            {
+              case -1: break;
+
+              case WD_FORWARD:
+                if (!CheckInventory("HasKicked")
+                    && ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_KICK)) 
+                {
+                    i = 2; break;
+                }
+            
+              default:
+                if (ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, -dDirection)) { i = 1; }
+                break;
+            }
+
+            if (i == 2)
+            {
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-256);
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall kick: ", s:pukeStr); }
+                    ConsoleCommand(pukeStr);
+                }
+                else
+                {
+                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK);
+                }
+            }
+            else if (i == 1)
+            {
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall jump: ", s:pukeStr); }
+                    ConsoleCommand(pukeStr);
+                }
+                else
+                {
+                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, dDirection);
+                }
+            }
+            else { dDirection = -1; }
+
+            
+            if (i) { addTimer(pln, TIMER_BOUNCED, 2); }
+            //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
+        }
+
+        if (keyPressed(BT_JUMP) && !CheckInventory("NoParkour") && !CheckInventory("ForceParkourOff"))
+        {
+            /*
             if (getTimer(pln, TIMER_HBACK) > 0) 
             {
                 if (CPlayerGrounds[pln][1])
@@ -1055,7 +1301,31 @@ script PARKMORE_ENTER2 enter clientside
                     DidSpecials[pln] = 2;
                 }
                 
-                HighJump(0);
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 1");
+                    ConsoleCommand(pukeStr);
+                }
+                else if (ground)
+                {
+                    playerJumps[pln]--;
+                    HighJump(0);
+                    DidSpecials[pln] = 2;
+                }
+            }
+            else*/
+            if (!(ground || (GetActorVelZ(0) < 0 && wasGround) || wasGround >= (MJUMP_DELAY-2) || inWater || dDirection != -1))
+            {
+                if (!IsServer)
+                {
+                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
+                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
+                    ConsoleCommand(pukeStr);
+                }
+                else if (!DidSpecials[pln] && !grabbing[pln])
+                {
+                    MultiJump(1, 0);
+                }
             }
         }
 
@@ -1067,29 +1337,44 @@ script PARKMORE_ENTER2 enter clientside
         addCTimers(pln);
 
         tickTimer(pln, TIMER_DIDDODGE);
+        tickTimer(pln, TIMER_BOUNCED);
 
         Delay(1);
     }
 
 }
 
-script PARKMORE_REQUESTDODGE (int direction, int hijump) net
+script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
-    int pln;
+    int pln = PlayerNumber();
 
-    if (hijump)
+    if (GetCVar("cyber_debug"))
     {
-        if (PlayerGrounds[pln][1])
-        {
-            playerJumps[pln]--;
-            HighJump(0);
-            DidSpecials[pln] = 2;
-        }
+        PrintBold(s:"Activator is ", n:0, s:"\c- (idx ", d:pln, s:")\nExecuted on tic ", d:Timer(), s:"\nArgs: ", d:direction, s:", ", d:hijump, s:", ", d:mjump);
+    }
+
+    if (isDead(0)) { terminate; }
+
+    if (mjump && !DidSpecials[pln] && !grabbing[pln])
+    {
+        //Print(d:playerJumps[pln]);
+        MultiJump(1, 0);
+    }
+    else if (direction < 0)
+    {
+        direction = -direction;
+        if (direction == 256) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK); }
+        else { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, direction); }
     }
     else
     {
-        ACS_ExecuteAlways(PARKMORE_WALLBOUNCE, 0, WB_DODGE, direction, 0);
+        ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_DODGE, direction, 0);
     }
+}
+
+script PARKMORE_UNLOADING unloading
+{
+    GiveInventory("ParkmoreUnloadingCheck", 1);
 }
 
 
@@ -1098,103 +1383,36 @@ script PARKMORE_REQUESTDODGE (int direction, int hijump) net
  * The customisable crap
  */
 
-script PARKMORE_TOGGLE (int which) net
+script PARKMORE_TOGGLE (int which, int a1, int a2) net
 {
+    int pln = PlayerNumber();
+
     switch (which)
     {
-        case 0:
-            if (CheckInventory("NoParkour")) { TakeInventory("NoParkour", 0x7FFFFFFF); }
-            else { GiveInventory("NoParkour", 1); }
-            break;
-        
-        case 1:
-            GiveInventory("NoParkour", 1);
-            break;
+      case 0:
+        if (CheckInventory("NoParkour")) { TakeInventory("NoParkour", 0x7FFFFFFF); }
+        else { GiveInventory("NoParkour", 1); }
+        break;
+    
+      case 1:
+        GiveInventory("NoParkour", 1);
+        break;
 
-        case -1:
-            TakeInventory("NoParkour", 0x7FFFFFFF);
-            break;
+      case 2:
+        noLedgeGrab[pln] = !!(a1 & 1);
+        break;
+      
+
+      case -1:
+        TakeInventory("NoParkour", 0x7FFFFFFF);
+        break;
     }
 
-    if (CheckInventory("NoParkour")) { Print(s:"Parkmore is \cgDISABLED\c-."); }
-    else { Print(s:"Parkmore is \cdENABLED\c-."); }
-}
-
-script PARKMORE_HELP (void) net clientside
-{
-    int i, j, k, l, signal;
-
-    SetHudSize(480, 360, 1);
-
-    SetFont("BIGFONT");
-    HudMessage(s:"PARKMORE";
-            HUDMSG_FADEINOUT|HUDMSG_LOG, HMSG_BASE, CR_YELLOW, 240.4, 20.1, 1.0, 1.0, 2.0);
-
-    SetFont("SMALLFONT");
-    HudMessage(s:"Yep, another Parkour mod"; 
-            HUDMSG_FADEINOUT, HMSG_BASE+1, CR_BRICK, 240.4, 48.1, 1.0, 1.0, 2.0);
-
-    Delay(35);
-
-    SetFont("BIGFONT");
-    HudMessage(s:"PARKMORE";
-            HUDMSG_PLAIN, HMSG_BASE, CR_YELLOW, 240.4, 20.1, 0.0);
-
-    SetFont("SMALLFONT");
-    HudMessage(s:"Yep, another Parkour mod"; 
-            HUDMSG_PLAIN, HMSG_BASE+1, CR_BRICK, 240.4, 48.1, 0.0);
-
-    HudMessage(s:HELPMSGS[0]; 
-            HUDMSG_FADEINOUT, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 1.0, 1.0, 0.0);
-
-    Delay(35);
-
-    for (i = 0; i < HELPMSGCOUNT; i++)
+    if (which == 0 || which == 1 || which == -1)
     {
-        j = HELPTIMES[i];
-        HudMessage(s:HELPMSGS[i]; 
-                HUDMSG_FADEOUT|HUDMSG_LOG, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 2.0, 2.0);
-
-        for (k = 0; k < j; k++)
-        {
-            HudMessage(s:HELPMSGS[i]; 
-                    HUDMSG_FADEOUT, HMSG_BASE+2, CR_WHITE, 240.4, 120.1, 2.0, 2.0);
-
-            HudMessage(s:"\cf", d:j-k, s:"\c- second", s:cond(j-k != 1, "s", ""),
-                       s:" left\n\ck", d:HELPMSGCOUNT-(i+1), s:"\c- screen",
-                       s:cond(HELPMSGCOUNT-(i+1) != 1, "s", ""), s:" left\nHit \ca",
-                       k:"+crouch", s:"\c- to end this\nHit \ca", k:"+moveleft",
-                       s:"\c- and \ca", k:"+moveright", s:"\c- at the same time to",
-                       s:" skip to the next screen";
-                    HUDMSG_FADEOUT, HMSG_BASE+3, CR_GREEN, 240.4, 320.2, 1.0, 0.5);
-
-            for (l = 0; l < 35; l++)
-            {
-                if (keyPressed(BT_CROUCH)) { signal = 2; break; }
-                if (keyDown(BT_MOVELEFT | BT_MOVERIGHT))
-                {
-                    if (signal != -1) { signal = 1; break; }
-                }
-                else
-                {
-                    signal = 0;
-                }
-                Delay(1);
-            }
-
-            if (signal == 1) { signal = -1; break; }
-            if (signal == 2) { break; }
-        }
-        if (signal == 2) { break; }
+        if (CheckInventory("NoParkour")) { Print(s:"Parkour is \cgDISABLED\c-."); }
+        else { Print(s:"Parkour is \cdENABLED\c-."); }
     }
-
-    SetFont("BIGFONT");
-    HudMessage(s:"PARKMORE";
-            HUDMSG_FADEOUT, HMSG_BASE, CR_YELLOW, 240.4, 20.1, 0.0, 2.0);
-
-    SetFont("SMALLFONT");
-    HudMessage(s:"Yep, another Parkour mod"; 
-            HUDMSG_FADEOUT, HMSG_BASE+1, CR_BRICK, 240.4, 48.1, 0.0, 2.0);
 }
 
 
@@ -1232,6 +1450,14 @@ script PARKMORE_ASSORTED (int type, int a1, int a2)
 
       case 1:
         SetResultValue(CheckInventory("ParkmoreAngleIndicator"));
+        break;
+
+      case 2:
+        if (grabbing[pln])
+        {
+            SetActorProperty(0, APROP_Speed,   oldLedgeVals[pln][0]);
+            SetActorProperty(0, APROP_Gravity, oldLedgeVals[pln][1]);
+        }
         break;
     }
 }

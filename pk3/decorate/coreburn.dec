@@ -1,0 +1,30 @@
+actor RawEnergy : CustomInventory replaces Berserk 15506
+{
+    RenderStyle Add
+    Radius 48
+    Height 48
+    Alpha 0.75
+    Scale 0.75
+    +Inventory.AlwaysPickup
+    +Inventory.AutoActivate
+    +FLOATBOB
+    +NOGRAVITY
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CORE"
+    Inventory.PickupSound "pickups/core"
+    States
+    {
+    Spawn:
+	  TNT1 A 1
+	  CBRN W 1 ACS_ExecuteAlways(422,0,9)
+	Spawn2:
+	  CBRN W 1
+      CBRN W 35 BRIGHT A_PlaySound("core/idle")
+      CBRN ABCDEFGHIJKLMNOPQRSTUV 2 BRIGHT
+      loop
+    Pickup:
+	  TNT1 A 0
+      TNT1 A 0 A_GiveInventory("CoreBurnSpeed",1)
+      TNT1 A 0 A_GiveInventory("CoreBurnDamage",1)
+	  stop
+    }
+}

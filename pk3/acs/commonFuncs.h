@@ -5,6 +5,26 @@
 #define TEAMCOUNT 8
 #define DEFAULTTID_SCRIPT 471
 
+#define SECOND_TICS 35.714285714285715
+#define UNIT_CM     2.73921568627451
+
+#define DAMAGE_NORANDOM     0x40000000
+
+int TeamNames[TEAMCOUNT] = 
+{
+    "Blue", "Red", "Green", "Gold", "Black", "White", "Orange", "Purple"
+};
+
+int TeamColors[TEAMCOUNT] = 
+{
+    CR_BLUE, CR_RED, CR_GREEN, CR_GOLD, CR_BLACK, CR_WHITE, CR_ORANGE, CR_PURPLE
+};
+
+int TeamColorCodes[TEAMCOUNT] = 
+{
+    "\ch", "\cg", "\cd", "\cf", "\cm", "\cj", "\ci", "\ct"
+};
+
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }
 
@@ -46,13 +66,27 @@ function int powFloat(int x, int y)
     return n;
 }
 
+function int gcf(int a, int b)
+{
+    int c;
+    while (1)
+    {
+        if (b == 0) { return a; }
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    
+    return -1;
+}
+
 function int min(int x, int y)
 {
     if (x < y) { return x; }
     return y;
 }
 
-function int max (int x, int y)
+function int max(int x, int y)
 {
     if (x > y) { return x; }
     return y;
@@ -82,6 +116,14 @@ function int keyUp(int key)
     return 0;
 }
 
+function int keyUp_any(int key)
+{
+    int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+    if (~buttons & key) { return 1; }
+    return 0;
+}
+
 function int keyDown(int key)
 {
     int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
@@ -98,23 +140,77 @@ function int keyDown_any(int key)
     return 0;
 }
 
-function int keyPressed(int key)
+function int keysPressed(void)
 {
     int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
     int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
     int newbuttons  = (buttons ^ oldbuttons) & buttons;
 
-    if ((newbuttons & key) == key) { return 1; }
+    return newbuttons;
+}
+
+function int keyPressed(int key)
+{
+    if ((keysPressed() & key) == key) { return 1; }
     return 0;
 }
 
 function int keyPressed_any(int key)
 {
-    int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
-    int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+    if (keysPressed() & key) { return 1; }
+    return 0;
+}
+
+function int inputUp(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if ((~buttons & input) == input) { return 1; }
+    return 0;
+}
+
+function int inputUp_any(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if (~buttons & input) { return 1; }
+    return 0;
+}
+
+function int inputDown(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if ((buttons & input) == input) { return 1; }
+    return 0;
+}
+
+function int inputDown_any(int input)
+{
+    int buttons = GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+    if (buttons & input) { return 1; }
+    return 0;
+}
+
+function int inputsPressed(void)
+{
+    int buttons     = GetPlayerInput(-1, MODINPUT_BUTTONS);
+    int oldbuttons  = GetPlayerInput(-1, MODINPUT_OLDBUTTONS);
     int newbuttons  = (buttons ^ oldbuttons) & buttons;
 
-    if (newbuttons & key) { return 1; }
+    return newbuttons;
+}
+
+function int inputPressed(int input)
+{
+    if ((inputsPressed() & input) == input) { return 1; }
+    return 0;
+}
+
+function int inputPressed_any(int input)
+{
+    if (inputsPressed() & input) { return 1; }
     return 0;
 }
 
@@ -202,7 +298,13 @@ function int magnitudeTwo(int x, int y)
 
 function int magnitudeTwo_f(int x, int y)
 {
-    return sqrt(FixedMul(x, x) + FixedMul(y, y));
+    int len, ang;
+
+    ang = VectorAngle(x, y);
+    if (((ang + 0.125) % 0.5) > 0.25) { len = FixedDiv(y, sin(ang)); }
+    else { len = FixedDiv(x, cos(ang)); }
+
+    return len;
 }
 
 function int magnitudeThree(int x, int y, int z)
@@ -467,7 +569,7 @@ function int giveHealth(int amount)
 
 function int giveHealthFactor(int amount, int maxFactor)
 {
-    return giveHealthMax(amount, ftoi(getMaxHealth() * maxFactor));
+    return giveHealthMax(amount, FixedMul(getMaxHealth(), maxFactor));
 }
 
 function int giveHealthMax(int amount, int maxHP)
@@ -477,7 +579,11 @@ function int giveHealthMax(int amount, int maxHP)
     int curHP = GetActorProperty(0, APROP_Health);
 
     if (maxHP == 0) { newHP = max(curHP, curHP+amount); }
-    else { newHP = middle(curHP, curHP+amount, maxHP); }
+    else
+    {
+        if (curHP > maxHP) { return 0; }
+        newHP = middle(curHP, curHP+amount, maxHP);
+    }
 
     SetActorProperty(0, APROP_Health, newHP);
 
@@ -562,16 +668,16 @@ function void SetInventory(int item, int amount)
     GiveAmmo(item, amount - count);
     return;
 }
-function void ToggleInventory(int inv)
+function int ToggleInventory(int inv)
 {
     if (CheckInventory(inv))
     {
         TakeInventory(inv, 0x7FFFFFFF);
+        return 0;
     }
-    else
-    {
-        GiveInventory(inv, 1);
-    }
+
+    GiveInventory(inv, 1);
+    return 1;
 }
 
 function void GiveAmmo(int type, int amount)
@@ -764,21 +870,38 @@ function int loadStringCVar(int cvarname)
 
 function int defaultTID(int def)
 {
+    return _defaulttid(def, 0);
+}
+
+function int _defaulttid(int def, int alwaysPropagate)
+{
     int tid = ActivatorTID();
+    int i, changed = 0;
 
-    if (ThingCount(0, tid) == 1) { return tid; }
+    if (ThingCount(0, tid) != 1)
+    {
+        tid = def;
+        changed = 1;
+        if (def <= 0)
+        {
+            i = random(12, 220);
+            tid = unusedTID(i*100, (i+100)*100);
+        }
 
-    tid = def;
-    if (def <= 0) { tid = unusedTID(17000, 27000); }
+        Thing_ChangeTID(0, tid);
+    }
 
-    Thing_ChangeTID(0, tid);
-    ACS_ExecuteAlways(DEFAULTTID_SCRIPT, 0, tid,0,0);
+    if ((changed || (alwaysPropagate == 1)) && (alwaysPropagate != 2))
+    {
+        ACS_ExecuteAlways(DEFAULTTID_SCRIPT, 0, tid,0,0);
+    }
 
     return tid;
 }
 
 script DEFAULTTID_SCRIPT (int tid) clientside
 {
+    if (ConsolePlayerNumber() == -1) { terminate; }
     Thing_ChangeTID(0, tid);
 }
 
@@ -806,14 +929,24 @@ function int round(int toround)
     return ftoi(toround + 0.5);
 }
 
+function int ceil(int toround)
+{
+    return ftoi(toround + (1.0-1));
+}
+
 function int intFloat(int toround)
 {
     return itof(ftoi(toround));
 }
 
+function int distance(int x1, int y1, int z1, int x2, int y2, int z2)
+{
+    return magnitudeThree_f(x2-x1, y2-y1, z2-z1);
+}
+
 function int distance_ftoi(int x1, int y1, int z1, int x2, int y2, int z2)
 {
-    return magnitudeThree(ftoi(x2-x1), ftoi(y2-y1), ftoi(z2-z1));
+    return ftoi(distance(x1,y1,z1, x2,y2,z2));
 }
 
 function void printDebugInfo(void)
@@ -861,4 +994,45 @@ function int upper(int chr)
 {
     if (chr > 90 && chr < 123) { return chr-32; }
     return chr;
+}
+
+function int AddActorProperty(int tid, int prop, int amount)
+{
+    int newAmount = GetActorProperty(tid, prop) + amount;
+    SetActorProperty(tid, prop, newAmount);
+    return newAmount;
+}
+
+function int ClientCount(void)
+{
+    int ret, i;
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        if (PlayerInGame(i) || PlayerIsSpectator(i)) { ret++; }
+    }
+
+    return ret;
+}
+
+function int HasRoom(int actorname, int x, int y, int z)
+{
+    int tid = unusedTID(40000, 50000);
+    int ret = Spawn(actorname, x, y, z, tid);
+
+    if (ret >= 1) { Thing_Remove(tid); }
+
+    return ret;
+}
+
+function int RealPlayerCount(void)
+{
+    int ret, i;
+
+    for (i = 0; i < PLAYERMAX; i++)
+    {
+        if (PlayerInGame(i) && !PlayerIsBot(i)) { ret++; }
+    }
+
+    return ret;
 }

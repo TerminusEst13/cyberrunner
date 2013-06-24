@@ -1,0 +1,9 @@
+actor CannonEffect
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+}
+
+#include "decorate/c_shockwave.dec"
+#include "decorate/c_explosion1.dec"
+#include "decorate/c_sparks.dec"

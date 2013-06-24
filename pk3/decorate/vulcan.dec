@@ -1,0 +1,144 @@
+actor "Cyber Vulcan": CyberrunnerWeapon
+{
+    Weapon.AmmoType1 "VulcanAmmo"
+    Weapon.AmmoGive1 200
+    Weapon.AmmoUse1 1
+    Weapon.AmmoType2 "ForceVentAmmo"
+    Weapon.AmmoUse2 1
+    Weapon.SlotNumber 4
+	Weapon.UpSound "vulcan/up"
+    
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.PickupSound "vulcan/pickup"
+
+    States
+    {
+      Spawn:
+        CYMG Z 2 bright
+        loop
+
+      Fire:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
+        TNT1 A 0 A_JumpIfNoAmmo("DryFire")
+        TNT1 A 15 A_PlaySound("vulcan/windup", 7)
+		
+	  Hold:
+	    TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFireHold")
+		TNT1 A 0 A_JumpIfNoAmmo("DryFireHold")
+		TNT1 A 0 A_GunFlash
+		TNT1 A 0 A_PlayWeaponSound("vulcan/hit")
+        TNT1 A 0 A_FireCustomMissile("VulcanShot", random(-50, 50)/100.0, 1, 0, 1, 0, random(-50, 50)/100.0)
+        TNT1 A 0 A_FireCustomMissile("VulcanShot", random(-100, 100)/100.0, 0, 0, 1, 0, random(-100, 100)/100.0)
+        TNT1 A 3 Radius_Quake(2, 2, 0, 3, 0)
+		TNT1 A 0 A_Refire
+		TNT1 A 0 A_PlaySound("vulcan/unwind", 6)
+		TNT1 A 1 A_ClearRefire
+        goto Ready
+		
+	  DryFireHold:
+		TNT1 A 0 A_PlaySound("vulcan/unwind", 6)
+		TNT1 A 1 A_ClearRefire
+        goto Ready
+    }
+}
+
+actor VulcanShot: FastProjectile
+{
+    Radius 8
+    Height 8
+
+    Projectile
+    Speed 300
+    Damage (10)
+
+    Scale 0.25
+    RenderStyle Add
+    Alpha 0.95
+    Decal BulletChip
+    Obituary "$CYBERRUNNER_OB_VULCAN"
+	+BLOODSPLATTER
+
+    States
+    {
+      Spawn:
+        CYVL A 1 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
+        //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
+		TNT1 A 0 A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
+        //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
+		TNT1 A 0 A_CustomMissile("VulcanTrail", 0, 0, 0)
+        Loop
+
+      Death:
+        TNT1 A 0 BRIGHT A_Scream
+        TNT1 AAAAA 0 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
+        //A_CustomMissile("CyberVulcanSparkle2", 0, 0, Random(-180, 180), 2, Random(-100, 100))
+		TNT1 A 1
+        Stop
+    }
+}
+
+actor VulcanAmmo: Ammo
+{
+    Inventory.MaxAmount 200
+    Ammo.BackpackMaxAmount 200
+    +IGNORESKILL
+    +UNDROPPABLE
+}
+
+actor CyberVulcanSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    ReactionTime 18
+    
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("CyberVulcanSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+        
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+Actor VulcanTrail
+{ 
+    Alpha 0.75
+    Scale 0.15
+    Damage 0
+    Speed 0
+    +NOCLIP
+    -SOLID
+    +CLIENTSIDEONLY
+    SeeSound ""
+    DeathSound ""
+    RenderStyle Add
+    States
+    {
+      Spawn:
+        CYVL A 4 BRIGHT
+        Stop
+    }
+}
+
+actor CyberVulcanSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.5
+    
+    States
+    {
+      Spawn:
+        CYMG Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}

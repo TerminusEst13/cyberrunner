@@ -1,0 +1,223 @@
+actor CannotIntoShotgun : ParkmoreCounter { }
+actor CannotIntoCarbine : ParkmoreCounter { }
+actor CannotIntoVulcan : ParkmoreCounter { }
+actor CannotIntoSuper : ParkmoreCounter { }
+actor CannotIntoWallhack : ParkmoreCounter { }
+
+actor WepPickup: CustomInventory
+{
+    +AUTOACTIVATE
+    Inventory.MaxAmount 0
+
+    RenderStyle Add
+    Alpha 0.95
+
+    +NOGRAVITY
+    +FLOATBOB
+
+    Radius 48
+    Height 48
+
+    States
+    {
+      CheckStay:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(418), "PickupFail")
+        stop
+
+      PickupFail:
+        TNT1 A 0
+        fail
+    }
+}
+
+actor CyberShotgunPickup: WepPickup replaces SuperShotgun 15501
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUN"
+    Inventory.PickupSound "shotgun/pickup"
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		CYSG Z 1 ACS_ExecuteAlways(422,0,0)
+	  Spawn2:
+        //CYSG Z 2 bright A_SpawnItemEx("CyberShotgunSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
+        CYSG Z -1 bright
+        loop
+
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("CannotIntoShotgun", 1, "PickupFail")
+        TNT1 A 0 A_JumpIfInventory("Cyber Shotgun", 0, 1)    goto Pickup2
+        TNT1 A 0 A_JumpIfInventory("ShotgunAmmo", 0, "PickupFail")    goto Pickup2
+
+      Pickup2:
+		TNT1 A 0 A_GiveInventory("ShotgunAmmo", 999)
+        TNT1 A 0 A_GiveInventory("Cyber Shotgun")
+		TNT1 A 0 A_GiveInventory("CannotIntoShotgun", 175)
+
+		TNT1 A 0 A_PlaySound("shotgun/pickup", CHAN_ITEM)
+		TNT1 A 0 A_SetBlend("FF C0 00", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+actor CyberCarbinePickup: WepPickup replaces PlasmaRIfle 15502
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CARBINE"
+    Inventory.PickupSound "carbine/pickup"
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		CYCB Z 1 ACS_ExecuteAlways(422,0,1)
+	  Spawn2:
+        //CYCB Z 2 bright A_SpawnItemEx("CyberCarbineSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
+        CYCB Z -1 bright
+        loop
+
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("CannotIntoCarbine", 1, "PickupFail")
+        TNT1 A 0 A_JumpIfInventory("Cyber Carbine", 0, 1)    goto Pickup2
+        TNT1 A 0 A_JumpIfInventory("CarbineAmmo", 0, "PickupFail")    goto Pickup2
+
+      Pickup2:
+		TNT1 A 0 A_GiveInventory("CarbineAmmo", 999)
+        TNT1 A 0 A_GiveInventory("Cyber Carbine")
+		TNT1 A 0 A_GiveInventory("CannotIntoCarbine", 175)
+
+		TNT1 A 0 A_PlaySound("carbine/pickup", CHAN_ITEM)
+		TNT1 A 0 A_SetBlend("80 FF 80", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+actor CyberVulcanPickup: WepPickup replaces Chaingun 15503
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.PickupSound "vulcan/pickup"
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		CYMG Z 1 ACS_ExecuteAlways(422,0,2)
+	  Spawn2:
+        //CYMG Z 2 bright A_SpawnItemEx("CyberVulcanSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
+        CYMG Z -1 bright
+        loop
+
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("CannotIntoVulcan", 1, "PickupFail")
+        TNT1 A 0 A_JumpIfInventory("Cyber Vulcan", 0, 1)    goto Pickup2
+        TNT1 A 0 A_JumpIfInventory("VulcanAmmo", 0, "PickupFail")    goto Pickup2
+
+      Pickup2:
+		TNT1 A 0 A_GiveInventory("VulcanAmmo", 999)
+        TNT1 A 0 A_GiveInventory("Cyber Vulcan")
+		TNT1 A 0 A_GiveInventory("CannotIntoVulcan", 175)
+
+		TNT1 A 0 A_PlaySound("vulcan/pickup", CHAN_ITEM)
+		TNT1 A 0 A_SetBlend("FF 80 FF", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+actor CyberCannonPickup: WepPickup replaces BFG9000 15504
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CANNON"
+    Inventory.PickupSound "hammer/pickup"
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		CYCN Z 1 ACS_ExecuteAlways(422,0,10)
+	  Spawn2:
+        CYCN Z -1 bright
+        loop
+
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("CannotIntoSuper", 1, "PickupFail")
+        TNT1 A 0 A_JumpIfInventory("Celestial Hammer", 0, 1)    goto Pickup2
+        TNT1 A 0 A_JumpIfInventory("CannonAmmo", 0, "PickupFail")    goto Pickup2
+	  
+	  Pickup2:
+		TNT1 A 0 A_GiveInventory("CannonAmmo", 999)
+        TNT1 A 0 A_GiveInventory("Celestial Hammer")
+		TNT1 A 0 A_GiveInventory("CannotIntoSuper", 350)
+
+		TNT1 A 0 A_PlaySound("hammer/pickup", CHAN_ITEM)
+		TNT1 A 0 A_SetBlend("FF FF FF", 0.25, 8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(428), "PickupFail")
+        stop
+
+      PickupFail:
+        TNT1 A 0
+        fail
+    }
+}
+
+actor PurgeRiflePickup : WepPickup 15505
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_INSTAGIB"
+	Inventory.PickupSound "purge/up"
+	
+	States
+	{
+	  Spawn:
+	    TNT1 A 1
+        CYIG Z 1 bright ACS_ExecuteAlways(422, 0, 7)
+	  Spawn2:
+	    CYIG Z -1 bright
+		loop
+
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("CannotIntoSuper", 1, "PickupFail")
+        TNT1 A 0 A_JumpIfInventory("Purge Rifle", 0, 1)    goto Pickup2
+        TNT1 A 0 A_JumpIfInventory("InstagibCarbineAmmo", 0, "PickupFail")    goto Pickup2
+	  
+	  Pickup2:
+	    TNT1 A 0 A_GiveInventory("InstagibCarbineAmmo", 999)
+        TNT1 A 0 A_GiveInventory("Purge Rifle")
+		TNT1 A 0 A_GiveInventory("CannotIntoSuper", 350)
+
+		TNT1 A 0 A_PlaySound("purge/up", CHAN_ITEM)
+		TNT1 A 0 A_SetBlend("FF FF 00", 0.25, 8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(428), "PickupFail")
+        stop
+
+      PickupFail:
+        TNT1 A 0
+        fail
+	}
+}
+
+actor 404PickupNotFound
+{
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor ChainsawNotFound: 404PickupNotFound replaces Chainsaw {}
+actor ShotgunNotFound:  404PickupNotFound replaces Shotgun {}
+actor RLNotFound:       404PickupNotFound replaces RocketLauncher {}
+
+actor ClipNotFound:     404PickupNotFound replaces Clip {}
+actor ShellNotFound:    404PickupNotFound replaces Shell {}
+actor RocketNotFound:   404PickupNotFound replaces RocketAmmo {}
+actor CellNotFound:     404PickupNotFound replaces Cell {}
+
+actor Clip2NotFound:    404PickupNotFound replaces ClipBox {}
+actor Shell2NotFound:   404PickupNotFound replaces ShellBox {}
+actor Rocket2NotFound:  404PickupNotFound replaces RocketBox {}
+actor Cell2NotFound:    404PickupNotFound replaces CellPack {}
+
+actor BackpackNotFound: 404PickupNotFound replaces Backpack {}

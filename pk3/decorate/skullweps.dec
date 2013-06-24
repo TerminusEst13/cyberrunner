@@ -1,0 +1,32 @@
+actor Minigun : Chaingun 5014
+{
+    Weapon.SlotNumber 8
+    Game Doom
+    SpawnID 214
+}
+
+actor GrenadeLauncher : RocketLauncher 5011
+{
+    Weapon.SlotNumber 8
+    Game Doom
+    SpawnID 163
+}
+
+actor Railgun : PlasmaRifle 5012
+{
+    Weapon.SlotNumber 8
+    Game Doom
+    SpawnID 164
+}
+
+actor BFG10k : BFG9000 5013
+{
+    Weapon.SlotNumber 8
+    Game Doom
+    SpawnID 165
+}
+
+actor CyberShotgunPickup2 : CyberShotgunPickup replaces GrenadeLauncher {}
+actor CyberVulcanPickup2 : CyberVulcanPickup replaces Minigun {}
+actor CyberCarbinePickup2 : CyberCarbinePickup replaces Railgun {}
+actor CyberCannonPickup2 : CyberCannonPickup replaces BFG10k {}

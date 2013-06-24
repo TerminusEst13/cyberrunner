@@ -124,7 +124,7 @@ actor ParkmoreFloorChecker
     +NODAMAGETHRUST
     +CANNOTPUSH
 
-    Radius 16
+    Radius 12
     Height 1
 
     Mass 0x7FFFFFFF
@@ -135,6 +135,31 @@ actor ParkmoreFloorChecker
         TNT1 A 0
         stop
     }
+}
+
+// Used for walljump detection
+actor ParkmoreChecker2
+{
+    Radius 4
+    Height 16
+
+    +SOLID
+    +SERVERSIDEONLY
+
+    States
+    {
+      Spawn:
+        BAL1 A 105
+        stop
+    }
+}
+
+// Used for 3D floor detection
+actor ParkmoreChecker3
+{
+    Radius 0
+    Height 0
+    -SOLID
 }
 
 actor ParkmoreChecker: FastProjectile
@@ -150,6 +175,7 @@ actor ParkmoreChecker: FastProjectile
     +PUFFGETSOWNER
     +NOTIMEFREEZE
     +MOVEWITHSECTOR
+    +PAINLESS
 
     -ACTIVATEIMPACT
     -ACTIVATEPCROSS
@@ -219,8 +245,8 @@ actor ParkmoreCheckLedgeLip: ParkmoreChecker
 actor ParkmoreHeightFinder
 {
     Height 1
-    Radius 4
-    MaxStepHeight 256
+    Radius 2
+    MaxStepHeight 32
 
     +MOVEWITHSECTOR
     +CANPASS
@@ -313,6 +339,7 @@ actor ParkmoreCounter: Inventory
 actor CanWallBounce:    ParkmoreCounter {}
 actor OpenGrab:         ParkmoreCounter {}
 actor CanGrab:          ParkmoreCounter {}
+actor HasKicked:        ParkmoreCounter {}
 actor WaterIndicator:   ParkmoreCounter {}
 actor NoParkour:        ParkmoreCounter {}
 
@@ -358,6 +385,21 @@ actor FingerCruncher
 
       Death:
         TNT1 A 1 A_Explode(40, 8)
+        stop
+    }
+}
+
+actor PowerStayTheFuckStill: PowerSpeed
+{
+    Speed 0
+}
+
+actor ParkmoreUnloadingCheck: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 ACS_ExecuteWithResult(395, 2)
         stop
     }
 }

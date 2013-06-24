@@ -1,0 +1,277 @@
+actor 50Health: Health replaces Medikit 15301
+{
+    Radius 48
+    Height 48
+
+    Inventory.Amount 50
+    Inventory.PickupSound "pickups/health"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_50HEALTH"
+
+    RenderStyle Add
+    Alpha 0.9
+
+    +NOGRAVITY
+    +FLOATBOB
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		50HP Z 1 ACS_ExecuteAlways(422,0,6)
+	  Spawn2:
+        //50HP Z 2 bright A_SpawnItemEx("50HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        50HP Z -1 bright
+        loop
+    }
+}
+
+actor 50HPSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("50HPSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor 50HPSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.75
+
+    States
+    {
+      Spawn:
+        50HP Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
+
+actor 25Health: Health replaces Stimpack 15302
+{
+    Radius 48
+    Height 48
+
+    Inventory.Amount 25
+    Inventory.PickupSound "pickups/health2"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_25HEALTH"
+
+    RenderStyle Add
+    Alpha 0.9
+
+    +NOGRAVITY
+    +FLOATBOB
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		25HP Z 1 ACS_ExecuteAlways(422,0,8)
+	  Spawn2:
+        //25HP Z 2 bright A_SpawnItemEx("25HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        25HP Z -1 bright
+        loop
+    }
+}
+
+actor 25HPSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("25HPSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor 25HPSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.75
+
+    States
+    {
+      Spawn:
+        25HP Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
+
+
+
+actor 150Health: Health replaces Soulsphere 15303
+{
+    Radius 48
+    Height 48
+
+    Inventory.Amount 150
+    Inventory.PickupSound "pickups/health3"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_150HEALTH"
+
+    RenderStyle Add
+    Alpha 0.9
+
+    +NOGRAVITY
+    +FLOATBOB
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		1XHP Z 1 ACS_ExecuteAlways(422,0,11)
+	  Spawn2:
+        //25HP Z 2 bright A_SpawnItemEx("25HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
+        1XHP Z -1 bright
+        loop
+    }
+}
+
+
+actor RedSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("RedSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor RedSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.75
+
+    States
+    {
+      Spawn:
+        TURB X 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
+
+
+
+actor WhiteSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("WhiteSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor WhiteSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.75
+
+    States
+    {
+      Spawn:
+        TURB Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
+
+
+
+actor BlueSparkle
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    ReactionTime 18
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("BlueSparkle2")
+        TNT1 A 1 A_Countdown
+        loop
+
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor BlueSparkle2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.75
+
+    States
+    {
+      Spawn:
+        CYPL Y 1 bright A_FadeOut(0.05)
+        loop
+    }
+}
