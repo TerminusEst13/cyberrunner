@@ -1,4 +1,4 @@
-#define TERMCOUNT 33
+#define TERMCOUNT 35
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -35,7 +35,7 @@ int TerminalTexts[TERMCOUNT] =
 
 
 
-// CYRC01 - Terminal 02 - Page 1
+// CYRC02 - Terminal 02 - Page 1
 "It's absurd how much money goes into that damned Cyberrunner thing. How \
 \nmuch money do you actually need to bunch up some androids - that you \
 \ndidn't even make yourself - get them to record what they see, and then\
@@ -53,7 +53,7 @@ int TerminalTexts[TERMCOUNT] =
 \nbreeze. Humanity would finally leave the solar system. Teleportation\
 \nwould be outed as the best space travel method out there.",
 
-// CYRC01 - Terminal 02 - Page 2
+// CYRC02 - Terminal 02 - Page 2
 "But I guess the ratings are more important. Fucking hell, I hate the \
 \npublic. I mean, I guess it would be nice to escape the solar system, but \
 \nclearly watching some androids run through our scientific gold mines is\
@@ -194,7 +194,7 @@ int TerminalTexts[TERMCOUNT] =
 
 
 
-// CYRC02 - Terminal 02 - Page 1
+// CYRC00 - Terminal 02 - Page 1
 "All values valid for the last 86400 seconds.\
 \n\
 \nSYSTEM PERFORMANCE:\
@@ -212,7 +212,7 @@ int TerminalTexts[TERMCOUNT] =
 \n  91 failed connections in\
 \n  9238 failed connections out",
 
-// CYRC02 - Terminal 02 - Page 2
+// CYRC00 - Terminal 02 - Page 2
 "SECURITY:\
 \n  294 attempted root exploits\
 \n    199 from ffe0:9:a04d::9b47:cafb:1e53:fd\
@@ -374,7 +374,7 @@ int TerminalTexts[TERMCOUNT] =
 
 
 
-// CYDM01 - Terminal 1 - Page 1
+// CYDM02 - Terminal 1 - Page 1
 "Look, the problem is that your argument is fundamentally flawed. That\
 \nwhole emotion circuit, personality chip, etc, whatever you've seen in old\
 \nmovies? That doesn't fly here.\
@@ -387,7 +387,7 @@ int TerminalTexts[TERMCOUNT] =
 \n\
 \nHe just didn't feel anything.",
 
-// CYDM01 - Terminal 1 - Page 2
+// CYDM02 - Terminal 1 - Page 2
 "Let me ask you this: What's a personality? I'm no psych major, but I say it's\
 \na series of conditions and response patterns of thinking, feeling, and\
 \nbehaving depending on different circumstances. It's the different quirks and\
@@ -407,7 +407,7 @@ int TerminalTexts[TERMCOUNT] =
 \npeople would respond in one way at one moment and then another way at another\
 \nmoment in time. How do you properly represent that, man?",
 
-// CYDM01 - Terminal 1 - Page 3
+// CYDM02 - Terminal 1 - Page 3
 "Now, some of my best friends are robots, so one time at a party I got curious\
 \nand asked one of them how she felt about things. Of course, she said she was\
 \nhaving the time of her life--but being slightly drunk at the time I decided\
@@ -424,7 +424,7 @@ int TerminalTexts[TERMCOUNT] =
 \nto make sure everything's working fine. And then she suddenly does\
 \na complete 180?",
 
-// CYDM01 - Terminal 1 - Page 4
+// CYDM02 - Terminal 1 - Page 4
 "She paused for a minute, then shrugged. She told me we're all with friends.\
 \nWe're doing fun activities. Sure, it's not exactly healthy, but when we're\
 \nwith each other we throw caution to the wind and have a blast.\
@@ -520,9 +520,44 @@ int TerminalTexts[TERMCOUNT] =
 \n\
 \n    From the e-diary of:\
 \n    Heliodorus Vranas,\
-\n    U.N. Ambassador - Greece"
+\n    U.N. Ambassador - Greece",
 
-// CY???? - Wanderer
+
+
+// CYRC01 - Terminal 2 - Page 1
+"Look at you, slowing down and inspecting the world around you. You think\
+\nyou'll find anything interesting if you look around? Of course not.\
+\nAfter all, you're just here to race. Don't let me bother you.\
+\n\
+\nHere, have a poem:\
+\n\
+\n    With saintly grace and reverent tread,\
+\n    She walked among the graves with me;\
+\n    Her every foot-fall seemed to be\
+\n    A benediction on the dead.\
+\n\
+\n    The guardian spirit of the place\
+\n    She seemed, and I some ghost forlorn\
+\n    Surprised in the untimely morn\
+\n    She made with her resplendent face.",
+
+// CYRC01 - Terminal 2 - Page 2
+"    Moved by some waywardness of will,\
+\n    Three paces from the path apart\
+\n    She stepped and stood -- my prescient heart\
+\n    Was stricken with a passing chill.\
+\n\
+\n    The folk-lore of the years agone\
+\n    Remembering, I smiled and thought:\
+\n    'Who shudders suddenly at naught,\
+\n    His grave is being trod upon.'\
+\n\
+\n    But now I know that it was more\
+\n    Than idle fancy. O, my sweet,\
+\n    I did not think so little feet\
+\n    Could make a buried heart so sore!\
+\n\
+\n- Presentiment, by Ambrose Bierce",
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -636,13 +671,19 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(69, 70), TerminalTexts[31], "");
     ACS_ExecuteAlways(106, 0, packShorts(70, 71), TerminalTexts[32], "");
     ACS_ExecuteAlways(106, 0, packShorts(71, 0),  -("End of Diary Entry"), "SYSLOGO1");
+	
+    ACS_ExecuteAlways(106, 0, packShorts(72, 73), -("Single terminal seeks single reader"), "UNLOGO1"); // 72
+    ACS_ExecuteAlways(106, 0, packShorts(73, 74), TerminalTexts[23], "");
+    ACS_ExecuteAlways(106, 0, packShorts(74, 75), TerminalTexts[24], "");
+    ACS_ExecuteAlways(106, 0, packShorts(75, 0),  -("No prev relationship experience req'd"), "");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
-    SetMetadataRange(9, 12, "*e%7->", "c9a03-w3kc");
+    SetMetadataRange(9, 12, "e-diary", "#49A4x551");
     SetMetadataRange(13, 17, "zr/v-=", "zv!rs-d#cx");
-    SetMetadataRange(18, 21, "?'r,0\\", "7xz?3-.2iv");
+    SetMetadataRange(18, 21, "e-diary", "#vr13889i");;
     SetMetadataRange(22, 25, "Uplink Monitor", "localhost");
     SetMetadataRange(29, 58, "Testing Facility", "Race the Wind");
     SetMetadataRange(59, 64, "Cyberrunner League Fan Forum", "Comment 238 of 249");
     SetMetadataRange(65, 71, "e-diary", "#3833zA");
+    SetMetadataRange(72, 75, "neglect", "genuflect");
 }
