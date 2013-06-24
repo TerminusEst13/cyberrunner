@@ -673,8 +673,8 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(71, 0),  -("End of Diary Entry"), "SYSLOGO1");
 	
     ACS_ExecuteAlways(106, 0, packShorts(72, 73), -("Single terminal seeks single reader"), "UNLOGO1"); // 72
-    ACS_ExecuteAlways(106, 0, packShorts(73, 74), TerminalTexts[23], "");
-    ACS_ExecuteAlways(106, 0, packShorts(74, 75), TerminalTexts[24], "");
+    ACS_ExecuteAlways(106, 0, packShorts(73, 74), TerminalTexts[33], "");
+    ACS_ExecuteAlways(106, 0, packShorts(74, 75), TerminalTexts[34], "");
     ACS_ExecuteAlways(106, 0, packShorts(75, 0),  -("No prev relationship experience req'd"), "");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
