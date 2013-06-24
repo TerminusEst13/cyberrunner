@@ -250,7 +250,7 @@ script 400 ENTER
 
             x = FixedMul(x, 0.8); // This returns the result of two fixed-point numbers multiplied together. In this case, X (the previous definition) and 0.8
             y = FixedMul(y, 0.8); // Same with Y
-            if (z < 0) { z = FixedMul(z, 0.95); } // This checks to see if the player's Z movement is less than 0 (going downwards), and if so slows down the descent. Mid-air braking!
+            if (z < 0) { z = FixedMul(z, 0.7); } // This checks to see if the player's Z movement is less than 0 (going downwards), and if so slows down the descent. Mid-air braking!
 
             SetActorVelocity(0, x,y,z, 0,0); // This sets the TID of 0 (the player) x, y, and z velocities to what was previously determined. Does not Add or SetBob.
         }
