@@ -988,7 +988,7 @@ function void addTimer(int pln, int which, int add)
 
 function void addCTimers(int pln)
 {
-    int i = max(0, defaultCVar("cyber_dodgewindow",  8));
+    int i = max(0, defaultCVar("cyber_cl_dodgewindow",  8));
     //int j = max(0, defaultCVar("cyberrunner_hijumpwindow", 4));
 
     addTimer(pln, TIMER_CFORWARD,  keyPressed(BT_FORWARD)   * i);
