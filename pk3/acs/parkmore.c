@@ -960,11 +960,6 @@ script PARKMORE_OPEN open
         ConsoleCommand("archivecvar cyber_jumpcount");
     }
 
-    if (GetCVar("cyber_debug") == 0)
-    {
-        ConsoleCommand("set cyber_debug 0");
-    }
-
     IsServer = 1;
 
     int cjumps, oldcjumps;
@@ -1349,7 +1344,7 @@ script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
     int pln = PlayerNumber();
 
-    if (GetCVar("cyber_debug"))
+    if (GetCVar("cyber_cl_debug"))
     {
         PrintBold(s:"Activator is ", n:0, s:"\c- (idx ", d:pln, s:")\nExecuted on tic ", d:Timer(), s:"\nArgs: ", d:direction, s:", ", d:hijump, s:", ", d:mjump);
     }
