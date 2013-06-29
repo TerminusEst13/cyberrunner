@@ -743,8 +743,8 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(77, 78), -("Subject: Re: Submitting land for racing"), "CYBRLOG1"); // 77
     ACS_ExecuteAlways(106, 0, packShorts(78, 79), TerminalTexts[36], "");
     ACS_ExecuteAlways(106, 0, packShorts(79, 80), TerminalTexts[37], "");
-    ACS_ExecuteAlways(106, 0, packShorts(79, 80), TerminalTexts[38], "");
-    ACS_ExecuteAlways(106, 0, packShorts(80, 0),  -("Send reply?"), "");
+    ACS_ExecuteAlways(106, 0, packShorts(80, 81), TerminalTexts[38], "");
+    ACS_ExecuteAlways(106, 0, packShorts(81, 0),  -("Send reply?"), "");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "e-diary", "#49A4x551");
@@ -755,5 +755,5 @@ script 119 OPEN clientside
     SetMetadataRange(59, 65, "Cyberrunner League Fan Forum", "Comment 238 of 249");
     SetMetadataRange(66, 72, "e-diary", "#3833zA");
     SetMetadataRange(73, 76, "neglect", "genuflect");
-    SetMetadataRange(77, 80, "Recieved: June 17th", "Ceres Mail");
+    SetMetadataRange(77, 81, "Recieved: June 17th", "Ceres Mail");
 }
