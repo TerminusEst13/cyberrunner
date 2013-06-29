@@ -6,9 +6,17 @@ map CYDM01 "Ctrl+Alt+Deleted"
 
 map CYDM02 "Mars Needs Wi-Fi, Man"
 {
-    next = "CYDM01"
-    music = "M_CYDM02" // Rob Hubbard/d-Zire - Commando Theme
+    next = "CYDM03"
+    music = "M_CYDM02" // Skaven - Omniphiliac
 }
+
+map CYDM03 "Verticle Datapath"
+{
+    next = "CYDM01"
+    music = "M_CYDM03" // Descent - Lunar Outpost
+}
+
+
 
 map CYRC01 "Deep Fried"
 {
