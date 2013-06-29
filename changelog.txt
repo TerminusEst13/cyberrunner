@@ -1,0 +1,4 @@
+FROM 0.1 TO 0.11:
+===================
+- Added a new Deathmatch map, CYDM03: Verticle Datapath, by Revae!
+- Trimmed a few unused textures.
