@@ -40,7 +40,7 @@ The mode argument works like this:
  - Modes 3 and 4 are the same as 1 and 2, respectively, but will always set a checkpoint.
  - Mode 5 is the finishline! It's the big finisher that activates sudden death.
 
-The index argument is the number of the checkpoint. 105,1,1 is the first checkpoint, 105,1,2 is the second checkpoint, etc. Simple enough. Note, however, that the checkpoint's Sectors Tag MUST be 1!
+The index argument is the number of the checkpoint. 105,1,1 is the first checkpoint, 105,1,2 is the second checkpoint, etc. Simple enough.
 
 For most intents and purposes, you can keep nextToBe set to 0. Starting your checkpoints at index 1 is suggested, and if you have a track that loops, set the "lap line" to checkpoint 0. If you do a lapping map, you must use checkpoints, even if you don't then teleport the player to those checkpoints.
 
