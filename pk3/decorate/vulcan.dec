@@ -48,7 +48,7 @@ actor VulcanShot: FastProjectile
     Height 8
 
     Projectile
-    Speed 300
+    Speed 275
     Damage (10)
 
     Scale 0.25

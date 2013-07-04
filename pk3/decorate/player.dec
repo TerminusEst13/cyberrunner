@@ -568,18 +568,20 @@ actor CyberDashDamage
     Radius 1
     Height 1
     Speed 0
-	+FORCERADIUSDMG
+    +FORCERADIUSDMG
     +NOTELEPORT
     +NOCLIP
-	+NODAMAGETHRUST
+    +NODAMAGETHRUST
+    +PIERCEARMOR
+    +DONTREFLECT
     -SOLID
     Obituary "$CYBERRUNNER_OB_DASH"
-	DamageType "DashDamage"
+    DamageType "DashDamage"
     States
     {
       Spawn:
 		TNT1 A 1
-        TNT1 A 1 A_Explode(400,16,0)
+        TNT1 A 1 A_Explode(500,16,0)
         stop
     }
 }

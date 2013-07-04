@@ -2,3 +2,11 @@ FROM 0.1 TO 0.11:
 ===================
 - Added a new Deathmatch map, CYDM03: Verticle Datapath, by Revae!
 - Trimmed a few unused textures.
+- Rephrased some obituaries due to incorrect/lame terminology.
+- The Shotgun's tracers now show up in non-Doom games.
+- Weapon balance has been completely redone using the power of MATH, rather than "what feels right".
+ ^-: Carbine now does 180 damage every 50 tics. 180/50 = 3.6, 3.6*35 = average 126 damage a second. 21 damage buff.
+ ^-: Shotgun does 10*4(1d3) and 15*3(1d3), 80+90 = 170, 170/40 = 4.25, 4.25*35 = average 148.75 damage a second. 8.75 damage buff.
+ ^-: Vulcan has had its ammo halved in LMS, with 3 tics at 500 ammo being 1500/35 = 42.85[...] seconds of firing. Its projectile speed has also been decreased from 300 to 275.
+ ^-: Running people over has had its damage boosted from 400 to 500, to ensure sure-kills.
+- Running people over no longer can be reflected back and kill the Runner. That was weird.
