@@ -12,3 +12,5 @@ FROM 0.1 TO 0.11:
  ^-: Running people over has had its damage boosted from 400 to 500, to ensure sure-kills.
 - Running people over no longer can be reflected back and kill the Runner. That was weird.
 - Ammo numbers for the Shotgun, Carbine, Purge Rifle, and Hammer have been centered in the bar HUD.
+- The Cyberrunner tutorial, racing maps, and deathmatch maps are now accessible from the main menu.
+- CYRC02's final teleporter at the end now has proper alignment.
