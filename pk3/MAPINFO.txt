@@ -1,3 +1,18 @@
+episode CYRTUT
+{
+    name = "Cyberrunner - Tutorial"
+}
+
+episode CYRC01
+{
+    name = "Cyberrunner - Racing League"
+}
+
+episode CYDM01
+{
+    name = "Cyberrunner - Deletematch"
+}
+
 map CYDM01 "Ctrl+Alt+Deleted"
 {
     next = "CYDM02"
@@ -15,8 +30,6 @@ map CYDM03 "Verticle Datapath"
     next = "CYDM01"
     music = "M_CYDM03" // Descent - Lunar Outpost
 }
-
-
 
 map CYRC01 "Deep Fried"
 {
