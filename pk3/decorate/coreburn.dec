@@ -15,7 +15,7 @@ actor RawEnergy : CustomInventory replaces Berserk 15506
     {
     Spawn:
 	  TNT1 A 1
-	  CBRN W 1 ACS_ExecuteAlways(422,0,9)
+	  CBRN W 1 //ACS_ExecuteAlways(422,0,9)
 	Spawn2:
 	  CBRN W 1
       CBRN W 35 BRIGHT A_PlaySound("core/idle")
