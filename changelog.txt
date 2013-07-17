@@ -14,3 +14,6 @@ FROM 0.1 TO 0.11:
 - Ammo numbers for the Shotgun, Carbine, Purge Rifle, and Hammer have been centered in the bar HUD.
 - The Cyberrunner tutorial, racing maps, and deathmatch maps are now accessible from the main menu.
 - There is now a Quake-style when-shot-connects sound indicator, toggled via cyber_cl_hitindicator.
+- Various tweaks across both CYRC01 and CYRC02, adjusting textures and tweaking the ACS.
+- The race maps now refill health and boosts upon enter.
+- cyber_cl_particles has been removed, in an attempt to combat the crashing that some people are having.
