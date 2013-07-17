@@ -20,3 +20,4 @@ FROM 0.1 TO 0.11:
 - For vanilla jumping maps with combat, ammo drops have been added for the weapons. They replace the big ammo packs and have about a quarter of the weapon's total ammo capacity.
 - Nothing has changed in CYRTUT.
 - With Zandronum's update to 1.1, the Shotgun now has FBF_NORANDOM for normalized damage.
+- CYDM02 has had the side nodes removed.
