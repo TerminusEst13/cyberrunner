@@ -6,6 +6,23 @@ actor CannonAmmo: Ammo
     +UNDROPPABLE
 }
 
+actor HammerAmmoPickup : CannonAmmo replaces CellPack
+{
+    +NOGRAVITY
+    +FLOATBOB
+    RenderStyle Add
+    Alpha 0.95
+    Inventory.PickupSound "pickups/amsmal"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CANNONAM"
+    Inventory.Amount 1
+    States
+    {
+    Spawn:
+      AMHM A -1
+      Stop
+    }
+}
+
 actor "Celestial Hammer": CyberrunnerWeapon
 {
     Weapon.AmmoType1 "CannonAmmo"

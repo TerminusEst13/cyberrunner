@@ -6,6 +6,23 @@ actor CarbineAmmo: Ammo
     +UNDROPPABLE
 }
 
+actor CarbineAmmoPickup : CarbineAmmo replaces RocketBox
+{
+    +NOGRAVITY
+    +FLOATBOB
+    RenderStyle Add
+    Alpha 0.95
+    Inventory.PickupSound "pickups/amsmal"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CARBINEAM"
+    Inventory.Amount 4
+    States
+    {
+    Spawn:
+      AMCR A -1
+      Stop
+    }
+}
+
 actor "Cyber Carbine": CyberrunnerWeapon
 {
     Weapon.AmmoType1 "CarbineAmmo"

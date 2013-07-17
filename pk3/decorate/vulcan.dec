@@ -8,7 +8,7 @@ actor "Cyber Vulcan": CyberrunnerWeapon
     Weapon.SlotNumber 4
 	Weapon.UpSound "vulcan/up"
     
-    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCANAM"
     Inventory.PickupSound "vulcan/pickup"
 
     States
@@ -87,6 +87,23 @@ actor VulcanAmmo: Ammo
     Ammo.BackpackMaxAmount 200
     +IGNORESKILL
     +UNDROPPABLE
+}
+
+actor VulcanAmmoPickup : VulcanAmmo replaces ClipBox
+{
+    +NOGRAVITY
+    +FLOATBOB
+    RenderStyle Add
+    Alpha 0.95
+    Inventory.PickupSound "pickups/amsmal"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.Amount 50
+    States
+    {
+    Spawn:
+      AMVL A -1
+      Stop
+    }
 }
 
 actor CyberVulcanSparkle

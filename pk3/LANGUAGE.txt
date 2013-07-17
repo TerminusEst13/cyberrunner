@@ -25,6 +25,11 @@ CYBERRUNNER_PK_INSTAGIB  = "\cfINSTAGIB!";
 CYBERRUNNER_PK_CANNON    = "\cjCelestial Hammer! Cause some impact events!";
 CYBERRUNNER_PK_CORE      = "\cgRaw energy surge!";
 
+CYBERRUNNER_PK_SHOTGUNAM = "\ciShotgun ammo!";
+CYBERRUNNER_PK_CARBINEAM = "\cdCarbine ammo!";
+CYBERRUNNER_PK_VULCANAM  = "\ctVulcan ammo!";
+CYBERRUNNER_PK_CANNONAM  = "\cjCelestial Hammer ammo!";
+
 CYBERRUNNER_PK_50HEALTH  = "\ca50 health!";
 CYBERRUNNER_PK_25HEALTH  = "\cd25 health!";
 CYBERRUNNER_PK_150HEALTH = "\cn150 health!";

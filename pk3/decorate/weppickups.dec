@@ -215,9 +215,9 @@ actor ShellNotFound:    404PickupNotFound replaces Shell {}
 actor RocketNotFound:   404PickupNotFound replaces RocketAmmo {}
 actor CellNotFound:     404PickupNotFound replaces Cell {}
 
-actor Clip2NotFound:    404PickupNotFound replaces ClipBox {}
+/*actor Clip2NotFound:    404PickupNotFound replaces ClipBox {}
 actor Shell2NotFound:   404PickupNotFound replaces ShellBox {}
 actor Rocket2NotFound:  404PickupNotFound replaces RocketBox {}
-actor Cell2NotFound:    404PickupNotFound replaces CellPack {}
+actor Cell2NotFound:    404PickupNotFound replaces CellPack {}*/
 
 actor BackpackNotFound: 404PickupNotFound replaces Backpack {}

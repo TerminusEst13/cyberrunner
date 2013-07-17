@@ -6,6 +6,23 @@ actor ShotgunAmmo: Ammo
     +UNDROPPABLE
 }
 
+actor ShotgunAmmoPickup : ShotgunAmmo replaces ShellBox
+{
+    +NOGRAVITY
+    +FLOATBOB
+    RenderStyle Add
+    Alpha 0.95
+    Inventory.PickupSound "pickups/amsmal"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_SHOTGUNAM"
+    Inventory.Amount 8
+    States
+    {
+    Spawn:
+      AMSH A -1
+      Stop
+    }
+}
+
 actor "Cyber Shotgun": CyberrunnerWeapon
 {
     Weapon.AmmoType1 "ShotgunAmmo"
