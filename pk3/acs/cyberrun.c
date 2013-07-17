@@ -872,7 +872,7 @@ script 427 (int snum, int a1, int a2)
 
 script 428 (void) { SetResultValue(!!GetCVar("cyber_superstay")); }
 
-script 429 (void)
+script 429 (void) CLIENTSIDE
 {
 	if (CheckInventory("CyberrunnerIndicator") == 1)
 	{
