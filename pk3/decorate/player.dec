@@ -573,7 +573,9 @@ actor CyberDashDamage
 	+FORCERADIUSDMG
     +NOTELEPORT
     +NOCLIP
-	+NODAMAGETHRUST
+    +NODAMAGETHRUST
+    +PIERCEARMOR
+    +DONTREFLECT 
     -SOLID
     Obituary "$CYBERRUNNER_OB_DASH"
 	DamageType "DashDamage"
@@ -581,7 +583,7 @@ actor CyberDashDamage
     {
       Spawn:
 		TNT1 A 1
-        TNT1 A 1 A_Explode(400,16,0)
+        TNT1 A 1 A_Explode(500,16,0)
         stop
     }
 }
