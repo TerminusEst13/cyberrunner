@@ -875,7 +875,12 @@ script 428 (void) { SetResultValue(!!GetCVar("cyber_superstay")); }
 script 429 (void)
 {
 	if (CheckInventory("CyberrunnerIndicator") == 1)
-	{ LocalAmbientSound("hit/indicator", 127); }
+	{
+	LocalAmbientSound("hit/indicator", 127);
+	GiveInventory("CyberHitOpponent",1);
+	Delay(1);
+	TakeInventory("CyberHitOpponent",1);
+	}
 }
 
 script 499 (void)

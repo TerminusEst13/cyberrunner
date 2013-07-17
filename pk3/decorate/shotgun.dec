@@ -94,8 +94,14 @@ actor ShotgunPuff
     {
       Spawn:
         TNT1 A 1
+		TNT1 A 0 A_GiveToTarget("CyberHitIndicator")
         TNT1 A 0 ACS_ExecuteWithResult(412)
         goto AfterTracer
+		
+	  Crash:
+	    TNT1 A 1
+		TNT1 A 0 ACS_ExecuteWithResult(412)
+		goto AfterTracer
         
       AfterTracer:
         TNT1 AA 0 A_SpawnItemEx("ShotgunSpark", 0,0,0, random(0,60)/10.0, 0, random(0,60)/10.0, random(0,360))

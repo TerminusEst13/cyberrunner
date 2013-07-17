@@ -68,6 +68,10 @@ actor VulcanShot: FastProjectile
 		TNT1 A 0 A_CustomMissile("VulcanTrail", 0, 0, 0)
         Loop
 
+      XDeath:
+	    TNT1 A 0
+		TNT1 A 0 A_GiveToTarget("CyberHitIndicator")
+      Crash:
       Death:
         TNT1 A 0 BRIGHT A_Scream
         TNT1 AAAAA 0 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
