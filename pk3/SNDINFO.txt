@@ -34,6 +34,7 @@ cybland3			CYBPLND3
 // =============
 
 tele/port		TELYPROT
+hit/indicator	CYBERHIT
 powercore/boom  COREBOOM // Taken from Devil May Cry 3
 
 world/jumppad1      sounds/systems/jumppad1.wav   // Unreal jump boots sound
