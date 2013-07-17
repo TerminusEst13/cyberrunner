@@ -17,3 +17,4 @@ FROM 0.1 TO 0.11:
 - Various tweaks across both CYRC01 and CYRC02, adjusting textures and tweaking the ACS.
 - The race maps now refill health and boosts upon enter.
 - cyber_cl_particles has been removed, in an attempt to combat the crashing that some people are having.
+- For vanilla jumping maps with combat, ammo drops have been added for the weapons. They replace the big ammo packs and have about a quarter of the weapon's total ammo capacity.
