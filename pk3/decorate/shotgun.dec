@@ -49,8 +49,8 @@ actor "Cyber Shotgun": CyberrunnerWeapon
         TNT1 A 0 A_JumpIfInventory("WallHackVision",1,"DryFire")
         TNT1 A 0 A_JumpIfNoAmmo("DryFire")
         TNT1 A 0 A_PlaySound("shotgun/fire", CHAN_WEAPON)
-        TNT1 A 0 A_FireBullets(4, 3, 10, 4, "ShotgunPuff")
-        TNT1 A 0 A_FireBullets(4, 3, 15, 3, "ShotgunPuffNoTracer", 0)
+        TNT1 A 0 A_FireBullets(4, 3, 10, 7, "ShotgunPuff", FBF_USEAMMO | FBF_NORANDOM)
+        TNT1 A 0 A_FireBullets(4, 3, 15, 7, "ShotgunPuffNoTracer", FBF_NORANDOM)
         TNT1 A 20
         TNT1 A 10 A_PlaySound("shotgun/load", 5)
         TNT1 A 10 A_WeaponReady(12)
