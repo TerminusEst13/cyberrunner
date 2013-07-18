@@ -883,6 +883,16 @@ script 429 (void) CLIENTSIDE
 	}
 }
 
+script 430 (int changelogshit2) NET CLIENTSIDE
+{
+switch (changelogshit2)
+{
+        case 1:
+        Log(s:ChangelogCyber);
+        break;
+}
+}
+
 script 499 (void)
 {
 	Thing_ChangeTID(0, 16171);

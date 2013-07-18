@@ -1,6 +1,6 @@
 FROM 0.1 TO 0.11:
 ===================
-- Added a new Deathmatch map, CYDM03: Verticle Datapath, by Revae!
+- Added a new Deathmatch map, CYDM03: Vertical Datapath, by Revae!
 - Trimmed a few unused textures.
 - Rephrased some obituaries due to incorrect/lame terminology.
 - The Shotgun's tracers now show up in non-Doom games.
@@ -22,3 +22,4 @@ FROM 0.1 TO 0.11:
 - With Zandronum's update to 1.1, the Shotgun now has FBF_NORANDOM for normalized damage.
 - CYDM02 has had the side nodes removed.
 - CYRC02 has been rendered more open for easier navigation, with temporary additional structures for easier traversing until it can be put later in the map rotation.
+- cyber_changelog has been implemented.

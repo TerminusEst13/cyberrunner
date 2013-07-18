@@ -25,7 +25,7 @@ map CYDM02 "Mars Needs Wi-Fi, Man"
     music = "M_CYDM02" // Skaven - Omniphiliac
 }
 
-map CYDM03 "Verticle Datapath"
+map CYDM03 "Vertical Datapath"
 {
     next = "CYDM01"
     music = "M_CYDM03" // Descent - Lunar Outpost

@@ -25,3 +25,5 @@ addmenukey "Toggle Timer" cybertime
 alias cyberturn180 "puke -385 180 2"
 alias cybercenterview "puke -388 0"
 alias cyberptoggle "puke -375"
+
+alias cyber_changelog "puke -430 1"
