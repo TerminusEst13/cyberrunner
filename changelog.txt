@@ -21,3 +21,4 @@ FROM 0.1 TO 0.11:
 - Nothing has changed in CYRTUT.
 - With Zandronum's update to 1.1, the Shotgun now has FBF_NORANDOM for normalized damage.
 - CYDM02 has had the side nodes removed.
+- CYRC02 has been rendered more open for easier navigation, with temporary additional structures for easier traversing until it can be put later in the map rotation.
