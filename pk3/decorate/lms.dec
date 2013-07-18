@@ -14,8 +14,8 @@ actor ShotgunAmmo2: Ammo
 
 actor VulcanAmmo2: Ammo
 {
-    Inventory.MaxAmount 1000
-    Ammo.BackpackMaxAmount 1000
+    Inventory.MaxAmount 500
+    Ammo.BackpackMaxAmount 500
     +INVENTORY.IGNORESKILL
 }
 

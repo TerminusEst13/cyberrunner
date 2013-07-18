@@ -8,7 +8,7 @@ actor "Cyber Vulcan": CyberrunnerWeapon
     Weapon.SlotNumber 4
 	Weapon.UpSound "vulcan/up"
     
-    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCANAM"
     Inventory.PickupSound "vulcan/pickup"
 
     States
@@ -44,12 +44,12 @@ actor "Cyber Vulcan": CyberrunnerWeapon
 
 actor VulcanShot: FastProjectile
 {
-    Radius 8
-    Height 8
+    Radius 6
+    Height 6
 
     Projectile
     Speed 300
-    Damage (10)
+    Damage (7)
 
     Scale 0.25
     RenderStyle Add
@@ -68,6 +68,10 @@ actor VulcanShot: FastProjectile
 		TNT1 A 0 A_CustomMissile("VulcanTrail", 0, 0, 0)
         Loop
 
+      XDeath:
+	    TNT1 A 0
+		TNT1 A 0 A_GiveToTarget("CyberHitIndicator")
+      Crash:
       Death:
         TNT1 A 0 BRIGHT A_Scream
         TNT1 AAAAA 0 BRIGHT A_SpawnItemEx("CyberVulcanSparkle2", 0, 0, 0, random(0, 60)/10.0, 0, random(0, 60)/10.0, random(0, 360))
@@ -83,6 +87,23 @@ actor VulcanAmmo: Ammo
     Ammo.BackpackMaxAmount 200
     +IGNORESKILL
     +UNDROPPABLE
+}
+
+actor VulcanAmmoPickup : VulcanAmmo replaces ClipBox
+{
+    +NOGRAVITY
+    +FLOATBOB
+    RenderStyle Add
+    Alpha 0.95
+    Inventory.PickupSound "pickups/amsmal"
+    Inventory.PickupMessage "$CYBERRUNNER_PK_VULCAN"
+    Inventory.Amount 50
+    States
+    {
+    Spawn:
+      AMVL A -1
+      Stop
+    }
 }
 
 actor CyberVulcanSparkle

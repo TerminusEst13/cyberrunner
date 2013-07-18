@@ -14,6 +14,7 @@ Revae:
  - Oh, and converting the animations to sprites.
  - And 16 different rotations.
  - For a total of 350+ frames! Hot damn!
+ - CYDM03: Verticle Datapath
 
 
 GENERAL:
@@ -47,6 +48,7 @@ MAPS:
 - Mik57 (CYDM01: Ctrl+Alt+Deleted)
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
 - Evil Space Tomato (CYDM02: Mars Needs Wi-Fi, Man)
+- Revae (CYDM03: Verticle Datapath)
 
 CODE:
 =========
@@ -90,6 +92,7 @@ MUSIC:
 - Unknown: Gallahad's [sic] Theme (D_STLOSE)
 - Kyle Richards: Crythania (M_HURRY) 
 - zabutom: Sine Ride (Sped up - M_SCORES)
+- Descent: Lunar Outpust (CYDM03: Verticle Datapath)
 
 STORY:
 =========

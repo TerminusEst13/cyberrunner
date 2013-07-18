@@ -1,3 +1,18 @@
+episode CYRTUT
+{
+    name = "Cyberrunner - Tutorial"
+}
+
+episode CYRC01
+{
+    name = "Cyberrunner - Racing League"
+}
+
+episode CYDM01
+{
+    name = "Cyberrunner - Deletematch"
+}
+
 map CYDM01 "Ctrl+Alt+Deleted"
 {
     next = "CYDM02"
@@ -6,8 +21,14 @@ map CYDM01 "Ctrl+Alt+Deleted"
 
 map CYDM02 "Mars Needs Wi-Fi, Man"
 {
+    next = "CYDM03"
+    music = "M_CYDM02" // Skaven - Omniphiliac
+}
+
+map CYDM03 "Vertical Datapath"
+{
     next = "CYDM01"
-    music = "M_CYDM02" // Rob Hubbard/d-Zire - Commando Theme
+    music = "M_CYDM03" // Descent - Lunar Outpost
 }
 
 map CYRC01 "Deep Fried"

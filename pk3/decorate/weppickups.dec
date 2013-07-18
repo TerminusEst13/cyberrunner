@@ -39,7 +39,7 @@ actor CyberShotgunPickup: WepPickup replaces SuperShotgun 15501
     {
       Spawn:
 		TNT1 A 1
-		CYSG Z 1 ACS_ExecuteAlways(422,0,0)
+		CYSG Z 1 //ACS_ExecuteAlways(422,0,0)
 	  Spawn2:
         //CYSG Z 2 bright A_SpawnItemEx("CyberShotgunSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
         CYSG Z -1 bright
@@ -70,7 +70,7 @@ actor CyberCarbinePickup: WepPickup replaces PlasmaRIfle 15502
     {
       Spawn:
 		TNT1 A 1
-		CYCB Z 1 ACS_ExecuteAlways(422,0,1)
+		CYCB Z 1 //ACS_ExecuteAlways(422,0,1)
 	  Spawn2:
         //CYCB Z 2 bright A_SpawnItemEx("CyberCarbineSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
         CYCB Z -1 bright
@@ -101,7 +101,7 @@ actor CyberVulcanPickup: WepPickup replaces Chaingun 15503
     {
       Spawn:
 		TNT1 A 1
-		CYMG Z 1 ACS_ExecuteAlways(422,0,2)
+		CYMG Z 1 //ACS_ExecuteAlways(422,0,2)
 	  Spawn2:
         //CYMG Z 2 bright A_SpawnItemEx("CyberVulcanSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
         CYMG Z -1 bright
@@ -132,7 +132,7 @@ actor CyberCannonPickup: WepPickup replaces BFG9000 15504
     {
       Spawn:
 		TNT1 A 1
-		CYCN Z 1 ACS_ExecuteAlways(422,0,10)
+		CYCN Z 1 //ACS_ExecuteAlways(422,0,10)
 	  Spawn2:
         CYCN Z -1 bright
         loop
@@ -167,7 +167,7 @@ actor PurgeRiflePickup : WepPickup 15505
 	{
 	  Spawn:
 	    TNT1 A 1
-        CYIG Z 1 bright ACS_ExecuteAlways(422, 0, 7)
+        CYIG Z 1 bright //ACS_ExecuteAlways(422, 0, 7)
 	  Spawn2:
 	    CYIG Z -1 bright
 		loop
@@ -215,9 +215,9 @@ actor ShellNotFound:    404PickupNotFound replaces Shell {}
 actor RocketNotFound:   404PickupNotFound replaces RocketAmmo {}
 actor CellNotFound:     404PickupNotFound replaces Cell {}
 
-actor Clip2NotFound:    404PickupNotFound replaces ClipBox {}
+/*actor Clip2NotFound:    404PickupNotFound replaces ClipBox {}
 actor Shell2NotFound:   404PickupNotFound replaces ShellBox {}
 actor Rocket2NotFound:  404PickupNotFound replaces RocketBox {}
-actor Cell2NotFound:    404PickupNotFound replaces CellPack {}
+actor Cell2NotFound:    404PickupNotFound replaces CellPack {}*/
 
 actor BackpackNotFound: 404PickupNotFound replaces Backpack {}

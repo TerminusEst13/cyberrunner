@@ -17,7 +17,7 @@ actor 50Health: Health replaces Medikit 15301
     {
       Spawn:
 		TNT1 A 1
-		50HP Z 1 ACS_ExecuteAlways(422,0,6)
+		50HP Z 1 //ACS_ExecuteAlways(422,0,6)
 	  Spawn2:
         //50HP Z 2 bright A_SpawnItemEx("50HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
         50HP Z -1 bright
@@ -82,7 +82,7 @@ actor 25Health: Health replaces Stimpack 15302
     {
       Spawn:
 		TNT1 A 1
-		25HP Z 1 ACS_ExecuteAlways(422,0,8)
+		25HP Z 1 //ACS_ExecuteAlways(422,0,8)
 	  Spawn2:
         //25HP Z 2 bright A_SpawnItemEx("25HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
         25HP Z -1 bright
@@ -149,7 +149,7 @@ actor 150Health: Health replaces Soulsphere 15303
     {
       Spawn:
 		TNT1 A 1
-		1XHP Z 1 ACS_ExecuteAlways(422,0,11)
+		1XHP Z 1 //ACS_ExecuteAlways(422,0,11)
 	  Spawn2:
         //25HP Z 2 bright A_SpawnItemEx("25HPSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
         1XHP Z -1 bright

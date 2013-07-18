@@ -136,3 +136,29 @@ int CRModeNames[MODECOUNT+1] = // These are the modes activated one after each o
     "Scoreboard", // Display the scoreboard
     "Sudden Death Abort", // Player who hit the switch left the game
 };
+
+int ChangelogCyber =
+"FROM V0.1 TO V0.11:\n\
+========================\n\
+- Added a new Deathmatch map, CYDM03: Vertical Datapath, by Revae!\n\
+- Trimmed a few unused textures.\n\
+- Rephrased some obituaries due to incorrect/lame terminology.\n\
+- The Shotgun's tracers now show up in non-Doom games.\n\
+- Weapon balance has been completely redone using the power of MATH, rather than 'what feels right'.\n\
+ ^-: Carbine now does 180 damage every 50 tics. 180/50 = 3.6, 3.6*35 = average 126 damage a second. 21 damage buff.\n\
+ ^-: Shotgun does 10*4(1d3) and 15*3(1d3), 80+90 = 170, 170/40 = 4.25, 4.25*35 = average 148.75 damage a second. 8.75 damage buff.\n\
+ ^-: Vulcan does two projectiles with 8 damage every 3 tics. [(2x8)/2]+(8/2) = 12 damage every 3 tics = 4, 4*35 = average 140 damage a second. 35 damage nerf.\n\
+ ^-: Vulcan has had its ammo halved in LMS, with 3 tics at 500 ammo being 1500/35 = 42.85[...] seconds of firing. Its radius and height has also been reduced from 8 to 6.\n\
+ ^-: Running people over has had its damage boosted from 400 to 500, to ensure sure-kills.\n\
+- Running people over no longer can be reflected back and kill the Runner. That was weird.\n\
+- Ammo numbers for the Shotgun, Carbine, Purge Rifle, and Hammer have been centered in the bar HUD.\n\
+- The Cyberrunner tutorial, racing maps, and deathmatch maps are now accessible from the main menu.\n\
+- There is now a Quake-style when-shot-connects sound indicator, toggled via cyber_cl_hitindicator.\n\
+- Various tweaks across both CYRC01 and CYRC02, adjusting textures and tweaking the ACS.\n\
+- The race maps now refill health and boosts upon enter.\n\
+- cyber_cl_particles has been removed, in an attempt to combat the crashing that some people are having.\n\
+- For vanilla jumping maps with combat, ammo drops have been added for the weapons. They replace the big ammo packs and have about a quarter of the weapon's total ammo capacity.\n\
+- Nothing has changed in CYRTUT.\n\
+- With Zandronum's update to 1.1, the Shotgun now has FBF_NORANDOM for normalized damage.\n\
+- CYDM02 has had the side nodes removed.\n\
+- CYRC02 has been rendered more open for easier navigation, with temporary additional structures for easier traversing until it can be put later in the map rotation.";

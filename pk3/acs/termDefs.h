@@ -1,4 +1,4 @@
-#define TERMCOUNT 36
+#define TERMCOUNT 39
 int TerminalTexts[TERMCOUNT] = 
 {
 // CYRC01 - Terminal 01 - Page 1
@@ -575,6 +575,49 @@ int TerminalTexts[TERMCOUNT] =
 \n    Could make a buried heart so sore!\
 \n\
 \n- Presentiment, by Ambrose Bierce",
+
+"                       From: Cyberrunner League <customers@cyberrunner.com>\
+\n                        To: Matthew A. Little <littlem@ceresmail.com>\
+\n\
+\nWe're excited to see your track, but we're going to need to clear a time\
+\nto meet with you and go over the track in person. Naturally, we're going to\
+\nneed to discuss things like turret placement, potentially adding a few extra\
+\nobstacles, and possibly even reforming chunks of the map to better suit flow\
+\nfor racing. All expenses paid by us, of course.\
+\nWe will gain ownership of the track, but you are allowed to retract your land\
+\nat any time to regain ownership.\
+\n\
+\nAlso, keep in mind that there will be lots of live weapon play going on here.\
+\nYou can't count on your land staying pristine and intact as the league goes\
+\non. We've done our best to minimize all possible collateral damage from the\
+\nweapons as possible, but...well. You've seen the tech demo of them in action.\
+\nAnd that's without the Celestial Hammer.",
+
+
+"\nThe turrets are much less of a worry, but when they get destroyed, they take\
+\nanything right next to them with them--including, in many cases, the ground.\
+\nWe'll pay for any repairs needed due to accidents and natural phenominae as\
+\ntime goes on, and we try our best to keep our tracks as unaltered as we can;\
+\nbut we can't guarantee that the track will be in the same shape post-repair.\
+\n\
+\nAlso, we'll need to streamline the land for the track. This means nothing\
+\ndistracting on the paths, and nothing that a runner could get caught on and\
+\ndecide to investigate. No one wants to see a runner poking at a dead critter\
+\nfor minutes, trying to figure out what it is; no one wants to watch a runner\
+\nread and re-read a paper. The Runners are sentient; what's to say they aren't\
+\ncurious as well?\
+\nMost of them will simply be interested in winning, going as fast as possible,\
+\nbut it's always good to prepare for the 'just in case' scenarios.",
+
+"Luckily, these two things usually don't necessitate many changes to a track;\
+\nwe are perfectly okay with multiple paths, awkward natural formations, nasty\
+\nhazards, and most tracks tend to be durable enough to take even the sheer\
+\nexplosive power of the Celestial Hammer. We have no doubts about your track\
+\nproviding a grand experience, and we hope the process of submission goes\
+\nsmoothly and successfully.\
+\n\
+\n         Best of luck,\
+\n     The Cyberrunner League",
 };
 
 function void SetMetadataRange(int start, int end, int title, int loc)
@@ -695,6 +738,13 @@ script 119 OPEN clientside
     ACS_ExecuteAlways(106, 0, packShorts(74, 75), TerminalTexts[34], "");
     ACS_ExecuteAlways(106, 0, packShorts(75, 76), TerminalTexts[35], "");
     ACS_ExecuteAlways(106, 0, packShorts(76, 0),  -("No prev relationship experience req'd"), "");
+	
+	// CYDM03 - 1
+    ACS_ExecuteAlways(106, 0, packShorts(77, 78), -("Subject: Re: Submitting land for racing"), "CYBRLOG1"); // 77
+    ACS_ExecuteAlways(106, 0, packShorts(78, 79), TerminalTexts[36], "");
+    ACS_ExecuteAlways(106, 0, packShorts(79, 80), TerminalTexts[37], "");
+    ACS_ExecuteAlways(106, 0, packShorts(80, 81), TerminalTexts[38], "");
+    ACS_ExecuteAlways(106, 0, packShorts(81, 0),  -("Send reply?"), "");
 
     SetMetadataRange(1, 4,  "xf%7-;", "ma&s-02c5z");
     SetMetadataRange(9, 12, "e-diary", "#49A4x551");
@@ -705,4 +755,5 @@ script 119 OPEN clientside
     SetMetadataRange(59, 65, "Cyberrunner League Fan Forum", "Comment 238 of 249");
     SetMetadataRange(66, 72, "e-diary", "#3833zA");
     SetMetadataRange(73, 76, "neglect", "genuflect");
+    SetMetadataRange(77, 81, "Recieved: June 17th", "Ceres Mail");
 }

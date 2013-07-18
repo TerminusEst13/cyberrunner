@@ -22,7 +22,7 @@ actor ForceVentAmmo : Ammo 15401
     {
       Spawn:
 		TNT1 A 1
-		VENT Z 1 ACS_ExecuteAlways(422,0,3)
+		VENT Z 1 //ACS_ExecuteAlways(422,0,3)
 	  Spawn2:
         //VENT Z 2 bright A_SpawnItemEx("ForceVentSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
         VENT Z -1 bright
@@ -88,7 +88,7 @@ actor CyberAllAmmo: CustomInventory 15452
     {
       Spawn:
 		TNT1 A 1
-		AMMO Z 1 ACS_ExecuteAlways(422,0,5)
+		AMMO Z 1 //ACS_ExecuteAlways(422,0,5)
 	  Spawn2:
         //AMMO Z 2 bright A_SpawnItemEx("AllAmmoSparkle", random(8, 24),0,random(16, 24), 0,0,random(2,5)/5.0, random(0,360))
         AMMO Z -1 bright

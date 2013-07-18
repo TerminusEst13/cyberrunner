@@ -1,6 +1,8 @@
 actor CyberRunnerClass : ParkmoreCounter {}
 actor CyberIdle : ParkmoreCounter {}
 actor CyberIsIdle : Boolean {}
+actor CyberrunnerIndicator : Boolean {}
+actor CyberHitOpponent : Boolean {}
 
 actor CyberPlayer : PlayerPawn
 {
@@ -360,6 +362,7 @@ actor CyberPlayer : PlayerPawn
 	    TNT1 A 0 A_TakeInventory("CyberIsIdle",999)
 		TNT1 A 0 A_TakeInventory("FancyTrails",999)
 	    TNT1 A 0 A_TakeInventory("CyberIdle",999)
+		//TNT1 A 0 A_GiveToTarget("CyberHitIndicator",1)
         CYBZ M 4 BRIGHT
         CYBZ E 0 A_JumpIfInventory("CyberBoostSpeed",1,"DashPain")
         goto Pain2
@@ -571,7 +574,9 @@ actor CyberDashDamage
 	+FORCERADIUSDMG
     +NOTELEPORT
     +NOCLIP
-	+NODAMAGETHRUST
+    +NODAMAGETHRUST
+    +PIERCEARMOR
+    +DONTREFLECT 
     -SOLID
     Obituary "$CYBERRUNNER_OB_DASH"
 	DamageType "DashDamage"
@@ -579,7 +584,24 @@ actor CyberDashDamage
     {
       Spawn:
 		TNT1 A 1
-        TNT1 A 1 A_Explode(400,16,0)
+        TNT1 A 1 A_Explode(500,16,0)
         stop
+    }
+}
+
+actor CyberHitIndicator: CustomInventory
+{
+    Inventory.MaxAmount 0
+    +AUTOACTIVATE
+    States
+    {
+       Spawn:
+         TNT1 A 1
+         stop
+		 
+	   Pickup:
+		 TNT1 A 1
+		 TNT1 A 1 ACS_ExecuteAlways(429,0,0,0,0)
+		 stop
     }
 }

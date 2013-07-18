@@ -763,6 +763,9 @@ script 424 (int pln, int startTime) clientside
             HudMessage(d:mph, s:"\c- mph"; HUDMSG_FADEOUT, 3500, CR_BRICK, 552.2, 64.0, 0.5, 0.5);
             break;
         }
+		
+		if (GetCvar("cyber_cl_hitindicator") == 1)	  { GiveInventory("CyberrunnerIndicator",1); }
+		else  { TakeInventory("CyberrunnerIndicator",1); }
 
         SetHudSize(800, 600, 1);
 
@@ -847,7 +850,14 @@ script 424 (int pln, int startTime) clientside
         ConsoleCommand("set cyber_cl_autotime 0");
         ConsoleCommand("archivecvar cyber_cl_autotime");
     }
+
+    if (!GetCVar("cyber_cl_hitindicator"))
+    {
+        ConsoleCommand("set cyber_cl_hitindicator 0");
+        ConsoleCommand("archivecvar cyber_cl_hitindicator");
+    }
 }*/
+
 
 script 426 (int pln) disconnect
 {
@@ -862,6 +872,27 @@ script 427 (int snum, int a1, int a2)
 }
 
 script 428 (void) { SetResultValue(!!GetCVar("cyber_superstay")); }
+
+script 429 (void) CLIENTSIDE
+{
+	if (CheckInventory("CyberrunnerIndicator") == 1)
+	{
+	LocalAmbientSound("hit/indicator", 127);
+	GiveInventory("CyberHitOpponent",1);
+	Delay(1);
+	TakeInventory("CyberHitOpponent",1);
+	}
+}
+
+script 430 (int changelogshit2) NET CLIENTSIDE
+{
+switch (changelogshit2)
+{
+        case 1:
+        Log(s:ChangelogCyber);
+        break;
+}
+}
 
 script 499 (void)
 {

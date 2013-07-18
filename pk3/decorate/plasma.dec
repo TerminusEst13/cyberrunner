@@ -80,6 +80,10 @@ actor PlasmaBolt: FastProjectile
         XLSS AABBCCDDEEFF 1 BRIGHT A_CustomMissile("PlasmaTrail",0,0,0)
         Loop
 
+      XDeath:
+	    TNT1 A 0
+		TNT1 A 0 A_GiveToTarget("CyberHitIndicator")
+      Crash:
       Death:
         XLSE A 0 A_CustomMissile("PlasmaClimbPush", 0,0,0, CMF_TRACKOWNER, 0)
         XLSE A 2 BRIGHT A_Scream

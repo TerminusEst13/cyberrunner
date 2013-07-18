@@ -262,8 +262,7 @@ actor "Purge Rifle": " Purge Rifle "
     States
     {
       Spawn:
-        CYIG Z 0 bright
-        CYIG Z -1 bright ACS_ExecuteAlways(422, 0, 7)
+        CYIG Z 2 bright //ACS_ExecuteAlways(422, 0, 7)
         loop
 
       Fire:
