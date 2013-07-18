@@ -15,6 +15,7 @@ user int cyber_cl_nocamerajerk = 0;
 user int cyber_cl_noledgegrab = 0;
 user int cyber_cl_autotime = 0;
 user int cyber_cl_dodgewindow = 8;
+user int cyber_cl_hitindicator = 0;
 
 // Speedometer (clientside)
 
