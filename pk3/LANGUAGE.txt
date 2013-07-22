@@ -21,6 +21,7 @@ CYBERRUNNER_PK_PLASMA    = "\cnPlasma!";
 CYBERRUNNER_PK_SHOTGUN   = "\ciShotgun!";
 CYBERRUNNER_PK_CARBINE   = "\cdCarbine!";
 CYBERRUNNER_PK_VULCAN    = "\ctVulcan!";
+CYBERRUNNER_PK_CLAW      = "\cgClaw!";
 CYBERRUNNER_PK_INSTAGIB  = "\cfINSTAGIB!";
 CYBERRUNNER_PK_CANNON    = "\cjCelestial Hammer! Cause some impact events!";
 CYBERRUNNER_PK_CORE      = "\cgRaw energy surge!";

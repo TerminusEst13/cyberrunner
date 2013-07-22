@@ -179,6 +179,12 @@ script 405 OPEN
         ConsoleCommand("archivecvar cyber_jumpmod");
     }
 
+    if (!GetCVar("cyber_claw"))
+    {
+        ConsoleCommand("set cyber_claw 0");
+        ConsoleCommand("archivecvar cyber_claw");
+    }
+
     for (i = 0; i < PLACEMAX; i++)
     {
         RemoveTime(i);
@@ -297,6 +303,11 @@ script 400 ENTER
         {
             SetActorProperty(0, APROP_Speed, speedmod); // Adjust the player's speed according to the cyber_runmod
             SetActorProperty(0, APROP_JumpZ, 12 * sqrt(jumpmod)); // Adjust the player's jump according to cyber_jumpmod
+        }
+        
+		if (GetCVar("cyber_claw") == 1)
+        {
+            GiveInventory("Cyber Claw", 1);
         }
 
         Delay(1); // One tic delay before the entire process runs again.

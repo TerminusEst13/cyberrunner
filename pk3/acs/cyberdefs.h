@@ -39,18 +39,18 @@ int BarGraphics[BARFONTCOUNT] = // These are the different graphics that make up
     "MPHBAR7", "MPHBAR8", "MPHBAR9", "MPHBAR10", "MPHBAR11", "MPHBAR12",
 };
 
-#define RECHARGECOUNT 10
+#define RECHARGECOUNT 11
 
 int RechargingItems[RECHARGECOUNT] = // These are the items that "recharge" over time, that are slowly removed or added to the player's inventory.
 {
     "DashCooldown", "JumpCooldown", "BoostCooldown", "PlasmaGunAmmo",
     "ForceVentAmmo", "CannotIntoShotgun", "CannotIntoCarbine",
-    "CannotIntoVulcan", "RedPlasmaGunAmmo", "CannotIntoSuper"
+    "CannotIntoVulcan", "RedPlasmaGunAmmo", "CannotIntoSuper", "CyberClawAmmo"
 };
 
 int RechargingTimes[RECHARGECOUNT][2] = // The max amount of an item, and whether 1 is given or -1 is taken.
 {
-    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1}, {1, -1}
+    {5, -1}, {5, -1}, {5, -1}, {15, 1}, {210, 1}, {1, -1}, {1, -1}, {1, -1}, {15, 1}, {1, -1}, {140, 1}
 };
 
 #define RAINBOWCOLORS 12

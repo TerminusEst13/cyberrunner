@@ -107,6 +107,12 @@ hammer/pickup  sounds/pickups/hammer_pickup.wav  // From Devil May Cry 3
 // Weapons
 // =============
 
+claw/hit		claw_hit // Devil May Cry 3
+claw/raise		claw_up // Tribes: Ascend
+claw/firehit	claw_yes
+claw/firemiss	claw_no // Devil May Cry 3
+claw/fireend    claw_end // Tribes: Ascend
+
 plasma/up       sounds/weapons/plasma_up.wav    // Unreal Tournament Pulse Rifle raise
 plasma/shot		PLASSHOT // Taken from Unreal Tournament 3
 plasma/hit		PLASHIT // Taken from Quake III

@@ -1,3 +1,9 @@
+FROM 0.11 TO 0.12:
+===================
+- The Cyber Claw now makes its appearance! A laser grapple hook with a range of 4072 units, it latches onto anything it hits and starts pulling the Runner in, allowing them to yank themselves to new areas or simply swing along. It is an optional weapon, activated via cvar of cyber_claw
+
+
+
 FROM 0.1 TO 0.11:
 ===================
 - Added a new Deathmatch map, CYDM03: Vertical Datapath, by Revae!
