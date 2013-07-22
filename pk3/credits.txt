@@ -7,6 +7,7 @@ Ijon Tichy:
  - Vast amounts of ACS, and some DECORATE.
  - The numbers and some punctuation of the smallfont.
  - CYRC02: Having Fun, Rocketboy?
+ - Cyber Claw code
  - Generally lots of shit.
 
 Revae:
