@@ -193,6 +193,37 @@ actor PurgeRiflePickup : WepPickup 15505
 	}
 }
 
+actor CyberClawPickup: WepPickup replaces Chainsaw 15506
+{
+    Inventory.PickupMessage "$CYBERRUNNER_PK_CLAW"
+    Inventory.PickupSound "claw/pickup"
+
+    States
+    {
+      Spawn:
+		TNT1 A 1
+		CYCL Z 1 //ACS_ExecuteAlways(422,0,0)
+	  Spawn2:
+        //CYSG Z 2 bright A_SpawnItemEx("CyberShotgunSparkle", random(8, 24), 0, random(16, 24), 0, 0, random(2, 5)/5.0, random(0, 360))
+        CYCL Z -1 bright
+        loop
+
+      Pickup:
+		TNT1 A 0 A_JumpIfInventory("Cyber Claw", 1, "PickupFail")
+        //TNT1 A 0 A_JumpIfInventory("Cyber Claw", 0, 1)    goto Pickup2
+        //TNT1 A 0 A_JumpIfInventory("CyberClawAmmo", 0, "PickupFail")    goto Pickup2
+
+      Pickup2:
+		TNT1 A 0 A_GiveInventory("CyberClawAmmo", 999)
+        TNT1 A 0 A_GiveInventory("Cyber Claw")
+		//TNT1 A 0 A_GiveInventory("CannotIntoClaw", 175)
+
+		TNT1 A 0 A_PlaySound("claw/pickup", CHAN_ITEM)
+		TNT1 A 0 A_SetBlend("FF 00 00", 0.25, 8)
+        goto CheckStay
+    }
+}
+
 actor 404PickupNotFound
 {
     +CLIENTSIDEONLY
@@ -206,7 +237,6 @@ actor 404PickupNotFound
     }
 }
 
-actor ChainsawNotFound: 404PickupNotFound replaces Chainsaw {}
 actor ShotgunNotFound:  404PickupNotFound replaces Shotgun {}
 actor RLNotFound:       404PickupNotFound replaces RocketLauncher {}
 

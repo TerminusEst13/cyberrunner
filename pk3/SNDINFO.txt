@@ -103,6 +103,7 @@ shotgun/pickup  sounds/pickups/shotgun_pickup.wav // UT2004 Flak Cannon pickup s
 carbine/pickup  sounds/pickups/carbine_pickup.ogg	// From Unreal Tournament 2004
 vulcan/pickup  sounds/pickups/minigun_pickup.wav  // UT99 minigun up sound
 hammer/pickup  sounds/pickups/hammer_pickup.wav  // From Devil May Cry 3
+claw/pickup    sounds/pickups/claw_get.ogg  // From Tribes: Ascend
 
 // Weapons
 // =============
