@@ -50,6 +50,7 @@ MAPS:
 - DarkLinux (CyberCrime 3, which had a skybox used in CYDM01)
 - Evil Space Tomato (CYDM02: Mars Needs Wi-Fi, Man)
 - Revae (CYDM03: Verticle Datapath)
+- RottKing (CYRC03: Hang Ten, Ro-Bro)
 
 CODE:
 =========
@@ -94,6 +95,7 @@ MUSIC:
 - Kyle Richards: Crythania (M_HURRY) 
 - zabutom: Sine Ride (Sped up - M_SCORES)
 - Descent: Lunar Outpust (CYDM03: Verticle Datapath)
+- Xaser: Zen Dynamics (CYRC03: Hang Ten, Ro-Bro)
 
 STORY:
 =========

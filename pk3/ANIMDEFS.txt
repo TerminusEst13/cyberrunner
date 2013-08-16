@@ -11,3 +11,14 @@ pic 1 tics 4
 pic 2 tics 4
 pic 3 tics 4
 pic 4 tics 4
+
+flat fan1
+	pic fan1 tics 1
+	pic fan2 tics 1
+	pic fan3 tics 1
+	pic fan4 tics 1
+
+texture snuke1
+	pic snuke1 tics 8
+	pic snuke2 tics 8
+	pic snuke3 tics 8

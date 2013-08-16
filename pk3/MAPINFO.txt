@@ -39,10 +39,18 @@ map CYRC01 "Deep Fried"
 
 map CYRC02 "Having Fun, Rocketboy?"
 {
-    next  = "CYRC01"
+    next  = "CYRC03"
     sky1  = "RJSPCSKY", 1
     sky2  = "BLACKSKY"
     music = "M_CYRC02" // CLiNT - Eclipse
+}
+
+map CYRC03 "Hang Ten, Ro-bro"
+{
+    sky1  = "RJSPCSKY", 1
+    next  = "CYRC01"
+    music = "M_CYRC03" // Xaser - Zen Dynamics
+	forcenoskystretch
 }
 
 map CYRTUT "Journey of a Thousand Miles, Etc Etc"
